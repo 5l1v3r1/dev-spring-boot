@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Built-By: CRISISG
+Build-Jdk: 10.0.2
+Implementation-Title: mdms
+Implementation-Version: dev
+Implementation-Vendor-Id: com.mdms
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/mdms-dev
+Main-Class: com.mdms.StartApp
+Created-By: Maven Integration for Eclipse
+

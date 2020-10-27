@@ -29,7 +29,7 @@ public class CoachEditForwardController {
 	
 	@RequestMapping(method=RequestMethod.GET, value="/getCoachesByDepot")
 	public List<String> getCoachesByDepot(@RequestParam String depotId) {	
-		List<String> coachIds=coachEditFwdServ.getCoachesByDepot();
+		List<String> coachIds=coachEditFwdServ.getCoachesByDepot(depotId);
 		logger.info("Controller : CoachEditForwardController || Method: getCoachesByDepot || getCoachForDepot: "+coachIds);
 			return coachIds;	
 	}

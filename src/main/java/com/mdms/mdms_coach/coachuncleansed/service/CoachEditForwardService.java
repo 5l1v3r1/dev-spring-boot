@@ -24,7 +24,7 @@ public class CoachEditForwardService {
 	}
 
 	public List<String> getCoachesByDepot(String depotId) {
-		 final String getCoachIdsByDepot = "SELECT coach_id FROM mdms_coach.coach_data_cmm where base_depot="+depotId;
+		 final String getCoachIdsByDepot = "SELECT coach_id FROM mdms_coach.coach_data_cmm where base_depot= \'"+depotId+"\'";
 		    final List<String> coachIds = jdbcTemplate.queryForList(getCoachIdsByDepot, String.class);
 		return coachIds;
 	}

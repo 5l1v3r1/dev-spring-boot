@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Built-By: CRISISG
-Build-Jdk: 10.0.2
+Built-By: 5447
+Build-Jdk: 10.0.1
 Implementation-Title: mdms
 Implementation-Version: dev
 Implementation-Vendor-Id: com.mdms

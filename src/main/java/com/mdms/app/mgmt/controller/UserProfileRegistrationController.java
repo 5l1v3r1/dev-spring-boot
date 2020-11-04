@@ -48,7 +48,7 @@ public class UserProfileRegistrationController {
 		GetListUserRegistrationJsonModel response= registrationServiceObj.getListUserRegistration();
 		//code to send otp, on hold because of Api for sending otp
 		
-		logger.info("Controller : UserRegistrationController || Method : UserRegistration ||");
+		logger.info("Controller : UserRegistrationController || Method : getListUserRegistration ");
 
 		return response;
 		

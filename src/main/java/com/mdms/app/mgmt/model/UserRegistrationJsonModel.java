@@ -61,12 +61,36 @@ public class UserRegistrationJsonModel implements Serializable {
 	@JsonProperty("email")
 	private String email;
 	
+	@JsonProperty("zone")
+	private String zone;
+	
+	@JsonProperty("division")
+	private String division;
+	
 	
 	@JsonProperty("emp_password")
 	private String emp_password;
 
 	
 	
+	
+	
+	public String getZone() {
+		return zone;
+	}
+
+	public void setZone(String zone) {
+		this.zone = zone;
+	}
+
+	public String getDivision() {
+		return division;
+	}
+
+	public void setDivision(String division) {
+		this.division = division;
+	}
+
 	public String getEmp_password() {
 		return emp_password;
 	}
@@ -184,11 +208,11 @@ public class UserRegistrationJsonModel implements Serializable {
 		return "UserRegistrationJsonModel [user_id=" + user_id + ", name=" + name + ", designation=" + designation
 				+ ", department=" + department + ", loco_type=" + loco_type + ", shed=" + shed + ", from_date="
 				+ from_date + ", to_date=" + to_date + ", role_type=" + role_type + ", user_type=" + user_type
-				+ ", mobile_no=" + mobile_no + ", entity=" + entity + ", email=" + email + ", emp_password="
-				+ emp_password + "]";
+				+ ", mobile_no=" + mobile_no + ", entity=" + entity + ", email=" + email + ", zone=" + zone
+				+ ", division=" + division + ", emp_password=" + emp_password + "]";
 	}
 
-	
+
 
 	
 	

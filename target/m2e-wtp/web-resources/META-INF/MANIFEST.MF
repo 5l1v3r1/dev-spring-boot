@@ -3,7 +3,7 @@ Implementation-Title: mdms
 Implementation-Version: dev
 Built-By: HP
 Implementation-Vendor-Id: com.mdms
-Build-Jdk: 1.8.0_191
+Build-Jdk: 1.8.0_221
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/mdms-dev
 Created-By: Maven Integration for Eclipse

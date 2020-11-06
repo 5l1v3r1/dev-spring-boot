@@ -17,22 +17,38 @@ public interface UserLoginDetailRepository extends CrudRepository<UserLoginDetai
 
 
 	@Procedure(value="mdms_app_mgmt.f_get_user_type_list")
-	String getUserType();
+	String getUserTypes();
 
 	
 
 	@Procedure(value="mdms_app_mgmt.f_get_user_role_list")
-	String getUserRole();
+	String getUserRoles();
 
 	
 
 	@Procedure(value="mdms_masters.f_get_departments_list")
-	String getDepartment();
+	String getDepartments();
 
 	
 
 	@Procedure(value="mdms_masters.f_get_designation_list")
-	String getDesignation();
+	String getDesignations();
+
+	
+	@Procedure(value="mdms_masters.f_get_zone_list")
+	String getZones();
+
+	
+	@Procedure(value="mdms_masters.f_get_division_list")
+	String getDivisions();
+
+	
+	@Procedure(value="mdms_loco.f_get_loco_type_list")
+	String getLocoTypes();
+
+	
+	@Procedure(value="mdms_loco.f_get_loco_shed_list")
+	String getLocoSheds();
 
 	
 }

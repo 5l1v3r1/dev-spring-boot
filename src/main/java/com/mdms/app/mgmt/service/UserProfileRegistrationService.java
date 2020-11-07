@@ -82,6 +82,8 @@ public class UserProfileRegistrationService {
 	registrationModelObj.setRole_type(obj.getRole_type());
 	registrationModelObj.setShed(obj.getShed());
 	registrationModelObj.setFrom_date(new Date());
+	registrationModelObj.setZone(obj.getZone());
+	registrationModelObj.setDivision(obj.getDivision());
 	//registrationModelObj.setTo_date(new Date());
 	registrationModelObj.setCreated_by(obj.getName());
 	registrationModelObj.setEntity("Entity");

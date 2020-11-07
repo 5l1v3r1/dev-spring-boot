@@ -37,7 +37,9 @@ public class UserProfileRegistrationController {
 			userObj.setLoco_type(null);	
 		}
 		logger.info("Controller : UserRegistrationController || Method : UserRegistration ||user_id: "+userObj.getUser_id()
-		+"||pwd"+userObj.getEmp_password()+"||shed"+ userObj.getShed() + "loco_type: "+ userObj.getLoco_type());
+		+"||pwd"+userObj.getEmp_password()+"||shed"+ userObj.getShed() + "loco_type: "+ userObj.getLoco_type()
+		
+				+"||zone : " +userObj.getZone()+"||division : " + userObj.getDivision());
 	
 		String response= registrationServiceObj.saveUserDetails(userObj);
 		//code to send otp, on hold because of Api for sending otp

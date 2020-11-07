@@ -14,6 +14,8 @@ public interface UserLoginDetailRepository extends CrudRepository<UserLoginDetai
 	
 	@Query(value="SELECT * from mdms_app_mgmt.user_login_detail where user_id=?1",nativeQuery=true)
 	  List<UserLoginDetailModel> getDeatils(String userId);
+	
+	
 
 
 	@Procedure(value="mdms_app_mgmt.f_get_user_type_list")

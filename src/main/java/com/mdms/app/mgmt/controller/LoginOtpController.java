@@ -57,7 +57,7 @@ public class LoginOtpController {
 		
 		MenuIdResponseModel obj=new MenuIdResponseModel();
 		logger.info("Controller : LoginOtpController || Method : verifyOtp || user_id: "+user_id +" ||otp: " +otp);
-		List<Integer> response= new ArrayList<Integer>();
+		List<String> response= new ArrayList<String>();
 	List<LoginOtpModel>	result=otpService.verifyOtp(user_id,otp);
 	if(result.size()>0) {
 		 response= menuRightService.showMenuRights(result.get(0).getUser_id());

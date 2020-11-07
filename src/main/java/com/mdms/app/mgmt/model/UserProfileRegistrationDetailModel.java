@@ -60,6 +60,30 @@ public class UserProfileRegistrationDetailModel {
 	
 	@Column(name="created_by")
 	private String created_by;
+	
+	@Column(name="zone")
+	private String zone;
+	
+	@Column(name="division")
+	private String division;
+	
+	
+
+	public String getZone() {
+		return zone;
+	}
+
+	public void setZone(String zone) {
+		this.zone = zone;
+	}
+
+	public String getDivision() {
+		return division;
+	}
+
+	public void setDivision(String division) {
+		this.division = division;
+	}
 
 	public String getUser_id() {
 		return user_id;
@@ -179,8 +203,9 @@ public class UserProfileRegistrationDetailModel {
 				+ designation + ", department=" + department + ", loco_type=" + loco_type + ", shed=" + shed
 				+ ", from_date=" + from_date + ", to_date=" + to_date + ", role_type=" + role_type + ", user_type="
 				+ user_type + ", mobile_no=" + mobile_no + ", entity=" + entity + ", email=" + email + ", created_by="
-				+ created_by + "]";
+				+ created_by + ", zone=" + zone + ", division=" + division + "]";
 	}
+
 	
 	
 	

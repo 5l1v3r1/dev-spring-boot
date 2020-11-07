@@ -6,13 +6,13 @@ import java.util.List;
 
 public class MenuIdResponseModel {
 	
-	List<Integer> menuid_list;
+	List<String> menuid_list;
 	String message;
 	String status;
-	public List<Integer> getMenuid_list() {
+	public List<String> getMenuid_list() {
 		return menuid_list;
 	}
-	public void setMenuid_list(List<Integer> menuid_list) {
+	public void setMenuid_list(List<String> menuid_list) {
 		this.menuid_list = menuid_list;
 	}
 	public String getMessage() {

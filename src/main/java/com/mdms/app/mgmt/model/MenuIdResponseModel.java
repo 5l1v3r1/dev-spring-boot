@@ -9,6 +9,14 @@ public class MenuIdResponseModel {
 	List<String> menuid_list;
 	String message;
 	String status;
+	String user_type;
+	
+	public String getUser_type() {
+		return user_type;
+	}
+	public void setUser_type(String user_type) {
+		this.user_type = user_type;
+	}
 	public List<String> getMenuid_list() {
 		return menuid_list;
 	}
@@ -29,7 +37,8 @@ public class MenuIdResponseModel {
 	}
 	@Override
 	public String toString() {
-		return "MenuIdResponseModel [menuid_list=" + menuid_list + ", message=" + message + ", status=" + status + "]";
+		return "MenuIdResponseModel [menuid_list=" + menuid_list + ", message=" + message + ", status=" + status
+				+ ", user_type=" + user_type + "]";
 	}
 	
 	

@@ -50,7 +50,7 @@ public String verifyLogin(String user_id,String pwd) {
 			}
 			
 			}else {
-				response="Wrong UserId";
+				response="This UserId is not registered.Please Registered First.";
 			}
 }catch(Exception ex) {
 	
@@ -60,4 +60,7 @@ public String verifyLogin(String user_id,String pwd) {
 }
 	return response;
 }
+
+
+
 }

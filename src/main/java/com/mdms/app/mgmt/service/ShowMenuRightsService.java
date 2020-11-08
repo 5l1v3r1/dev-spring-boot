@@ -54,5 +54,23 @@ public class ShowMenuRightsService {
 
 	return menuNameList;
 	 }
+	 
+	 
+	 public String getUserType(String user_id) {
+			
+		List<String> list= menuRightRepo.getUserType(user_id);
+		if(list.size()>0)
+		{
+			logger.info("Service : ShowMenuRightsService || Method : getUserType ||user_id: "+user_id +"||user_type "+list.get(0));
+
+			return list.get(0);
+		}else {
+			logger.info("Service : ShowMenuRightsService || Method : getUserType ||user_id: "+user_id +"||user_type No usertype");
+
+			return "NO user type";	
+		}
+		
+			
+		}
 
 }

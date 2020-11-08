@@ -47,6 +47,8 @@ public class UserLoginController {
 		
 	if(result.equalsIgnoreCase("success")) {
 		 response= menuRightService.showMenuRights(user_id);
+	String user_type=	 menuRightService.getUserType(user_id);
+	obj.setUser_type(user_type);
 		if(response.size()>0)
 		{
 		

@@ -1,10 +1,7 @@
 package com.mdms.mdms_coach.coachuncleansed.service;
 
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.Optional;
->>>>>>> d8cfe9c9310816ed15c1b02a398fb844488bae66
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
-=======
 import com.mdms.mdms_coach.coachuncleansed.model.CoachDataCMM;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachUncleansedData;
 import com.mdms.mdms_coach.coachuncleansed.repository.CoachCMMDataRepository;
@@ -23,33 +18,21 @@ import com.mdms.mdms_coach.coachuncleansed.repository.CoachCMMDataRepository;
 @Service
 public class CoachEditForwardService {
 	
-
 	@Autowired
 	private CoachCMMDataRepository coachEditForwardRepo;
-
 	Logger logger=LoggerFactory.getLogger(CoachEditForwardService.class);
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-
-	public boolean editForwardCoach() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public List<String> getCoachesByDepot() {
-		 final String getCoachIdsByDepot = "SELECT count(*) FROM mdms_common_schema.rbs_data_latest";
-
+	
 	
 //-------------------------------------------return coachIds for a particular depot--------------------------------------------
 	public List<String> getCoachesByDepot(String depotId) {
 		 final String getCoachIdsByDepot = "SELECT coach_id FROM mdms_coach.coach_data_cmm where base_depot=\'"+depotId+"\'";
-
 		    final List<String> coachIds = jdbcTemplate.queryForList(getCoachIdsByDepot, String.class);
 		return coachIds;
 	}
-
 
 //-------------------------------------------return coachDetails for a particular coach--------------------------------------------
 

@@ -44,11 +44,7 @@ public class CoachMetaMastersController {
 
 	Logger logger=LoggerFactory.getLogger(CoachMetaMastersController.class);
 	
-<<<<<<< HEAD
-//	
-=======
 	
->>>>>>> d8cfe9c9310816ed15c1b02a398fb844488bae66
 //	@RequestMapping(method=RequestMethod.POST, value="/gauge")
 //	public List<MGauge> getAllGauge(){
 //		return stn_meta_serv.getAllGauge();
@@ -95,13 +91,8 @@ public class CoachMetaMastersController {
 //	public List<MTrafficType> getTraffic(){
 //		return stn_meta_serv.getTraffic();
 //	}
-<<<<<<< HEAD
-//
-//	
-=======
 
 	
->>>>>>> d8cfe9c9310816ed15c1b02a398fb844488bae66
 	
 	
 }

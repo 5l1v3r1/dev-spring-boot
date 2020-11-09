@@ -8,28 +8,19 @@
 
 package com.mdms.mdms_coach.coachuncleansed.controller;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.Optional;
->>>>>>> d8cfe9c9310816ed15c1b02a398fb844488bae66
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD
-=======
 import org.springframework.web.bind.annotation.RequestBody;
->>>>>>> d8cfe9c9310816ed15c1b02a398fb844488bae66
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD
-=======
 import com.mdms.mdms_coach.coachuncleansed.model.CoachDataCMM;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachUncleansedData;
->>>>>>> d8cfe9c9310816ed15c1b02a398fb844488bae66
 import com.mdms.mdms_coach.coachuncleansed.service.CoachEditForwardService;
 
 
@@ -40,23 +31,6 @@ public class CoachEditForwardController {
 	
 	Logger logger=LoggerFactory.getLogger(CoachEditForwardController.class);
 	
-<<<<<<< HEAD
-	@RequestMapping(method=RequestMethod.GET, value="/getCoachesByDepot")
-	public List<String> getCoachesByDepot(@RequestParam String depotId) {	
-		List<String> coachIds=coachEditFwdServ.getCoachesByDepot();
-		logger.info("Controller : CoachEditForwardController || Method: getCoachesByDepot || getCoachForDepot: "+coachIds);
-			return coachIds;	
-	}
-	
-	
-	
-	@RequestMapping(method=RequestMethod.POST, value="/editForwardCoach")
-	public boolean EditForwardCoach() {
-		
-		boolean flag=coachEditFwdServ.editForwardCoach();
-		
-			return flag;	
-=======
 	
 	//-------------------------------------------return coachIds for a particular depot--------------------------------------------
 	
@@ -82,7 +56,6 @@ public class CoachEditForwardController {
 	public String EditForwardCoach(@RequestBody CoachUncleansedData coachUncleansedData) {		
 		String response=coachEditFwdServ.editForwardCoach(coachUncleansedData);	
 			return response;	
->>>>>>> d8cfe9c9310816ed15c1b02a398fb844488bae66
 	}
 	
 }

@@ -9,6 +9,7 @@
 package com.mdms.mdms_coach.coachuncleansed.controller;
 import java.util.List;
 
+
 import java.util.Optional;
 
 
@@ -16,6 +17,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.web.bind.annotation.RequestBody;
+
+
+import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,23 +44,7 @@ public class CoachEditForwardController {
 	private CoachEditForwardService coachEditFwdServ;
 	
 	Logger logger=LoggerFactory.getLogger(CoachEditForwardController.class);
-	
 
-	@RequestMapping(method=RequestMethod.GET, value="/getCoachesByDepot")
-	public List<String> getCoachesByDepot(@RequestParam String depotId) {	
-		List<String> coachIds=coachEditFwdServ.getCoachesByDepot();
-		logger.info("Controller : CoachEditForwardController || Method: getCoachesByDepot || getCoachForDepot: "+coachIds);
-			return coachIds;	
-	}
-	
-	
-	
-	@RequestMapping(method=RequestMethod.POST, value="/editForwardCoach")
-	public boolean EditForwardCoach() {
-		
-		boolean flag=coachEditFwdServ.editForwardCoach();
-		
-			return flag;	
 
 	//-------------------------------------------return coachIds for a particular depot--------------------------------------------
 	

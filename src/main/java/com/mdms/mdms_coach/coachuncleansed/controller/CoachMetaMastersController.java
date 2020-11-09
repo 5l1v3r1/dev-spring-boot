@@ -43,7 +43,6 @@ public class CoachMetaMastersController {
 	
 
 	Logger logger=LoggerFactory.getLogger(CoachMetaMastersController.class);
-	
 
 //	@RequestMapping(method=RequestMethod.POST, value="/gauge")
 //	public List<MGauge> getAllGauge(){
@@ -94,4 +93,5 @@ public class CoachMetaMastersController {
 
 	
 	
+
 }

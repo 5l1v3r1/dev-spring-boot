@@ -43,12 +43,11 @@ public class StationMetaMastersController {
 
 	Logger logger=LoggerFactory.getLogger(StationMetaMastersController.class);
 
-<<<<<<< HEAD
-=======
-	@RequestMapping(method=RequestMethod.POST, value="/gauge")
-	public List<MGauge> getAllGauge(){
 
->>>>>>> 17c0ce0caec99abce83672b19e6c0daad78240b8
+//	@RequestMapping(method=RequestMethod.POST, value="/gauge")
+//	public List<MGauge> getAllGauge(){
+
+
 	@RequestMapping(method=RequestMethod.POST,value="/gauge")
 	public List<MGauge> getAllGauge(){
 		

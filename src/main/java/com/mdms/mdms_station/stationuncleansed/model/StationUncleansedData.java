@@ -1,10 +1,5 @@
 
 package com.mdms.mdms_station.stationuncleansed.model;
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
->>>>>>> 17c0ce0caec99abce83672b19e6c0daad78240b8
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -425,14 +420,9 @@ public class StationUncleansedData {
 	
 	
 	}
-<<<<<<< HEAD
 
 
-=======
-=======
+//public class StationUncleansedData {
+//
+//}
 
-public class StationUncleansedData {
-
-}
->>>>>>> d8cfe9c9310816ed15c1b02a398fb844488bae66
->>>>>>> 17c0ce0caec99abce83672b19e6c0daad78240b8

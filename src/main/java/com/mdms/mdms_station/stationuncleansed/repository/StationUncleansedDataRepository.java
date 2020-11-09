@@ -15,7 +15,5 @@ public interface StationUncleansedDataRepository extends CrudRepository <Station
 	@Query(value="select * FROM mdms_station.station_uncleansed_data where user_id_cmi=?1 and cmi_status='D' and station_code=?2", nativeQuery = true)
 	StationUncleansedData getDraftFromUncleansedCmi(String useridcmi, String station_code);
 
-<<<<<<< HEAD
+
 }
-=======
->>>>>>> 17c0ce0caec99abce83672b19e6c0daad78240b8

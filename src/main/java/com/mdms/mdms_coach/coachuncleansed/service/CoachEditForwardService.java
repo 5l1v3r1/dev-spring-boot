@@ -2,10 +2,7 @@ package com.mdms.mdms_coach.coachuncleansed.service;
 
 import java.util.List;
 import java.util.Optional;
-<<<<<<< HEAD
-=======
 
->>>>>>> 17c0ce0caec99abce83672b19e6c0daad78240b8
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,21 +18,21 @@ import com.mdms.mdms_coach.coachuncleansed.repository.CoachCMMDataRepository;
 @Service
 public class CoachEditForwardService {
 	
-<<<<<<< HEAD
+
 
 	@Autowired
 	private CoachCMMDataRepository coachEditForwardRepo;
 
-=======
-	@Autowired
-	private CoachCMMDataRepository coachEditForwardRepo;
->>>>>>> 17c0ce0caec99abce83672b19e6c0daad78240b8
+
+//	@Autowired
+//	private CoachCMMDataRepository coachEditForwardRepo;
+
 	Logger logger=LoggerFactory.getLogger(CoachEditForwardService.class);
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-<<<<<<< HEAD
+
 
 	public boolean editForwardCoach() {
 		// TODO Auto-generated method stub
@@ -47,25 +44,22 @@ public class CoachEditForwardService {
 		return null;
 
 	}
+////-------------------------------------------return coachIds for a particular depot--------------------------------------------
+//	public List<String> getCoachesByDepot(String depotId) {
+//		 final String getCoachIdsByDepot = "SELECT coach_id FROM mdms_coach.coach_data_cmm where base_depot=\'"+depotId+"\'";
+//
+//=======
+//	
+	
 //-------------------------------------------return coachIds for a particular depot--------------------------------------------
 	public List<String> getCoachesByDepot(String depotId) {
 		 final String getCoachIdsByDepot = "SELECT coach_id FROM mdms_coach.coach_data_cmm where base_depot=\'"+depotId+"\'";
 
-=======
-	
-	
-//-------------------------------------------return coachIds for a particular depot--------------------------------------------
-	public List<String> getCoachesByDepot(String depotId) {
-		 final String getCoachIdsByDepot = "SELECT coach_id FROM mdms_coach.coach_data_cmm where base_depot=\'"+depotId+"\'";
->>>>>>> 17c0ce0caec99abce83672b19e6c0daad78240b8
 		    final List<String> coachIds = jdbcTemplate.queryForList(getCoachIdsByDepot, String.class);
 		return coachIds;
 	}
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 17c0ce0caec99abce83672b19e6c0daad78240b8
 //-------------------------------------------return coachDetails for a particular coach--------------------------------------------
 
 	public Optional<CoachDataCMM> getCoachByCoachId(String coachId) {

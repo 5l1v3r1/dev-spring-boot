@@ -31,7 +31,7 @@ import com.mdms.mdms_station.stationuncleansed.model.MDistrict;
 
 import com.mdms.mdms_station.stationuncleansed.service.StationMetaMastersService;
 
-@CrossOrigin(origins = {"http://localhost:4200","http://cris-mdm-angular.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
+@CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
 
 @RestController
 public class StationMetaMastersController {
@@ -43,12 +43,7 @@ public class StationMetaMastersController {
 
 	Logger logger=LoggerFactory.getLogger(StationMetaMastersController.class);
 
-<<<<<<< HEAD
-=======
-	@RequestMapping(method=RequestMethod.POST, value="/gauge")
-	public List<MGauge> getAllGauge(){
 
->>>>>>> 17c0ce0caec99abce83672b19e6c0daad78240b8
 	@RequestMapping(method=RequestMethod.POST,value="/gauge")
 	public List<MGauge> getAllGauge(){
 		

@@ -60,8 +60,27 @@ public class StationEditForwardService {
 		ispresent=stn_unclsnd_repo.findById(stationdraftcmi.getStn_Id()).isPresent();
 		if(ispresent)
 		{
-			//update
+			String status=stn_unclsnd_repo.findById(stationdraftcmi.getStn_Id()).get().getCmi_status();
+			
+			if(status.equals("D"))
+			
+			{
+				String cmi_station_code=stationdraftcmi.getStn_Id().getStation_code();
+				Date cmi_valid_from=stationdraftcmi.getStn_Id().getStation_valid_from();
+				Date cmi_valid_upto=stationdraftcmi.getStn_Id().getStation_valid_upto();
+				String userid=stationdraftcmi.getUser_id_cmi();
+				  Date date = new Date();  
+			stn_unclsnd_repo.updateDraft( userid,  cmi_station_code ,  cmi_valid_from ,  cmi_valid_upto , stationdraftcmi.getStation_numeric_code(),
+					stationdraftcmi.getStation_name(),	stationdraftcmi.getTraffic_type(),stationdraftcmi.getTranshipment_flag() ,
+					stationdraftcmi.getStation_class() ,stationdraftcmi.getJunction_flag(), stationdraftcmi.getInterchange_flag() , 
+					stationdraftcmi.getState(), stationdraftcmi.getPincode() , stationdraftcmi.getDistrict(),stationdraftcmi.getTehsil(), 
+					stationdraftcmi.getStation_short_name(), stationdraftcmi.getInterlocking_standard() , stationdraftcmi.getWorking_division(),
+					stationdraftcmi.getWeight_bridge(), stationdraftcmi.getSiding() , stationdraftcmi.getBooking_type() , stationdraftcmi.getCmi_status(), date );
 			returnstmt="Draft Updated Successfully";	
+				
+			}
+			
+			
 			
 		}
 		
@@ -83,6 +102,51 @@ public class StationEditForwardService {
 		return returnstmt;
 	}
 	
+	 
+	 @Transactional(rollbackOn = Exception.class)
+	 public String forwardToDcm(StationUncleansedData stationdatadcm) {
+		 
+		 boolean ispresent;
+			String returnstmt="";
+			ispresent=stn_unclsnd_repo.findById(stationdatadcm.getStn_Id()).isPresent();
+			String status=stn_unclsnd_repo.findById(stationdatadcm.getStn_Id()).get().getCmi_status();
+			if(ispresent && status.equals("D"))
+			{
+				
+				String cmi_station_code=stationdatadcm.getStn_Id().getStation_code();
+				Date cmi_valid_from=stationdatadcm.getStn_Id().getStation_valid_from();
+				Date cmi_valid_upto=stationdatadcm.getStn_Id().getStation_valid_upto();
+				String userid=stationdatadcm.getUser_id_cmi();
+				String station_status="U";
+				  Date date = new Date();  
+			stn_unclsnd_repo.updateDraft( userid,  cmi_station_code ,  cmi_valid_from ,  cmi_valid_upto , stationdatadcm.getStation_numeric_code(),
+					stationdatadcm.getStation_name(),	stationdatadcm.getTraffic_type(),stationdatadcm.getTranshipment_flag() ,
+					stationdatadcm.getStation_class() ,stationdatadcm.getJunction_flag(), stationdatadcm.getInterchange_flag() , 
+					stationdatadcm.getState(), stationdatadcm.getPincode() , stationdatadcm.getDistrict(),stationdatadcm.getTehsil(), 
+					stationdatadcm.getStation_short_name(), stationdatadcm.getInterlocking_standard() , stationdatadcm.getWorking_division(),
+					stationdatadcm.getWeight_bridge(), stationdatadcm.getSiding() , stationdatadcm.getBooking_type() , station_status, date );
+			returnstmt="Record Forwarded To DCM Successfully";
+				
+			}
+			else
+			{
+				
+				   Date date = new Date();  
+					  
+				   stationdatadcm.setTxn_date_cmi(date);
+					
+					stn_unclsnd_repo.save(stationdatadcm);
+					
+					returnstmt="Record Forwarded To DCM Successfully";	
+				
+			}
+			
+			
+			
+	 
+	 return returnstmt;
+	 }
+	 
 	 
 	 
 }

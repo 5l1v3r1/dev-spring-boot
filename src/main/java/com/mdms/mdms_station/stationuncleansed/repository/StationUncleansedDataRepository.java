@@ -7,6 +7,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.Modifying;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -17,6 +18,7 @@ public interface StationUncleansedDataRepository extends CrudRepository <Station
 	
 	@Query(value="select * FROM mdms_station.station_uncleansed_data where user_id_cmi=?1 and cmi_status='D' and station_code=?2", nativeQuery = true)
 	StationUncleansedData getDraftFromUncleansedCmi(String useridcmi, String station_code);
+
 
 	@Modifying
 	@Transactional
@@ -29,4 +31,8 @@ public interface StationUncleansedDataRepository extends CrudRepository <Station
 			String shprtname, String intrlckstd , String wrkngdvsn , int weighbridge, String siding ,  String bookingtype , String cmistatus, Date dt );
 
 }
+
+
+
+
 

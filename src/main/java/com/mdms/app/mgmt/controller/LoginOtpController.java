@@ -21,8 +21,8 @@ import com.mdms.app.mgmt.model.MenuIdResponseModel;
 import com.mdms.app.mgmt.service.LoginOtpService;
 import com.mdms.app.mgmt.service.ShowMenuRightsService;
 
-
 @CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
+
 
 @RestController
 public class LoginOtpController {

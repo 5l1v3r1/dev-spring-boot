@@ -60,6 +60,7 @@ public class StationEditForwardService {
 		ispresent=stn_unclsnd_repo.findById(stationdraftcmi.getStn_Id()).isPresent();
 		if(ispresent)
 		{
+
 			String status=stn_unclsnd_repo.findById(stationdraftcmi.getStn_Id()).get().getCmi_status();
 			
 			if(status.equals("D"))
@@ -81,6 +82,10 @@ public class StationEditForwardService {
 			}
 			
 			
+
+			//update
+			returnstmt="Draft Updated Successfully";	
+
 			
 		}
 		
@@ -103,6 +108,7 @@ public class StationEditForwardService {
 	}
 	
 	 
+
 	 @Transactional(rollbackOn = Exception.class)
 	 public String forwardToDcm(StationUncleansedData stationdatadcm) {
 		 
@@ -148,5 +154,6 @@ public class StationEditForwardService {
 	 }
 	 
 	 
+
 	 
 }

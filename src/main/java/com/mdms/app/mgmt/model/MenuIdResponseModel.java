@@ -10,7 +10,46 @@ public class MenuIdResponseModel {
 	String message;
 	String status;
 	String user_type;
+	String division;
+	String designation;
+	String user_role;
+	String user_id;
+	String senior_id;
 	
+	
+	
+	
+	
+	public String getDivision() {
+		return division;
+	}
+	public void setDivision(String division) {
+		this.division = division;
+	}
+	public String getDesignation() {
+		return designation;
+	}
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+	public String getUser_role() {
+		return user_role;
+	}
+	public void setUser_role(String user_role) {
+		this.user_role = user_role;
+	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	public String getSenior_id() {
+		return senior_id;
+	}
+	public void setSenior_id(String senior_id) {
+		this.senior_id = senior_id;
+	}
 	public String getUser_type() {
 		return user_type;
 	}
@@ -38,8 +77,11 @@ public class MenuIdResponseModel {
 	@Override
 	public String toString() {
 		return "MenuIdResponseModel [menuid_list=" + menuid_list + ", message=" + message + ", status=" + status
-				+ ", user_type=" + user_type + "]";
+				+ ", user_type=" + user_type + ", division=" + division + ", designation=" + designation
+				+ ", user_role=" + user_role + ", user_id=" + user_id + ", senior_id=" + senior_id + "]";
 	}
+	
+	
 	
 	
 

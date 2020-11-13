@@ -39,15 +39,28 @@ public String verifyLogin(String user_id,String pwd) {
 
 			
 			
-			if(list.size()>0) {
-				
+			if((list.size()>0) ) {
+				if(list.get(0).getUser_register_approval().equalsIgnoreCase("N")) {
+					
+					logger.info("Service : UserLoginService || Method : getUser_register_approval 'N'||");
+				response = "Registered MDMS user is not approved by approving authority.";
+					
+				}else if(list.get(0).getUser_register_approval().equalsIgnoreCase("Y") ){
+					
+					logger.info("Service : UserLoginService || Method : getUser_register_approval 'Y'||");
 				
 				boolean result=passwordEncoder.matches(pwd,list.get(0).getEmp_password());
 			if(result) {
+				
+				logger.info("Service : UserLoginService || Method : passwordEncoder.matches  'Y'||");
 				response="success";	
 			}else {
 				response="Wrong Password";	
 			}
+				}else {
+					response  = "Failed";	
+				}
+				
 			
 			}else {
 				response="This UserId is not registered.Please Registered First.";

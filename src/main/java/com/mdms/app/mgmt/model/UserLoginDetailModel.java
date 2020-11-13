@@ -37,6 +37,23 @@ public class UserLoginDetailModel {
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm:Ss")
 	@Column(name="last_password_change_txn_timestamp")
 	private Timestamp last_password_change_txn_timestamp;
+	
+	
+	@Column(name="user_register_approval")
+	private String user_register_approval;
+	
+	
+	
+
+
+	public String getUser_register_approval() {
+		return user_register_approval;
+	}
+
+
+	public void setUser_register_approval(String user_register_approval) {
+		this.user_register_approval = user_register_approval;
+	}
 
 
 	public String getUser_id() {
@@ -103,9 +120,12 @@ public class UserLoginDetailModel {
 	public String toString() {
 		return "UserLoginDetailModel [user_id=" + user_id + ", email=" + email + ", emp_password=" + emp_password
 				+ ", role_type=" + role_type + ", txn_timestamp=" + txn_timestamp
-				+ ", last_password_change_txn_timestamp=" + last_password_change_txn_timestamp + "]";
+				+ ", last_password_change_txn_timestamp=" + last_password_change_txn_timestamp
+				+ ", user_register_approval=" + user_register_approval + "]";
 	}
-	
+
+
+
 	
 	
 	

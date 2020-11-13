@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mdms.app.mgmt.model.LoginOtpModel;
 import com.mdms.app.mgmt.model.MenuIdResponseModel;
+import com.mdms.app.mgmt.model.UserProfileRegistrationDetailModel;
 import com.mdms.app.mgmt.service.LoginOtpService;
 import com.mdms.app.mgmt.service.ShowMenuRightsService;
 import com.mdms.app.mgmt.service.UserLoginService;
+import com.mdms.app.mgmt.service.UserProfileRegistrationService;
 
 @CrossOrigin(origins = {"http://localhost:4200","http://cris-mdm-angular.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
 
@@ -29,6 +31,9 @@ public class UserLoginController {
 	
 	@Autowired
 	private ShowMenuRightsService menuRightService;
+	
+	@Autowired
+	UserProfileRegistrationService profileRegistrationService;
 	
 
 	Logger logger=LoggerFactory.getLogger(UserLoginController.class);
@@ -46,8 +51,16 @@ public class UserLoginController {
 		
 		
 	if(result.equalsIgnoreCase("success")) {
+		
+		
 		 response= menuRightService.showMenuRights(user_id);
 	String user_type=	 menuRightService.getUserType(user_id);
+	UserProfileRegistrationDetailModel registrationObj=profileRegistrationService.getUserDetail(user_id);
+	obj.setDivision(registrationObj.getDivision());
+	obj.setDesignation(registrationObj.getDesignation());
+obj.setUser_role(registrationObj.getRole_type());
+obj.setUser_id(user_id);
+obj.setSenior_id(profileRegistrationService.seniorID(registrationObj.getDesignation(), registrationObj.getDivision()));
 	obj.setUser_type(user_type);
 		if(response.size()>0)
 		{

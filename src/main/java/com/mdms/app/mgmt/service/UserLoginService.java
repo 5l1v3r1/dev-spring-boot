@@ -39,6 +39,7 @@ public String verifyLogin(String user_id,String pwd) {
 
 			
 			
+<<<<<<< HEAD
 			if((list.size()>0) ) {
 				if(list.get(0).getUser_register_approval().equalsIgnoreCase("N")) {
 					
@@ -53,14 +54,24 @@ public String verifyLogin(String user_id,String pwd) {
 			if(result) {
 				
 				logger.info("Service : UserLoginService || Method : passwordEncoder.matches  'Y'||");
+=======
+			if(list.size()>0) {
+				
+				
+				boolean result=passwordEncoder.matches(pwd,list.get(0).getEmp_password());
+			if(result) {
+>>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
 				response="success";	
 			}else {
 				response="Wrong Password";	
 			}
+<<<<<<< HEAD
 				}else {
 					response  = "Failed";	
 				}
 				
+=======
+>>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
 			
 			}else {
 				response="This UserId is not registered.Please Registered First.";

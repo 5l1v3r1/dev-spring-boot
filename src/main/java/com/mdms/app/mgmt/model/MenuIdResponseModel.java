@@ -10,6 +10,7 @@ public class MenuIdResponseModel {
 	String message;
 	String status;
 	String user_type;
+<<<<<<< HEAD
 	String division;
 	String designation;
 	String user_role;
@@ -50,6 +51,9 @@ public class MenuIdResponseModel {
 	public void setSenior_id(String senior_id) {
 		this.senior_id = senior_id;
 	}
+=======
+	
+>>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
 	public String getUser_type() {
 		return user_type;
 	}
@@ -77,6 +81,7 @@ public class MenuIdResponseModel {
 	@Override
 	public String toString() {
 		return "MenuIdResponseModel [menuid_list=" + menuid_list + ", message=" + message + ", status=" + status
+<<<<<<< HEAD
 				+ ", user_type=" + user_type + ", division=" + division + ", designation=" + designation
 				+ ", user_role=" + user_role + ", user_id=" + user_id + ", senior_id=" + senior_id + "]";
 	}
@@ -84,5 +89,11 @@ public class MenuIdResponseModel {
 	
 	
 	
+=======
+				+ ", user_type=" + user_type + "]";
+	}
+	
+	
+>>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
 
 }

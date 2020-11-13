@@ -2,7 +2,10 @@ package com.mdms.app.mgmt.service;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+>>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
 import java.util.Date;
 import java.util.List;
 
@@ -256,6 +259,7 @@ if(response!=null && result!=null) {
 		 
 		
 	 }
+<<<<<<< HEAD
 	 
 	 public UserProfileRegistrationDetailModel getUserDetail(String user_id) {
 		 List<UserProfileRegistrationDetailModel> list = new ArrayList<UserProfileRegistrationDetailModel>();
@@ -288,4 +292,6 @@ if(response!=null && result!=null) {
 		
 		return seniorId;		
 	}
+=======
+>>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
 }

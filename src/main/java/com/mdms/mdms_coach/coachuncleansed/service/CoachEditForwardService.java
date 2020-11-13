@@ -20,20 +20,59 @@ public class CoachEditForwardService {
 	
 	@Autowired
 	private CoachCMMDataRepository coachEditForwardRepo;
+<<<<<<< HEAD
+=======
+
+>>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
 	Logger logger=LoggerFactory.getLogger(CoachEditForwardService.class);
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+<<<<<<< HEAD
 	
+=======
+
+	public boolean editForwardCoach() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public List<String> getCoachesByDepot() {
+		 final String getCoachIdsByDepot = "SELECT count(*) FROM mdms_common_schema.rbs_data_latest";
+		return null;
+
+	}
+
+//-------------------------------------------return coachIds for a particular depot--------------------------------------------
+	
+
+
+
+////-------------------------------------------return coachIds for a particular depot--------------------------------------------
+//	public List<String> getCoachesByDepot(String depotId) {
+//		 final String getCoachIdsByDepot = "SELECT coach_id FROM mdms_coach.coach_data_cmm where base_depot=\'"+depotId+"\'";
+//
+//=======
+//	
+
+>>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
 	
 //-------------------------------------------return coachIds for a particular depot--------------------------------------------
 	public List<String> getCoachesByDepot(String depotId) {
 		 final String getCoachIdsByDepot = "SELECT coach_id FROM mdms_coach.coach_data_cmm where base_depot=\'"+depotId+"\'";
+<<<<<<< HEAD
+=======
+
+>>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
 		    final List<String> coachIds = jdbcTemplate.queryForList(getCoachIdsByDepot, String.class);
 		return coachIds;
 	}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
 //-------------------------------------------return coachDetails for a particular coach--------------------------------------------
 
 	public Optional<CoachDataCMM> getCoachByCoachId(String coachId) {

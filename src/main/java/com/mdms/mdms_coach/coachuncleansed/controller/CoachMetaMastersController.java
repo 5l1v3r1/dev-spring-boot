@@ -32,28 +32,20 @@ import com.mdms.mdms_station.stationuncleansed.model.MTraction;
 import com.mdms.mdms_station.stationuncleansed.model.MTrafficType;
 import com.mdms.mdms_station.stationuncleansed.service.StationMetaMastersService;
 
-<<<<<<< HEAD
-@CrossOrigin(origins = {"http://localhost:4200","http://cris-mdm-angular.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
-=======
 
 @CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
+
 
 @RestController
 public class CoachMetaMastersController {
 	
 	
-	@Autowired
-	private StationMetaMastersService stn_meta_serv;
+//	@Autowired
+//	private StationMetaMastersService stn_meta_serv;
 	
 
-	Logger logger=LoggerFactory.getLogger(CoachMetaMastersController.class);
-<<<<<<< HEAD
-	
-	
-=======
+	//Logger logger=LoggerFactory.getLogger(CoachMetaMastersController.class);
 
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
 //	@RequestMapping(method=RequestMethod.POST, value="/gauge")
 //	public List<MGauge> getAllGauge(){
 //		return stn_meta_serv.getAllGauge();
@@ -102,10 +94,5 @@ public class CoachMetaMastersController {
 //	}
 
 	
-	
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
 }

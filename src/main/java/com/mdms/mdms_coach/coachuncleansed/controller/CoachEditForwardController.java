@@ -8,8 +8,7 @@
 
 package com.mdms.mdms_coach.coachuncleansed.controller;
 import java.util.List;
-<<<<<<< HEAD
-=======
+
 
 
 import java.util.Optional;
@@ -24,18 +23,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import org.springframework.web.bind.annotation.RequestBody;
 
-
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
 import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
-<<<<<<< HEAD
-=======
 
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,11 +37,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mdms.mdms_coach.coachuncleansed.model.CoachDataCMM;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachUncleansedData;
-<<<<<<< HEAD
-import com.mdms.mdms_coach.coachuncleansed.service.CoachEditForwardService;
 
-
-=======
 
 import com.mdms.mdms_coach.coachuncleansed.service.CoachEditForwardService;
 
@@ -56,20 +46,13 @@ import com.mdms.mdms_coach.coachuncleansed.service.CoachEditForwardService;
 
 
 
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
 @RestController
 public class CoachEditForwardController {
 	@Autowired
 	private CoachEditForwardService coachEditFwdServ;
 	
 	Logger logger=LoggerFactory.getLogger(CoachEditForwardController.class);
-<<<<<<< HEAD
-	
-	
-=======
 
-
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
 	//-------------------------------------------return coachIds for a particular depot--------------------------------------------
 	
 	@RequestMapping(method=RequestMethod.GET, value="/getCoachesByDepot")
@@ -94,10 +77,9 @@ public class CoachEditForwardController {
 	public String EditForwardCoach(@RequestBody CoachUncleansedData coachUncleansedData) {		
 		String response=coachEditFwdServ.editForwardCoach(coachUncleansedData);	
 			return response;	
-<<<<<<< HEAD
-=======
 
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
+
+
 	}
 	
 }

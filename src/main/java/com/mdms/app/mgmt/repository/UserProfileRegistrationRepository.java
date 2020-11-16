@@ -17,7 +17,7 @@ public interface UserProfileRegistrationRepository extends CrudRepository<UserPr
 	  List<UserProfileRegistrationDetailModel> getUserRoleAndType(String user_id);
 	
 	
-<<<<<<< HEAD
+
 	@Query(value="SELECT user_id from mdms_app_mgmt.user_profile_registration_detail where division=?1 and designation='DCM'",nativeQuery=true)
 	  String getSeniorIdForCMI(String division);
 	
@@ -26,8 +26,7 @@ public interface UserProfileRegistrationRepository extends CrudRepository<UserPr
 	 String getSeniorIdForDTI(String division);
 	
 	
-=======
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
+
 	
 	@Transactional
 	@Query(value="INSERT INTO mdms_app_mgmt.user_profile_registration_detail(\r\n" + 

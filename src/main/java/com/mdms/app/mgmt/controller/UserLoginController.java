@@ -22,14 +22,12 @@ import com.mdms.app.mgmt.service.UserLoginService;
 import com.mdms.app.mgmt.service.UserProfileRegistrationService;
 
 @CrossOrigin(origins = {"http://localhost:4200","http://cris-mdm-angular.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
-=======
+
 import com.mdms.app.mgmt.service.LoginOtpService;
 import com.mdms.app.mgmt.service.ShowMenuRightsService;
 import com.mdms.app.mgmt.service.UserLoginService;
 
-@CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
 
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
 
 @RestController
 public class UserLoginController {
@@ -41,12 +39,11 @@ public class UserLoginController {
 	@Autowired
 	private ShowMenuRightsService menuRightService;
 	
-<<<<<<< HEAD
+
 	@Autowired
 	UserProfileRegistrationService profileRegistrationService;
 	
-=======
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
+
 
 	Logger logger=LoggerFactory.getLogger(UserLoginController.class);
 
@@ -63,7 +60,6 @@ public class UserLoginController {
 		
 		
 	if(result.equalsIgnoreCase("success")) {
-<<<<<<< HEAD
 		
 		
 		 response= menuRightService.showMenuRights(user_id);
@@ -74,10 +70,8 @@ public class UserLoginController {
 obj.setUser_role(registrationObj.getRole_type());
 obj.setUser_id(user_id);
 obj.setSenior_id(profileRegistrationService.seniorID(registrationObj.getDesignation(), registrationObj.getDivision()));
-=======
-		 response= menuRightService.showMenuRights(user_id);
-	String user_type=	 menuRightService.getUserType(user_id);
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
+	
+	
 	obj.setUser_type(user_type);
 		if(response.size()>0)
 		{

@@ -6,11 +6,7 @@
  */
 package com.mdms.mdms_station.stationuncleansed.controller;
 
-<<<<<<< HEAD
-public class StationEditForwardController {
 
-}
-=======
 
 import java.util.Date;
 import java.util.List;
@@ -86,4 +82,3 @@ public class StationEditForwardController {
 }
 
 
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0

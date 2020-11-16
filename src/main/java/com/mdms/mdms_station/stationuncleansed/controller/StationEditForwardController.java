@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mdms.mdms_station.stationuncleansed.model.StationTableRbs;
 import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedData;
+import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedTest;
 import com.mdms.mdms_station.stationuncleansed.service.StationEditForwardService;
 
 
@@ -77,7 +78,34 @@ public class StationEditForwardController {
 		return stn_edit_fwd_serv.forwardToDcm(stationdatadcm);
 	}
 	
+	
+	@RequestMapping(method=RequestMethod.POST, value="/stnunclnsunaprvdcm")
+	public List<StationUncleansedData> fetchUnapprovedCmiRecords(@RequestParam(value="division_code") String division_code)
+	{
+		return stn_edit_fwd_serv.fetchUnapprovedCmiRecords(division_code);
+	}
+	
 
+	
+	
+	@RequestMapping(method=RequestMethod.POST, value="/stnunclnsunaprvdcm1")
+	public List<StationUncleansedTest> fetchUnapprovedCmiRecords1(@RequestParam(value="division_code") String division_code)
+	{
+		return stn_edit_fwd_serv.fetchUnapprovedCmiRecords1(division_code);
+	}
+	
+	
+	
+	@RequestMapping(method=RequestMethod.POST, value="/stnunclappdcm")
+	public  String approvedByDcm(@RequestBody String stationdatadcm) throws Exception
+	{
+
+		logger.error("controller : StationEditForwardController || Method : forwardToDcm || input recieved approvedByDcm: "+stationdatadcm);
+		
+		return stn_edit_fwd_serv.approvedByDcm(stationdatadcm);
+		
+		
+	}
 }
 
 

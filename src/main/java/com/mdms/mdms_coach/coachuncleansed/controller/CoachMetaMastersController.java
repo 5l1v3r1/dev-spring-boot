@@ -45,54 +45,5 @@ public class CoachMetaMastersController {
 
 	Logger logger=LoggerFactory.getLogger(CoachMetaMastersController.class);
 
-//	@RequestMapping(method=RequestMethod.POST, value="/gauge")
-//	public List<MGauge> getAllGauge(){
-//		return stn_meta_serv.getAllGauge();
-//	}
-//	
-//	
-//	@RequestMapping(method=RequestMethod.GET, value="/gis")
-//	public List<MGisDetail> getLatLong(@RequestParam("station_code")String station_code){
-//		return stn_meta_serv.getLatLong(station_code);
-//	}
-//	
-//	@RequestMapping(method=RequestMethod.POST, value="/interlck")
-//	public List<MInterlockingStandard> getInterLock(){
-//		return stn_meta_serv.getInterLock();
-//	}
-//	
-//	@RequestMapping(method=RequestMethod.POST, value="/oprtnsignal")
-//	public List<MOperatingStationSignal> getOperatingSignal(){
-//		return stn_meta_serv.getOperatingSignal();
-//	}
-//	
-//	
-//	@RequestMapping(method=RequestMethod.POST, value="/stnclass")
-//	public List<MStationClass> getStationClass(){
-//		return stn_meta_serv.getStationClass();
-//	}
-//	
-//	@RequestMapping(method=RequestMethod.POST, value="/interchng")
-//	public List<MStationInterchange> getStationInterchange(){
-//		return stn_meta_serv.getStationInterchange();
-//	}
-//	
-//	@RequestMapping(method=RequestMethod.POST, value="/junction")
-//	public List<MStationJunction> getStationJunction(){
-//		return stn_meta_serv.getStationJunction();
-//	}
-//	
-//	@RequestMapping(method=RequestMethod.POST, value="/traction")
-//	public List<MTraction> getTraction(){
-//		return stn_meta_serv.getTraction();
-//	}
-//	
-//	@RequestMapping(method=RequestMethod.POST, value="/traffictype")
-//	public List<MTrafficType> getTraffic(){
-//		return stn_meta_serv.getTraffic();
-//	}
-
-	
-	
 
 }

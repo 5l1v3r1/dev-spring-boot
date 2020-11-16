@@ -10,7 +10,9 @@ import com.mdms.mdms_station.stationuncleansed.model.MInterlockingStandard;
 public interface MInterlockingStandardRepository extends CrudRepository<MInterlockingStandard,String> {
 
 
+
 	@Query(value="Select * from mdms_station.m_interlocking_standard", nativeQuery = true)
+
 
 	List<MInterlockingStandard> getInterLock();
 

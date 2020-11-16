@@ -1,5 +1,7 @@
 
 package com.mdms.mdms_station.stationuncleansed.model;
+
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -420,5 +422,6 @@ public class StationUncleansedData {
 	
 	
 	}
+
 
 

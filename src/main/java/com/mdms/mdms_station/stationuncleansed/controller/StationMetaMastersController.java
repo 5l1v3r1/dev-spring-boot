@@ -4,8 +4,15 @@
  * 
  */
 package com.mdms.mdms_station.stationuncleansed.controller;
+
+
 import java.util.ArrayList;
 import java.util.List;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.mdms.mdms_station.stationuncleansed.model.MBookingType;
+
 import com.mdms.mdms_station.stationuncleansed.model.MGauge;
 import com.mdms.mdms_station.stationuncleansed.model.MGisDetail;
 import com.mdms.mdms_station.stationuncleansed.model.MInterlockingStandard;
@@ -26,12 +35,16 @@ import com.mdms.mdms_station.stationuncleansed.model.MStationJunction;
 import com.mdms.mdms_station.stationuncleansed.model.MStationStatus;
 import com.mdms.mdms_station.stationuncleansed.model.MTraction;
 import com.mdms.mdms_station.stationuncleansed.model.MTrafficType;
+
+import com.mdms.mdms_station.stationuncleansed.service.StationMetaMastersService;
+
 import com.mdms.mdms_station.stationuncleansed.model.MState;
 import com.mdms.mdms_station.stationuncleansed.model.MDistrict;
 
 import com.mdms.mdms_station.stationuncleansed.service.StationMetaMastersService;
 
 @CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
+
 
 @RestController
 public class StationMetaMastersController {
@@ -43,15 +56,13 @@ public class StationMetaMastersController {
 
 	Logger logger=LoggerFactory.getLogger(StationMetaMastersController.class);
 
-//	@RequestMapping(method=RequestMethod.POST, value="/gauge")
-//	public List<MGauge> getAllGauge(){
-
-
+	
 
 	@RequestMapping(method=RequestMethod.POST,value="/gauge")
 	public List<MGauge> getAllGauge(){
 		
 		logger.info("Controller : StationMetaMastersController || Method : getAllGauge ");
+
 
 		return stn_meta_serv.getAllGauge();
 	}
@@ -140,6 +151,7 @@ public class StationMetaMastersController {
 	
 	return stn_meta_serv.getLgdDistrict();
 }
+
 
 	
 	

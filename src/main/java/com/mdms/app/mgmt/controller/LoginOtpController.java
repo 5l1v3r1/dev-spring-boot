@@ -22,15 +22,8 @@ import com.mdms.app.mgmt.service.LoginOtpService;
 import com.mdms.app.mgmt.service.ShowMenuRightsService;
 
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 0f42bd01eadd03c7e751b91c5c1d468f872c728d
 @CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
-
-
-
 @RestController
 public class LoginOtpController {
 	

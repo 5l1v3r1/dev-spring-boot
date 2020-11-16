@@ -8,10 +8,7 @@
 
 package com.mdms.mdms_coach.coachuncleansed.controller;
 import java.util.List;
-<<<<<<< HEAD
 
-=======
->>>>>>> 0f42bd01eadd03c7e751b91c5c1d468f872c728d
 
 
 import java.util.Optional;
@@ -26,11 +23,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import org.springframework.web.bind.annotation.RequestBody;
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 0f42bd01eadd03c7e751b91c5c1d468f872c728d
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -46,10 +39,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachDataCMM;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachUncleansedData;
 
-<<<<<<< HEAD
-=======
-import com.mdms.mdms_coach.coachuncleansed.service.CoachEditForwardService;
->>>>>>> 0f42bd01eadd03c7e751b91c5c1d468f872c728d
+
 
 import com.mdms.mdms_coach.coachuncleansed.service.CoachEditForwardService;
 
@@ -57,10 +47,6 @@ import com.mdms.mdms_coach.coachuncleansed.service.CoachEditForwardService;
 @CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 0f42bd01eadd03c7e751b91c5c1d468f872c728d
 @RestController
 public class CoachEditForwardController {
 	@Autowired
@@ -93,11 +79,7 @@ public class CoachEditForwardController {
 		String response=coachEditFwdServ.editForwardCoach(coachUncleansedData);	
 			return response;	
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 0f42bd01eadd03c7e751b91c5c1d468f872c728d
 	}
 	
 }

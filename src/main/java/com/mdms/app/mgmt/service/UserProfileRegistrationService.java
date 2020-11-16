@@ -90,6 +90,7 @@ public class UserProfileRegistrationService {
 	//registrationModelObj.setTo_date(new Date());
 	registrationModelObj.setCreated_by(obj.getName());
 	registrationModelObj.setEntity("Entity");
+	registrationModelObj.setUser_register_approval("N");
 //	String result = null;
 	UserLoginDetailModel response = null;
 //	try {
@@ -127,6 +128,8 @@ if(response!=null && result!=null) {
 }
 	}catch(Exception ex) {
 		ex.getMessage();
+		
+		
 		
 		logger.info("Service : UserProfileRegistrationService || Method : saveUserDetails ||Exception " + ex.getMessage());
 
@@ -259,10 +262,7 @@ if(response!=null && result!=null) {
 		
 	 }
 
-<<<<<<< HEAD
-=======
-	 
->>>>>>> 0f42bd01eadd03c7e751b91c5c1d468f872c728d
+
 	 public UserProfileRegistrationDetailModel getUserDetail(String user_id) {
 		 List<UserProfileRegistrationDetailModel> list = new ArrayList<UserProfileRegistrationDetailModel>();
 		 UserProfileRegistrationDetailModel obj = new UserProfileRegistrationDetailModel(); 

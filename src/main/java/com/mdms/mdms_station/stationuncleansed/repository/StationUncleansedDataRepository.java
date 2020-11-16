@@ -1,10 +1,5 @@
 package com.mdms.mdms_station.stationuncleansed.repository;
 
-<<<<<<< HEAD
-public interface StationUncleansedDataRepository {
-
-}
-=======
 
 import java.util.Date;
 import java.util.List;
@@ -35,10 +30,18 @@ public interface StationUncleansedDataRepository extends CrudRepository <Station
 			String traffic, String transhipment , String stationclass , String junctionf, String interchngf , String state, String pincode , String district , String tehsil , 
 			String shprtname, String intrlckstd , String wrkngdvsn , int weighbridge, String siding ,  String bookingtype , String cmistatus, Date dt );
 
+	@Query(value="select * FROM mdms_station.station_uncleansed_data where  cmi_status='U' and division_code=?1", nativeQuery = true)
+	List<StationUncleansedData>fetchUnapprovedCmiRecords(String division_code);
+
+	
+			@Modifying
+			@Transactional
+			@Query(value="UPDATE mdms_station.station_uncleansed_data SET cmi_status='A' \r\n" + 
+					"	where station_code=?1",nativeQuery = true)
+	int approvedByDcm(String station_code);
+	
+	
+	
 }
 
 
-
-
-
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0

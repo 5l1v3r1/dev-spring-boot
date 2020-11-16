@@ -1,9 +1,5 @@
 package com.mdms.mdms_station.stationuncleansed.service;
 
-<<<<<<< HEAD
-public class StationEditForwardService {
-
-=======
 import java.util.Date;
 import java.util.List;
 
@@ -12,15 +8,16 @@ import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.text.SimpleDateFormat;  
-import java.util.Date;      
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mdms.mdms_station.stationuncleansed.repository.StationTableRbsRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.StationUncleansedDataRepository;
+import com.mdms.mdms_station.stationuncleansed.repository.StationUncleansedTestRepository;
 import com.mdms.mdms_masters.repository.MDivisionRepository;
 import com.mdms.mdms_station.stationuncleansed.model.StationTableRbs;
 import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedData;
+import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedTest;
 
 
 @Service
@@ -33,6 +30,10 @@ public class StationEditForwardService {
 	
 	@Autowired 
 	MDivisionRepository divsn_repo;
+	
+	@Autowired
+	
+	StationUncleansedTestRepository stn_uncl_repo;
 	
 	
 	
@@ -81,14 +82,14 @@ public class StationEditForwardService {
 					stationdraftcmi.getState(), stationdraftcmi.getPincode() , stationdraftcmi.getDistrict(),stationdraftcmi.getTehsil(), 
 					stationdraftcmi.getStation_short_name(), stationdraftcmi.getInterlocking_standard() , stationdraftcmi.getWorking_division(),
 					stationdraftcmi.getWeight_bridge(), stationdraftcmi.getSiding() , stationdraftcmi.getBooking_type() , stationdraftcmi.getCmi_status(), date );
-			returnstmt="Draft Updated Successfully";	
+			returnstmt="DRAFT UPDATED SUCCESSFULLY";	
 				
 			}
 			
 			
 
 			//update
-			returnstmt="Draft Updated Successfully";	
+			returnstmt="DRAFT UPDATED SUCCESSFULLY";	
 
 			
 		}
@@ -102,7 +103,7 @@ public class StationEditForwardService {
 			
 			stn_unclsnd_repo.save(stationdraftcmi);
 			
-			returnstmt="Draft Created Successfully";	
+			returnstmt="DRAFT CREATED SUCCESSFULLY";	
 			
 		}
 		
@@ -135,7 +136,7 @@ public class StationEditForwardService {
 					stationdatadcm.getState(), stationdatadcm.getPincode() , stationdatadcm.getDistrict(),stationdatadcm.getTehsil(), 
 					stationdatadcm.getStation_short_name(), stationdatadcm.getInterlocking_standard() , stationdatadcm.getWorking_division(),
 					stationdatadcm.getWeight_bridge(), stationdatadcm.getSiding() , stationdatadcm.getBooking_type() , station_status, date );
-			returnstmt="Record Forwarded To DCM Successfully";
+			returnstmt="RECORD FORWARDED TO DCM SUCCESSFULLY";
 				
 			}
 			else
@@ -147,7 +148,7 @@ public class StationEditForwardService {
 					
 					stn_unclsnd_repo.save(stationdatadcm);
 					
-					returnstmt="Record Forwarded To DCM Successfully";	
+					returnstmt="RECORD FORWARDED TO DCM SUCCESSFULLY";	
 				
 			}
 			
@@ -158,7 +159,33 @@ public class StationEditForwardService {
 	 }
 	 
 	 
-
+	 public List<StationUncleansedData> fetchUnapprovedCmiRecords(String division_code) {
+		 
+	return	 stn_unclsnd_repo.fetchUnapprovedCmiRecords(division_code);
+		 
+	 }
 	 
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
-}
+	 
+	 public List<StationUncleansedTest> fetchUnapprovedCmiRecords1(String division_code) {
+		 
+			return	 stn_uncl_repo.fetchUnapprovedCmiRecords1(division_code);
+				 
+			 }
+
+	public String approvedByDcm(String stationdatadcm) {
+String returnstmt=null;
+
+		int i= stn_unclsnd_repo.approvedByDcm(stationdatadcm);
+//				stationdatadcm.getStn_Id().getStation_valid_from(),stationdatadcm.getStn_Id().getStation_valid_upto());
+if(i>0)
+	returnstmt="RECORD APPROVED SUCCESSFULLY";
+else
+	returnstmt="RECORD NOT APPROVED. CONTACT THE ADMINISTRATOR";
+	return returnstmt; } 
+	 
+	 
+	 }
+
+
+
+

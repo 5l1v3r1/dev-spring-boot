@@ -13,23 +13,13 @@ import com.mdms.mdms_station.stationuncleansed.model.MGauge;
 import com.mdms.mdms_station.stationuncleansed.model.MGisDetail;
 import com.mdms.mdms_station.stationuncleansed.model.MInterlockingStandard;
 import com.mdms.mdms_station.stationuncleansed.model.MOperatingStationSignal;
-<<<<<<< HEAD
-=======
-
-
 import com.mdms.mdms_station.stationuncleansed.model.MStationCategory;
-
 import com.mdms.mdms_station.stationuncleansed.model.MStationCategory;
-
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
 import com.mdms.mdms_station.stationuncleansed.model.MStationClass;
 import com.mdms.mdms_station.stationuncleansed.model.MStationInterchange;
 import com.mdms.mdms_station.stationuncleansed.model.MStationJunction;
 import com.mdms.mdms_station.stationuncleansed.model.MTraction;
 import com.mdms.mdms_station.stationuncleansed.model.MTrafficType;
-<<<<<<< HEAD
-=======
-
 import com.mdms.mdms_station.stationuncleansed.model.MBookingType;
 import com.mdms.mdms_station.stationuncleansed.model.MState;
 import com.mdms.mdms_station.stationuncleansed.model.MDistrict;
@@ -38,19 +28,12 @@ import com.mdms.mdms_station.stationuncleansed.model.MBookingType;
 import com.mdms.mdms_station.stationuncleansed.model.MState;
 import com.mdms.mdms_station.stationuncleansed.model.MDistrict;
 
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
 import com.mdms.mdms_station.stationuncleansed.repository.MGaugeRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.MGisDetailRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.MInterlockingStandardRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.MOperatingStationSignalRepository;
-<<<<<<< HEAD
-=======
-
-
 import com.mdms.mdms_station.stationuncleansed.repository.MStateRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.MStationCategoryRepository;
-
-
 import com.mdms.mdms_station.stationuncleansed.repository.MStateRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.MStationCategoryRepository;
 
@@ -59,19 +42,18 @@ import com.mdms.mdms_station.stationuncleansed.repository.MStationCategoryReposi
 import com.mdms.mdms_station.stationuncleansed.repository.MStateRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.MStationCategoryRepository;
 
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
+
 import com.mdms.mdms_station.stationuncleansed.repository.MStationClassRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.MStationInterchangeRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.MStationJunctionRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.MTractionRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.MTrafficTypeRepository;
 
-<<<<<<< HEAD
-=======
+
 import com.mdms.mdms_station.stationuncleansed.repository.MBookingTypeRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.MDistrictRepository;
 
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
+
 
 @Service
 public class StationMetaMastersService {
@@ -102,10 +84,6 @@ public class StationMetaMastersService {
 	
 	@Autowired
 	MTrafficTypeRepository traffic_repo;
-<<<<<<< HEAD
-	
-	
-=======
 
 	@Autowired
 	MBookingTypeRepository booking_repo;
@@ -119,7 +97,7 @@ public class StationMetaMastersService {
 	@Autowired
 	MDistrictRepository districtrepo;
 
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
+
 	
 	public List<MGauge> getAllGauge() {
 		
@@ -166,8 +144,7 @@ public class StationMetaMastersService {
 		return traffic_repo.getTraffic();
 	}
 
-<<<<<<< HEAD
-=======
+
 	public List<MBookingType> getBookingType() {
 		// TODO Auto-generated method stub
 		return booking_repo.getBookingType();
@@ -191,5 +168,5 @@ public class StationMetaMastersService {
 	}
 
 
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
+
 }

@@ -259,6 +259,10 @@ if(response!=null && result!=null) {
 		
 	 }
 
+<<<<<<< HEAD
+=======
+	 
+>>>>>>> 0f42bd01eadd03c7e751b91c5c1d468f872c728d
 	 public UserProfileRegistrationDetailModel getUserDetail(String user_id) {
 		 List<UserProfileRegistrationDetailModel> list = new ArrayList<UserProfileRegistrationDetailModel>();
 		 UserProfileRegistrationDetailModel obj = new UserProfileRegistrationDetailModel(); 

@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> ef3574260e9ec6ab5b6df606ebd08b2a510cdcb0
 package com.mdms.mdms_station.stationuncleansed.repository;
 
 import java.util.List;

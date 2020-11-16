@@ -14,20 +14,27 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mdms.app.mgmt.model.LoginOtpModel;
 import com.mdms.app.mgmt.model.MenuIdResponseModel;
-<<<<<<< HEAD
+
 import com.mdms.app.mgmt.model.UserProfileRegistrationDetailModel;
 import com.mdms.app.mgmt.service.LoginOtpService;
 import com.mdms.app.mgmt.service.ShowMenuRightsService;
 import com.mdms.app.mgmt.service.UserLoginService;
 import com.mdms.app.mgmt.service.UserProfileRegistrationService;
 
+<<<<<<< HEAD
 @CrossOrigin(origins = {"http://localhost:4200","http://cris-mdm-angular.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
+=======
+>>>>>>> 0f42bd01eadd03c7e751b91c5c1d468f872c728d
 
 import com.mdms.app.mgmt.service.LoginOtpService;
 import com.mdms.app.mgmt.service.ShowMenuRightsService;
 import com.mdms.app.mgmt.service.UserLoginService;
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0f42bd01eadd03c7e751b91c5c1d468f872c728d
 
 @RestController
 public class UserLoginController {
@@ -70,6 +77,10 @@ public class UserLoginController {
 obj.setUser_role(registrationObj.getRole_type());
 obj.setUser_id(user_id);
 obj.setSenior_id(profileRegistrationService.seniorID(registrationObj.getDesignation(), registrationObj.getDivision()));
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 0f42bd01eadd03c7e751b91c5c1d468f872c728d
 	
 	
 	obj.setUser_type(user_type);

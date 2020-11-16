@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
+Built-By: CRISISG
+Build-Jdk: 10.0.2
 Implementation-Title: mdms
 Implementation-Version: dev
-Built-By: HP
 Implementation-Vendor-Id: com.mdms
-Build-Jdk: 1.8.0_191
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/mdms-dev
-Created-By: Maven Integration for Eclipse
 Main-Class: com.mdms.StartApp
+Created-By: Maven Integration for Eclipse
 

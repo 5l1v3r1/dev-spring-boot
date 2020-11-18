@@ -34,10 +34,7 @@ import com.mdms.mdms_station.stationuncleansed.service.StationMetaMastersService
 
 
 @CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
-<<<<<<< HEAD
 
-=======
->>>>>>> 0f42bd01eadd03c7e751b91c5c1d468f872c728d
 
 @RestController
 public class CoachMetaMastersController {
@@ -47,7 +44,7 @@ public class CoachMetaMastersController {
 //	private StationMetaMastersService stn_meta_serv;
 	
 
-<<<<<<< HEAD
+
 	//Logger logger=LoggerFactory.getLogger(CoachMetaMastersController.class);
 
 //	@RequestMapping(method=RequestMethod.POST, value="/gauge")
@@ -98,9 +95,9 @@ public class CoachMetaMastersController {
 //	}
 
 	
-=======
+
 	Logger logger=LoggerFactory.getLogger(CoachMetaMastersController.class);
 
->>>>>>> 0f42bd01eadd03c7e751b91c5c1d468f872c728d
+
 
 }

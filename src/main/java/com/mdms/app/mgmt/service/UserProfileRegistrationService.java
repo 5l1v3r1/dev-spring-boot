@@ -61,9 +61,6 @@ public class UserProfileRegistrationService {
 		 userLoginDetailObj.setEmail(obj.getEmail());
 		 userLoginDetailObj.setRole_type(obj.getRole_type());
 		 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		  
-		  
-		
 		 userLoginDetailObj.setTxn_timestamp(Timestamp.valueOf(formatter.format(new Date())));
 		 userLoginDetailObj.setLast_password_change_txn_timestamp(Timestamp.valueOf(formatter.format(new Date())));
 	
@@ -137,26 +134,22 @@ if(response!=null && result!=null) {
 	 
 	 
 	 public GetListUserRegistrationJsonModel getListUserRegistration() {
-			logger.info("Service : UserProfileRegistrationService || Method : getListUserRegistration ");
-	 
+			logger.info("Service : UserProfileRegistrationService || Method : getListUserRegistration ");	 
 	GetListUserRegistrationJsonModel obj = new GetListUserRegistrationJsonModel();
 	String userType="";
 	String userRole="";
-	String userDepartment=	"";
-	String userDesignation=	 "";
+	String userDepartment="";
+	String userDesignation= "";
 	String zones="";
 	String divisions="";
 			String loco_types="";
-	String sheds="";
-	
-		try {
-		
+	String sheds="";	
+		try {		
 		try {
 	 userType=	 loginDetailRepo.getUserTypes();
 		}catch(Exception ex) {
 			
 			logger.info("Service : UserProfileRegistrationService || Method : getListUserRegistration ||Exception GET USERTYPE" + ex.getMessage());
-
 			ex.getMessage();
 		}
 		
@@ -259,10 +252,7 @@ if(response!=null && result!=null) {
 		
 	 }
 
-<<<<<<< HEAD
-=======
-	 
->>>>>>> 0f42bd01eadd03c7e751b91c5c1d468f872c728d
+
 	 public UserProfileRegistrationDetailModel getUserDetail(String user_id) {
 		 List<UserProfileRegistrationDetailModel> list = new ArrayList<UserProfileRegistrationDetailModel>();
 		 UserProfileRegistrationDetailModel obj = new UserProfileRegistrationDetailModel(); 

@@ -26,10 +26,7 @@ public class CoachEditForwardService {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 0f42bd01eadd03c7e751b91c5c1d468f872c728d
 
 	public boolean editForwardCoach() {
 		// TODO Auto-generated method stub
@@ -55,10 +52,7 @@ public class CoachEditForwardService {
 //	
 
 
-<<<<<<< HEAD
-	
-=======
->>>>>>> 0f42bd01eadd03c7e751b91c5c1d468f872c728d
+
 //-------------------------------------------return coachIds for a particular depot--------------------------------------------
 	public List<String> getCoachesByDepot(String depotId) {
 		 final String getCoachIdsByDepot = "SELECT coach_id FROM mdms_coach.coach_data_cmm where base_depot=\'"+depotId+"\'";

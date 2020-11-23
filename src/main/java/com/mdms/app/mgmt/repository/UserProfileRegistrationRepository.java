@@ -16,8 +16,24 @@ public interface UserProfileRegistrationRepository extends CrudRepository<UserPr
 	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where user_id=?1",nativeQuery=true)
 	  List<UserProfileRegistrationDetailModel> getUserRoleAndType(String user_id);
 	
+
+	
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where user_id=?1",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getUserDetail(String user_id);
 	
 	
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail ",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getUserProfiles();
+	
+	
+
+	@Query(value="SELECT user_id from mdms_app_mgmt.user_profile_registration_detail where division=?1 and designation='DCM'",nativeQuery=true)
+	  String getSeniorIdForCMI(String division);
+	
+	
+	@Query(value="SELECT user_id from mdms_app_mgmt.user_profile_registration_detail where division=?1 and designation='DOM'",nativeQuery=true)
+	 String getSeniorIdForDTI(String division);
+
 	@Transactional
 	@Query(value="INSERT INTO mdms_app_mgmt.user_profile_registration_detail(\r\n" + 
 			"user_id, name, designation, department, loco_type, shed, from_date,role_type,user_type,mobile_no,email,created_by)\r\n" + 

@@ -2,6 +2,9 @@ package com.mdms.app.mgmt.service;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+
+import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
 
@@ -87,6 +90,7 @@ public class UserProfileRegistrationService {
 	//registrationModelObj.setTo_date(new Date());
 	registrationModelObj.setCreated_by(obj.getName());
 	registrationModelObj.setEntity("Entity");
+	registrationModelObj.setUser_register_approval("N");
 //	String result = null;
 	UserLoginDetailModel response = null;
 //	try {
@@ -124,6 +128,8 @@ if(response!=null && result!=null) {
 }
 	}catch(Exception ex) {
 		ex.getMessage();
+		
+		
 		
 		logger.info("Service : UserProfileRegistrationService || Method : saveUserDetails ||Exception " + ex.getMessage());
 
@@ -255,4 +261,38 @@ if(response!=null && result!=null) {
 		 
 		
 	 }
+
+
+	 public UserProfileRegistrationDetailModel getUserDetail(String user_id) {
+		 List<UserProfileRegistrationDetailModel> list = new ArrayList<UserProfileRegistrationDetailModel>();
+		 UserProfileRegistrationDetailModel obj = new UserProfileRegistrationDetailModel(); 
+		 
+		list= profileRegistrationRepo.getUserRoleAndType(user_id);
+		 if(list.size()>0) {
+			 if(list.get(0).getUser_type().equalsIgnoreCase("SU")) {
+			
+			 }
+			 
+			 return list.get(0);
+		 }else {
+			return obj; 
+		 }
+		 
+			 
+	 }
+	 
+	public String seniorID(String designation,String division) {
+		
+		String seniorId="";
+		 if(designation.equalsIgnoreCase("CMI")) {
+			seniorId=  profileRegistrationRepo.getSeniorIdForCMI(division); 
+			 
+			 
+		 }else if (designation.equalsIgnoreCase("DTI")) {
+			 seniorId=  profileRegistrationRepo.getSeniorIdForDTI(division); 
+		 }
+		
+		return seniorId;		
+	}
+
 }

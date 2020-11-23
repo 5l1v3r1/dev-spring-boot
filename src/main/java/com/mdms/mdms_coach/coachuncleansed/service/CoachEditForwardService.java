@@ -19,9 +19,11 @@ import com.mdms.mdms_coach.coachuncleansed.repository.CoachCMMDataRepository;
 public class CoachEditForwardService {
 	
 
-
 	@Autowired
 	private CoachCMMDataRepository coachEditForwardRepo;
+
+
+
 
 
 	Logger logger=LoggerFactory.getLogger(CoachEditForwardService.class);
@@ -42,8 +44,18 @@ public class CoachEditForwardService {
 
 	}
 
-	
-	
+
+
+
+////-------------------------------------------return coachIds for a particular depot--------------------------------------------
+//	public List<String> getCoachesByDepot(String depotId) {
+//		 final String getCoachIdsByDepot = "SELECT coach_id FROM mdms_coach.coach_data_cmm where base_depot=\'"+depotId+"\'";
+//
+//=======
+//	
+
+
+
 //-------------------------------------------return coachIds for a particular depot--------------------------------------------
 	public List<String> getCoachesByDepot(String depotId) {
 		 final String getCoachIdsByDepot = "SELECT coach_id FROM mdms_coach.coach_data_cmm where base_depot=\'"+depotId+"\'";
@@ -51,6 +63,7 @@ public class CoachEditForwardService {
 		    final List<String> coachIds = jdbcTemplate.queryForList(getCoachIdsByDepot, String.class);
 		return coachIds;
 	}
+
 
 //-------------------------------------------return coachDetails for a particular coach--------------------------------------------
 

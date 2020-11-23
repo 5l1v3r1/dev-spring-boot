@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.mdms.PasswordSecurityConfiguration;
 import com.mdms.app.mgmt.model.UserLoginDetailModel;
+import com.mdms.app.mgmt.model.UserProfileRegistrationDetailModel;
 import com.mdms.app.mgmt.repository.UserLoginDetailRepository;
+import com.mdms.app.mgmt.repository.UserProfileRegistrationRepository;
 
 
 @Service
@@ -22,6 +24,10 @@ public class UserLoginService {
 	 
 	 @Autowired
 	 UserLoginDetailRepository loginDetailObj;
+	 
+	 @Autowired
+	 UserProfileRegistrationRepository  profileRegistrationRepoObj;
+	 
 
 	 private final PasswordEncoder passwordEncoder = new PasswordSecurityConfiguration().passwordEncoder();
 public String verifyLogin(String user_id,String pwd) {
@@ -33,23 +39,37 @@ public String verifyLogin(String user_id,String pwd) {
 
 	
 			logger.info("Service : UserLoginService || Method : verifyLogin ||");
-			
+
 			
 			List<UserLoginDetailModel> list  =	loginDetailObj.getDeatils(user_id);
+			List<UserProfileRegistrationDetailModel> listUserProfileObj  =	profileRegistrationRepoObj.getUserDetail(user_id);
 
 			
 			
-			if(list.size()>0) {
-				
+
+			if((list.size()>0) && (listUserProfileObj.size()>0)) {
+				if(listUserProfileObj.get(0).getUser_register_approval().equalsIgnoreCase("N")) {
+					
+					logger.info("Service : UserLoginService || Method : getUser_register_approval 'N'||");
+				response = "Registered MDMS user is not approved by approving authority.";
+					
+				}else if(listUserProfileObj.get(0).getUser_register_approval().equalsIgnoreCase("Y") ){
+					
+					logger.info("Service : UserLoginService || Method : getUser_register_approval 'Y'||");
 				
 				boolean result=passwordEncoder.matches(pwd,list.get(0).getEmp_password());
 			if(result) {
+				
+				logger.info("Service : UserLoginService || Method : passwordEncoder.matches  'Y'||");
 				response="success";	
 			}else {
 				response="Wrong Password";	
 			}
+
+			}
+				}
 			
-			}else {
+			else {
 				response="This UserId is not registered.Please Registered First.";
 			}
 }catch(Exception ex) {
@@ -59,8 +79,8 @@ public String verifyLogin(String user_id,String pwd) {
 //	System.out.print(ex.getMessage());
 }
 	return response;
-}
 
+}
 
 
 }

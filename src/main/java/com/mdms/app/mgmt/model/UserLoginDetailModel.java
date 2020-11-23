@@ -38,6 +38,13 @@ public class UserLoginDetailModel {
 	@Column(name="last_password_change_txn_timestamp")
 	private Timestamp last_password_change_txn_timestamp;
 
+	
+	
+
+	
+
+
+
 
 	public String getUser_id() {
 		return user_id;
@@ -105,10 +112,7 @@ public class UserLoginDetailModel {
 				+ ", role_type=" + role_type + ", txn_timestamp=" + txn_timestamp
 				+ ", last_password_change_txn_timestamp=" + last_password_change_txn_timestamp + "]";
 	}
-	
-	
-	
-	
-	
+
+
 
 }

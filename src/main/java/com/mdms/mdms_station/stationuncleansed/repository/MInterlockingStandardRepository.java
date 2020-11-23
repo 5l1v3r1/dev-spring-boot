@@ -11,12 +11,8 @@ public interface MInterlockingStandardRepository extends CrudRepository<MInterlo
 
 
 	@Query(value="Select * from mdms_station.m_interlocking_standard", nativeQuery = true)
-<<<<<<< HEAD
-=======
 
-	@Query(value="Select * from mdms_station.m_gauge", nativeQuery = true)
 
->>>>>>> 17c0ce0caec99abce83672b19e6c0daad78240b8
 	List<MInterlockingStandard> getInterLock();
 
 }

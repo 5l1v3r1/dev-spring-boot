@@ -67,7 +67,19 @@ public class UserProfileRegistrationDetailModel {
 	@Column(name="division")
 	private String division;
 	
+	@Column(name="user_register_approval")
+	private String user_register_approval;
 	
+	
+	
+
+	public String getUser_register_approval() {
+		return user_register_approval;
+	}
+
+	public void setUser_register_approval(String user_register_approval) {
+		this.user_register_approval = user_register_approval;
+	}
 
 	public String getZone() {
 		return zone;
@@ -203,8 +215,11 @@ public class UserProfileRegistrationDetailModel {
 				+ designation + ", department=" + department + ", loco_type=" + loco_type + ", shed=" + shed
 				+ ", from_date=" + from_date + ", to_date=" + to_date + ", role_type=" + role_type + ", user_type="
 				+ user_type + ", mobile_no=" + mobile_no + ", entity=" + entity + ", email=" + email + ", created_by="
-				+ created_by + ", zone=" + zone + ", division=" + division + "]";
+				+ created_by + ", zone=" + zone + ", division=" + division + ", user_register_approval="
+				+ user_register_approval + "]";
 	}
+
+	
 
 	
 	

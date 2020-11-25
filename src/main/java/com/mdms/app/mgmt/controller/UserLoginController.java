@@ -22,13 +22,15 @@ import com.mdms.app.mgmt.service.UserLoginService;
 import com.mdms.app.mgmt.service.UserProfileRegistrationService;
 
 
+
+
 import com.mdms.app.mgmt.service.LoginOtpService;
 import com.mdms.app.mgmt.service.ShowMenuRightsService;
 import com.mdms.app.mgmt.service.UserLoginService;
 
+
+
 @CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
-
-
 
 @RestController
 public class UserLoginController {
@@ -71,8 +73,7 @@ public class UserLoginController {
 obj.setUser_role(registrationObj.getRole_type());
 obj.setUser_id(user_id);
 obj.setSenior_id(profileRegistrationService.seniorID(registrationObj.getDesignation(), registrationObj.getDivision()));
-		
-	
+
 	
 	obj.setUser_type(user_type);
 		if(response.size()>0)

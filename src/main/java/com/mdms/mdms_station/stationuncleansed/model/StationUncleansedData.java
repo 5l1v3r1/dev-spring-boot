@@ -3,10 +3,14 @@ package com.mdms.mdms_station.stationuncleansed.model;
 
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
+
 import javax.persistence.EmbeddedId;
 
 @Entity()
@@ -93,8 +97,13 @@ public class StationUncleansedData {
 	@Column(name="block_section")
 	private String  block_section ;
 	
-	@Column(name="operating_station_signal")
-	private String  operating_station_signal ;
+//	@Type(type = "string-array")
+    @Column(
+        name = "operating_station_signal"
+      
+    )
+
+	private String operating_station_signal ;
 	
 	@Column(name="booking_type")
 	private String  booking_type ;
@@ -339,6 +348,7 @@ public class StationUncleansedData {
 		this.block_section = block_section;
 	}
 
+
 	public String getOperating_station_signal() {
 		return operating_station_signal;
 	}
@@ -347,7 +357,7 @@ public class StationUncleansedData {
 		this.operating_station_signal = operating_station_signal;
 	}
 
-	public String getBooking_type() {
+	public String getBooking_type() {  
 		return booking_type;
 	}
 

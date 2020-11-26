@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,7 +37,15 @@ public class MdmsMastersController {
 	}
 	
 	
+	@RequestMapping(method=RequestMethod.POST, value="/divisionbyzonecode")
+	public List<MDivision> findByZone(@RequestBody MDivision division) {
+		List<MDivision> temp=mdm_mstr_serv.findByZone(division);
+		 for(int i = 0; i < temp.size(); i++) {
+	            System.out.println(temp.get(i).getDivision_code());
+	        }
+	return mdm_mstr_serv.findByZone(division);  
 	
+	}    
 	
 	
 	

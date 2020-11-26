@@ -8,25 +8,11 @@ public class HrmsJsonModel {
 	
 	private static final long serialVersionUID = 1L;
 	
-	
-	
-//	private String message;
-//	@Id
-//	private String ipasEmployeeId;
-//	private String employeeNameSr;
-//	private String designation;
-//	private String departmentDescription;
-//	private String serviceStatusDescription;
-//	private String railwayUnitName;
-//	private String railwayUnitDivision;
-//	
-//	
-	
 	@JsonProperty("message")
 	private String message;
 	
 	@JsonProperty("ipasEmployeeId")
-	private String user_id;
+	private String ipasEmployeeId;
 	
 	
 	@JsonProperty("employeeNameSr")
@@ -55,13 +41,7 @@ public class HrmsJsonModel {
 		this.message = message;
 	}
 
-	public String getUser_id() {
-		return user_id;
-	}
 
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
 
 	public String getName() {
 		return name;

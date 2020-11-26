@@ -40,7 +40,7 @@ public class UserProfileRegistrationService {
 	 
 	 public String  saveUserDetails(UserRegistrationJsonModel obj) {
 		 UserLoginDetailModel userLoginDetailObj=new UserLoginDetailModel();
-		 userLoginDetailObj.setUser_id(obj.getUser_id());
+		 userLoginDetailObj.setUser_id(obj.getUser_id().toUpperCase());
 		 String encodedPassword=""; 
 		 //Hashing Password first
 		 
@@ -74,9 +74,9 @@ public class UserProfileRegistrationService {
 	
 	
 	UserProfileRegistrationDetailModel registrationModelObj= new UserProfileRegistrationDetailModel();
-	registrationModelObj.setUser_id(obj.getUser_id());
+	registrationModelObj.setUser_id(obj.getUser_id().toUpperCase());
 	registrationModelObj.setUser_type(obj.getUser_type());
-	registrationModelObj.setName(obj.getName());
+	registrationModelObj.setName(obj.getName().toUpperCase());
 	registrationModelObj.setEmail(obj.getEmail());
 	registrationModelObj.setDepartment(obj.getDepartment());
 	registrationModelObj.setDesignation(obj.getDesignation());
@@ -88,9 +88,12 @@ public class UserProfileRegistrationService {
 	registrationModelObj.setZone(obj.getZone());
 	registrationModelObj.setDivision(obj.getDivision());
 	//registrationModelObj.setTo_date(new Date());
-	registrationModelObj.setCreated_by(obj.getName());
+	registrationModelObj.setCreated_by(obj.getUser_id().toUpperCase());
 	registrationModelObj.setEntity("Entity");
-	registrationModelObj.setUser_register_approval("N");
+	registrationModelObj.setUser_register_approval("Y");
+	registrationModelObj.setHrms_service_status(obj.getHrms_service_status());
+	
+	
 //	String result = null;
 	UserLoginDetailModel response = null;
 //	try {

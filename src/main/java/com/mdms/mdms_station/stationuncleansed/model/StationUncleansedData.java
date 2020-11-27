@@ -131,6 +131,11 @@ public class StationUncleansedData {
 	
 	@Column(name="txn_date_dti")
 	private Date  txn_date_dti ;
+	
+	@Column(name="booking_resource")
+	private String  booking_resource ;
+
+	
 
 	public StationPKey getStn_Id() {
 		return stn_Id;
@@ -427,6 +432,14 @@ public class StationUncleansedData {
 
 	public void setTxn_date_dti(Date txn_date_dti) {
 		this.txn_date_dti = txn_date_dti;
+	}
+
+	public String getBooking_resource() {
+		return booking_resource;
+	}
+
+	public void setBooking_resource(String booking_resource) {
+		this.booking_resource = booking_resource;
 	}
 	
 	

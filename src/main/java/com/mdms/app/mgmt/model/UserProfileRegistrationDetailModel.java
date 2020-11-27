@@ -70,9 +70,24 @@ public class UserProfileRegistrationDetailModel {
 	@Column(name="user_register_approval")
 	private String user_register_approval;
 	
+	@Column(name="service_status")
+	private String hrms_service_status;
+	
 	
 	
 
+	
+
+	public String getHrms_service_status() {
+		return hrms_service_status;
+	}
+
+	public void setHrms_service_status(String hrms_service_status) {
+		this.hrms_service_status = hrms_service_status;
+	}
+
+	
+	
 	public String getUser_register_approval() {
 		return user_register_approval;
 	}

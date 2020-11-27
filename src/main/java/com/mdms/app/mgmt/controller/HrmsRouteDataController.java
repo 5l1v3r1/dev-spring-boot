@@ -27,28 +27,11 @@ public class HrmsRouteDataController {
 
 	Logger logger=LoggerFactory.getLogger(HrmsRouteDataController.class);	
 
-//	@RequestMapping(method=RequestMethod.POST, value="/employeedetails")
-//	public HrmsJsonModel getHrmsEmployeeInfo(@RequestBody IPassIDModel  IpasIdObj){	
-//		logger.info("controller : HrmsRouteDataController || Method : getHrmsEmployeeInfo  || input recieved : ", IpasIdObj.toString());		
-//		RestTemplate restTemplate = new RestTemplate();
-//		String url="http://10.64.0.149:8080/HRMSWS/employeedetails";
-//		try { 
-//		HrmsJsonModel result = restTemplate.postForObject(url, IpasIdObj,HrmsJsonModel.class);
-//	   return result;
-//	 
-//		}
-//		catch(Exception e) {
-//			e.getMessage();
-//			logger.error("controller : HrmsEmplyeeInfoController || Method : HrmsJsonModel  || Exception : "+e.getMessage());
-//			returnObj.setIpasEmployeeId(e.getMessage());
-//			return returnObj;
-//
-//		}
-		
+
 	
-	@RequestMapping(method=RequestMethod.POST, value="/employeedetails")
-	public ResponseEntity<List<HrmsJsonModel>> hrmsEmployeeDetail(@RequestBody ResponseEntity<List<HrmsJsonModel>> ipassid ) {	
-		System.out.println("checking");
+	@RequestMapping(method=RequestMethod.POST, value="/employeedetailss")
+	public HrmsJsonModel hrmsEmployeeDetail(@RequestBody HrmsJsonModel ipassid ) {	
+	
 			 String getHRMSUrl = "http://10.64.0.149:8080/HRMSWS/employeedetails?=ipasId"+ipassid;
 		RestTemplate restTemplate = new RestTemplate();
 			 try {
@@ -57,25 +40,10 @@ public class HrmsRouteDataController {
 			        ResponseEntity<List<HrmsJsonModel>> response = restTemplate.exchange(getHRMSUrl, HttpMethod.POST, entity,  new ParameterizedTypeReference<List<HrmsJsonModel>>() {});
 //			        System.out.println("Result - status ("+ response.getStatusCode() + ") has body: " + response.hasBody());
 			        List<HrmsJsonModel> hrmsRouteData=response.getBody();			      
-			        if(hrmsRouteData.size()>=0) 
-			        {  System.out.println(response);
-			        System.out.println(ipassid);
-			        
-			        	return  response;
-			        	
-			        	
-			        }
-			        else {
-			//	System.out.println("rbsRouteData"+rbsRouteData.get(0).getInterStations().get(0).getStnCode());  
-	         return response;
-			        }
-
 			    }
 			    catch (Exception eek) {
-			  //      System.out.println("** Exception: "+ eek.getMessage());
 			    }
 			
-			  System.out.println(ipassid);
 		        
 			return ipassid ;
 		}

@@ -11,19 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.mdms.app.mgmt.model.LoginOtpModel;
 import com.mdms.app.mgmt.model.MenuIdResponseModel;
-
 import com.mdms.app.mgmt.model.UserProfileRegistrationDetailModel;
 import com.mdms.app.mgmt.service.LoginOtpService;
 import com.mdms.app.mgmt.service.ShowMenuRightsService;
 import com.mdms.app.mgmt.service.UserLoginService;
 import com.mdms.app.mgmt.service.UserProfileRegistrationService;
-
-
-
-
 import com.mdms.app.mgmt.service.LoginOtpService;
 import com.mdms.app.mgmt.service.ShowMenuRightsService;
 import com.mdms.app.mgmt.service.UserLoginService;

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mdms.mdms_station.stationuncleansed.model.MBookingResource;
 import com.mdms.mdms_station.stationuncleansed.model.MBookingType;
 
 import com.mdms.mdms_station.stationuncleansed.model.MGauge;
@@ -112,6 +113,13 @@ public class StationMetaMastersController {
 	public List<MBookingType> getBookingType(){
 		return stn_meta_serv.getBookingType();
 	}
+	
+	
+	@RequestMapping(method=RequestMethod.POST, value="/bookingresource")
+	public List<MBookingResource> getBookingResource(){
+		return stn_meta_serv.getBookingResource();
+	}
+	
 	
 	@RequestMapping(method=RequestMethod.POST, value="/stncategory")
 	public List<MStationCategory> getStationCategory(){

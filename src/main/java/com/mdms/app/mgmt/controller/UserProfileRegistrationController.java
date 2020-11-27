@@ -28,8 +28,7 @@ public class UserProfileRegistrationController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="/userregistration")
 	public String UserRegistration(@RequestBody UserRegistrationJsonModel userObj){
-		
-		
+			
 		if(userObj.getShed().equalsIgnoreCase("")) {
 			userObj.setShed(null);
 			
@@ -40,6 +39,7 @@ public class UserProfileRegistrationController {
 		+"||pwd"+userObj.getEmp_password()+"||shed"+ userObj.getShed() + "loco_type: "+ userObj.getLoco_type()
 		
 				+"||zone : " +userObj.getZone()+"||division : " + userObj.getDivision());
+		System.out.println(userObj.getDepartment());
 	
 		String response= registrationServiceObj.saveUserDetails(userObj);
 		//code to send otp, on hold because of Api for sending otp

@@ -91,6 +91,7 @@ public class StationEditForwardService {
 		
 		boolean ispresent;
 		String returnstmt="";
+		try {
 		ispresent=stn_unclsnd_repo.findById(stationdraftcmi.getStn_Id()).isPresent();//Check if record is already present
 		// If record is already present their are two cases:
 		
@@ -117,7 +118,7 @@ public class StationEditForwardService {
 						stationdraftcmi.getStation_class() ,stationdraftcmi.getJunction_flag(), stationdraftcmi.getInterchange_flag() , 
 						stationdraftcmi.getState(), stationdraftcmi.getPincode() , stationdraftcmi.getDistrict(),stationdraftcmi.getTehsil(), 
 						stationdraftcmi.getStation_short_name(), stationdraftcmi.getInterlocking_standard() , stationdraftcmi.getWorking_division(),
-						stationdraftcmi.getWeight_bridge(), stationdraftcmi.getSiding() , stationdraftcmi.getBooking_type() , stationdraftcmi.getCmi_status(), date );
+						stationdraftcmi.getWeight_bridge(), stationdraftcmi.getSiding() , stationdraftcmi.getBooking_type() , stationdraftcmi.getCmi_status(), date ,stationdraftcmi.getBooking_resource()  );
 				returnstmt="DRAFT UPDATED SUCCESSFULLY";	
 				
 				}
@@ -141,7 +142,7 @@ public class StationEditForwardService {
 					stationdraftcmi.getStation_class() ,stationdraftcmi.getJunction_flag(), stationdraftcmi.getInterchange_flag() , 
 					stationdraftcmi.getState(), stationdraftcmi.getPincode() , stationdraftcmi.getDistrict(),stationdraftcmi.getTehsil(), 
 					stationdraftcmi.getStation_short_name(), stationdraftcmi.getInterlocking_standard() , stationdraftcmi.getWorking_division(),
-					stationdraftcmi.getWeight_bridge(), stationdraftcmi.getSiding() , stationdraftcmi.getBooking_type() , stationdraftcmi.getCmi_status(), date );
+					stationdraftcmi.getWeight_bridge(), stationdraftcmi.getSiding() , stationdraftcmi.getBooking_type() , stationdraftcmi.getCmi_status(), date ,stationdraftcmi.getBooking_resource() );
 			returnstmt="DRAFT CREATED SUCCESSFULLY";	
 			}
 			
@@ -162,6 +163,10 @@ public class StationEditForwardService {
 		}
 	
 	return returnstmt;
+		}catch(Exception e)
+		{
+			return "EXCEPTION OCCURRED!!!";
+		}
 	}
 	
 	 
@@ -171,6 +176,7 @@ public class StationEditForwardService {
 		 
 		 boolean ispresent;
 			String returnstmt="";
+			try {
 			ispresent=stn_unclsnd_repo.findById(stationdatadcm.getStn_Id()).isPresent();
 			
 			if(ispresent)
@@ -187,7 +193,7 @@ public class StationEditForwardService {
 					stationdatadcm.getStation_class() ,stationdatadcm.getJunction_flag(), stationdatadcm.getInterchange_flag() , 
 					stationdatadcm.getState(), stationdatadcm.getPincode() , stationdatadcm.getDistrict(),stationdatadcm.getTehsil(), 
 					stationdatadcm.getStation_short_name(), stationdatadcm.getInterlocking_standard() , stationdatadcm.getWorking_division(),
-					stationdatadcm.getWeight_bridge(), stationdatadcm.getSiding() , stationdatadcm.getBooking_type() , station_status, date );
+					stationdatadcm.getWeight_bridge(), stationdatadcm.getSiding() , stationdatadcm.getBooking_type() , station_status, date ,stationdatadcm.getBooking_resource());
 			returnstmt="RECORD FORWARDED TO DCM SUCCESSFULLY";
 				}
 				
@@ -204,7 +210,7 @@ public class StationEditForwardService {
 						stationdatadcm.getStation_class() ,stationdatadcm.getJunction_flag(), stationdatadcm.getInterchange_flag() , 
 						stationdatadcm.getState(), stationdatadcm.getPincode() , stationdatadcm.getDistrict(),stationdatadcm.getTehsil(), 
 						stationdatadcm.getStation_short_name(), stationdatadcm.getInterlocking_standard() , stationdatadcm.getWorking_division(),
-						stationdatadcm.getWeight_bridge(), stationdatadcm.getSiding() , stationdatadcm.getBooking_type() , station_status, date );
+						stationdatadcm.getWeight_bridge(), stationdatadcm.getSiding() , stationdatadcm.getBooking_type() , station_status, date ,stationdatadcm.getBooking_resource() );
 				returnstmt="RECORD FORWARDED TO DCM SUCCESSFULLY";	
 				}
 				
@@ -228,6 +234,11 @@ public class StationEditForwardService {
 			
 	 
 	 return returnstmt;
+			}catch(Exception e)
+			{
+				return "Exception Occurred!!!";
+				
+			}
 	 }
 	 
 	 
@@ -248,7 +259,7 @@ public class StationEditForwardService {
 	 @Transactional(rollbackOn = Exception.class)
 	public String approvedByDcm(String stationdatadcm) throws Exception {
 String returnstmt=null;
-
+try {
 		int i= stn_unclsnd_repo.approvedByDcm(stationdatadcm);
 //				stationdatadcm.getStn_Id().getStation_valid_from(),stationdatadcm.getStn_Id().getStation_valid_upto());
 if(i>0)
@@ -262,13 +273,17 @@ if(i>0)
 
 }	else
 	returnstmt="RECORD NOT APPROVED. CONTACT THE ADMINISTRATOR";
-	return returnstmt; }
+	return returnstmt; 
+	
+}catch(Exception e)
+{
+	return "Exception Occurred !!!";}}
 	
 	
 	
 	public String approvedByDom(String stationdatadcm) {
 String returnstmt=null;
-
+try {
 		int i= stn_unclsnd_repo.approvedByDom(stationdatadcm);
 //				stationdatadcm.getStn_Id().getStation_valid_from(),stationdatadcm.getStn_Id().getStation_valid_upto());
 if(i>0)
@@ -283,13 +298,20 @@ if(i>0)
 }
 else
 	returnstmt="RECORD NOT APPROVED. CONTACT THE ADMINISTRATOR";
-	return returnstmt; }
+	return returnstmt; 
+}
+catch(Exception e)
+{
+	return "Exception Occurred!!!";
+	}}
 	
 	
 	@Transactional(rollbackOn = Exception.class)
 	public String saveDtiDraft(StationUncleansedData stationdraftdti) throws Exception {
 		boolean ispresent;
 		String returnstmt="";
+		
+		try {
 		ispresent=stn_unclsnd_repo.findById(stationdraftdti.getStn_Id()).isPresent();//Check if record is already present
 		// If record is already present their are two cases:
 		
@@ -354,12 +376,18 @@ else
 		}
 	
 	return returnstmt;
+		}
+		catch(Exception e)
+		{
+			return "Exception Occurred";
+		}
 	 }
 
 	@Transactional(rollbackOn = Exception.class)
 	public String forwardToDom(StationUncleansedData stationdatadom) throws Exception {
 		 boolean ispresent;
 			String returnstmt="";
+			try {
 			ispresent=stn_unclsnd_repo.findById(stationdatadom.getStn_Id()).isPresent();
 			
 			if(ispresent)
@@ -415,6 +443,11 @@ else
 			
 	 
 	 return returnstmt;
+			}
+			catch(Exception e)
+			{
+				return "Exception Occurred !!!";
+			}
 		
 	}
 

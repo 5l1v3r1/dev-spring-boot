@@ -32,7 +32,7 @@ import com.mdms.mdms_station.stationuncleansed.model.MStationInterchange;
 import com.mdms.mdms_station.stationuncleansed.model.MStationJunction;
 import com.mdms.mdms_station.stationuncleansed.model.MTraction;
 import com.mdms.mdms_station.stationuncleansed.model.MTrafficType;
-
+import com.mdms.mdms_station.stationuncleansed.model.MBookingResource;
 import com.mdms.mdms_station.stationuncleansed.model.MBookingType;
 import com.mdms.mdms_station.stationuncleansed.model.MState;
 import com.mdms.mdms_station.stationuncleansed.model.MDistrict;
@@ -66,8 +66,7 @@ import com.mdms.mdms_station.stationuncleansed.repository.MStationInterchangeRep
 import com.mdms.mdms_station.stationuncleansed.repository.MStationJunctionRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.MTractionRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.MTrafficTypeRepository;
-
-
+import com.mdms.mdms_station.stationuncleansed.repository.MBookingResourceRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.MBookingTypeRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.MDistrictRepository;
 
@@ -115,6 +114,9 @@ public class StationMetaMastersService {
 	@Autowired
 	MDistrictRepository districtrepo;
 
+	
+	@Autowired
+	MBookingResourceRepository booking_res_repo ;
 
 	
 	public List<MGauge> getAllGauge() {
@@ -183,6 +185,11 @@ public class StationMetaMastersService {
 	public List<MDistrict> getLgdDistrict() {
 		// TODO Auto-generated method stub
 		return districtrepo.getLgdDistrict();
+	}
+
+	public List<MBookingResource> getBookingResource() {
+		// TODO Auto-generated method stub
+		return booking_res_repo.getBookingResource();
 	}
 
 

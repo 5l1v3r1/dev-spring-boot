@@ -36,8 +36,8 @@ public class HRMSEmployeeDetailsController {
 	@RequestMapping(method=RequestMethod.POST, value="/employeedetails")
 	public HrmsJsonModel hrmsEmployeeDetail(@RequestBody IPassIDModel ipassid ) {
 		System.out.println(ipassid);
-		 //String getHRMSUrl = "http://10.77.56.35:80/HRMSWS/employeedetails";
-		 String getHRMSUrl = "http://localhost:12021/hrmsEmployeeInfo";
+		 String getHRMSUrl = "http://10.77.56.35:80/HRMSWS/employeedetails";
+		// String getHRMSUrl = "http://localhost:12021/hrmsEmployeeInfo";
 
 		 
 			RestTemplate restTemplate = new RestTemplate();

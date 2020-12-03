@@ -108,7 +108,7 @@ public class StationMetaMastersController {
 		return stn_meta_serv.getTraffic();
 	}
 
-
+	
 	@RequestMapping(method=RequestMethod.POST, value="/bookingtype")
 	public List<MBookingType> getBookingType(){
 		return stn_meta_serv.getBookingType();

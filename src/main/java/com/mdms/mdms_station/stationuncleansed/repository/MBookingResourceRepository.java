@@ -11,4 +11,8 @@ public interface MBookingResourceRepository extends CrudRepository<MBookingResou
 	
 	@Query(value="Select * from mdms_station.m_booking_resource", nativeQuery = true)
 	List<MBookingResource> getBookingResource();
+	
+	
+	@Query(value="Select description from mdms_station.m_booking_resource where booking_code=?1", nativeQuery = true)
+	String getBookingResourceDescription(String booking_resource);
 }

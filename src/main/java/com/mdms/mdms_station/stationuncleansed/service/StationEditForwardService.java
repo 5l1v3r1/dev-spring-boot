@@ -7,6 +7,7 @@
 
 package com.mdms.mdms_station.stationuncleansed.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,10 +19,23 @@ import java.text.SimpleDateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mdms.mdms_station.stationuncleansed.repository.MBookingResourceRepository;
+import com.mdms.mdms_station.stationuncleansed.repository.MBookingTypeRepository;
+import com.mdms.mdms_station.stationuncleansed.repository.MDistrictRepository;
+import com.mdms.mdms_station.stationuncleansed.repository.MGaugeRepository;
+import com.mdms.mdms_station.stationuncleansed.repository.MInterlockingStandardRepository;
+import com.mdms.mdms_station.stationuncleansed.repository.MStateRepository;
+import com.mdms.mdms_station.stationuncleansed.repository.MStationCategoryRepository;
+import com.mdms.mdms_station.stationuncleansed.repository.MStationClassRepository;
+import com.mdms.mdms_station.stationuncleansed.repository.MStationInterchangeRepository;
+import com.mdms.mdms_station.stationuncleansed.repository.MStationJunctionRepository;
+import com.mdms.mdms_station.stationuncleansed.repository.MTractionRepository;
+import com.mdms.mdms_station.stationuncleansed.repository.MTrafficTypeRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.StationCleansedDataRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.StationTableRbsRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.StationUncleansedDataRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.StationUncleansedTestRepository;
+import com.mdms.mdms_masters.model.MDivision;
 import com.mdms.mdms_masters.repository.MDivisionRepository;
 import com.mdms.mdms_station.stationuncleansed.model.StationCleansedData;
 import com.mdms.mdms_station.stationuncleansed.model.StationTableRbs;
@@ -47,6 +61,34 @@ public class StationEditForwardService {
 	@Autowired
 	
 	StationUncleansedTestRepository stn_uncl_repo;
+	
+	@Autowired
+	MTrafficTypeRepository traffic_repo;
+	@Autowired
+	MBookingResourceRepository booking_res_repo ;
+	@Autowired
+	MBookingTypeRepository booking_type_repo;
+	@Autowired
+	MStationClassRepository station_class_repo;
+	@Autowired
+	MStateRepository state_repo;
+	@Autowired
+	MDistrictRepository district_repo;
+	@Autowired
+	MStationCategoryRepository stn_cat_repo;
+	@Autowired
+	MStationInterchangeRepository stn_intrchng_repo;
+	@Autowired
+	MGaugeRepository gauge_repo;
+	@Autowired
+	MTractionRepository traction_repo;
+	@Autowired
+	MInterlockingStandardRepository interlockng_repo;
+	@Autowired
+	MStationJunctionRepository junction_repo;
+	
+	
+	
 	
 /*
  
@@ -244,8 +286,43 @@ public class StationEditForwardService {
 	 
 	 public List<StationUncleansedData> fetchUnapprovedCmiRecords(String division_code) {
 		 
-	return	 stn_unclsnd_repo.fetchUnapprovedCmiRecords(division_code);
 		 
+		
+				 List<StationUncleansedData> tmp = new ArrayList<>();
+				 stn_unclsnd_repo.fetchUnapprovedCmiRecords(division_code).forEach(tmp::add);
+				 
+				 for(int i=0;i<tmp.size();i++)
+				 {
+					String traffic_dec= traffic_repo.getTrafficDescription(tmp.get(i).getTraffic_type()) ;
+					tmp.get(i).setTraffic_type(traffic_dec);
+					
+					
+//					String booking_resource=booking_res_repo.getBookingResourceDescription(tmp.get(i).getBooking_resource());		
+//					tmp.get(i).setBooking_resource(booking_resource);
+					
+					String booking_type=booking_type_repo.getBookingDescription(tmp.get(i).getBooking_type());
+					tmp.get(i).setBooking_type(booking_type);
+					
+					String station_class=station_class_repo.getStationClassDescription(tmp.get(i).getStation_class());
+					tmp.get(i).setStation_class(station_class);
+					
+					String state= state_repo.getLgdStateName(Integer.parseInt(tmp.get(i).getState()));
+					tmp.get(i).setState(state);
+					
+					String district=district_repo.getLgdDistrictName(Integer.parseInt(tmp.get(i).getDistrict()));
+					tmp.get(i).setDistrict(district);
+					
+				
+					
+					if(tmp.get(i).getTranshipment_flag().equals("Y"))
+					{
+						tmp.get(i).setTranshipment_flag("YES");
+					}
+					else
+						
+						tmp.get(i).setTranshipment_flag("NO");
+					}
+			return tmp;
 	 }
 	 
 	 
@@ -453,7 +530,33 @@ catch(Exception e)
 
 
 	public List<StationUncleansedData> fetchUnapprovedDtiRecords(String division_code) {
-		return	 stn_unclsnd_repo.fetchUnapprovedDtiRecords(division_code);
+		
+		 List<StationUncleansedData> tmp = new ArrayList<>();
+		 stn_unclsnd_repo.fetchUnapprovedDtiRecords(division_code).forEach(tmp::add);
+		 for(int i=0;i<tmp.size();i++)
+		 {
+			 String gauge=gauge_repo.getAllGaugeDescription(tmp.get(i).getGauge_code());
+			 tmp.get(i).setGauge_code(gauge);
+				String category=stn_cat_repo.getStationCategoryDescription(tmp.get(i).getStation_category());
+				tmp.get(i).setStation_category(category);
+				String interchange_flag=stn_intrchng_repo.getStationInterchangeDescription(tmp.get(i).getInterchange_flag());
+				tmp.get(i).setInterchange_flag(interchange_flag);
+				
+				String traction=traction_repo.getTractionDescription(tmp.get(i).getTraction());
+				tmp.get(i).setTraction(traction);
+				String interlocking_descrptn=interlockng_repo.getInterLockDescription(tmp.get(i).getInterlocking_standard());
+				tmp.get(i).setInterlocking_standard(interlocking_descrptn);
+				String junctionflg=junction_repo.getStationJunctionDescription(tmp.get(i).getJunction_flag());
+				tmp.get(i).setJunction_flag(junctionflg);
+				
+
+			 
+		 }
+		 
+		 
+		
+		
+		return	 tmp;
 	}
 
 }

@@ -9,5 +9,8 @@ public interface MGaugeRepository extends CrudRepository<MGauge,String>{
 	
 	@Query(value="Select * from mdms_station.m_gauge", nativeQuery = true)
 	List<MGauge> getAllGauge();
+	
+	@Query(value="Select description from mdms_station.m_gauge where gauge_code=?1", nativeQuery = true)
+	String getAllGaugeDescription(String gauge_code);
 
 }

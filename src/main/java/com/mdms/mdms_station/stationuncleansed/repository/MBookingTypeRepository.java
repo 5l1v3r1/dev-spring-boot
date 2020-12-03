@@ -11,4 +11,7 @@ public interface MBookingTypeRepository  extends CrudRepository<MBookingType,Str
 
 	@Query(value="Select * from mdms_station.m_booking_type", nativeQuery = true)
 	List<MBookingType> getBookingType();
+	
+	@Query(value="Select description from mdms_station.m_booking_type where booking_type_code=?1", nativeQuery = true)
+	String getBookingDescription(String booking_type_code);
 }

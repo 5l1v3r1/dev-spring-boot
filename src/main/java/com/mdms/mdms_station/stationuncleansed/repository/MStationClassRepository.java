@@ -10,5 +10,8 @@ public interface MStationClassRepository extends CrudRepository<MStationClass,St
 	
 	@Query(value="Select * from mdms_station.m_station_class", nativeQuery = true)
 	List<MStationClass> getStationClass() ;
+	
+	@Query(value="Select description from mdms_station.m_station_class where station_class=?1", nativeQuery = true)
+	String getStationClassDescription(String station_class) ;
 
 }

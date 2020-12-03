@@ -15,5 +15,8 @@ public interface MInterlockingStandardRepository extends CrudRepository<MInterlo
 
 
 	List<MInterlockingStandard> getInterLock();
+	
+	@Query(value="Select * from mdms_station.m_interlocking_standard where standard_code=?1", nativeQuery = true)
+	String getInterLockDescription(String standard_code);
 
 }

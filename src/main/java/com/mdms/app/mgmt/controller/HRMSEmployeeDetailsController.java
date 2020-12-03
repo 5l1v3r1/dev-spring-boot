@@ -31,33 +31,31 @@ public class HRMSEmployeeDetailsController {
 
 	Logger logger=LoggerFactory.getLogger(HRMSEmployeeDetailsController.class);	
 
-
+	HrmsJsonModel hrmsEmpData;
 	 
 	@RequestMapping(method=RequestMethod.POST, value="/employeedetails")
 	public HrmsJsonModel hrmsEmployeeDetail(@RequestBody IPassIDModel ipassid ) {
 		System.out.println(ipassid);
 		 String getHRMSUrl = "http://10.77.56.35:80/HRMSWS/employeedetails";
-		
+		// String getHRMSUrl = "http://localhost:12021/hrmsEmployeeInfo";
+
+		 
 			RestTemplate restTemplate = new RestTemplate();
 				 try {
 				        restTemplate.getInterceptors().add(new BasicAuthorizationInterceptor("admin09876", "dasd@1241!45"));
-				        HrmsJsonModel hrmsEmpData = restTemplate.postForObject(getHRMSUrl, ipassid,HrmsJsonModel.class);	
-				        System.out.println( hrmsEmpData.getMessage());
-				        System.out.println( hrmsEmpData.getName());
-				        System.out.println( hrmsEmpData.getDepartmentDescription());
-				        System.out.println( hrmsEmpData.getDesignation()); 
-				        System.out.println( hrmsEmpData.getRailwayUnitDivision());
-				        System.out.println( hrmsEmpData.getServiceStatusDescription());
-				        System.out.println( hrmsEmpData.getRailwayUnitName());
-								        
+				         hrmsEmpData = restTemplate.postForObject(getHRMSUrl, ipassid,HrmsJsonModel.class);	
+				    	logger.info("Controller : HRMSEmployeeDetailsController || Method : hrmsEmployeeDetail ||hrmsEmployeeInfo: "+hrmsEmpData.toString());							        
+							        
 				        return hrmsEmpData;			      
 				    }
 				    catch (Exception eek) {
 				    	System.out.println(eek);
+				    	hrmsEmpData.setMessage("some error occured in calling HRMS service");
+				    	return hrmsEmpData;
+				    	
 				    }
 				
-			        
-				return null ;
+			
 	}
 	
 	

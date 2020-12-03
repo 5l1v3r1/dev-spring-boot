@@ -27,11 +27,17 @@ public class HrmsJsonModel {
 	@JsonProperty("serviceStatusDescription")
 	private String serviceStatusDescription;
 	
-	@JsonProperty("railwayUnitName")
-	private String railwayUnitName;
+	@JsonProperty("railwayZonePU")
+	private String railwayZonePU;
 	
 	@JsonProperty("railwayUnitDivision")
 	private String railwayUnitDivision;
+	
+	@JsonProperty("unitTypeFlag")
+	private String unitTypeFlag;
+	
+	@JsonProperty("unitTypeDesc")
+	private String unitTypeDesc;
 
 	public String getMessage() {
 		return message;
@@ -75,12 +81,22 @@ public class HrmsJsonModel {
 		this.serviceStatusDescription = serviceStatusDescription;
 	}
 
-	public String getRailwayUnitName() {
-		return railwayUnitName;
+	
+
+	public String getIpasEmployeeId() {
+		return ipasEmployeeId;
 	}
 
-	public void setRailwayUnitName(String railwayUnitName) {
-		this.railwayUnitName = railwayUnitName;
+	public void setIpasEmployeeId(String ipasEmployeeId) {
+		this.ipasEmployeeId = ipasEmployeeId;
+	}
+
+	public String getRailwayZonePU() {
+		return railwayZonePU;
+	}
+
+	public void setRailwayZonePU(String railwayZonePU) {
+		this.railwayZonePU = railwayZonePU;
 	}
 
 	public String getRailwayUnitDivision() {
@@ -96,6 +112,22 @@ public class HrmsJsonModel {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String getUnitTypeFlag() {
+		return unitTypeFlag;
+	}
+
+	public void setUnitTypeFlag(String unitTypeFlag) {
+		this.unitTypeFlag = unitTypeFlag;
+	}
+
+	public String getUnitTypeDesc() {
+		return unitTypeDesc;
+	}
+
+	public void setUnitTypeDesc(String unitTypeDesc) {
+		this.unitTypeDesc = unitTypeDesc;
 	}
 	
 

@@ -2,6 +2,9 @@ package com.mdms.app.mgmt.repository;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.CrudRepository;
@@ -15,6 +18,10 @@ public interface UserLoginDetailRepository extends CrudRepository<UserLoginDetai
 	@Query(value="SELECT * from mdms_app_mgmt.user_login_detail where user_id=?1",nativeQuery=true)
 	  List<UserLoginDetailModel> getDeatils(String userId);
 	
+	@Transactional
+	@Modifying
+	@Query(value="UPDATE mdms_app_mgmt.user_login_detail SET emp_password=?1  where user_id=?2",nativeQuery=true)
+	int updatePassword(String newPwd, String userId);
 	
 
 

@@ -40,7 +40,7 @@ public class UserProfileRegistrationService {
 	 
 	 public String  saveUserDetails(UserRegistrationJsonModel obj) {
 		 UserLoginDetailModel userLoginDetailObj=new UserLoginDetailModel();
-		 userLoginDetailObj.setUser_id(obj.getUser_id());
+		 userLoginDetailObj.setUser_id(obj.getUser_id().toUpperCase());
 		 String encodedPassword=""; 
 		 //Hashing Password first
 		 
@@ -71,9 +71,9 @@ public class UserProfileRegistrationService {
 	
 	
 	UserProfileRegistrationDetailModel registrationModelObj= new UserProfileRegistrationDetailModel();
-	registrationModelObj.setUser_id(obj.getUser_id());
+	registrationModelObj.setUser_id(obj.getUser_id().toUpperCase());
 	registrationModelObj.setUser_type(obj.getUser_type());
-	registrationModelObj.setName(obj.getName());
+	registrationModelObj.setUname(obj.getUname().toUpperCase());
 	registrationModelObj.setEmail(obj.getEmail());
 	registrationModelObj.setDepartment(obj.getDepartment());
 	registrationModelObj.setDesignation(obj.getDesignation());
@@ -85,8 +85,9 @@ public class UserProfileRegistrationService {
 	registrationModelObj.setZone(obj.getZone());
 	registrationModelObj.setDivision(obj.getDivision());
 	//registrationModelObj.setTo_date(new Date());
-	registrationModelObj.setCreated_by(obj.getName());
+	registrationModelObj.setCreated_by(obj.getUser_id().toUpperCase());
 	registrationModelObj.setEntity("Entity");
+	registrationModelObj.setUser_register_approval("Y");
 //	String result = null;
 	UserLoginDetailModel response = null;
 //	try {
@@ -104,6 +105,8 @@ public class UserProfileRegistrationService {
 	try {
 	 UserProfileRegistrationDetailModel result=profileRegistrationRepo.save(registrationModelObj);
 	 response=loginDetailRepo.save(userLoginDetailObj);
+	 response.getUser_id().toUpperCase();
+		result.getUser_id().toUpperCase();
 		logger.info("Service : UserRegistrationService || Method : saveUserDetails ||user_id: "+registrationModelObj.getUser_id());
 
 	//save data in logindetails table
@@ -113,6 +116,8 @@ public class UserProfileRegistrationService {
 		
 		
 if(response!=null && result!=null) {
+	
+	
 	
 	logger.info("Service : UserProfileRegistrationService || Method : saveUserDetails ||Record Inserted Successfully " );
 
@@ -124,6 +129,8 @@ if(response!=null && result!=null) {
 }
 	}catch(Exception ex) {
 		ex.getMessage();
+		
+		
 		
 		logger.info("Service : UserProfileRegistrationService || Method : saveUserDetails ||Exception " + ex.getMessage());
 
@@ -237,15 +244,13 @@ if(response!=null && result!=null) {
 
 		 List<UserLoginDetailModel>  list= loginDetailRepo.getDeatils(user_id);
 // System.out.print("list: "+list.size() +"||User_id: "+user_id);
-		 if(list.size()>0) {
-			 
+		 if(list.size()>0) {			 
 				logger.info("Service : UserProfileRegistrationService || Method : findUserRecord ||Response User Already Exist");
 
 			return "User Already Exist"; 
 		 }else {
 			 
 				logger.info("Service : UserProfileRegistrationService || Method : findUserRecord ||Response User not exist");
-
 			 return "User Not Exist";
 		 }
 		 

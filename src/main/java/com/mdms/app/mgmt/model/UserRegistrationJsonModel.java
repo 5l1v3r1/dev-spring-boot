@@ -22,7 +22,7 @@ public class UserRegistrationJsonModel implements Serializable {
 	
 	
 	@JsonProperty("name")
-	private String name;
+	private String uname;
 
 	@JsonProperty("designation")
 	private String designation;
@@ -107,12 +107,17 @@ public class UserRegistrationJsonModel implements Serializable {
 		this.user_id = user_id;
 	}
 
-	public String getName() {
-		return name;
+	
+
+	
+
+	
+	public String getUname() {
+		return uname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUname(String uname) {
+		this.uname = uname;
 	}
 
 	public String getDesignation() {
@@ -205,7 +210,7 @@ public class UserRegistrationJsonModel implements Serializable {
 
 	@Override
 	public String toString() {
-		return "UserRegistrationJsonModel [user_id=" + user_id + ", name=" + name + ", designation=" + designation
+		return "UserRegistrationJsonModel [user_id=" + user_id + ", name=" + uname + ", designation=" + designation
 				+ ", department=" + department + ", loco_type=" + loco_type + ", shed=" + shed + ", from_date="
 				+ from_date + ", to_date=" + to_date + ", role_type=" + role_type + ", user_type=" + user_type
 				+ ", mobile_no=" + mobile_no + ", entity=" + entity + ", email=" + email + ", zone=" + zone

@@ -29,7 +29,6 @@ public class UserProfileRegistrationController {
 	@RequestMapping(method=RequestMethod.POST, value="/userregistration")
 	public String UserRegistration(@RequestBody UserRegistrationJsonModel userObj){
 		
-		
 		if(userObj.getShed().equalsIgnoreCase("")) {
 			userObj.setShed(null);
 			
@@ -37,7 +36,7 @@ public class UserProfileRegistrationController {
 			userObj.setLoco_type(null);	
 		}
 		logger.info("Controller : UserRegistrationController || Method : UserRegistration ||user_id: "+userObj.getUser_id()
-		+"||pwd"+userObj.getEmp_password()+"||shed"+ userObj.getShed() + "loco_type: "+ userObj.getLoco_type()
+		+"||pwd"+userObj.getEmp_password()+"||shed"+ userObj.getShed() + "loco_type: "+ userObj.getLoco_type()+" ||user_id "+userObj.getUname()
 		
 				+"||zone : " +userObj.getZone()+"||division : " + userObj.getDivision());
 	
@@ -54,6 +53,7 @@ public class UserProfileRegistrationController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="/getlistofitems")
 	public GetListUserRegistrationJsonModel getListUserRegistration(){
+		
 		
 		
 		GetListUserRegistrationJsonModel response= registrationServiceObj.getListUserRegistration();

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnTransformer;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity()
@@ -18,8 +20,8 @@ public class UserProfileRegistrationDetailModel {
 	private String user_id;
 	
 	
-	@Column(name="name")
-	private String name;
+	@Column(name="name")	
+	private String uname;
 
 	@Column(name="designation")
 	private String designation;
@@ -32,7 +34,6 @@ public class UserProfileRegistrationDetailModel {
 	
 	@Column(name="shed")
 	private String shed;
-	
 	
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	@Column(name="from_date")
@@ -67,7 +68,19 @@ public class UserProfileRegistrationDetailModel {
 	@Column(name="division")
 	private String division;
 	
+	@Column(name="user_register_approval")
+	private String user_register_approval;
 	
+	
+	
+
+	public String getUser_register_approval() {
+		return user_register_approval;
+	}
+
+	public void setUser_register_approval(String user_register_approval) {
+		this.user_register_approval = user_register_approval;
+	}
 
 	public String getZone() {
 		return zone;
@@ -92,13 +105,14 @@ public class UserProfileRegistrationDetailModel {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
+	
 
-	public String getName() {
-		return name;
+	public String getUname() {
+		return uname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUname(String uname) {
+		this.uname = uname;
 	}
 
 	public String getDesignation() {
@@ -199,12 +213,15 @@ public class UserProfileRegistrationDetailModel {
 
 	@Override
 	public String toString() {
-		return "UserProfileRegistrationDetailModel [user_id=" + user_id + ", name=" + name + ", designation="
+		return "UserProfileRegistrationDetailModel [user_id=" + user_id + ", name=" + uname + ", designation="
 				+ designation + ", department=" + department + ", loco_type=" + loco_type + ", shed=" + shed
 				+ ", from_date=" + from_date + ", to_date=" + to_date + ", role_type=" + role_type + ", user_type="
 				+ user_type + ", mobile_no=" + mobile_no + ", entity=" + entity + ", email=" + email + ", created_by="
-				+ created_by + ", zone=" + zone + ", division=" + division + "]";
+				+ created_by + ", zone=" + zone + ", division=" + division + ", user_register_approval="
+				+ user_register_approval + "]";
 	}
+
+	
 
 	
 	

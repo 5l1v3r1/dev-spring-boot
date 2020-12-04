@@ -10,7 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.mdms.PasswordSecurityConfiguration;
 import com.mdms.app.mgmt.model.UserLoginDetailModel;
+import com.mdms.app.mgmt.model.UserProfileRegistrationDetailModel;
 import com.mdms.app.mgmt.repository.UserLoginDetailRepository;
+import com.mdms.app.mgmt.repository.UserProfileRegistrationRepository;
+
 
 
 @Service
@@ -22,6 +25,10 @@ public class UserLoginService {
 	 
 	 @Autowired
 	 UserLoginDetailRepository loginDetailObj;
+	 
+	 @Autowired
+	 UserProfileRegistrationRepository  profileRegistrationRepoObj;
+	 
 
 	 private final PasswordEncoder passwordEncoder = new PasswordSecurityConfiguration().passwordEncoder();
 public String verifyLogin(String user_id,String pwd) {
@@ -33,20 +40,21 @@ public String verifyLogin(String user_id,String pwd) {
 
 	
 			logger.info("Service : UserLoginService || Method : verifyLogin ||");
-			
+
 			
 			List<UserLoginDetailModel> list  =	loginDetailObj.getDeatils(user_id);
+			List<UserProfileRegistrationDetailModel> listUserProfileObj  =	profileRegistrationRepoObj.getUserDetail(user_id);
 
 			
 			
 
-			if((list.size()>0) ) {
-				if(list.get(0).getUser_register_approval().equalsIgnoreCase("N")) {
+			if((list.size()>0) && (listUserProfileObj.size()>0)) {
+				if(listUserProfileObj.get(0).getUser_register_approval().equalsIgnoreCase("N")) {
 					
 					logger.info("Service : UserLoginService || Method : getUser_register_approval 'N'||");
 				response = "Registered MDMS user is not approved by approving authority.";
 					
-				}else if(list.get(0).getUser_register_approval().equalsIgnoreCase("Y") ){
+				}else if(listUserProfileObj.get(0).getUser_register_approval().equalsIgnoreCase("Y") ){
 					
 					logger.info("Service : UserLoginService || Method : getUser_register_approval 'Y'||");
 				
@@ -55,6 +63,8 @@ public String verifyLogin(String user_id,String pwd) {
 				
 				logger.info("Service : UserLoginService || Method : passwordEncoder.matches  'Y'||");
 				response="success";	
+				
+				
 			}else {
 				response="Wrong Password";	
 			}
@@ -75,5 +85,23 @@ public String verifyLogin(String user_id,String pwd) {
 
 }
 
-
+public String resetPassword(UserLoginDetailModel obj_resetpwd) {
+	String response = "not Reset";
+	 String encodedPassword="";
+	 try {
+		 encodedPassword = passwordEncoder.encode(obj_resetpwd.getEmp_password());
+		 
+		 logger.info("Service : UserLoginService || Method : resetPassword ||NEW Password ");		 
+		 String uid=obj_resetpwd.getUser_id();	
+			loginDetailObj.updatePassword(encodedPassword, uid);
+			response=  "NEW Password" ;	
+}catch(Exception ex) {
+	
+	logger.info("Service : UserLoginService || Method : resetPassword ||Exception pwd encryption" + ex.getMessage());
+	response="OLD Password";
+//	System.out.print(ex.getMessage());
+}
+	return response;
+	
+}
 }

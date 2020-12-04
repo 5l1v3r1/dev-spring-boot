@@ -10,5 +10,8 @@ public interface MStationInterchangeRepository extends CrudRepository<MStationIn
 
 	@Query(value="Select * from mdms_station.m_station_interchange", nativeQuery = true)
 	List<MStationInterchange> getStationInterchange();
+	
+	@Query(value="Select description from mdms_station.m_station_interchange where interchange_flag=?1", nativeQuery = true)
+	String getStationInterchangeDescription(String interchange_flag);
 
 }

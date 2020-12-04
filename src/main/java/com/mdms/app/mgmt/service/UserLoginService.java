@@ -42,8 +42,8 @@ public String verifyLogin(String user_id,String pwd) {
 			logger.info("Service : UserLoginService || Method : verifyLogin ||");
 
 			
-			List<UserLoginDetailModel> list  =	loginDetailObj.getDeatils(user_id);
-			List<UserProfileRegistrationDetailModel> listUserProfileObj  =	profileRegistrationRepoObj.getUserDetail(user_id);
+			List<UserLoginDetailModel> list  =	loginDetailObj.getDeatils(user_id.toUpperCase());
+			List<UserProfileRegistrationDetailModel> listUserProfileObj  =	profileRegistrationRepoObj.getUserDetail(user_id.toUpperCase());
 
 			
 			

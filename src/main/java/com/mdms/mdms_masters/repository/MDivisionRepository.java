@@ -14,5 +14,8 @@ public interface MDivisionRepository extends CrudRepository<MDivision,String> {
 	@Query(value="Select division_sr_no from mdms_masters.m_division where division_code=?1 ", nativeQuery = true)
 	int getDivsionCode(String division);
 	
-	
+
+	@Query(value="Select * from mdms_masters.m_division where zone_code=?1 ", nativeQuery = true)
+	List<MDivision> findByZoneCode(String zone_code); 
+
 }

@@ -38,9 +38,15 @@ public class StationEditForwardController {
 	
 	Logger logger=LoggerFactory.getLogger(StationEditForwardController.class);
 	
-	@RequestMapping(method=RequestMethod.GET, value="/tblrbs")
+	@RequestMapping(method=RequestMethod.GET, value="/tblrbscmi")
 	public List<String> getDivisionalStnCodeCmi(@RequestParam(value="division") String division){
 		return stn_edit_fwd_serv.getDivisionalStnCodeCmi(division);
+	}
+	
+	
+	@RequestMapping(method=RequestMethod.GET, value="/tblrbsdti")
+	public List<String> getDivisionalStnCodeDti(@RequestParam(value="division") String division){
+		return stn_edit_fwd_serv.getDivisionalStnCodeDti(division);
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="/stncoderbs")
@@ -50,12 +56,21 @@ public class StationEditForwardController {
 	}
 	
 	
-	@RequestMapping(method=RequestMethod.GET, value="/stncodeunclnsd")
+	@RequestMapping(method=RequestMethod.GET, value="/stncodeunclnsdcmi")
 	public  StationUncleansedData getDraftFromUncleansedCmi(@RequestParam(value="useridcmi") String useridcmi , @RequestParam(value="station_code") String station_code ) throws Exception
 	{
 		
 		return stn_edit_fwd_serv.getDraftFromUncleansedCmi(useridcmi,station_code);
 	}
+	
+	
+	@RequestMapping(method=RequestMethod.GET, value="/stncodeunclnsddti")
+	public  StationUncleansedData getDraftFromUncleansedDti(@RequestParam(value="useriddti") String useriddti , @RequestParam(value="station_code") String station_code ) throws Exception
+	{
+		
+		return stn_edit_fwd_serv.getDraftFromUncleansedDti(useriddti,station_code);
+	}
+	
 	
 	@RequestMapping(method=RequestMethod.POST, value="/unclnsdcmidraft")
 	public  String saveCmiDraft(@RequestBody StationUncleansedData stationdraftcmi) throws Exception
@@ -70,6 +85,20 @@ public class StationEditForwardController {
 	
 
 	
+	@RequestMapping(method=RequestMethod.POST, value="/unclnsddtidraft")
+	public  String saveDtiDraft(@RequestBody StationUncleansedData stationdraftdti) throws Exception
+	{
+//		System.out.println(stationdraftcmi.getStn_Id().getStation_code());
+//		System.out.println(stationdraftcmi.getStn_Id().getStation_valid_from());
+//		System.out.println(stationdraftcmi.getStn_Id().getStation_valid_upto());
+		logger.error("controller : StationEditForwardController || Method : saveDtiDraft || input recieved stationdraftdti: "+stationdraftdti.getStn_Id().getStation_code());
+		
+		return stn_edit_fwd_serv.saveDtiDraft(stationdraftdti);
+	}
+	
+	
+	
+	
 	@RequestMapping(method=RequestMethod.POST, value="/stnunclnsunaprvdcmi")
 	public  String forwardToDcm(@RequestBody StationUncleansedData stationdatadcm) throws Exception
 	{
@@ -80,13 +109,31 @@ public class StationEditForwardController {
 	}
 	
 	
+
+	@RequestMapping(method=RequestMethod.POST, value="/stnunclnsunaprvddti")
+	public  String forwardToDom(@RequestBody StationUncleansedData stationdatadom) throws Exception
+	{
+
+		logger.error("controller : StationEditForwardController || Method : forwardToDom || input recieved stationdatadom: "+stationdatadom.getStn_Id().getStation_code());
+		
+		return stn_edit_fwd_serv.forwardToDom(stationdatadom);
+	}
+	
+	
+	
+	
 	@RequestMapping(method=RequestMethod.POST, value="/stnunclnsunaprvdcm")
 	public List<StationUncleansedData> fetchUnapprovedCmiRecords(@RequestParam(value="division_code") String division_code)
 	{
 		return stn_edit_fwd_serv.fetchUnapprovedCmiRecords(division_code);
 	}
 	
-
+	@RequestMapping(method=RequestMethod.POST, value="/stnunclnsunaprvdom")
+	public List<StationUncleansedData> fetchUnapprovedDtiRecords(@RequestParam(value="division_code") String division_code)
+	{
+		return stn_edit_fwd_serv.fetchUnapprovedDtiRecords(division_code);
+	}
+	
 	
 	
 	@RequestMapping(method=RequestMethod.POST, value="/stnunclnsunaprvdcm1")
@@ -101,9 +148,22 @@ public class StationEditForwardController {
 	public  String approvedByDcm(@RequestBody String stationdatadcm) throws Exception
 	{
 
-		logger.error("controller : StationEditForwardController || Method : forwardToDcm || input recieved approvedByDcm: "+stationdatadcm);
+		logger.error("controller : StationEditForwardController || Method : approvedByDcm || input recieved approvedByDcm: "+stationdatadcm);
 		
 		return stn_edit_fwd_serv.approvedByDcm(stationdatadcm);
+		
+		
+	}
+	
+	
+	
+	@RequestMapping(method=RequestMethod.POST, value="/stnunclappdom")
+	public  String approvedByDom(@RequestBody String stationdatadcm) throws Exception
+	{
+
+		logger.error("controller : StationEditForwardController || Method : approvedByDom || input recieved approvedByDom: "+stationdatadcm);
+		
+		return stn_edit_fwd_serv.approvedByDom(stationdatadcm);
 		
 		
 	}

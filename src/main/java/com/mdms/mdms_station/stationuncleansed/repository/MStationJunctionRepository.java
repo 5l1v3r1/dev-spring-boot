@@ -13,5 +13,8 @@ public interface MStationJunctionRepository extends CrudRepository<MStationJunct
 	@Query(value="Select * from mdms_station.m_station_junction", nativeQuery = true)
 	List<MStationJunction> getStationJunction();
 	
+	@Query(value="Select description from mdms_station.m_station_junction where junction_flag=?1", nativeQuery = true)
+	String getStationJunctionDescription(String junction_flag);
+	
 
 }

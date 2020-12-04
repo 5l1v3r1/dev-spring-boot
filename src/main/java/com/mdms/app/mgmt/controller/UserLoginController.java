@@ -12,15 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.mdms.app.mgmt.model.LoginOtpModel;
 import com.mdms.app.mgmt.model.MenuIdResponseModel;
+
 import com.mdms.app.mgmt.model.UserLoginDetailModel;
+
 import com.mdms.app.mgmt.model.UserProfileRegistrationDetailModel;
 import com.mdms.app.mgmt.service.LoginOtpService;
 import com.mdms.app.mgmt.service.ShowMenuRightsService;
 import com.mdms.app.mgmt.service.UserLoginService;
 import com.mdms.app.mgmt.service.UserProfileRegistrationService;
+
 
 
 //import com.mdms.app.mgmt.service.LoginOtpService;
@@ -30,6 +32,12 @@ import com.mdms.app.mgmt.service.UserProfileRegistrationService;
 
 //@CrossOrigin(origins = {"http://localhost:4200","http://cris-mdm-angular.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
 
+
+
+
+import com.mdms.app.mgmt.service.LoginOtpService;
+import com.mdms.app.mgmt.service.ShowMenuRightsService;
+import com.mdms.app.mgmt.service.UserLoginService;
 
 
 

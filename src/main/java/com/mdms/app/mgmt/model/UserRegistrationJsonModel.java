@@ -3,7 +3,7 @@ package com.mdms.app.mgmt.model;
 import java.io.Serializable;
 import java.util.Date;
 
-
+import javax.persistence.Column;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -36,6 +36,7 @@ public class UserRegistrationJsonModel implements Serializable {
 	@JsonProperty("shed")
 	private String shed;
 	
+
 	
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	@JsonProperty("from_date")
@@ -71,10 +72,44 @@ public class UserRegistrationJsonModel implements Serializable {
 	@JsonProperty("emp_password")
 	private String emp_password;
 
+	@JsonProperty("hrms_service_status")
+	private String hrms_service_status;
+	
+	@JsonProperty("hrms_designation")
+	private String hrms_designation;
+	
+	@JsonProperty("hrms_department")
+	private String hrms_department;
 	
 	
 	
 	
+	
+
+	public String getHrms_service_status() {
+		return hrms_service_status;
+	}
+
+	public void setHrms_service_status(String hrms_service_status) {
+		this.hrms_service_status = hrms_service_status;
+	}
+
+	public String getHrms_designation() {
+		return hrms_designation;
+	}
+
+	public void setHrms_designation(String hrms_designation) {
+		this.hrms_designation = hrms_designation;
+	}
+
+	public String getHrms_department() {
+		return hrms_department;
+	}
+
+	public void setHrms_department(String hrms_department) {
+		this.hrms_department = hrms_department;
+	}
+
 	public String getZone() {
 		return zone;
 	}

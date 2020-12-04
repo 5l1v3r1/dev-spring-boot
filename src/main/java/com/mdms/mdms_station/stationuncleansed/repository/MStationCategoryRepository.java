@@ -12,5 +12,8 @@ public interface MStationCategoryRepository extends CrudRepository<MStationCateg
 
 	@Query(value="Select * from mdms_station.m_station_category", nativeQuery = true)
 	List<MStationCategory> getStationCategory();
+	
+	@Query(value="Select description from mdms_station.m_station_category where station_category=?1", nativeQuery = true)
+	String getStationCategoryDescription(String station_category);
 
 }

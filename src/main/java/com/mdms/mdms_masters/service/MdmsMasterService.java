@@ -13,7 +13,7 @@ public class MdmsMasterService {
 	
 	@Autowired
 	MDivisionRepository divsn_repo;
-
+private String div_code;
 	private String zone_code;
 	public List<MDivision> getAllDivision() {
 		// TODO Auto-generated method stub
@@ -29,4 +29,14 @@ public class MdmsMasterService {
 		divsn_repo.findByZoneCode(zone_code).forEach(tmp::add);
 	    return tmp;
 	}
-}
+	
+	public String findByDivision(MDivision division) {
+    div_code = division.getDivision_code();    
+	return divsn_repo.findByDivCode(div_code);
+		
+	}
+	
+	}
+
+	
+

@@ -21,10 +21,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mdms.mdms_station.stationuncleansed.model.StationCleansedData;
+import com.mdms.mdms_station.stationuncleansed.model.StationPKey;
 import com.mdms.mdms_station.stationuncleansed.model.StationTableRbs;
 import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedData;
 import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedTest;
 import com.mdms.mdms_station.stationuncleansed.service.StationEditForwardService;
+
 
 
 
@@ -167,6 +170,18 @@ public class StationEditForwardController {
 		
 		
 	}
+	
+
+	@RequestMapping(method=RequestMethod.POST, value="/checkstncodeexist")
+	public boolean checkStnCode(@RequestBody StationPKey stnCode) throws Exception {
+		 logger.error("controller : StationEditForwardController || Method : checkStnCode || input recieved checkStnCode: "+stnCode);		 
+		String checkStnCode=stnCode.getStation_code();
+	boolean flag= stn_edit_fwd_serv.checkstncode(checkStnCode);
+	return flag;
+	}    
+
+	
+	
 }
 
 

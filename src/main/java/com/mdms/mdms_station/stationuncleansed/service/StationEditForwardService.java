@@ -570,11 +570,11 @@ catch(Exception e)
 		try {		 
 			if(sc!=null)
 			{
-				returnstmt="CODE ALREADY EXSIT";
+				returnstmt="true";
 
 		}	else
 		{
-			returnstmt="CODE NOT EXIST";
+			returnstmt="false";
 			return returnstmt; 
 		
 		}}catch(Exception e)

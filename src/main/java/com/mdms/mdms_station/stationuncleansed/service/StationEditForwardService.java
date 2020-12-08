@@ -560,16 +560,12 @@ catch(Exception e)
 		return	 tmp;
 	}
 
-	public List<StationUncleansedData> getStnDraft( StationPKey objstndraft) {
+	public StationUncleansedData getStnDraft( String objstndraft) {
 //		// TODO Auto-generated method stub
 		System.out.println("getDraftStn");
-		String stncd=objstndraft.getStation_code();
-		stn_unclsnd_repo.checkStnData(stncd);
-		List<StationUncleansedData> uncleansedStn= new ArrayList<>();
-		stn_unclsnd_repo.checkStnData(stncd)
-		.forEach(uncleansedStn::add);
+		StationUncleansedData stncd=stn_unclsnd_repo.checkStnData(objstndraft);		
 		System.out.println(" End DraftSn");
-		return stn_unclsnd_repo.checkStnData(stncd);
+		return stncd;
 //		return uncleaseLoco;
 	}
 	

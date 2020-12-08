@@ -169,7 +169,7 @@ public class StationEditForwardController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/getstndraftdata")
-	public List<StationUncleansedData> checkStnData(@RequestBody StationPKey station_code) throws Exception {
+	public StationUncleansedData checkStnData(@RequestBody String station_code) throws Exception {
 		 logger.error("controller : StationEditForwardController || Method : checkStnData || input recieved checkStnData: "+station_code);		 
 	return stn_edit_fwd_serv.getStnDraft(station_code);
 	}   

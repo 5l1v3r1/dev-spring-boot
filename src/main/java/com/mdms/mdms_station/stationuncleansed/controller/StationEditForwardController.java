@@ -169,12 +169,13 @@ public class StationEditForwardController {
 	}
 	
 
-	@RequestMapping(method=RequestMethod.POST, value="/checkstncodeexist")
-	public String checkStnCode(@RequestBody String station_code) throws Exception {
-		 logger.error("controller : StationEditForwardController || Method : checkStnCode || input recieved checkStnCode: "+station_code);		 
-	return stn_edit_fwd_serv.checkStncodeExit(station_code);	
-	}    
+	
 
+	@RequestMapping(method=RequestMethod.POST, value="/getstndraftdata")
+	public String checkStnData(@RequestBody String station_code) throws Exception {
+		 logger.error("controller : StationEditForwardController || Method : checkStnData || input recieved checkStnData: "+station_code);		 
+	return stn_edit_fwd_serv.checkStnData(station_code);	
+	}    
 	
 	
 }

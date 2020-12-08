@@ -563,27 +563,30 @@ catch(Exception e)
 
 	
 
-	public String checkStncodeExit(String stncode) throws Exception {
-		String returnstmt=null;
-		String sc;
-		 sc=stn_clnsd_repo.checkStnCodeExist(stncode);	
+	
+		
+	
+	public String checkStnData(String stncode) throws Exception {
+		String isstncodeExist;
+		isstncodeExist=stn_clnsd_repo.checkStnCodeExist(stncode);	
 		try {		 
-			if(sc!=null)
+			if(isstncodeExist!=null)
 			{
-				returnstmt="true";
-
+				return stn_clnsd_repo.checkStnCodeExist(stncode);
 		}	else
 		{
-			returnstmt="false";
-			return returnstmt; 
+		
+			return stn_clnsd_repo.checkStnCodeExist(stncode); 
 		
 		}}catch(Exception e)
 		{
 			}
-		return returnstmt;
+		return stn_clnsd_repo.checkStnCodeExist(stncode);
 		}
 		
 }
+
+
 
 
 

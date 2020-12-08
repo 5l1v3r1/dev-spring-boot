@@ -560,29 +560,24 @@ catch(Exception e)
 		return	 tmp;
 	}
 
-
+	public List<StationUncleansedData> getStnDraft( StationPKey objstndraft) {
+//		// TODO Auto-generated method stub
+		System.out.println("getDraftStn");
+		String stncd=objstndraft.getStation_code();
+		stn_unclsnd_repo.checkStnData(stncd);
+		List<StationUncleansedData> uncleansedStn= new ArrayList<>();
+		stn_unclsnd_repo.checkStnData(stncd)
+		.forEach(uncleansedStn::add);
+		System.out.println(" End DraftSn");
+		return stn_unclsnd_repo.checkStnData(stncd);
+//		return uncleaseLoco;
+	}
 	
 
 	
 		
 	
-	public String checkStnData(String stncode) throws Exception {
-		String isstncodeExist;
-		isstncodeExist=stn_clnsd_repo.checkStnCodeExist(stncode);	
-		try {		 
-			if(isstncodeExist!=null)
-			{
-				return stn_clnsd_repo.checkStnCodeExist(stncode);
-		}	else
-		{
-		
-			return stn_clnsd_repo.checkStnCodeExist(stncode); 
-		
-		}}catch(Exception e)
-		{
-			}
-		return stn_clnsd_repo.checkStnCodeExist(stncode);
-		}
+	
 		
 }
 

@@ -30,11 +30,14 @@ private String div_code;
 	    return tmp;
 	}
 	
-	public String findByDivision(MDivision division) {
-    div_code = division.getDivision_code();    
-	return divsn_repo.findByDivCode(div_code);
+	public String findByDivision(String division) throws Exception{		
+		String divcode;		
+		 divcode=divsn_repo.findByDivCode(division);
+    return divcode;
 		
 	}
+
+
 	
 	}
 

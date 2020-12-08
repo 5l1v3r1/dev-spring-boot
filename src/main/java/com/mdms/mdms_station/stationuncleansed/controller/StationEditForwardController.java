@@ -163,21 +163,16 @@ public class StationEditForwardController {
 	@RequestMapping(method=RequestMethod.POST, value="/stnunclappdom")
 	public  String approvedByDom(@RequestBody String stationdatadcm) throws Exception
 	{
-
-		logger.error("controller : StationEditForwardController || Method : approvedByDom || input recieved approvedByDom: "+stationdatadcm);
-		
-		return stn_edit_fwd_serv.approvedByDom(stationdatadcm);
-		
+		logger.error("controller : StationEditForwardController || Method : approvedByDom || input recieved approvedByDom: "+stationdatadcm);		
+		return stn_edit_fwd_serv.approvedByDom(stationdatadcm);		
 		
 	}
 	
 
 	@RequestMapping(method=RequestMethod.POST, value="/checkstncodeexist")
-	public boolean checkStnCode(@RequestBody StationPKey stnCode) throws Exception {
-		 logger.error("controller : StationEditForwardController || Method : checkStnCode || input recieved checkStnCode: "+stnCode);		 
-		String checkStnCode=stnCode.getStation_code();
-	boolean flag= stn_edit_fwd_serv.checkstncode(checkStnCode);
-	return flag;
+	public String checkStnCode(@RequestBody String station_code) throws Exception {
+		 logger.error("controller : StationEditForwardController || Method : checkStnCode || input recieved checkStnCode: "+station_code);		 
+	return stn_edit_fwd_serv.checkStncodeExit(station_code);	
 	}    
 
 	

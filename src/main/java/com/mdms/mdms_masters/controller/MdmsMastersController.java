@@ -49,7 +49,7 @@ public class MdmsMastersController {
 	}    
 	
 	@RequestMapping(method=RequestMethod.POST, value="/zonebydivisioncode")
-	public String findByDivison(@RequestBody MDivision division)throws Exception {
+	public String findByDivison(@RequestBody String division)throws Exception {
 		 logger.error("controller : MdmsMastersController || Method : findByDivison || input recieved findByDivison: "+division);		 
        return mdm_mstr_serv.findByDivision(division) ;
 	

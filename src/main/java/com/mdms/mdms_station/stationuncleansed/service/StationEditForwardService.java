@@ -562,45 +562,27 @@ catch(Exception e)
 
 
 	
-	
-	public boolean checkstncode(String stncode) {
-		String   tmp= stn_clnsd_repo.checkStnCodeExist(stncode); 
-		if(tmp==null)
-		{
-			return false;
-		}
-		  
-		else
-		    
-		    {
-		   
-		    	return true;
-		    }
-			
-		    
 
-	}
-//	
-//	public String checkStncodeExit(String stncode) throws Exception {
-//		String returnstmt=null;
-//		try {
-//										
-//			StationPKey stncldata=stn_clnsd_repo.checkStnCodeExist(stncode);
-//			if(stncldata!=null)
-//			{
-//				returnstmt="CODE ALREADY EXSIT";
-//
-//		}	else
-//		{
-//			returnstmt="CODE NOT EXIST";
-//			return returnstmt; 
-//		
-//		}}catch(Exception e)
-//		{
-//			}
-//		return returnstmt;
-//		}
-//		
+	public String checkStncodeExit(String stncode) throws Exception {
+		String returnstmt=null;
+		String sc;
+		 sc=stn_clnsd_repo.checkStnCodeExist(stncode);	
+		try {		 
+			if(sc!=null)
+			{
+				returnstmt="CODE ALREADY EXSIT";
+
+		}	else
+		{
+			returnstmt="CODE NOT EXIST";
+			return returnstmt; 
+		
+		}}catch(Exception e)
+		{
+			}
+		return returnstmt;
+		}
+		
 }
 
 

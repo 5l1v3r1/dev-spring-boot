@@ -14,8 +14,8 @@ public interface StationCleansedDataRepository extends CrudRepository <StationCl
 	@Query(value="select * FROM mdms_station.station_uncleansed_data where  station_code=?1", nativeQuery = true)
 	StationCleansedData findByStncode(String stationdatadcm);
 	
-	@Query(value="select * from mdms_station.station_cleansed_data where station_code=?1",nativeQuery=true)
-	String  checkStnCodeExist(String stncode);
+	@Query(value="select station_code  from mdms_station.station_cleansed_data where station_code=?1",nativeQuery=true)
+	String   checkStnCodeExist(String stncode);
 	
 	
 }

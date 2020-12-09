@@ -61,9 +61,6 @@ public class UserProfileRegistrationService {
 		 userLoginDetailObj.setEmail(obj.getEmail());
 		 userLoginDetailObj.setRole_type(obj.getRole_type());
 		 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		  
-		  
-		
 		 userLoginDetailObj.setTxn_timestamp(Timestamp.valueOf(formatter.format(new Date())));
 		 userLoginDetailObj.setLast_password_change_txn_timestamp(Timestamp.valueOf(formatter.format(new Date())));
 	
@@ -76,7 +73,8 @@ public class UserProfileRegistrationService {
 	UserProfileRegistrationDetailModel registrationModelObj= new UserProfileRegistrationDetailModel();
 	registrationModelObj.setUser_id(obj.getUser_id().toUpperCase());
 	registrationModelObj.setUser_type(obj.getUser_type());
-	registrationModelObj.setName(obj.getName().toUpperCase());
+
+	registrationModelObj.setUname(obj.getUname().toUpperCase());
 	registrationModelObj.setEmail(obj.getEmail());
 	registrationModelObj.setDepartment(obj.getDepartment());
 	registrationModelObj.setDesignation(obj.getDesignation());
@@ -91,10 +89,10 @@ public class UserProfileRegistrationService {
 	registrationModelObj.setCreated_by(obj.getUser_id().toUpperCase());
 	registrationModelObj.setEntity("Entity");
 	registrationModelObj.setUser_register_approval("Y");
-
 	registrationModelObj.setHrms_service_status(obj.getHrms_service_status());
 	
 	
+
 
 //	String result = null;
 	UserLoginDetailModel response = null;
@@ -113,6 +111,8 @@ public class UserProfileRegistrationService {
 	try {
 	 UserProfileRegistrationDetailModel result=profileRegistrationRepo.save(registrationModelObj);
 	 response=loginDetailRepo.save(userLoginDetailObj);
+	 response.getUser_id().toUpperCase();
+		result.getUser_id().toUpperCase();
 		logger.info("Service : UserRegistrationService || Method : saveUserDetails ||user_id: "+registrationModelObj.getUser_id());
 
 	//save data in logindetails table
@@ -122,6 +122,8 @@ public class UserProfileRegistrationService {
 		
 		
 if(response!=null && result!=null) {
+	
+	
 	
 	logger.info("Service : UserProfileRegistrationService || Method : saveUserDetails ||Record Inserted Successfully " );
 
@@ -145,26 +147,22 @@ if(response!=null && result!=null) {
 	 
 	 
 	 public GetListUserRegistrationJsonModel getListUserRegistration() {
-			logger.info("Service : UserProfileRegistrationService || Method : getListUserRegistration ");
-	 
+			logger.info("Service : UserProfileRegistrationService || Method : getListUserRegistration ");	 
 	GetListUserRegistrationJsonModel obj = new GetListUserRegistrationJsonModel();
 	String userType="";
 	String userRole="";
-	String userDepartment=	"";
-	String userDesignation=	 "";
+	String userDepartment="";
+	String userDesignation= "";
 	String zones="";
 	String divisions="";
 			String loco_types="";
-	String sheds="";
-	
-		try {
-		
+	String sheds="";	
+		try {		
 		try {
 	 userType=	 loginDetailRepo.getUserTypes();
 		}catch(Exception ex) {
 			
 			logger.info("Service : UserProfileRegistrationService || Method : getListUserRegistration ||Exception GET USERTYPE" + ex.getMessage());
-
 			ex.getMessage();
 		}
 		
@@ -252,15 +250,13 @@ if(response!=null && result!=null) {
 
 		 List<UserLoginDetailModel>  list= loginDetailRepo.getDeatils(user_id);
 // System.out.print("list: "+list.size() +"||User_id: "+user_id);
-		 if(list.size()>0) {
-			 
+		 if(list.size()>0) {			 
 				logger.info("Service : UserProfileRegistrationService || Method : findUserRecord ||Response User Already Exist");
 
 			return "User Already Exist"; 
 		 }else {
 			 
 				logger.info("Service : UserProfileRegistrationService || Method : findUserRecord ||Response User not exist");
-
 			 return "User Not Exist";
 		 }
 		 

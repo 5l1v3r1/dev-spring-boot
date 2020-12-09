@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class HrmsJsonModel {
 	
-	private static final long serialVersionUID = 1L;
+	
 	
 	@JsonProperty("message")
 	private String message;
@@ -110,9 +110,7 @@ public class HrmsJsonModel {
 	
 
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	
 
 	public String getUnitTypeFlag() {
 		return unitTypeFlag;

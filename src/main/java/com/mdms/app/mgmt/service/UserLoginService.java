@@ -15,6 +15,7 @@ import com.mdms.app.mgmt.repository.UserLoginDetailRepository;
 import com.mdms.app.mgmt.repository.UserProfileRegistrationRepository;
 
 
+
 @Service
 public class UserLoginService {
 	
@@ -62,6 +63,8 @@ public String verifyLogin(String user_id,String pwd) {
 				
 				logger.info("Service : UserLoginService || Method : passwordEncoder.matches  'Y'||");
 				response="success";	
+				
+				
 			}else {
 				response="Wrong Password";	
 			}
@@ -82,5 +85,23 @@ public String verifyLogin(String user_id,String pwd) {
 
 }
 
-
+public String resetPassword(UserLoginDetailModel obj_resetpwd) {
+	String response = "not Reset";
+	 String encodedPassword="";
+	 try {
+		 encodedPassword = passwordEncoder.encode(obj_resetpwd.getEmp_password());
+		 
+		 logger.info("Service : UserLoginService || Method : resetPassword ||NEW Password ");		 
+		 String uid=obj_resetpwd.getUser_id();	
+			loginDetailObj.updatePassword(encodedPassword, uid);
+			response=  "NEW Password" ;	
+}catch(Exception ex) {
+	
+	logger.info("Service : UserLoginService || Method : resetPassword ||Exception pwd encryption" + ex.getMessage());
+	response="OLD Password";
+//	System.out.print(ex.getMessage());
+}
+	return response;
+	
+}
 }

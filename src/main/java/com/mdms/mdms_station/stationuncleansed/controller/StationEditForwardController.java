@@ -6,8 +6,6 @@
  */
 package com.mdms.mdms_station.stationuncleansed.controller;
 
-
-
 import java.util.Date;
 import java.util.List;
 
@@ -21,12 +19,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mdms.mdms_station.stationuncleansed.model.StationCleansedData;
+import com.mdms.mdms_station.stationuncleansed.model.StationPKey;
 import com.mdms.mdms_station.stationuncleansed.model.StationTableRbs;
 import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedData;
 import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedTest;
 import com.mdms.mdms_station.stationuncleansed.service.StationEditForwardService;
-
-
 
 @CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
 
@@ -160,13 +158,16 @@ public class StationEditForwardController {
 	@RequestMapping(method=RequestMethod.POST, value="/stnunclappdom")
 	public  String approvedByDom(@RequestBody String stationdatadcm) throws Exception
 	{
-
-		logger.error("controller : StationEditForwardController || Method : approvedByDom || input recieved approvedByDom: "+stationdatadcm);
-		
-		return stn_edit_fwd_serv.approvedByDom(stationdatadcm);
-		
+		logger.error("controller : StationEditForwardController || Method : approvedByDom || input recieved approvedByDom: "+stationdatadcm);		
+		return stn_edit_fwd_serv.approvedByDom(stationdatadcm);		
 		
 	}
+	
+
+	
+  
+	
+	
 }
 
 

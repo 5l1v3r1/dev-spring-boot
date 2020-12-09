@@ -10,17 +10,31 @@ public class MenuIdResponseModel {
 	String message;
 	String status;
 	String user_type;
-
 	String division;
 	String designation;
 	String user_role;
 	String user_id;
 	String senior_id;
+	String uname;
+	String zone;
 	
 	
 	
 	
 	
+	
+	public String getUname() {
+		return uname;
+	}
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+	public String getZone() {
+		return zone;
+	}
+	public void setZone(String zone) {
+		this.zone = zone;
+	}
 	public String getDivision() {
 		return division;
 	}
@@ -81,7 +95,7 @@ public class MenuIdResponseModel {
 		return "MenuIdResponseModel [menuid_list=" + menuid_list + ", message=" + message + ", status=" + status
 
 				+ ", user_type=" + user_type + ", division=" + division + ", designation=" + designation
-				+ ", user_role=" + user_role + ", user_id=" + user_id + ", senior_id=" + senior_id + "]";
+				+ ", user_role=" + user_role + ",name=" + uname +",zone=" + zone + ", user_id=" + user_id + ", senior_id=" + senior_id + "]";
 	}
 	
 

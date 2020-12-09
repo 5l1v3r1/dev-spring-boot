@@ -9,10 +9,10 @@ public class StationAddService {
 @Autowired	
 StationCleansedDataRepository stn_clnsd_repo;
 
-	public String checkStncodeExit(String stncode) throws Exception {
+	public String checkIfExists(String stncode) throws Exception {
 		String returnstmt=null;
 		String sc;
-		 sc=stn_clnsd_repo.checkStnCodeExist(stncode);	
+		 sc=stn_clnsd_repo.checkIfExists(stncode);	
 		try {		 
 			if(sc!=null)
 			{
@@ -28,4 +28,7 @@ StationCleansedDataRepository stn_clnsd_repo;
 			}
 		return returnstmt;
 		}
+	
+	
+	
 }

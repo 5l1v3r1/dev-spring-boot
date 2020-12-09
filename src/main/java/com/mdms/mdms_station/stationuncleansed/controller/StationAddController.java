@@ -23,9 +23,12 @@ public class StationAddController {
 	
 	Logger logger=LoggerFactory.getLogger(StationAddController.class);
 	
-	@RequestMapping(method=RequestMethod.POST, value="/checkstncodeexist")
-	public String checkStnCode(@RequestBody String station_code) throws Exception {
+	@RequestMapping(method=RequestMethod.POST, value="/gldenmstr")
+	public String checkIfExists(@RequestBody String station_code) throws Exception {
 		 logger.error("controller : StationAddController || Method : checkStnCode || input recieved checkStnCode: "+station_code);		 
-	return stn_add_serv.checkStncodeExit(station_code);	
-	}    
+	return stn_add_serv.checkIfExists(station_code);	
+	}
+	
+	
+	
 }

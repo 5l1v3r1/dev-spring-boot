@@ -560,7 +560,14 @@ catch(Exception e)
 		return	 tmp;
 	}
 
-
+	public StationUncleansedData getStnDraft( String objstndraft) {
+//		// TODO Auto-generated method stub
+		
+		StationUncleansedData stncd=stn_unclsnd_repo.checkStnData(objstndraft);		
+		
+		return stncd;
+//		return uncleaseLoco;
+	}
 	
 
 	

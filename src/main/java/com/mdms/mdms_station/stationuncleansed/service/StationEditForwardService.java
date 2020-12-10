@@ -208,6 +208,7 @@ public class StationEditForwardService {
 	return returnstmt;
 		}catch(Exception e)
 		{
+			System.out.printf(e.getMessage(),e.getStackTrace());
 			return "EXCEPTION OCCURRED!!!";
 		}
 	}

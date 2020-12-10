@@ -133,7 +133,12 @@ public class StationCleansedData {
 	
 	@Column(name="booking_resource")
 	private String  booking_resource ;
-
+	
+	
+	@Column(name="remarks")
+	private String  remarks ;
+	
+	
 
 	public StationPKey getStn_Id() {
 		return stn_Id;
@@ -437,6 +442,14 @@ public class StationCleansedData {
 
 	public void setBooking_resource(String booking_resource) {
 		this.booking_resource = booking_resource;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 	
 	

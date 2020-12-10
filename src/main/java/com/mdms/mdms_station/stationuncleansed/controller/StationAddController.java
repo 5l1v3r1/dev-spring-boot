@@ -38,15 +38,9 @@ public class StationAddController {
 
 		logger.error("controller : StationAddController || Method : saveCmiCleansedDraft || input recieved stationdraftcmi: "+stationdraftcmi);
 		
-		return stn_add_serv.saveCmiCleansedDraft(stationdraftcmi);
+		//return stn_add_serv.saveCmiCleansedDraft(stationdraftcmi);
+		return  stn_add_serv.saveCmiCleansedDraft(stationdraftcmi);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/updatecmidraft")
-	public  String updateCmiDraft(@RequestBody StationCleansedData stationdraftcmi) throws Exception
-	{
-
-		logger.error("controller : StationAddController || Method : updateCmiDraft || input recieved stationdraftcmi: "+stationdraftcmi.getStn_Id().getStation_code());
-		return stn_add_serv.updateCmiDraft(stationdraftcmi);
-	}
 	
 }

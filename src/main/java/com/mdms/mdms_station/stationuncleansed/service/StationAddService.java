@@ -106,5 +106,58 @@ public String saveCmiCleansedDraft(StationCleansedData stationdraftcmi)throws Ex
 
  
 }
+
+@Transactional(rollbackOn = Exception.class)
+public String forwardToDCM(StationCleansedData stationdataapprove) throws Exception{	 
+	 boolean ispresent;
+		String returnstmt="";
+		try {
+		ispresent=stn_clnsd_repo.findById(stationdataapprove.getStn_Id()).isPresent();		
+		if(ispresent)
+		{String status=stn_clnsd_repo.findById(stationdataapprove.getStn_Id()).get().getCmi_status();
+			if(status.equals("D")) {
+			String cmi_station_code=stationdataapprove.getStn_Id().getStation_code();
+			Date cmi_valid_from=stationdataapprove.getStn_Id().getStation_valid_from();
+			Date cmi_valid_upto=stationdataapprove.getStn_Id().getStation_valid_upto();
+			String userid=stationdataapprove.getUser_id_cmi();
+			String station_status="U";
+			String cmistatus="U";
+			  Date date = new Date();  
+			  stn_clnsd_repo.updateCleansedDraftCmi( userid,  cmi_station_code ,  cmi_valid_from ,  cmi_valid_upto , stationdataapprove.getStation_numeric_code(),
+					  stationdataapprove.getStation_name(),	stationdataapprove.getTraffic_type(),stationdataapprove.getTranshipment_flag() ,
+					  stationdataapprove.getStation_class() ,stationdataapprove.getJunction_flag(), stationdataapprove.getInterchange_flag() , 
+					  stationdataapprove.getState(), stationdataapprove.getPincode() , stationdataapprove.getDistrict(),stationdataapprove.getTehsil(), 
+					  stationdataapprove.getStation_short_name(), stationdataapprove.getInterlocking_standard() , stationdataapprove.getWorking_division(),
+					  stationdataapprove.getWeight_bridge(), stationdataapprove.getSiding() ,  stationdataapprove.getBooking_type() , station_status, date ,stationdataapprove.getBooking_resource());
+		returnstmt="RECORD FORWARDED TO DCM SUCCESSFULLY";
+			}
+			
+			
+			
+		}
+		else
+		{
+			
+			   Date date = new Date();  
+				  
+			   stationdataapprove.setTxn_date_cmi(date);
+				
+			   stn_clnsd_repo.save(stationdataapprove);
+				
+				returnstmt="RECORD FORWARDED TO DCM SUCCESSFULLY";	
+			
+		}
+		
+		
+		
+
+return returnstmt;
+		}catch(Exception e)
+		{
+			System.out.printf(e.getMessage(),e.getStackTrace());
+			return "Exception Occurred!!!";
+			
+		}
+}
 }
 

@@ -33,4 +33,13 @@ public interface StationCleansedDataRepository extends CrudRepository <StationCl
 			String shprtname, String intrlckstd , String wrkngdvsn , int weighbridge, String siding ,  String bookingtype , String cmistatus, Date dt ,String booking_resource );
 
 	
+	@Modifying
+	@Transactional
+	@Query(value="UPDATE mdms_station.station_cleansed_data SET cmi_status='U' \r\n" + 
+			"	where station_code=?1",nativeQuery = true)
+	int forwardByCMI(String station_code);
+
+	
 }
+
+

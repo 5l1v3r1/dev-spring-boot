@@ -32,7 +32,7 @@ public class StationAddController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/savecmicleanseddraft")
-	public  String saveCmiCleansedDraft(@RequestBody StationCleansedData stationdraftcmi) throws Exception
+	public  String saveCmiCleansedDraft(@RequestBody StationUncleansedData stationdraftcmi) throws Exception
 	{	//	System.out.println(stationdraftcmi.getStn_Id().getStation_code());
 //		System.out.println(stationdraftcmi.getStn_Id().getStation_valid_from());
 //		System.out.println(stationdraftcmi.getStn_Id().getStation_valid_upto());
@@ -42,7 +42,7 @@ public class StationAddController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/stnclnsunaprvdcmi")
-	public  String forwardToDCM(@RequestBody StationCleansedData stationdataapprovebydcm) throws Exception
+	public  String forwardToDCM(@RequestBody StationUncleansedData stationdataapprovebydcm) throws Exception
 	{
 
 		logger.error("controller : StationAddController || Method : forwardToDCM || input recieved stationdataapprovebydcm: "+stationdataapprovebydcm.getStn_Id().getStation_code());

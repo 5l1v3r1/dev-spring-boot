@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Embeddable
 public class StationPKey implements Serializable{
 	
-	public StationPKey()
+	public StationPKey ()
 	{
 					
 	}

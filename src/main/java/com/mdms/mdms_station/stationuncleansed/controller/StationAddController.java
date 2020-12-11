@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mdms.mdms_station.stationuncleansed.model.StationCleansedData;
+import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedData;
 import com.mdms.mdms_station.stationuncleansed.service.StationAddService;
 @CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
 
@@ -36,11 +37,17 @@ public class StationAddController {
 //		System.out.println(stationdraftcmi.getStn_Id().getStation_valid_from());
 //		System.out.println(stationdraftcmi.getStn_Id().getStation_valid_upto());
 
-		logger.error("controller : StationAddController || Method : saveCmiCleansedDraft || input recieved stationdraftcmi: "+stationdraftcmi);
-		
-		//return stn_add_serv.saveCmiCleansedDraft(stationdraftcmi);
+		logger.error("controller : StationAddController || Method : saveCmiCleansedDraft || input recieved stationdraftcmi: "+stationdraftcmi);	
 		return  stn_add_serv.saveCmiCleansedDraft(stationdraftcmi);
 	}
 	
+	@RequestMapping(method=RequestMethod.POST, value="/stnclnsunaprvdcmi")
+	public  String forwardToDCM(@RequestBody StationCleansedData stationdataapprovebydcm) throws Exception
+	{
+
+		logger.error("controller : StationAddController || Method : forwardToDCM || input recieved stationdataapprovebydcm: "+stationdataapprovebydcm.getStn_Id().getStation_code());
+		
+		return stn_add_serv.forwardToDCM(stationdataapprovebydcm);
+	}
 	
 }

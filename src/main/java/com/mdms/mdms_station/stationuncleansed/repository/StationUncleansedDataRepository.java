@@ -99,8 +99,26 @@ public interface StationUncleansedDataRepository extends CrudRepository <Station
 					String traffic, String transhipment , String stationclass , String junctionf, String interchngf , String state, String pincode , String district , String tehsil , 
 					String shprtname, String intrlckstd , String wrkngdvsn , int weighbridge, String siding ,  String bookingtype , String cmistatus, Date dt ,String booking_resource );
 
-		
-	
+			@Query(value="select station_code from  mdms_station.station_uncleansed_data where division_code=?1 and cmi_status='A' and record_status='N' and (dti_status='N' or dti_status= 'D')",nativeQuery=true)
+			List<String> getDraftStncode(String divcode);
+			
+			@Query(value="select * from mdms_station.station_uncleansed_data where station_code=?1",nativeQuery=true)
+			StationUncleansedData findvalidstn(String station_code);
+			
+			@Query(value="select * FROM mdms_station.station_uncleansed_data where user_id_dti=?1 and dti_status='D' and station_code=?2", nativeQuery = true)
+	StationUncleansedData getDraftDti(String useriddti, String station_code);
+			
+			
+			@Modifying
+			@Transactional
+			@Query(value="UPDATE mdms_station.station_uncleansed_data\r\n" + 
+					"	SET gauge_code=?5, station_category=?6, interchange_flag=?7, traction=?8, interlocking_standard=?9, junction_flag=?10, no_of_lines=?11, operating_station_signal=?12 ,  txn_date_dti=?13 ,dti_status=?14" + 
+					"	WHERE user_id_dti =?1 AND station_code =?2 AND station_valid_from =?3  AND station_valid_upto=?4",nativeQuery = true)
+			int forwardDraftDti(String userid, String dti_station_code, Date dti_valid_from, Date dti_valid_upto,String gauge_code, String station_category,
+					String interchange_flag , String traction , String interlocking_standard , String junction_flag , String no_of_lines , String operating_station_signal,
+					Date date,String dti_status);
+
+			
 }
 
 

@@ -36,4 +36,6 @@ public interface LocoUncleansedDataElectricRepository extends CrudRepository <Lo
  	
 	
 	
+	
+	
 }

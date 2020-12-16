@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Embeddable
 public class StationPKey implements Serializable{
 	
-	public StationPKey()
+	public StationPKey ()
 	{
 					
 	}
@@ -19,10 +19,10 @@ public class StationPKey implements Serializable{
 	
 	@Column(name="station_code")
 	private String station_code;
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd") 
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd",timezone = "IST") 
 	@Column(name="station_valid_from")
 	private  Date station_valid_from ;
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd") 
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd",timezone = "IST") 
 	@Column(name="station_valid_upto")
 	private  Date station_valid_upto ;
 	public String getStation_code() {

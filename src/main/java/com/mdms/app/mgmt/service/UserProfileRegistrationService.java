@@ -23,6 +23,7 @@ import com.mdms.app.mgmt.model.UserRegistrationJsonModel;
 import com.mdms.app.mgmt.repository.UserLoginDetailRepository;
 import com.mdms.app.mgmt.repository.UserProfileRegistrationRepository;
 
+
 @Service
 public class UserProfileRegistrationService {
 
@@ -295,5 +296,17 @@ if(response!=null && result!=null) {
 		
 		return seniorId;		
 	}
-
+	//fetch list of userdetail  :Developer :Ritu
+		public List<UserProfileRegistrationDetailModel> getalluserdetail(UserProfileRegistrationDetailModel objurecord ) {	
+		
+			String usertype = objurecord.getUser_type();
+			List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+			profileRegistrationRepo.getUserRecords(usertype)
+	        .forEach(temp::add);
+			return temp;
+		}
+		
+		
+		 
 }
+

@@ -14,66 +14,66 @@ import javax.persistence.Table;
 public class CoachUncleansedData {
 	
 	@Column(name="coach_no")
-	private String coachNo;
+	private String coach_no;
 	
 	@Id
 	@Column(name="coach_id")
-	private Long coachId;
+	private Long coach_id;
 	
 	@Column(name="coach_type")
-	private String coachType;
+	private String coach_type;
 	
 	@Column(name="owning_rly")
-	private String owningRly;
+	private String owning_rly;
 	
 	@Column(name="coach_owning_div")
-	private String coachOwningDiv;
+	private String coach_owning_div;
 	
 	@Column(name="fitness_type")
-	private String fitnessType;
+	private String fitness_type;
 	
 	@Column(name="brake_type")
-	private String brakeType;
+	private String brake_type;
 
 	@Column(name="tare_weight")
-	private float tareweight;
+	private float tare_weight;
 	
 	@Column(name="max_speed")
-	private float maximumspeed;
+	private float max_speed;
 	
-	@Column(name="coach_age")
-	private int coachage;
+		@Column(name="coach_age")
+	private int coach_age;
 	
 	@Column(name="manufacturer")
 	private String manufacturer;
 	
 	@Column(name="is_biotoilet_fitted")
-	private String isBiotoiletFitted;
+	private String is_biotoilet_fitted;
 	
 	@Column(name="built_date")
-	private Date builtDate;
+	private Date built_date;
 	
 
 	@Column(name="commissioning_date")
-	private Date coachCommissionDate;
+	private Date commissioning_date;
 	
 
 	@Column(name="coach_condemnation_date")
-	private Date condemnationDate;
+	private Date coach_condemnation_date;
 	
 	@Column(name="maintenance_depot")
-	private String maintenanceDepot;
+	private String maintenance_depot;
 	
 	@Column(name="no_of_berths")
-	private int noOfBerths;
+	private int no_of_berths;
 	
 
 	@Column(name="rfid_tag")
-	private String rfidTag;
+	private String rfid_tag;
 	
 
 	@Column(name="coach_status")
-	private String coachStatus;
+	private String coach_status;
 	
 	@Column(name="gauge")
 	private String gauge;
@@ -82,7 +82,7 @@ public class CoachUncleansedData {
 	private String couplingType;
 	
 	@Column(name="owning_depot")
-	private String owningDepot;
+	private String owning_depot;
 	
 	
 	
@@ -97,20 +97,20 @@ public class CoachUncleansedData {
 @Column(name="power_generation_type")
 private String powerGenerationType;
 	
-@Column(name="factoryTurnoutDate")
-private Date factoryTurnoutDate;
+@Column(name="factory_turnout_date")
+private Date factory_turnout_date;
 	
-@Column(name="warrantyDate")
-private Date warrantyDate;
+@Column(name="warranty_date")
+private Date warranty_date;
 
 
 @Column(name="coach_received_date")
-private Date coachReceivedDate;
+private Date coach_received_date;
 
 
 
 @Column(name="double_decker_flag")
-private Boolean doubleDeckerFlag;
+private Boolean double_decker_flag;
 	
 
 
@@ -119,19 +119,19 @@ private String coachCapacity;
 
 
 @Column(name="coach_vestibule")
-private String coachVestibule;
+private String coach_vestibule;
 	
 @Column(name="underframe_no")
-private String underFrameNo;
+private String underframe_no;
 
 @Column(name="shell_no")
-private String shellNo;
+private String shell_no;
 
 @Column(name="pu_order_id")
-private String puOrderId;
+private String pu_order_id;
 
 @Column(name="coach_type_description")
-private String coachTypeDescription;
+private String coach_type_description;
 
 
 @Column(name="record_status")
@@ -142,110 +142,109 @@ private String status;
 
 
 @Column(name="user_id")
-private String userId;
+private String user_id;
 
 
 @Column(name="txn_date")
-private Date txnDate;
+private Date txn_date;
 
-
-public String getCoachNo() {
-	return coachNo;
+public String getCoach_no() {
+	return coach_no;
 }
 
 
-public void setCoachNo(String coachNo) {
-	this.coachNo = coachNo;
+public void setCoach_no(String coach_no) {
+	this.coach_no = coach_no;
 }
 
 
-public Long getCoachId() {
-	return coachId;
+public Long getCoach_id() {
+	return coach_id;
 }
 
 
-public void setCoachId(Long coachId) {
-	this.coachId = coachId;
+public void setCoach_id(Long coach_id) {
+	this.coach_id = coach_id;
 }
 
 
-public String getCoachType() {
-	return coachType;
+public String getCoach_type() {
+	return coach_type;
 }
 
 
-public void setCoachType(String coachType) {
-	this.coachType = coachType;
+public void setCoach_type(String coach_type) {
+	this.coach_type = coach_type;
 }
 
 
-public String getOwningRly() {
-	return owningRly;
+public String getOwning_rly() {
+	return owning_rly;
 }
 
 
-public void setOwningRly(String owningRly) {
-	this.owningRly = owningRly;
+public void setOwning_rly(String owning_rly) {
+	this.owning_rly = owning_rly;
 }
 
 
-public String getCoachOwningDiv() {
-	return coachOwningDiv;
+public String getCoach_owning_div() {
+	return coach_owning_div;
 }
 
 
-public void setCoachOwningDiv(String coachOwningDiv) {
-	this.coachOwningDiv = coachOwningDiv;
+public void setCoach_owning_div(String coach_owning_div) {
+	this.coach_owning_div = coach_owning_div;
 }
 
 
-public String getFitnessType() {
-	return fitnessType;
+public String getFitness_type() {
+	return fitness_type;
 }
 
 
-public void setFitnessType(String fitnessType) {
-	this.fitnessType = fitnessType;
+public void setFitness_type(String fitness_type) {
+	this.fitness_type = fitness_type;
 }
 
 
-public String getBrakeType() {
-	return brakeType;
+public String getBrake_type() {
+	return brake_type;
 }
 
 
-public void setBrakeType(String brakeType) {
-	this.brakeType = brakeType;
+public void setBrake_type(String brake_type) {
+	this.brake_type = brake_type;
 }
 
 
-public float getTareweight() {
-	return tareweight;
+public float getTare_weight() {
+	return tare_weight;
 }
 
 
-public void setTareweight(float tareweight) {
-	this.tareweight = tareweight;
+public void setTare_weight(float tare_weight) {
+	this.tare_weight = tare_weight;
 }
 
 
-public float getMaximumspeed() {
-	return maximumspeed;
+public float getMax_speed() {
+	return max_speed;
 }
 
 
-public void setMaximumspeed(float maximumspeed) {
-	this.maximumspeed = maximumspeed;
+public void setMax_speed(float max_speed) {
+	this.max_speed = max_speed;
 }
 
 
-public int getCoachage() {
-	return coachage;
+public int getCoach_age() {
+	return coach_age;
 }
 
 
-public void setCoachage(int coachage) {
-	this.coachage = coachage;
+public void setCoach_age(int coach_age) {
+	this.coach_age = coach_age;
 }
 
 
@@ -259,83 +258,83 @@ public void setManufacturer(String manufacturer) {
 }
 
 
-public String getIsBiotoiletFitted() {
-	return isBiotoiletFitted;
+public String getIs_biotoilet_fitted() {
+	return is_biotoilet_fitted;
 }
 
 
-public void setIsBiotoiletFitted(String isBiotoiletFitted) {
-	this.isBiotoiletFitted = isBiotoiletFitted;
+public void setIs_biotoilet_fitted(String is_biotoilet_fitted) {
+	this.is_biotoilet_fitted = is_biotoilet_fitted;
 }
 
 
-public Date getBuiltDate() {
-	return builtDate;
+public Date getBuilt_date() {
+	return built_date;
 }
 
 
-public void setBuiltDate(Date builtDate) {
-	this.builtDate = builtDate;
+public void setBuilt_date(Date built_date) {
+	this.built_date = built_date;
 }
 
 
-public Date getCoachCommissionDate() {
-	return coachCommissionDate;
+public Date getCommissioning_date() {
+	return commissioning_date;
 }
 
 
-public void setCoachCommissionDate(Date coachCommissionDate) {
-	this.coachCommissionDate = coachCommissionDate;
+public void setCommissioning_date(Date commissioning_date) {
+	this.commissioning_date = commissioning_date;
 }
 
 
-public Date getCondemnationDate() {
-	return condemnationDate;
+public Date getCoach_condemnation_date() {
+	return coach_condemnation_date;
 }
 
 
-public void setCondemnationDate(Date condemnationDate) {
-	this.condemnationDate = condemnationDate;
+public void setCoach_condemnation_date(Date coach_condemnation_date) {
+	this.coach_condemnation_date = coach_condemnation_date;
 }
 
 
-public String getMaintenanceDepot() {
-	return maintenanceDepot;
+public String getMaintenance_depot() {
+	return maintenance_depot;
 }
 
 
-public void setMaintenanceDepot(String maintenanceDepot) {
-	this.maintenanceDepot = maintenanceDepot;
+public void setMaintenance_depot(String maintenance_depot) {
+	this.maintenance_depot = maintenance_depot;
 }
 
 
-public int getNoOfBerths() {
-	return noOfBerths;
+public int getNo_of_berths() {
+	return no_of_berths;
 }
 
 
-public void setNoOfBerths(int noOfBerths) {
-	this.noOfBerths = noOfBerths;
+public void setNo_of_berths(int no_of_berths) {
+	this.no_of_berths = no_of_berths;
 }
 
 
-public String getRfidTag() {
-	return rfidTag;
+public String getRfid_tag() {
+	return rfid_tag;
 }
 
 
-public void setRfidTag(String rfidTag) {
-	this.rfidTag = rfidTag;
+public void setRfid_tag(String rfid_tag) {
+	this.rfid_tag = rfid_tag;
 }
 
 
-public String getCoachStatus() {
-	return coachStatus;
+public String getCoach_status() {
+	return coach_status;
 }
 
 
-public void setCoachStatus(String coachStatus) {
-	this.coachStatus = coachStatus;
+public void setCoach_status(String coach_status) {
+	this.coach_status = coach_status;
 }
 
 
@@ -359,13 +358,13 @@ public void setCouplingType(String couplingType) {
 }
 
 
-public String getOwningDepot() {
-	return owningDepot;
+public String getOwning_depot() {
+	return owning_depot;
 }
 
 
-public void setOwningDepot(String owningDepot) {
-	this.owningDepot = owningDepot;
+public void setOwning_depot(String owning_depot) {
+	this.owning_depot = owning_depot;
 }
 
 
@@ -399,43 +398,43 @@ public void setPowerGenerationType(String powerGenerationType) {
 }
 
 
-public Date getFactoryTurnoutDate() {
-	return factoryTurnoutDate;
+public Date getFactory_turnout_date() {
+	return factory_turnout_date;
 }
 
 
-public void setFactoryTurnoutDate(Date factoryTurnoutDate) {
-	this.factoryTurnoutDate = factoryTurnoutDate;
+public void setFactory_turnout_date(Date factory_turnout_date) {
+	this.factory_turnout_date = factory_turnout_date;
 }
 
 
-public Date getWarrantyDate() {
-	return warrantyDate;
+public Date getWarranty_date() {
+	return warranty_date;
 }
 
 
-public void setWarrantyDate(Date warrantyDate) {
-	this.warrantyDate = warrantyDate;
+public void setWarranty_date(Date warranty_date) {
+	this.warranty_date = warranty_date;
 }
 
 
-public Date getCoachReceivedDate() {
-	return coachReceivedDate;
+public Date getCoach_received_date() {
+	return coach_received_date;
 }
 
 
-public void setCoachReceivedDate(Date coachReceivedDate) {
-	this.coachReceivedDate = coachReceivedDate;
+public void setCoach_received_date(Date coach_received_date) {
+	this.coach_received_date = coach_received_date;
 }
 
 
-public Boolean getDoubleDeckerFlag() {
-	return doubleDeckerFlag;
+public Boolean getDouble_decker_flag() {
+	return double_decker_flag;
 }
 
 
-public void setDoubleDeckerFlag(Boolean doubleDeckerFlag) {
-	this.doubleDeckerFlag = doubleDeckerFlag;
+public void setDouble_decker_flag(Boolean double_decker_flag) {
+	this.double_decker_flag = double_decker_flag;
 }
 
 
@@ -449,53 +448,53 @@ public void setCoachCapacity(String coachCapacity) {
 }
 
 
-public String getCoachVestibule() {
-	return coachVestibule;
+public String getCoach_vestibule() {
+	return coach_vestibule;
 }
 
 
-public void setCoachVestibule(String coachVestibule) {
-	this.coachVestibule = coachVestibule;
+public void setCoach_vestibule(String coach_vestibule) {
+	this.coach_vestibule = coach_vestibule;
 }
 
 
-public String getUnderFrameNo() {
-	return underFrameNo;
+public String getUnderframe_no() {
+	return underframe_no;
 }
 
 
-public void setUnderFrameNo(String underFrameNo) {
-	this.underFrameNo = underFrameNo;
+public void setUnderframe_no(String underframe_no) {
+	this.underframe_no = underframe_no;
 }
 
 
-public String getShellNo() {
-	return shellNo;
+public String getShell_no() {
+	return shell_no;
 }
 
 
-public void setShellNo(String shellNo) {
-	this.shellNo = shellNo;
+public void setShell_no(String shell_no) {
+	this.shell_no = shell_no;
 }
 
 
-public String getPuOrderId() {
-	return puOrderId;
+public String getPu_order_id() {
+	return pu_order_id;
 }
 
 
-public void setPuOrderId(String puOrderId) {
-	this.puOrderId = puOrderId;
+public void setPu_order_id(String pu_order_id) {
+	this.pu_order_id = pu_order_id;
 }
 
 
-public String getCoachTypeDescription() {
-	return coachTypeDescription;
+public String getCoach_type_description() {
+	return coach_type_description;
 }
 
 
-public void setCoachTypeDescription(String coachTypeDescription) {
-	this.coachTypeDescription = coachTypeDescription;
+public void setCoach_type_description(String coach_type_description) {
+	this.coach_type_description = coach_type_description;
 }
 
 
@@ -519,27 +518,25 @@ public void setStatus(String status) {
 }
 
 
-public String getUserId() {
-	return userId;
+public String getUser_id() {
+	return user_id;
 }
 
 
-public void setUserId(String userId) {
-	this.userId = userId;
+public void setUser_id(String user_id) {
+	this.user_id = user_id;
 }
 
 
-public Date getTxnDate() {
-	return txnDate;
+public Date getTxn_date() {
+	return txn_date;
 }
 
 
-public void setTxnDate(Date txnDate) {
-	this.txnDate = txnDate;
+public void setTxn_date(Date txn_date) {
+	this.txn_date = txn_date;
 }
 
-
-	
 
 	
 }

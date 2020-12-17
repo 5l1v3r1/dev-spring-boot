@@ -70,7 +70,7 @@ public class CoachEditForwardController {
 	//-------------------------------------------coach Details forwarded/saved as draft after cleaning of record--------------------------------------------
 	@RequestMapping(method=RequestMethod.POST, value="/editForwardCoach")
 	public String EditForwardCoach(@RequestBody CoachUncleansedData coachUncleansedData) {		
-		String response=coachEditFwdServ.editForwardCoach(coachUncleansedData);	
+		String response=coachEditFwdServ.saveAsDraftCoach(coachUncleansedData);	
 			return response;	
 
 

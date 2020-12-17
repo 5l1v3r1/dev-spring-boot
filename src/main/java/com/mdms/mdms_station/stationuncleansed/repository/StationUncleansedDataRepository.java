@@ -1,6 +1,7 @@
 package com.mdms.mdms_station.stationuncleansed.repository;
 
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -11,8 +12,10 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import com.mdms.dahsboard.model.DashBoardStationCountDivisionWiseModel;
 import com.mdms.mdms_station.stationuncleansed.model.StationPKey;
 import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedData;
+
 
 public interface StationUncleansedDataRepository extends CrudRepository <StationUncleansedData,StationPKey>{
 	
@@ -118,6 +121,28 @@ public interface StationUncleansedDataRepository extends CrudRepository <Station
 					String interchange_flag , String traction , String interlocking_standard , String junction_flag , String no_of_lines , String operating_station_signal,
 					Date date,String dti_status);
 
+			
+			 @Query(value="select division_code,count(*) as pending_approval" + 
+				  		"  from mdms_station.station_uncleansed_data where cmi_status='0' OR dti_status='0' group by division_code"
+				  					  		,nativeQuery = true)
+			  Collection<DashBoardStationCountDivisionWiseModel> getPendingApprovalStationCountDivisionWise();
+
+				
+			  
+			  @Query(value="select division_code, count(*) as cleansed_count " + 
+				  		"from mdms_station.station_uncleansed_data group by division_code",nativeQuery=true)
+			  Collection<DashBoardStationCountDivisionWiseModel> getTotalCleansedStationCountDivisionWise();
+
+			
+			  
+			  
+			  
+			  
+			  @Query(value="select t.division_code, count(*) as draft_forward_approval_count from\r\n" + 
+			  		"	(SELECT d.userid ,r.division_code  from  station.draft d,\r\n" + 
+			  		"	station.station_user_registration r\r\n" + 
+			  		"where d.userid=r.emp_id) t group by t.division_code",nativeQuery=true)
+			  Collection<DashBoardStationCountDivisionWiseModel> getTotalDraftForwardApprovalStationCountDivisionWise();
 			
 }
 

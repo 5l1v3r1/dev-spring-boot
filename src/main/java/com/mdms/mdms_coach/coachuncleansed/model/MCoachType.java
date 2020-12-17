@@ -12,98 +12,98 @@ public class MCoachType {
 
 	@Id
 	@Column(name="coach_type")
-	private String coachType;
+	private String coach_type;
 	
 	@Column(name="coupling_type")
-	private String couplingType;
+	private String coupling_type;
 	
 	@Column(name="power_generation_type")
-	private String powerGenType;
+	private String power_generation_type;
 	
 	@Column(name="coach_type_description")
-	private String coachTypeDescription;
+	private String coach_type_description;
 	
 	@Column(name="vehicle_type")
-	private String vehicleType;
+	private String vehicle_type;
 	
 	@Column(name="coach_category")
-	private String coachCategory;
+	private String coach_category;
 	
 	@Column(name="coach_ac_flag")
-	private String coachACFlag;
+	private String coach_ac_flag;
 	
 	@Column(name="gauge")
 	private String gauge;
 	
 	@Column(name="coach_capacity")
-	private String coachcapacity;
+	private String coach_capacity;
 	
 	@Column(name="brake_type")
-	private String brakeType;
+	private String brake_type;
 
 	@Column(name="tare_weight")
-	private float tareweight;
+	private float tare_weight;
 	
 	@Column(name="max_speed")
-	private float maximumspeed;
+	private float max_speed;
 	
 	@Column(name="reserved_flag")
-	private int reservedFlag;
+	private int reserved_flag;
 
-	public String getCoachType() {
-		return coachType;
+	public String getCoach_type() {
+		return coach_type;
 	}
 
-	public void setCoachType(String coachType) {
-		this.coachType = coachType;
+	public void setCoach_type(String coach_type) {
+		this.coach_type = coach_type;
 	}
 
-	public String getCouplingType() {
-		return couplingType;
+	public String getCoupling_type() {
+		return coupling_type;
 	}
 
-	public void setCouplingType(String couplingType) {
-		this.couplingType = couplingType;
+	public void setCoupling_type(String coupling_type) {
+		this.coupling_type = coupling_type;
 	}
 
-	public String getPowerGenType() {
-		return powerGenType;
+	public String getPower_generation_type() {
+		return power_generation_type;
 	}
 
-	public void setPowerGenType(String powerGenType) {
-		this.powerGenType = powerGenType;
+	public void setPower_generation_type(String power_generation_type) {
+		this.power_generation_type = power_generation_type;
 	}
 
-	public String getCoachTypeDescription() {
-		return coachTypeDescription;
+	public String getCoach_type_description() {
+		return coach_type_description;
 	}
 
-	public void setCoachTypeDescription(String coachTypeDescription) {
-		this.coachTypeDescription = coachTypeDescription;
+	public void setCoach_type_description(String coach_type_description) {
+		this.coach_type_description = coach_type_description;
 	}
 
-	public String getVehicleType() {
-		return vehicleType;
+	public String getVehicle_type() {
+		return vehicle_type;
 	}
 
-	public void setVehicleType(String vehicleType) {
-		this.vehicleType = vehicleType;
+	public void setVehicle_type(String vehicle_type) {
+		this.vehicle_type = vehicle_type;
 	}
 
-	public String getCoachCategory() {
-		return coachCategory;
+	public String getCoach_category() {
+		return coach_category;
 	}
 
-	public void setCoachCategory(String coachCategory) {
-		this.coachCategory = coachCategory;
+	public void setCoach_category(String coach_category) {
+		this.coach_category = coach_category;
 	}
 
-	public String getCoachACFlag() {
-		return coachACFlag;
+	public String getCoach_ac_flag() {
+		return coach_ac_flag;
 	}
 
-	public void setCoachACFlag(String coachACFlag) {
-		this.coachACFlag = coachACFlag;
+	public void setCoach_ac_flag(String coach_ac_flag) {
+		this.coach_ac_flag = coach_ac_flag;
 	}
 
 	public String getGauge() {
@@ -114,45 +114,47 @@ public class MCoachType {
 		this.gauge = gauge;
 	}
 
-	public String getCoachcapacity() {
-		return coachcapacity;
+	public String getCoach_capacity() {
+		return coach_capacity;
 	}
 
-	public void setCoachcapacity(String coachcapacity) {
-		this.coachcapacity = coachcapacity;
+	public void setCoach_capacity(String coach_capacity) {
+		this.coach_capacity = coach_capacity;
 	}
 
-	public String getBrakeType() {
-		return brakeType;
+	public String getBrake_type() {
+		return brake_type;
 	}
 
-	public void setBrakeType(String brakeType) {
-		this.brakeType = brakeType;
+	public void setBrake_type(String brake_type) {
+		this.brake_type = brake_type;
 	}
 
-	public float getTareweight() {
-		return tareweight;
+	public float getTare_weight() {
+		return tare_weight;
 	}
 
-	public void setTareweight(float tareweight) {
-		this.tareweight = tareweight;
+	public void setTare_weight(float tare_weight) {
+		this.tare_weight = tare_weight;
 	}
 
-	public float getMaximumspeed() {
-		return maximumspeed;
+	public float getMax_speed() {
+		return max_speed;
 	}
 
-	public void setMaximumspeed(float maximumspeed) {
-		this.maximumspeed = maximumspeed;
+	public void setMax_speed(float max_speed) {
+		this.max_speed = max_speed;
 	}
 
-	public int getReservedFlag() {
-		return reservedFlag;
+	public int getReserved_flag() {
+		return reserved_flag;
 	}
 
-	public void setReservedFlag(int reservedFlag) {
-		this.reservedFlag = reservedFlag;
+	public void setReserved_flag(int reserved_flag) {
+		this.reserved_flag = reserved_flag;
 	}
+
+
 	
 	
 }

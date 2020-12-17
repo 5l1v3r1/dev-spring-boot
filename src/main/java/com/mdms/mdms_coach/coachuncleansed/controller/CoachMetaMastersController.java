@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.mdms.mdms_coach.coachuncleansed.model.MCoachType;
+import com.mdms.mdms_coach.coachuncleansed.model.MDepot;
 import com.mdms.mdms_coach.coachuncleansed.service.CoachMetaMastersService;
 
 @CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
@@ -47,12 +48,12 @@ public class CoachMetaMastersController {
 		return coach_meta_serv.getCoachTypes();
 	}
 	
-//	
-//	
-//	@RequestMapping(method=RequestMethod.GET, value="/gis")
-//	public List<MGisDetail> getLatLong(@RequestParam("station_code")String station_code){
-//		return stn_meta_serv.getLatLong(station_code);
-//	}
+	
+	
+	@RequestMapping(method=RequestMethod.POST, value="/depot")
+	public List<String> getDepot(){
+		return coach_meta_serv.getDepot();
+	}
 //	
 
 //	

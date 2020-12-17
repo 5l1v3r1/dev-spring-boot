@@ -1,5 +1,7 @@
 package com.mdms.app.mgmt.controller;
 
+import java.util.List;
+
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mdms.app.mgmt.model.GetListUserRegistrationJsonModel;
+import com.mdms.app.mgmt.model.UserProfileRegistrationDetailModel;
 import com.mdms.app.mgmt.model.UserRegistrationJsonModel;
 import com.mdms.app.mgmt.service.UserProfileRegistrationService;
+
 
 
 @CrossOrigin(origins = {"*"}, maxAge = 4800, allowCredentials = "false")
@@ -53,9 +57,7 @@ public class UserProfileRegistrationController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="/getlistofitems")
 	public GetListUserRegistrationJsonModel getListUserRegistration(){
-		
-		
-		
+						
 		GetListUserRegistrationJsonModel response= registrationServiceObj.getListUserRegistration();
 		//code to send otp, on hold because of Api for sending otp
 		
@@ -78,7 +80,11 @@ public class UserProfileRegistrationController {
 		
 	}
 	
-	
-	
+	//fetaching loco data from locotype master	
+		@RequestMapping(method=RequestMethod.POST , value ="/getuserdetaildashboard")
+		public List<UserProfileRegistrationDetailModel> getallusertypedetails(@RequestBody UserProfileRegistrationDetailModel objurecord ){
+				return registrationServiceObj.getalluserdetail(objurecord);
+		
+		}
 	
 }

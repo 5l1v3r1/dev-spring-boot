@@ -42,5 +42,7 @@ public interface UserProfileRegistrationRepository extends CrudRepository<UserPr
 	String saveUser( String user_id, String name,String designation,String department,String loco_type,
 			String shed,Date from_date,String role_type,String user_type,String mobile_no,String email,String created_by);
 	
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where user_type=?1",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getUserRecords(String user_type);
 
 }

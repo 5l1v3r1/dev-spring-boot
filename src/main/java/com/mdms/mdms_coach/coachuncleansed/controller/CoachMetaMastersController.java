@@ -42,11 +42,38 @@ public class CoachMetaMastersController {
 	}
 	
 	
-	@RequestMapping(method=RequestMethod.POST, value="/coachtyps")
+	@RequestMapping(method=RequestMethod.POST, value="/coachtype")
 	public List<String> getCoachTypes(){
 		return coach_meta_serv.getCoachTypes();
 	}
 	
+	@RequestMapping(method=RequestMethod.POST, value="/coachdepot")
+	public List<String> getCoachDepot(){
+		return coach_meta_serv.getCoachDepot();
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="/coachcategory")
+	public List<String> getCoachCategory(){
+		return coach_meta_serv.getCoachCategory();
+	}
+		@RequestMapping(method=RequestMethod.POST, value="/coachCouplingTpe")
+		public List<String> getCoachCouplingTpe(){
+			return coach_meta_serv.getCoachCouplingTpe();
+	}
+	
+		@RequestMapping(method=RequestMethod.POST, value="/fitnesType")
+		public List<String> getFitnessType(){
+			return coach_meta_serv.getFitnessType();
+	}
+		@RequestMapping(method=RequestMethod.POST, value="/powerGenType")
+		public List<String> getPowerGenType(){
+			return coach_meta_serv.getPowerGenType();
+	}
+		
+		@RequestMapping(method=RequestMethod.POST, value="/brakeType")
+		public List<String> getBrakeType(){
+			return coach_meta_serv.getBrakeType();
+	}
 //	
 //	
 //	@RequestMapping(method=RequestMethod.GET, value="/gis")

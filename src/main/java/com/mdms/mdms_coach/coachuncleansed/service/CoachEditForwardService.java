@@ -59,7 +59,8 @@ public class CoachEditForwardService {
 
 //-------------------------------------------return coachIds for a particular depot--------------------------------------------
 	public List<String> getCoachesByDepot(String depotId) {
-		 final String getCoachIdsByDepot = "select coach_id from mdms_coach.coach_data_cmm where base_depot="+depotId+" except select coach_id from \r\n" + 
+		String depot=depotId.toUpperCase();
+		 final String getCoachIdsByDepot = "select coach_id from mdms_coach.coach_data_cmm where base_depot=\'"+depotId+"\'"+" except select cast(coach_id as character varying) from \r\n" + 
 		 		"	mdms_coach.coach_uncleansed_data where status in('U','A')";
 
 		    final List<String> coachIds = jdbcTemplate.queryForList(getCoachIdsByDepot, String.class);

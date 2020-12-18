@@ -43,7 +43,7 @@ public class CoachMetaMastersController {
 	}
 	
 	
-	@RequestMapping(method=RequestMethod.POST, value="/coachtyps")
+	@RequestMapping(method=RequestMethod.POST, value="/coachtype")
 	public List<String> getCoachTypes(){
 		return coach_meta_serv.getCoachTypes();
 	}

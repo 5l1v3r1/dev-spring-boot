@@ -286,11 +286,12 @@ if(response!=null && result!=null) {
 	public String seniorID(String designation,String division) {
 		
 		String seniorId="";
-		 if(designation.equalsIgnoreCase("CMI")) {
+		 if(designation.equalsIgnoreCase("CMI")||designation.equalsIgnoreCase("COMMERCIAL INSPECTOR")||designation.equalsIgnoreCase("CHIEF COMMERCIAL INSPECTOR")||designation.equalsIgnoreCase("CHIEF COMMERCIAL SUPERVISOR(CCS)")||designation.equalsIgnoreCase("CHIEF COMMERCIAL INSPECTOR /CHIEF COMMERCIAL SUPERVISOR(CCS)"))
+		 {
 			seniorId=  profileRegistrationRepo.getSeniorIdForCMI(division); 
 			 
 			 
-		 }else if (designation.equalsIgnoreCase("DTI")) {
+		 }else if (designation.equalsIgnoreCase("DTI")||designation.equalsIgnoreCase("CHIEF TRAFFIC INSPECTOR")||designation.equalsIgnoreCase("TRAFFIC INSPECTOR (PLANNING)")||designation.equalsIgnoreCase("TRAFFIC INSPECTOR (MOVEMENT)")) {
 			 seniorId=  profileRegistrationRepo.getSeniorIdForDTI(division); 
 		 }
 		

@@ -51,7 +51,7 @@ public class CoachEditForwardController {
 	//-------------------------------------------return coachIds for a particular depot--------------------------------------------
 	
 	@RequestMapping(method=RequestMethod.GET, value="/getCoachesByDepot")
-	public List<String> getCoachesByDepot(@RequestParam String depotId) {	
+	public List<String> getCoachesByDepot(@RequestParam (value="depotId")String depotId) {	
 		
 		logger.info("Controller : CoachEditForwardController || Method: getCoachesByDepot || getCoachForDepot: "+depotId);
 		List<String> coachIds=coachEditFwdServ.getCoachesByDepot(depotId);
@@ -68,7 +68,7 @@ public class CoachEditForwardController {
 	
 
 	//-------------------------------------------coach Details forwarded/saved as draft after cleaning of record--------------------------------------------
-	@RequestMapping(method=RequestMethod.POST, value="/editForwardCoach")
+	@RequestMapping(method=RequestMethod.POST, value="/unclndraft")
 	public String EditForwardCoach(@RequestBody CoachUncleansedData coachUncleansedData) {		
 		String response=coachEditFwdServ.saveAsDraftCoach(coachUncleansedData);	
 			return response;	

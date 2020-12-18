@@ -31,21 +31,45 @@ public class CoachMetaMastersService {
 	
 	
 	public List<String> getCoachTypes() {
-		
 		 return coach_type_repo.getCoachTypes();
 	}
 
 
+
+	public List<String> getCoachDepot() {
+		 return coach_type_repo.getCoachDepots();
+	}
+
+
+	public List<String> getCoachCategory() {
+		 return coach_type_repo.getCoachCategory();
+	}
+
+
+	public List<String> getCoachCouplingTpe() {
+		return coach_type_repo.getCoachCouplingType();
+	}
+
+
+	public List<String> getFitnessType() {
+		return coach_type_repo.getCoachFitnessType();
+	}
+
+
+	public List<String> getPowerGenType() {
+		return coach_type_repo.getPowerGenType();
+	}
+
+
+	public List<String> getBrakeType() {
+		return coach_type_repo.getBrakeType();
+	}
 	public List<String> getDepot() {
+
 	
 		return depo_type_repo.getDepotTypes();
 	}
 	
-	public List<MFitnessType> getFitnessType()
-	{
-		return fitness_type_repo.getAllFitnessType();
-		
-	}
 	
 
 }

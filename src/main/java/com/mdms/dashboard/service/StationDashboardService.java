@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.mdms.dahsboard.model.DashBoardStationCountDivisionWiseModel;
 import com.mdms.dahsboard.model.DashboardStationModel;
 import com.mdms.dashboard.repository.StationDashboardRepo;
+import com.mdms.mdms_masters.model.MDivision;
 import com.mdms.mdms_station.stationuncleansed.repository.StationTableRbsRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.StationUncleansedDataRepository;
 
@@ -33,6 +34,7 @@ public class StationDashboardService {
 		@Autowired
 		StationTableRbsRepository stn_tbl_rbs_repo;
 		
+		MDivision objmdiv;
 
 		@Autowired
 		private JdbcTemplate jdbcTemplate;
@@ -60,7 +62,6 @@ public class StationDashboardService {
 	final String unapprovedStations = "select count(*) from mdms_station.station_uncleansed_data where cmi_status='0' OR dti_status='0'";
 	final int waitingForApproval = (int)jdbcTemplate.queryForObject(unapprovedStations,Integer.class);
 	
-	
 			    map.put("noOfUncleansedStations", noOfUncleansedStations);
 			    map.put("noOfCleansedStations", noOfCleansedStations);
 			    map.put("totalStations", totalStations);
@@ -69,6 +70,43 @@ public class StationDashboardService {
 		}
 		  catch(Exception e) {
 		    	logger.error("Service : StationDashboardService || Method: getStationStats|| Exception : " +e.getMessage());
+				e.getMessage();
+				return null;
+		    }
+		}
+		
+		public HashMap<String, Integer> getDivisionWiseStationStats(String  divcode) {
+			logger.info("Service : StationDashboardService || Method: getDivisionWiseStationStats");
+			 						String dc="MAS";
+	 HashMap<String, Integer> map = new HashMap<>();			 
+	 try {
+		 
+			 final String noOfStations = "SELECT count(*) FROM mdms_station.station_table_rbs as a\r\n" + 
+			 		"		join mdms_masters.m_division AS b on a.div_ser_no=b.division_sr_no\r\n" + 
+			 		"		where b.division_code=dc";
+			    final int totalStations = (int)jdbcTemplate.queryForObject(noOfStations,Integer.class);
+	
+	 
+	final String cleansedStations = "select count(*) from mdms_station.station_uncleansed_data where division_code=?1";
+	final int noOfCleansedStations = (int)jdbcTemplate.queryForObject(cleansedStations, Integer.class);
+	
+	final String uncleansedStations = "select count(*) from(\r\n" + 
+			"	Select stn_code FROM mdms_station.station_table_rbs \r\n" + 
+			"	except select station_code FROM mdms_station.station_uncleansed_data) AS uncleansed where division_code=?1 ";
+	final int noOfUncleansedStations = (int)jdbcTemplate.queryForObject(uncleansedStations, Integer.class);
+	
+	//Integer noOfUncleansedStations=totalStations-noOfCleansedStations;
+	
+	final String unapprovedStations = "select count(*) from mdms_station.station_uncleansed_data where division_code=?1 AND(cmi_status='0' OR dti_status='0')";
+	final int waitingForApproval = (int)jdbcTemplate.queryForObject(unapprovedStations,Integer.class);	
+			    map.put("noOfUncleansedStations", noOfUncleansedStations);
+			    map.put("noOfCleansedStations", noOfCleansedStations);
+			    map.put("totalStations", totalStations);
+			    map.put("waitingForApproval", waitingForApproval);
+			    return map;
+		}
+		  catch(Exception e) {
+		    	logger.error("Service : StationDashboardService || Method: getDivisionWiseStationStats|| Exception : " +e.getMessage());
 				e.getMessage();
 				return null;
 		    }
@@ -118,8 +156,7 @@ public class StationDashboardService {
 				
 				Collection<DashBoardStationCountDivisionWiseModel> draftCountList= stn_unclsnd_repo.getTotalDraftForwardApprovalStationCountDivisionWise();
 				logger.info("Service : DashBoardStationService || Method: getStationCountDivisionWise || getTotalDraftForwardApprovalStationCountDivisionWise Query list return : "+draftCountList.size());			
-				draftCountList.forEach(DashBoardStationCountDivisionWiseModel -> callDraftCount(DashBoardStationCountDivisionWiseModel,list));			
-			
+				draftCountList.forEach(DashBoardStationCountDivisionWiseModel -> callDraftCount(DashBoardStationCountDivisionWiseModel,list));	
 				
 				
 				

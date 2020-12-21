@@ -1,8 +1,5 @@
 //Developed By: Anshu Sharma , Date 08/Oct/2020 
 package com.mdms.app.mgmt.controller;
-
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,40 +16,27 @@ import com.mdms.app.mgmt.model.LoginOtpModel;
 import com.mdms.app.mgmt.model.MenuIdResponseModel;
 import com.mdms.app.mgmt.service.LoginOtpService;
 import com.mdms.app.mgmt.service.ShowMenuRightsService;
-
-
-
 @CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
 @RestController
-public class LoginOtpController {
-	
+public class LoginOtpController {	
 	@Autowired
-	private LoginOtpService otpService;
-	
-	
+	private LoginOtpService otpService;	
 	@Autowired
-	private ShowMenuRightsService menuRightService;
-	
-	
+	private ShowMenuRightsService menuRightService;	
 	Logger logger=LoggerFactory.getLogger(LoginOtpController.class);
 	@RequestMapping(method=RequestMethod.POST, value="/sendotp")
-	public String sendOTP(@RequestParam("user_id") String user_id){
-		
-		logger.info("Controller : LoginOtpController || Method : sendOTP ||user_id: "+user_id);
-	
+	public String sendOTP(@RequestParam("user_id") String user_id){		
+		logger.info("Controller : LoginOtpController || Method : sendOTP ||user_id: "+user_id);	
 		String response= otpService.getOtp(user_id);
-		//code to send otp, on hold because of Api for sending otp
-		
+		//code to send otp, on hold because of Api for sending otp		
 		logger.info("Controller : LoginOtpController || Method : sendOTP ||user_id: "+user_id);
-
 		return response;
 		
 	}
 	
 	
 	@RequestMapping(method=RequestMethod.POST, value="/verifyotp")
-	public MenuIdResponseModel verifyOtp(@RequestParam("user_id") String user_id,@RequestParam("otp") Integer otp){
-		
+	public MenuIdResponseModel verifyOtp(@RequestParam("user_id") String user_id,@RequestParam("otp") Integer otp){	
 		
 		MenuIdResponseModel obj=new MenuIdResponseModel();
 		logger.info("Controller : LoginOtpController || Method : verifyOtp || user_id: "+user_id +" ||otp: " +otp);
@@ -61,8 +45,7 @@ public class LoginOtpController {
 	if(result.size()>0) {
 		 response= menuRightService.showMenuRights(result.get(0).getUser_id());
 		if(response.size()>0)
-		{
-		
+		{		
 		obj.setMenuid_list(response);
 		obj.setStatus("success");
 		obj.setMessage("otp is correct");

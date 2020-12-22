@@ -27,7 +27,7 @@ public interface StationTableRbsRepository  extends CrudRepository<StationTableR
 	StationTableRbs getStationRecordRBS(String station_code);
 	
 
-	  @Query(value="SELECT division_code,count(*) as total_division_count FROM mdms_station.rbs_division group by division_code",nativeQuery=true)
+	  @Query(value="SELECT division_code,count(*) as total_division_count FROM mdms_masters.m_division group by division_code",nativeQuery=true)
 	  Collection<DashBoardStationCountDivisionWiseModel> getTotalStationCountDivisionWise();	  
 	  
 	  @Query(value=" select division_code,count(*) as uncleansed_count from (select distinct  division_code, stn_code FROM mdms_station.station_table_rbs as a join mdms_masters.m_division as b\r\n" + 

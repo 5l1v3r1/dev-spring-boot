@@ -7,38 +7,22 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.mdms.PasswordSecurityConfiguration;
 import com.mdms.app.mgmt.model.UserLoginDetailModel;
 import com.mdms.app.mgmt.model.UserProfileRegistrationDetailModel;
 import com.mdms.app.mgmt.repository.UserLoginDetailRepository;
 import com.mdms.app.mgmt.repository.UserProfileRegistrationRepository;
-
-
-
 @Service
-public class UserLoginService {
-	
-	
-	 Logger logger=LoggerFactory.getLogger(UserLoginService.class);
-	 
-	 
+public class UserLoginService {	
+	 Logger logger=LoggerFactory.getLogger(UserLoginService.class);	 
 	 @Autowired
-	 UserLoginDetailRepository loginDetailObj;
-	 
+	 UserLoginDetailRepository loginDetailObj;	 
 	 @Autowired
 	 UserProfileRegistrationRepository  profileRegistrationRepoObj;
-	 
-
 	 private final PasswordEncoder passwordEncoder = new PasswordSecurityConfiguration().passwordEncoder();
-public String verifyLogin(String user_id,String pwd) {
-	
+public String verifyLogin(String user_id,String pwd) {	
 	String response = "failed";
-	try {
-	
-	
-
-	
+	try {	
 			logger.info("Service : UserLoginService || Method : verifyLogin ||");
 
 			

@@ -33,14 +33,19 @@ Logger logger=LoggerFactory.getLogger(StationDashboardController.class);
 		return stationServ_obj.getStationStats();
 	}
 
+	@RequestMapping(method=RequestMethod.POST, value="/getDivStationStats")
+	public HashMap<String,Integer> getDivStationStats(String divcode){
+		
+		logger.info("controller : StationDashboardController || Method : getDivStationStats");
+		
+		return stationServ_obj.getDivisionWiseStationStats(divcode);
+	}
+
 		List<DashboardStationModel> list =new ArrayList<DashboardStationModel>();
 		@RequestMapping(method=RequestMethod.POST, value="/getstationcountdivisionwise")
 		public List<DashboardStationModel> getStationCountDivisionWise() {
-
-			
+		
 			 list= stationServ_obj.getStationCountDivisionWise();
-
-			
 		//	list.forEach((n) -> System.out.println(n.getDivision_code())); 
 
 			logger.info("Controller : DashBoardStationController || Method: getStationCountDivisionWise || getStationCountDivisionWise Query list return : "+list.size());

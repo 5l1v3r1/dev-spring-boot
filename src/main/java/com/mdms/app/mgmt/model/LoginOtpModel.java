@@ -4,17 +4,13 @@
 package com.mdms.app.mgmt.model;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 @Entity()
 @Table(name="user_otp_detail", schema="mdms_app_mgmt")
-
-public class LoginOtpModel {
-	
+public class LoginOtpModel {	
 	@Id
 	@Column(name="user_id")
 	private String user_id;

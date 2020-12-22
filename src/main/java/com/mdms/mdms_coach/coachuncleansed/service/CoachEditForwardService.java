@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,15 +80,15 @@ public class CoachEditForwardService {
 	
 	
 //-------------------------------------------coach Details forwarded/saved as draft after cleaning of record--------------------------------------------
-	
-	public String saveAsDraftCoach(CoachUncleansedData coachUncleansedData) {
+	 @Transactional(rollbackOn = Exception.class)
+	public String saveAsDraftCoach(CoachUncleansedData coachUncleansedData)throws Exception {
 	Long coachid=coachUncleansedData.getCoach_id();
 		String response=null;
 		boolean flag;
 		flag=coach_uncleansed_repo.findById(coachid).isPresent();
 		if(flag)
 		{
-			String userid=coach_uncleansed_repo.findById(coachid).get().getStatus();
+			String userid=coach_uncleansed_repo.findById(coachid).get().getUser_id();
 			if(userid.equals(coachUncleansedData.getUser_id()))
 			{
 				//update
@@ -106,6 +108,44 @@ public class CoachEditForwardService {
 		}
 		return response;
 	}
+	
+	
+	 @Transactional(rollbackOn = Exception.class)
+	
+	public String forwardForApprovalCoach(CoachUncleansedData coachUncleansedData) throws Exception{
+		Long coachid=coachUncleansedData.getCoach_id();
+			String response=null;
+			boolean flag;
+			flag=coach_uncleansed_repo.findById(coachid).isPresent();
+			if(flag)
+			{
+				String userid=coach_uncleansed_repo.findById(coachid).get().getUser_id();
+				if(userid.equals(coachUncleansedData.getUser_id()))
+				{
+					//update
+					Date date = new Date();  
+					coachUncleansedData.setTxn_date(date);
+						coach_uncleansed_repo.save(coachUncleansedData);
+					response="RECORD UPDATED AND FORWARDED FOR APPROVAL SUCCESSFULLY";
+				}
+				else
+					response="TRANSACTION ABORTED.RECORD ALREADY SAVED BY ANOTHER USER";
+			}
+			else
+			{Date date = new Date();  
+			coachUncleansedData.setTxn_date(date);
+				coach_uncleansed_repo.save(coachUncleansedData);
+				response="RECORD FORWARDED FOR APPROVAL SUCCESSFULLY";
+			}
+			return response;
+		}
+
+	public List<CoachUncleansedData> fetchUnapprovedCoachRecords(String depot) {
+		
+		 return coach_uncleansed_repo .fetchUnapprovedCoachRecords(depot);
+	}
+	
+	
 
 
 }

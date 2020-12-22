@@ -79,7 +79,7 @@ public class CoachUncleansedData {
 	private String gauge;
 	
 	@Column(name="coupling_type")
-	private String couplingType;
+	private String coupling_type;
 	
 	@Column(name="owning_depot")
 	private String owning_depot;
@@ -87,15 +87,15 @@ public class CoachUncleansedData {
 	
 	
 	@Column(name="ac_flag")
-	private String acFlag;
+	private String ac_flag;
 	
 	
 	@Column(name="vehicle_type")
-	private String vehicleType;
+	private String vehicle_type;
 	
 
 @Column(name="power_generation_type")
-private String powerGenerationType;
+private String power_generation_type;
 	
 @Column(name="factory_turnout_date")
 private Date factory_turnout_date;
@@ -115,7 +115,7 @@ private Boolean double_decker_flag;
 
 
 @Column(name="coach_capacity")
-private String coachCapacity;
+private int coach_capacity;
 
 
 @Column(name="coach_vestibule")
@@ -147,6 +147,10 @@ private String user_id;
 
 @Column(name="txn_date")
 private Date txn_date;
+
+@Column(name="remarks")
+private String remarks;
+
 
 public String getCoach_no() {
 	return coach_no;
@@ -348,14 +352,7 @@ public void setGauge(String gauge) {
 }
 
 
-public String getCouplingType() {
-	return couplingType;
-}
 
-
-public void setCouplingType(String couplingType) {
-	this.couplingType = couplingType;
-}
 
 
 public String getOwning_depot() {
@@ -368,33 +365,45 @@ public void setOwning_depot(String owning_depot) {
 }
 
 
-public String getAcFlag() {
-	return acFlag;
+
+
+public String getCoupling_type() {
+	return coupling_type;
 }
 
 
-public void setAcFlag(String acFlag) {
-	this.acFlag = acFlag;
+public void setCoupling_type(String coupling_type) {
+	this.coupling_type = coupling_type;
 }
 
 
-public String getVehicleType() {
-	return vehicleType;
+public String getAc_flag() {
+	return ac_flag;
 }
 
 
-public void setVehicleType(String vehicleType) {
-	this.vehicleType = vehicleType;
+public void setAc_flag(String ac_flag) {
+	this.ac_flag = ac_flag;
 }
 
 
-public String getPowerGenerationType() {
-	return powerGenerationType;
+public String getVehicle_type() {
+	return vehicle_type;
 }
 
 
-public void setPowerGenerationType(String powerGenerationType) {
-	this.powerGenerationType = powerGenerationType;
+public void setVehicle_type(String vehicle_type) {
+	this.vehicle_type = vehicle_type;
+}
+
+
+public String getPower_generation_type() {
+	return power_generation_type;
+}
+
+
+public void setPower_generation_type(String power_generation_type) {
+	this.power_generation_type = power_generation_type;
 }
 
 
@@ -438,13 +447,25 @@ public void setDouble_decker_flag(Boolean double_decker_flag) {
 }
 
 
-public String getCoachCapacity() {
-	return coachCapacity;
+
+
+public int getCoach_capacity() {
+	return coach_capacity;
 }
 
 
-public void setCoachCapacity(String coachCapacity) {
-	this.coachCapacity = coachCapacity;
+public void setCoach_capacity(int coach_capacity) {
+	this.coach_capacity = coach_capacity;
+}
+
+
+public String getRemarks() {
+	return remarks;
+}
+
+
+public void setRemarks(String remarks) {
+	this.remarks = remarks;
 }
 
 

@@ -32,8 +32,7 @@ import com.mdms.mdms_coach.coachuncleansed.model.CoachUncleansedData;
 
 
 import com.mdms.mdms_coach.coachuncleansed.service.CoachEditForwardService;
-
-
+import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedTest;
 import com.mdms.mdms_coach.coachuncleansed.service.CoachEditForwardService;
 
 
@@ -69,11 +68,29 @@ public class CoachEditForwardController {
 
 	//-------------------------------------------coach Details forwarded/saved as draft after cleaning of record--------------------------------------------
 	@RequestMapping(method=RequestMethod.POST, value="/unclndraft")
-	public String EditForwardCoach(@RequestBody CoachUncleansedData coachUncleansedData) {		
+	public String EditForwardCoach(@RequestBody CoachUncleansedData coachUncleansedData) throws Exception {		
 		String response=coachEditFwdServ.saveAsDraftCoach(coachUncleansedData);	
 			return response;	
 
 
 	}
+	
+	
+	//-------------------------------------------coach Details forwarded after cleaning of record--------------------------------------------
+	@RequestMapping(method=RequestMethod.POST, value="/unclnapp")
+	public String forwardForApprovalCoach(@RequestBody CoachUncleansedData coachUncleansedData) throws Exception {		
+		String response=coachEditFwdServ.forwardForApprovalCoach(coachUncleansedData);	
+			return response;	
+
+
+	}
+	
+	//-------------------------------------------coach Details pending for approval after cleaning of record-----------------------------------------
+	@RequestMapping(method=RequestMethod.POST, value="/unclnsunaprvdcoach")
+	public List<CoachUncleansedData> fetchUnapprovedCoachRecords(@RequestParam(value="depot") String depot)
+	{
+		return coachEditFwdServ.fetchUnapprovedCoachRecords(depot);
+	}
+	
 	
 }

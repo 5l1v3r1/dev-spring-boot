@@ -117,8 +117,8 @@ private String power_generation_type;
 	private String coach_owning_div;
 	
 
-	@Column(name="factoryTurnoutDate")
-	private String factoryTurnoutDate;
+	@Column(name="factory_turnout_date")
+	private String factory_turnout_date;
 	
 
 	@Column(name="rfid_status")
@@ -430,13 +430,15 @@ private String power_generation_type;
 	}
 
 
-	public String getFactoryTurnoutDate() {
-		return factoryTurnoutDate;
+
+
+	public String getFactory_turnout_date() {
+		return factory_turnout_date;
 	}
 
 
-	public void setFactoryTurnoutDate(String factoryTurnoutDate) {
-		this.factoryTurnoutDate = factoryTurnoutDate;
+	public void setFactory_turnout_date(String factory_turnout_date) {
+		this.factory_turnout_date = factory_turnout_date;
 	}
 
 

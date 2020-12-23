@@ -74,7 +74,6 @@ public class UserProfileRegistrationService {
 	UserProfileRegistrationDetailModel registrationModelObj= new UserProfileRegistrationDetailModel();
 	registrationModelObj.setUser_id(obj.getUser_id().toUpperCase());
 	registrationModelObj.setUser_type(obj.getUser_type());
-
 	registrationModelObj.setUname(obj.getUname().toUpperCase());
 	registrationModelObj.setEmail(obj.getEmail());
 	registrationModelObj.setDepartment(obj.getDepartment());
@@ -91,6 +90,7 @@ public class UserProfileRegistrationService {
 	registrationModelObj.setEntity("Entity");
 	registrationModelObj.setUser_register_approval("Y");
 	registrationModelObj.setHrms_service_status(obj.getHrms_service_status());
+	registrationModelObj.setDepo(obj.getDepo());
 	
 	
 
@@ -158,6 +158,7 @@ if(response!=null && result!=null) {
 	String divisions="";
 			String loco_types="";
 	String sheds="";	
+	String depo="";
 		try {		
 		try {
 	 userType=	 loginDetailRepo.getUserTypes();
@@ -223,7 +224,13 @@ if(response!=null && result!=null) {
 		logger.info("Service : UserProfileRegistrationService || Method : getListUserRegistration ||Exception GET locoSheds" + ex.getMessage());
 
 	}
-	
+	try {
+		 depo=loginDetailRepo.getCoachDepos();
+		}catch(Exception ex) {
+			ex.getMessage();
+			logger.info("Service : UserProfileRegistrationService || Method : getListUserRegistration ||Exception GET CoachDepos" + ex.getMessage());
+
+		}
 	
 	
 	obj.setUser_role_list(userRole);
@@ -233,7 +240,8 @@ if(response!=null && result!=null) {
 	obj.setDivision_list(divisions);
 	obj.setZone_list(zones);
 	obj.setLoco_shed_list(sheds);
-	obj.setLoco_type_list(loco_types);	
+	obj.setLoco_type_list(loco_types);
+	obj.setDepo_list(depo);
 	
 	}catch(Exception ex) {
 		
@@ -244,9 +252,7 @@ if(response!=null && result!=null) {
 		 
 	 }
 	 
-	 public String findUserRecord(String user_id) {
-		 
-		 
+	 public String findUserRecord(String user_id) {	 		 
 			logger.info("Service : UserProfileRegistrationService || Method : findUserRecord ||userID " + user_id);
 
 		 List<UserLoginDetailModel>  list= loginDetailRepo.getDeatils(user_id);
@@ -267,11 +273,10 @@ if(response!=null && result!=null) {
 
 	 public UserProfileRegistrationDetailModel getUserDetail(String user_id) {
 		 List<UserProfileRegistrationDetailModel> list = new ArrayList<UserProfileRegistrationDetailModel>();
-		 UserProfileRegistrationDetailModel obj = new UserProfileRegistrationDetailModel(); 
-		 
+		 UserProfileRegistrationDetailModel obj = new UserProfileRegistrationDetailModel(); 		 
 		list= profileRegistrationRepo.getUserRoleAndType(user_id);
 		 if(list.size()>0) {
-			 if(list.get(0).getUser_type().equalsIgnoreCase("SU")) {
+			 if(list.get(0).getUser_type().equalsIgnoreCase("SU")  ) {
 			
 			 }
 			 

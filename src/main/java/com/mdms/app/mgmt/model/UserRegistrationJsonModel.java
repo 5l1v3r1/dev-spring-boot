@@ -81,10 +81,20 @@ public class UserRegistrationJsonModel implements Serializable {
 	@JsonProperty("hrms_department")
 	private String hrms_department;
 	
+	@JsonProperty("depo")
+	private String depo;
 	
 	
 	
 	
+
+	public String getDepo() {
+		return depo;
+	}
+
+	public void setDepo(String depo) {
+		this.depo = depo;
+	}
 
 	public String getHrms_service_status() {
 		return hrms_service_status;

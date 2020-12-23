@@ -5,7 +5,6 @@ package com.mdms.loco.locouncleansed.controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.mdms.loco.locouncleansed.model.LocoDataFois;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
 import com.mdms.loco.locouncleansed.model.MLocoBoggie;
@@ -14,8 +13,11 @@ import com.mdms.loco.locouncleansed.model.MLocoShed;
 import com.mdms.loco.locouncleansed.model.MLocoStoreAuxilary;
 import com.mdms.loco.locouncleansed.model.MLocoTractionMotor;
 import com.mdms.loco.locouncleansed.model.MLocoType;
+import com.mdms.loco.locouncleansed.repository.LocoUncleansedDataElectricRepository;
 import com.mdms.loco.locouncleansed.repository.MLocoTypeRepository;
 import com.mdms.loco.locouncleansed.service.LocoEditForwardService;
+
+
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -141,7 +143,18 @@ public class LocoEditForwardController {
 						return obj_uncleasedservice.getboogie();
 					}
 
+				//  status updated = cleansed "C"
+			        @RequestMapping(method=RequestMethod.POST, value="/markedStatusCinFOIS")
+					public boolean updatestatus(@RequestBody LocoDataFois uncleasedo) {
+						boolean flag=obj_uncleasedservice.updatestatus(uncleasedo);
+							return flag;
+					}
 					
-					
-			 
+			        @RequestMapping(method=RequestMethod.POST, value = "/eCleansedUnapprovedLoco")
+			    	public List<LocoUncleansedDataElectric> geteUnapprovedLoco(@RequestBody LocoUncleansedDataElectric obj_eunapproved){
+			    		System.out.println("shedid"+ obj_eunapproved.getElec_locoOwningShed());
+			    		return obj_uncleasedservice.getUnapprovedLocos(obj_eunapproved);
+						
+			    	}
+			    	
 }

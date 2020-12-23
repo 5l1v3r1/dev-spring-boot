@@ -8,6 +8,8 @@ import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+
+
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
 
 public interface LocoUncleansedDataElectricRepository extends CrudRepository <LocoUncleansedDataElectric,Long> {
@@ -32,10 +34,8 @@ public interface LocoUncleansedDataElectricRepository extends CrudRepository <Lo
 			+ " loco_brake_type=?13, loco_brake_sub_type=?14, loco_cabin_ac=?15, "
 			+ "loco_entry_date=?16, is_gps_enabled=?17, status=?18,"
 			+ "remarks=?19, loco_hotel_load=?20, flag_type=?21 WHERE loco_no=?22",nativeQuery=true)
-	int updateEDraftRecord(String var1,String var2,String var3,String var4,Date var5,Date var6,String var7,String var8,String var9,String var10,  String var11,String var12,String var13,String var14,String var15,Date var16,Boolean var17,String var18,String var19,String var20,String var21, int locono);	
+	int updateEDraftRecord(String var1,String var2,String var3,String var4,Date var5,Date var6,String var7,String var8,String var9,String var10,  String var11,String var12,String var13,String var14,String var15,Date var16,String var17,String var18,String var19,String var20,String var21, int locono);	
  	
-	
-	
 	
 	
 }

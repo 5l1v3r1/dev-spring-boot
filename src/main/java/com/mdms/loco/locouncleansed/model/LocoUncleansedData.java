@@ -70,7 +70,7 @@ public class LocoUncleansedData {
 	 private String dRemarks; 
 	 
 	 @Column(name="is_gps_enabled")                  
-	 private Boolean isGPSEnabledDiesel; 
+	 private String isGPSEnabledDiesel; 
 	 
 	 @Column(name="flag_type")                  
 		private String flagTypeDiesel; 
@@ -252,11 +252,12 @@ public class LocoUncleansedData {
 
 	
 
-	public Boolean getIsGPSEnabledDiesel() {
+
+	public String getIsGPSEnabledDiesel() {
 		return isGPSEnabledDiesel;
 	}
 
-	public void setIsGPSEnabledDiesel(Boolean isGPSEnabledDiesel) {
+	public void setIsGPSEnabledDiesel(String isGPSEnabledDiesel) {
 		this.isGPSEnabledDiesel = isGPSEnabledDiesel;
 	}
 

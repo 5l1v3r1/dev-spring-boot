@@ -100,7 +100,7 @@ public class LocoDraftService {
 			    String var14=cleanseLoco.getElec_locoBrakeSubtype();
 			    String var15=cleanseLoco.getElec_locoCabac();
 			    Date var16=cleanseLoco.getElec_locoEntryDate();
-			    Boolean var17=cleanseLoco.getIsGPSEnabled();
+			    String var17=cleanseLoco.getIsGPSEnabled();
 			    String var18 = cleanseLoco.getElec_Status();
 			    String  var19 = cleanseLoco.getElec_Remarks();
 			    String var20=cleanseLoco.getElec_locoHotelLoad();
@@ -138,7 +138,7 @@ public class LocoDraftService {
 			    String var13=obj_cleanseDieselLoco.getLoco_Permanentdomain();
 			    String var14=obj_cleanseDieselLoco.getLoco_Gaugetype();
 			    String var15= obj_cleanseDieselLoco.getLoco_Traction_Motor_Type();
-			    Boolean var16=obj_cleanseDieselLoco.getIsGPSEnabledDiesel();
+			    String var16=obj_cleanseDieselLoco.getIsGPSEnabledDiesel();
 			     String var17 = obj_cleanseDieselLoco.getLoco_lease_type();
 			    String  var18 = obj_cleanseDieselLoco.getvStatus();
 			    String var19=obj_cleanseDieselLoco.getdRemarks();
@@ -156,5 +156,7 @@ public class LocoDraftService {
 					return false;
 				}					
 			}
+			
+			
 
 }

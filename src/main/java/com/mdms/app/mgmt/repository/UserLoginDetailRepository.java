@@ -59,6 +59,8 @@ public interface UserLoginDetailRepository extends CrudRepository<UserLoginDetai
 	@Procedure(value="mdms_loco.f_get_loco_shed_list")
 	String getLocoSheds();
 
+	@Procedure(value="mdms_coach.f_get_coach_depo_list")
+	String getCoachDepos();
 	
 }
 

@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
+
 import com.mdms.loco.locouncleansed.model.LocoDataFois;
 import com.mdms.loco.locouncleansed.model.MLocoBoggie;
 import com.mdms.loco.locouncleansed.model.MLocoBrakeType;
@@ -25,6 +26,7 @@ import com.mdms.loco.locouncleansed.repository.MLocoShedRepository;
 import com.mdms.loco.locouncleansed.repository.MLocoStoreAuxilaryRepository;
 import com.mdms.loco.locouncleansed.repository.MLocoTractionMotorRepository;
 import com.mdms.loco.locouncleansed.repository.MLocoTypeRepository;
+
 import com.mdms.loco.locouncleansed.model.MLocoType;
 
 
@@ -36,6 +38,8 @@ public class LocoEditForwardService {
 	private LocoDataFoisRepository obj_uncleansedrepo;
 	@Autowired
 private MLocoTypeRepository obj_uncleansedtyperepo;
+	@Autowired
+	LocoUncleansedDataElectricRepository obj_elec;
 //	   
 	@Autowired
 	private LocoUncleansedDataRepository obj_uncleansedcommonrepo;
@@ -110,7 +114,22 @@ private MLocoTypeRepository obj_uncleansedtyperepo;
 	
 	}
 
-			
+//		status changed - Checked(C)
+			public boolean updatestatus(LocoDataFois uncleansed ) {
+				try{
+				String locostatus= uncleansed.getuStatus();
+				int lno=uncleansed.getLoco_No();
+				System.out.println(lno);
+				obj_uncleansedrepo.updatestatus(lno);				
+					return  true ;
+				
+				}
+				catch(Exception e){
+					
+					System.out.println(e);
+					return false;
+				}
+			}	
 		
 //		
 		
@@ -220,9 +239,20 @@ private MLocoTypeRepository obj_uncleansedtyperepo;
 				List<MLocoBoggie> getboogies = new ArrayList<>();
 				obj_boogierepo.findAll()
 				.forEach(getboogies::add);
-				return getboogies;
-				
+				return getboogies;				
 						}
+		 
+		 public List<LocoUncleansedDataElectric> getUnapprovedLocos(LocoUncleansedDataElectric obj_unapproved) {
+//				// TODO Auto-generated method stub
+				System.out.println("getuncleansedunapprovedocos");
+				String shedid=obj_unapproved.getElec_locoOwningShed();
+				obj_elec.getUnapprovedLoco(shedid);		
+				List<LocoUncleansedDataElectric> uncleaseLoco= new ArrayList<>();
+				obj_elec.getUnapprovedLoco(shedid)
+				.forEach(uncleaseLoco::add);
+				System.out.println(" End getuncleansedunapprovedocos");
+				return obj_elec.getUnapprovedLoco(shedid);
+			}
 		 
 		 
 		

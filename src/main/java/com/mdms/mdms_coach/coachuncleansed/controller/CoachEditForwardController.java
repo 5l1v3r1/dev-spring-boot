@@ -28,12 +28,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mdms.mdms_coach.coachuncleansed.model.CoachDataCMM;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachUncleansedData;
-
-
-
+import com.mdms.mdms_coach.coachuncleansed.model.MDepo;
 import com.mdms.mdms_coach.coachuncleansed.service.CoachEditForwardService;
-
-
+import com.mdms.mdms_masters.model.MDivision;
 import com.mdms.mdms_coach.coachuncleansed.service.CoachEditForwardService;
 
 
@@ -75,5 +72,14 @@ public class CoachEditForwardController {
 
 
 	}
+	//-------------------------------------------return coach Depo List as per Zone--------------------------------------------
+
+	
+	@RequestMapping(method=RequestMethod.POST, value="/depoByZoneCode")
+	public List<MDepo> findByZone(@RequestBody MDepo depo) {
+		List<MDepo> temp=coachEditFwdServ.findByZoneCode(depo);
+		 return coachEditFwdServ.findByZoneCode(depo);  
+	
+	}    
 	
 }

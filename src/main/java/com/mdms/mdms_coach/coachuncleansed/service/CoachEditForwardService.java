@@ -1,5 +1,6 @@
 package com.mdms.mdms_coach.coachuncleansed.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +12,10 @@ import org.springframework.stereotype.Service;
 
 import com.mdms.mdms_coach.coachuncleansed.model.CoachDataCMM;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachUncleansedData;
+import com.mdms.mdms_coach.coachuncleansed.model.MDepo;
 import com.mdms.mdms_coach.coachuncleansed.repository.CoachCMMDataRepository;
+import com.mdms.mdms_coach.coachuncleansed.repository.MDepoRepository;
+
 
 
 
@@ -21,6 +25,8 @@ public class CoachEditForwardService {
 
 	@Autowired
 	private CoachCMMDataRepository coachEditForwardRepo;
+	@Autowired
+	private MDepoRepository mDepoRepo;
 
 
 
@@ -82,5 +88,13 @@ public class CoachEditForwardService {
 		return response;
 	}
 
+	public List<MDepo> findByZoneCode(MDepo depo) {
+		String zone_code=depo.getZone_code();
+		String div_code=depo.getDiv_code();
+		System.out.print(zone_code);
+		List<MDepo> tmp = new ArrayList<>();
+		mDepoRepo.findByZoneCode(zone_code,div_code).forEach(tmp::add);
+	    return tmp;
+	}
 
 }

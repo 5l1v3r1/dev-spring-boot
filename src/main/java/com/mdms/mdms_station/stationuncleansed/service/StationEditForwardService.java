@@ -563,9 +563,9 @@ catch(Exception e)
 
 	public StationUncleansedData getStnDraft( String objstndraft) {
 //		// TODO Auto-generated method stub
-		System.out.println("getDraftStn");
+		
 		StationUncleansedData stncd=stn_unclsnd_repo.checkStnData(objstndraft);		
-		System.out.println(" End DraftSn");
+		
 		return stncd;
 //		return uncleaseLoco;
 	}

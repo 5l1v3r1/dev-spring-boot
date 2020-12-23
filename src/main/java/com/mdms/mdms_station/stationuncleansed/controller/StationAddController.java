@@ -28,29 +28,30 @@ public class StationAddController {
 	private StationAddService stn_add_serv;
 	
 	Logger logger=LoggerFactory.getLogger(StationAddController.class);
+
+	
+	@RequestMapping(method=RequestMethod.POST, value="/gldenmstr")
+	public String checkStncodeExist(@RequestBody String station_code) throws Exception {
+
 	/* 
 	Developer – Ritu 
 	*/
-	@RequestMapping(method=RequestMethod.POST, value="/checkstncodeexist")
-	public String checkStnCode(@RequestBody String station_code) throws Exception {
+//	@RequestMapping(method=RequestMethod.POST, value="/checkstncodeexist")
+//	public String checkStnCode(@RequestBody String station_code) throws Exception {
+
 		 logger.error("controller : StationAddController || Method : checkStnCode || input recieved checkStnCode: "+station_code);		 
-	return stn_add_serv.checkStncodeExit(station_code);	
+	return stn_add_serv.checkStncodeExist(station_code);	
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/savecmicleanseddraft")
 	public  String saveCmiCleansedDraft(@RequestBody StationUncleansedData stationdraftcmi) throws Exception
-	{	//	System.out.println(stationdraftcmi.getStn_Id().getStation_code());
-//		System.out.println(stationdraftcmi.getStn_Id().getStation_valid_from());
-//		System.out.println(stationdraftcmi.getStn_Id().getStation_valid_upto());
-
-		logger.error("controller : StationAddController || Method : saveCmiCleansedDraft || input recieved stationdraftcmi: "+stationdraftcmi);	
+	{	logger.error("controller : StationAddController || Method : saveCmiCleansedDraft || input recieved stationdraftcmi: "+stationdraftcmi);	
 		return  stn_add_serv.saveCmiCleansedDraft(stationdraftcmi);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/stnclnsunaprvdcmi")
 	public  String forwardToDCM(@RequestBody StationUncleansedData stationdataapprovebydcm) throws Exception
 	{
-
 		logger.error("controller : StationAddController || Method : forwardToDCM || input recieved stationdataapprovebydcm: "+stationdataapprovebydcm.getStn_Id().getStation_code());
 		
 		return stn_add_serv.forwardToDCM(stationdataapprovebydcm);
@@ -72,8 +73,8 @@ public class StationAddController {
 		return stn_add_serv.getvalidstation(station_code);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/draftdti")
-	public  StationUncleansedData getDraftUncleansedDti(@RequestParam String useriddti ,  String station_code ) throws Exception
+	@RequestMapping(method=RequestMethod.GET, value="/draftdti")
+	public  StationUncleansedData getDraftUncleansedDti(@RequestParam (value="useriddti") String useriddti ,  @RequestParam(value="station_code") String station_code ) throws Exception
 	{
 		logger.error("controller : StationAddController || Method : getDraftUncleansedDti || input recieved  "+useriddti+", "+station_code);	
 		return stn_add_serv.getDraftDti(useriddti,station_code);
@@ -87,7 +88,7 @@ public class StationAddController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/forwardtoapprovedti")
-	public  String forwardDTIToDCM(@RequestBody StationUncleansedData stationdtiapprovebydcm) throws Exception
+	public  String forwardDTIToDOM(@RequestBody StationUncleansedData stationdtiapprovebydcm) throws Exception
 	{
 		logger.error("controller : StationAddController || Method : forwardDTIToDCM || input recieved stationdataapprovebydcm: "+stationdtiapprovebydcm.getStn_Id().getStation_code());
 				return stn_add_serv.forwardDTIDraft(stationdtiapprovebydcm);

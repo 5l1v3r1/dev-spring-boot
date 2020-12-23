@@ -19,19 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import com.mdms.mdms_station.stationuncleansed.model.MGauge;
-import com.mdms.mdms_station.stationuncleansed.model.MGisDetail;
-import com.mdms.mdms_station.stationuncleansed.model.MInterlockingStandard;
-import com.mdms.mdms_station.stationuncleansed.model.MOperatingStationSignal;
-import com.mdms.mdms_station.stationuncleansed.model.MStationCategory;
-import com.mdms.mdms_station.stationuncleansed.model.MStationClass;
-import com.mdms.mdms_station.stationuncleansed.model.MStationInterchange;
-import com.mdms.mdms_station.stationuncleansed.model.MStationJunction;
-import com.mdms.mdms_station.stationuncleansed.model.MStationStatus;
-import com.mdms.mdms_station.stationuncleansed.model.MTraction;
-import com.mdms.mdms_station.stationuncleansed.model.MTrafficType;
-import com.mdms.mdms_station.stationuncleansed.service.StationMetaMastersService;
-
+import com.mdms.mdms_coach.coachuncleansed.model.MCoachType;
+import com.mdms.mdms_coach.coachuncleansed.model.MDepot;
+import com.mdms.mdms_coach.coachuncleansed.service.CoachMetaMastersService;
 
 @CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
 
@@ -40,28 +30,67 @@ import com.mdms.mdms_station.stationuncleansed.service.StationMetaMastersService
 public class CoachMetaMastersController {
 	
 	
-//	@Autowired
-//	private StationMetaMastersService stn_meta_serv;
+	@Autowired
+	private CoachMetaMastersService coach_meta_serv;
 	
 
 
-	//Logger logger=LoggerFactory.getLogger(CoachMetaMastersController.class);
+    Logger logger=LoggerFactory.getLogger(CoachMetaMastersController.class);
 
-//	@RequestMapping(method=RequestMethod.POST, value="/gauge")
-//	public List<MGauge> getAllGauge(){
-//		return stn_meta_serv.getAllGauge();
-//	}
+	@RequestMapping(method=RequestMethod.GET, value="/coachmaster")
+	public MCoachType getCoachTypeDetails(@RequestParam (value="coachtype") String coachtype){
+		return coach_meta_serv.getCoachTypeDetails(coachtype);
+	}
+	
+	
+	@RequestMapping(method=RequestMethod.POST, value="/coachtype")
+	public List<String> getCoachTypes(){
+		return coach_meta_serv.getCoachTypes();
+	}
+	
+
+	@RequestMapping(method=RequestMethod.POST, value="/coachdepot")
+	public List<String> getCoachDepot(){
+		return coach_meta_serv.getCoachDepot();
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="/coachcategory")
+	public List<String> getCoachCategory(){
+		return coach_meta_serv.getCoachCategory();
+	}
+		@RequestMapping(method=RequestMethod.POST, value="/coachCouplingTpe")
+		public List<String> getCoachCouplingTpe(){
+			return coach_meta_serv.getCoachCouplingTpe();
+	}
+	
+		@RequestMapping(method=RequestMethod.POST, value="/fitnesType")
+		public List<String> getFitnessType(){
+			return coach_meta_serv.getFitnessType();
+	}
+		@RequestMapping(method=RequestMethod.POST, value="/powerGenType")
+		public List<String> getPowerGenType(){
+			return coach_meta_serv.getPowerGenType();
+	}
+		
+		@RequestMapping(method=RequestMethod.POST, value="/brakeType")
+		public List<String> getBrakeType(){
+			return coach_meta_serv.getBrakeType();
+	}
 //	
 //	
 //	@RequestMapping(method=RequestMethod.GET, value="/gis")
 //	public List<MGisDetail> getLatLong(@RequestParam("station_code")String station_code){
 //		return stn_meta_serv.getLatLong(station_code);
 //	}
-//	
-//	@RequestMapping(method=RequestMethod.POST, value="/interlck")
-//	public List<MInterlockingStandard> getInterLock(){
-//		return stn_meta_serv.getInterLock();
+
+	
+	
+//	@RequestMapping(method=RequestMethod.POST, value="/depot")
+//	public List<String> getDepot(){
+//		return coach_meta_serv.getDepot();
 //	}
+
+
 //	
 //	@RequestMapping(method=RequestMethod.POST, value="/oprtnsignal")
 //	public List<MOperatingStationSignal> getOperatingSignal(){
@@ -96,8 +125,6 @@ public class CoachMetaMastersController {
 
 	
 
-
-	Logger logger=LoggerFactory.getLogger(CoachMetaMastersController.class);
 
 
 

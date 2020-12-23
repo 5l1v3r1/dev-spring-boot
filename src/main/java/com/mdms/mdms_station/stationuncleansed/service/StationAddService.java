@@ -22,7 +22,7 @@ StationCleansedDataRepository stn_clnsd_repo;
 StationUncleansedDataRepository stn_unclsnd_repo;
 
 
-	public String checkStncodeExit(String stncode) throws Exception {
+	public String checkStncodeExist(String stncode) throws Exception {
 		String returnstmt=null;
 		String sc;
 		 sc=stn_clnsd_repo.checkStnCodeExist(stncode);	
@@ -188,14 +188,9 @@ public StationPKey getvalidstation(String station_code) throws Exception {
 
 public StationUncleansedData getDraftDti(String useriddti, String station_code) throws Exception
 {
-	if(stn_unclsnd_repo.getDraftDti(useriddti,station_code)!=null)
-	{
+	
 	return stn_unclsnd_repo.getDraftDti(useriddti,station_code);
-	}
-	else {
-		
-		return null;
-	}
+	
 }
 
 @Transactional(rollbackOn = Exception.class)
@@ -297,7 +292,7 @@ public String forwardDTIDraft(StationUncleansedData stationdtidataapprovebydcm) 
 			  stn_unclsnd_repo.forwardDraftDti(userid,  dti_station_code,  dti_valid_from,  dti_valid_upto, stationdtidataapprovebydcm.getGauge_code(), stationdtidataapprovebydcm.getStation_category(),
 					  stationdtidataapprovebydcm.getInterchange_flag() , stationdtidataapprovebydcm.getTraction() , stationdtidataapprovebydcm.getInterlocking_standard()  , stationdtidataapprovebydcm.getJunction_flag() , 
 					  stationdtidataapprovebydcm.getNo_of_lines() , stationdtidataapprovebydcm.getOperating_station_signal(),date,dti_status);				
-			  	returnstmt="RECORD FORWARDED TO DCM SUCCESSFULLY";
+			  	returnstmt="RECORD FORWARDED TO DOM SUCCESSFULLY";
 			}
 			
 			

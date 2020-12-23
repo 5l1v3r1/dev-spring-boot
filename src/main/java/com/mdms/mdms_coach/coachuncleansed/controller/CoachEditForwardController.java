@@ -30,7 +30,11 @@ import com.mdms.mdms_coach.coachuncleansed.model.CoachDataCMM;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachUncleansedData;
 import com.mdms.mdms_coach.coachuncleansed.model.MDepo;
 import com.mdms.mdms_coach.coachuncleansed.service.CoachEditForwardService;
+
 import com.mdms.mdms_masters.model.MDivision;
+
+import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedTest;
+
 import com.mdms.mdms_coach.coachuncleansed.service.CoachEditForwardService;
 
 
@@ -48,7 +52,7 @@ public class CoachEditForwardController {
 	//-------------------------------------------return coachIds for a particular depot--------------------------------------------
 	
 	@RequestMapping(method=RequestMethod.GET, value="/getCoachesByDepot")
-	public List<String> getCoachesByDepot(@RequestParam String depotId) {	
+	public List<String> getCoachesByDepot(@RequestParam (value="depotId")String depotId) {	
 		
 		logger.info("Controller : CoachEditForwardController || Method: getCoachesByDepot || getCoachForDepot: "+depotId);
 		List<String> coachIds=coachEditFwdServ.getCoachesByDepot(depotId);
@@ -65,9 +69,9 @@ public class CoachEditForwardController {
 	
 
 	//-------------------------------------------coach Details forwarded/saved as draft after cleaning of record--------------------------------------------
-	@RequestMapping(method=RequestMethod.POST, value="/editForwardCoach")
-	public String EditForwardCoach(@RequestBody CoachUncleansedData coachUncleansedData) {		
-		String response=coachEditFwdServ.editForwardCoach(coachUncleansedData);	
+	@RequestMapping(method=RequestMethod.POST, value="/unclndraft")
+	public String EditForwardCoach(@RequestBody CoachUncleansedData coachUncleansedData) throws Exception {		
+		String response=coachEditFwdServ.saveAsDraftCoach(coachUncleansedData);	
 			return response;	
 
 
@@ -81,5 +85,23 @@ public class CoachEditForwardController {
 		 return coachEditFwdServ.findByZoneCode(depo);  
 	
 	}    
+	
+	
+	//-------------------------------------------coach Details forwarded after cleaning of record--------------------------------------------
+	@RequestMapping(method=RequestMethod.POST, value="/unclnapp")
+	public String forwardForApprovalCoach(@RequestBody CoachUncleansedData coachUncleansedData) throws Exception {		
+		String response=coachEditFwdServ.forwardForApprovalCoach(coachUncleansedData);	
+			return response;	
+
+
+	}
+	
+	//-------------------------------------------coach Details pending for approval after cleaning of record-----------------------------------------
+	@RequestMapping(method=RequestMethod.POST, value="/unclnsunaprvdcoach")
+	public List<CoachUncleansedData> fetchUnapprovedCoachRecords(@RequestParam(value="depot") String depot)
+	{
+		return coachEditFwdServ.fetchUnapprovedCoachRecords(depot);
+	}
+	
 	
 }

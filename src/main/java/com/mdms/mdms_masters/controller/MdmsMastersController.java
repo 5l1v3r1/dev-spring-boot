@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mdms.mdms_masters.model.MDivision;
+import com.mdms.mdms_masters.model.MZone;
 import com.mdms.mdms_masters.service.MdmsMasterService;
 import com.mdms.mdms_station.stationuncleansed.model.StationPKey;
 
@@ -48,7 +49,7 @@ public class MdmsMastersController {
 	
 	}    
 	
-	@RequestMapping(method=RequestMethod.POST, value="/zonebydivisioncode")
+	@RequestMapping(method=RequestMethod.POST, value="/dvsnmstr")
 	public String findByDivison(@RequestBody String division)throws Exception {
 		 logger.error("controller : MdmsMastersController || Method : findByDivison || input recieved findByDivison: "+division);		 
        return mdm_mstr_serv.findByDivision(division) ;
@@ -56,8 +57,10 @@ public class MdmsMastersController {
 	
 	}    
 	
-	
-
+	@RequestMapping(method=RequestMethod.POST, value="/zone")
+	public	 List<String> getAllZone(){
+		return mdm_mstr_serv.getAllZone();
+	}
 	
 	
 

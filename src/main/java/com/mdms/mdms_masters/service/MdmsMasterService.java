@@ -6,18 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mdms.mdms_masters.model.MDivision;
+import com.mdms.mdms_masters.model.MZone;
 import com.mdms.mdms_masters.repository.MDivisionRepository;
+import com.mdms.mdms_masters.repository.MZoneRepository;
 
 @Service
 public class MdmsMasterService {
 	
 	@Autowired
 	MDivisionRepository divsn_repo;
+	@Autowired
+	MZoneRepository zone_repo;
+	
 private String div_code;
 	private String zone_code;
 	public List<MDivision> getAllDivision() {
 		// TODO Auto-generated method stub
 		return divsn_repo.getAllDivision();
+	}
+
+	
+	public List<String> getAllZone() {
+		// TODO Auto-generated method stub
+		return zone_repo.getAllZone();
 	}
 
 	
@@ -31,9 +42,9 @@ private String div_code;
 	}
 	
 	public String findByDivision(String division) throws Exception{		
-		String divcode;		
-		 divcode=divsn_repo.findByDivCode(division);
-    return divcode;
+		String zonecode;		
+		 zonecode=divsn_repo.findByDivCode(division);
+    return zonecode;
 		
 	}
 

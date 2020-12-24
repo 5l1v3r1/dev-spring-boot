@@ -36,6 +36,11 @@ public interface LocoUncleansedDataElectricRepository extends CrudRepository <Lo
 			+ "remarks=?19, loco_hotel_load=?20, flag_type=?21 WHERE loco_no=?22",nativeQuery=true)
 	int updateEDraftRecord(String var1,String var2,String var3,String var4,Date var5,Date var6,String var7,String var8,String var9,String var10,  String var11,String var12,String var13,String var14,String var15,Date var16,String var17,String var18,String var19,String var20,String var21, int locono);	
  	
+
+	@Transactional
+	@Modifying
+	@Query(value="UPDATE mdms_loco.loco_uncleansed_data SET status='A' WHERE loco_no =?1", nativeQuery=true)
+	int updatestatus(int locono);
 	
 	
 }

@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
-
 import com.mdms.loco.locouncleansed.model.LocoDataFois;
 import com.mdms.loco.locouncleansed.model.MLocoBoggie;
 import com.mdms.loco.locouncleansed.model.MLocoBrakeType;
@@ -255,6 +254,22 @@ private MLocoTypeRepository obj_uncleansedtyperepo;
 			}
 		 
 		 
+//			status changed - Approved(A)
+			public boolean updatestatus(LocoUncleansedDataElectric unapproved) {
+				try{
+//				String locostatus= unapproved.getElec_Status();
+				String approvedremarks=unapproved.getElec_Remarks();					
+				int lno=unapproved.getElec_locoNo();
+				System.out.println(lno);
+				obj_elec.updatestatus(lno);				
+					return  true ;			
+				}
+				catch(Exception e){
+					
+					System.out.println(e);
+					return false;
+				}
 		
+	}
 	
 }

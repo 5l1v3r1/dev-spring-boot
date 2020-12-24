@@ -4,7 +4,6 @@ package com.mdms.loco.locouncleansed.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.mdms.loco.locouncleansed.model.LocoDataFois;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
 import com.mdms.loco.locouncleansed.model.MLocoBoggie;
@@ -16,8 +15,6 @@ import com.mdms.loco.locouncleansed.model.MLocoType;
 import com.mdms.loco.locouncleansed.repository.LocoUncleansedDataElectricRepository;
 import com.mdms.loco.locouncleansed.repository.MLocoTypeRepository;
 import com.mdms.loco.locouncleansed.service.LocoEditForwardService;
-
-
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,9 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 @CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
-
 @RestController
 public class LocoEditForwardController {
 	Logger logger=LoggerFactory.getLogger(LocoEditForwardController.class);
@@ -156,5 +151,15 @@ public class LocoEditForwardController {
 			    		return obj_uncleasedservice.getUnapprovedLocos(obj_eunapproved);
 						
 			    	}
+			    	
+			    	//status update U to A  unapproved table
+			    	@RequestMapping(method=RequestMethod.POST, value="/updatestatusApproved")
+			    	public boolean updatestatus(@RequestBody LocoUncleansedDataElectric unapproved) {
+			    		System.out.println("locono"+unapproved.getElec_locoNo());
+			    		System.out.println("status"+unapproved.getElec_Status());
+			    		System.out.println("dieselremarks"+unapproved.getElec_Remarks());			    		
+			    				boolean flag=obj_uncleasedservice.updatestatus(unapproved);
+			    					return flag;
+			    			}
 			    	
 }

@@ -1,0 +1,57 @@
+package com.mdms.loco.locouncleansed.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="m_loco_shed",schema="mdms_loco")
+public class MLocoShed {
+	@Id
+	@Column(name="shed_code")
+	private String baseshedCode;
+	
+	@Column(name="shed_name")
+	private String shedName;
+	
+	@Column(name="zone_code")
+	private String zoneCode;
+
+	@Column(name="shed_flag")
+	private String shedflag;
+
+	public String getBaseshedCode() {
+		return baseshedCode;
+	}
+
+	public void setBaseshedCode(String baseshedCode) {
+		this.baseshedCode = baseshedCode;
+	}
+
+	public String getShedName() {
+		return shedName;
+	}
+
+	public void setShedName(String shedName) {
+		this.shedName = shedName;
+	}
+
+	public String getZoneCode() {
+		return zoneCode;
+	}
+
+	public void setZoneCode(String zoneCode) {
+		this.zoneCode = zoneCode;
+	}
+
+	public String getShedflag() {
+		return shedflag;
+	}
+
+	public void setShedflag(String shedflag) {
+		this.shedflag = shedflag;
+	}
+	
+
+}

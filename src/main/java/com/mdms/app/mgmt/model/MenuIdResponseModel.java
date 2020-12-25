@@ -17,12 +17,18 @@ public class MenuIdResponseModel {
 	String senior_id;
 	String uname;
 	String zone;
-	
-	
-	
-	
-	
-	
+
+	String shed;
+	String depo;
+
+
+	public String getShed() {
+		return shed;
+	}
+	public void setShed(String shed) {
+		this.shed = shed;
+	}
+
 	public String getUname() {
 		return uname;
 	}
@@ -90,11 +96,22 @@ public class MenuIdResponseModel {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	public String getDepo() {
+		return depo;
+	}
+	public void setDepo(String depo) {
+		this.depo = depo;
+	}
+
 	@Override
 	public String toString() {
 		return "MenuIdResponseModel [menuid_list=" + menuid_list + ", message=" + message + ", status=" + status
 
 				+ ", user_type=" + user_type + ", division=" + division + ", designation=" + designation
+
+				+ ", user_type=" + user_type + ", division=" + division + ", designation=" + designation +",shed=" + shed +",depo=" + depo
+
 				+ ", user_role=" + user_role + ",name=" + uname +",zone=" + zone + ", user_id=" + user_id + ", senior_id=" + senior_id + "]";
 	}
 	

@@ -7,16 +7,26 @@ import org.springframework.stereotype.Service;
 
 import com.mdms.mdms_masters.model.MDivision;
 import com.mdms.mdms_masters.model.MZone;
+
+import com.mdms.loco.locouncleansed.model.MLocoType;
+import com.mdms.mdms_masters.model.MDesignation;
+import com.mdms.mdms_masters.model.MDivision;
+import com.mdms.mdms_masters.model.MZone;
+import com.mdms.mdms_masters.repository.MDesignationRepository;
+
 import com.mdms.mdms_masters.repository.MDivisionRepository;
 import com.mdms.mdms_masters.repository.MZoneRepository;
 
 @Service
-public class MdmsMasterService {
-	
+
+public class MdmsMasterService {	
 	@Autowired
 	MDivisionRepository divsn_repo;
 	@Autowired
-	MZoneRepository zone_repo;
+	MZoneRepository zone_repo;	
+	@Autowired
+	MDesignationRepository desig_repo;
+
 	
 private String div_code;
 	private String zone_code;
@@ -31,7 +41,7 @@ private String div_code;
 		return zone_repo.getAllZone();
 	}
 
-	
+
 
 	public List<MDivision> findByZone(MDivision division) {
 		zone_code=division.getZone_code();
@@ -48,9 +58,54 @@ private String div_code;
 		
 	}
 
-
-	
+//	public List<MDesignation> findDesignation(MDesignation desig) throws Exception
+//	{		
+//		List<MDesignation> temp=new ArrayList<>();
+//		desig_repo.findDesignation(desig)
+//		.forEach(temp::add);
+//		return temp;  		
+//	
+//	
+//	}
+	public boolean verifyStnUserDesig(MDesignation userdesig) {
+	   String udesigname=userdesig.getDesignation_name();       
+	   String desig=desig_repo.findStnDesignation(udesigname);
+	   if((desig!=null )&&(desig.equals(desig)) ){
+	    	return true;
+	       	
+	    	
+	    } else {
+	    	return false;
+	    }
+	   
 	}
+	
+	public boolean verifyCoachUserDesig(MDesignation userdesig) {
+		   String udesigname=userdesig.getDesignation_name();       
+		   String desig=desig_repo.findcoachDesignation(udesigname);
+		   if((desig!=null )&&(desig.equals(desig)) ){
+		    	return true;
+		       	
+		    	
+		    } else {
+		    	return false;
+		    }
+		   
+		}
+	public boolean verifyLocoUserDesig(MDesignation userdesig) {
+		   String udesigname=userdesig.getDesignation_name();       
+		   String desig=desig_repo.findLocoDesignation(udesigname);
+		   if((desig!=null )&&(desig.equals(desig)) ){
+		    	return true;
+		       	
+		    	
+		    } else {
+		    	return false;
+		    }
+		   
+		}
+}
+
 
 	
 

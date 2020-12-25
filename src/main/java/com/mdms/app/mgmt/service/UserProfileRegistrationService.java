@@ -91,6 +91,9 @@ public class UserProfileRegistrationService {
 	registrationModelObj.setEntity("Entity");
 	registrationModelObj.setUser_register_approval("Y");
 	registrationModelObj.setHrms_service_status(obj.getHrms_service_status());
+
+	registrationModelObj.setDepo(obj.getDepo());
+
 	
 	
 
@@ -158,7 +161,10 @@ if(response!=null && result!=null) {
 	String divisions="";
 			String loco_types="";
 	String sheds="";	
-		try {		
+
+	String depo="";
+
+			
 		try {
 	 userType=	 loginDetailRepo.getUserTypes();
 		}catch(Exception ex) {
@@ -223,9 +229,17 @@ if(response!=null && result!=null) {
 		logger.info("Service : UserProfileRegistrationService || Method : getListUserRegistration ||Exception GET locoSheds" + ex.getMessage());
 
 	}
+
+	try {
+		 depo=loginDetailRepo.getCoachDepos();
+		}catch(Exception ex) {
+			ex.getMessage();
+			logger.info("Service : UserProfileRegistrationService || Method : getListUserRegistration ||Exception GET CoachDepos" + ex.getMessage());
+
+		}
+
 	
-	
-	
+	try {
 	obj.setUser_role_list(userRole);
 	obj.setUser_type_list(userType);
 	obj.setDepartment_list(userDepartment);
@@ -233,8 +247,12 @@ if(response!=null && result!=null) {
 	obj.setDivision_list(divisions);
 	obj.setZone_list(zones);
 	obj.setLoco_shed_list(sheds);
+
 	obj.setLoco_type_list(loco_types);	
-	
+
+	obj.setLoco_type_list(loco_types);
+	obj.setDepo_list(depo);
+
 	}catch(Exception ex) {
 		
 		ex.getMessage();
@@ -244,9 +262,12 @@ if(response!=null && result!=null) {
 		 
 	 }
 	 
-	 public String findUserRecord(String user_id) {
+
+	
 		 
-		 
+
+	 public String findUserRecord(String user_id) {	 		 
+
 			logger.info("Service : UserProfileRegistrationService || Method : findUserRecord ||userID " + user_id);
 
 		 List<UserLoginDetailModel>  list= loginDetailRepo.getDeatils(user_id);
@@ -267,11 +288,13 @@ if(response!=null && result!=null) {
 
 	 public UserProfileRegistrationDetailModel getUserDetail(String user_id) {
 		 List<UserProfileRegistrationDetailModel> list = new ArrayList<UserProfileRegistrationDetailModel>();
-		 UserProfileRegistrationDetailModel obj = new UserProfileRegistrationDetailModel(); 
-		 
+
+		
+		 UserProfileRegistrationDetailModel obj = new UserProfileRegistrationDetailModel(); 		 
 		list= profileRegistrationRepo.getUserRoleAndType(user_id);
 		 if(list.size()>0) {
-			 if(list.get(0).getUser_type().equalsIgnoreCase("SU")) {
+			 if(list.get(0).getUser_type().equalsIgnoreCase("SU")  ) {
+
 			
 			 }
 			 
@@ -291,7 +314,7 @@ if(response!=null && result!=null) {
 			seniorId=  profileRegistrationRepo.getSeniorIdForCMI(division); 
 			 
 			 
-		 }else if (designation.equalsIgnoreCase("DTI")||designation.equalsIgnoreCase("CHIEF TRAFFIC INSPECTOR")||designation.equalsIgnoreCase("TRAFFIC INSPECTOR (PLANNING)")||designation.equalsIgnoreCase("TRAFFIC INSPECTOR (MOVEMENT)")) {
+		 }else if (designation.equalsIgnoreCase("DTI")||designation.equalsIgnoreCase("TRAFFIC INSPECTOR")||designation.equalsIgnoreCase("CHIEF TRAFFIC INSPECTOR")||designation.equalsIgnoreCase("TRAFFIC INSPECTOR (PLANNING)")||designation.equalsIgnoreCase("TRAFFIC INSPECTOR (MOVEMENT)")) {
 			 seniorId=  profileRegistrationRepo.getSeniorIdForDTI(division); 
 		 }
 		

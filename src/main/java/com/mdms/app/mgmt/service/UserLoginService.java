@@ -28,10 +28,6 @@ public String verifyLogin(String user_id,String pwd) {
 			
 			List<UserLoginDetailModel> list  =	loginDetailObj.getDeatils(user_id.toUpperCase());
 			List<UserProfileRegistrationDetailModel> listUserProfileObj  =	profileRegistrationRepoObj.getUserDetail(user_id.toUpperCase());
-
-			
-			
-
 			if((list.size()>0) && (listUserProfileObj.size()>0)) {
 				if(listUserProfileObj.get(0).getUser_register_approval().equalsIgnoreCase("N")) {
 					

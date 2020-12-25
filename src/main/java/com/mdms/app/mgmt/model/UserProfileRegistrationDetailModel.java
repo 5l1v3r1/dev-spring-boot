@@ -74,10 +74,18 @@ public class UserProfileRegistrationDetailModel {
 	@Column(name="service_status")
 	private String hrms_service_status;
 	
-	
-	
 
-	
+	@Column(name="depo")
+	private String depo;
+
+	public String getDepo() {
+		return depo;
+	}
+
+	public void setDepo(String depo) {
+		this.depo = depo;
+	}
+
 
 	public String getHrms_service_status() {
 		return hrms_service_status;

@@ -153,8 +153,10 @@ private Date txnDate;
 @Column(name="updated_date")
 private Date updatedDate;
 
+
 @Column(name="coach_category")
 private String coach_category;
+
 
 public String getCoachNo() {
 	return coachNo;
@@ -556,6 +558,7 @@ public void setUpdatedDate(Date updatedDate) {
 }
 
 
+
 public String getCoach_category() {
 	return coach_category;
 }
@@ -564,6 +567,7 @@ public String getCoach_category() {
 public void setCoach_category(String coach_category) {
 	this.coach_category = coach_category;
 }
+
 
 	
 }

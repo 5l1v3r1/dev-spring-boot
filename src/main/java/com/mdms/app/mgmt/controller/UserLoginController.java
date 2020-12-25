@@ -68,6 +68,7 @@ public class UserLoginController {
 	@RequestMapping(method=RequestMethod.POST, value="/userlogin")
 	public MenuIdResponseModel userLogin(@RequestParam("user_id") String user_id,@RequestParam("password") String password){
 		
+
 		
 		MenuIdResponseModel obj=new MenuIdResponseModel();
 		logger.info("Controller : UserLoginController || Method : userLogin || user_id: "+user_id +" ||password: " +password);
@@ -76,10 +77,8 @@ public class UserLoginController {
 		try {
 		String 	result=userLoginService.verifyLogin(user_id,password);
 		
-		
-	if(result.equalsIgnoreCase("success")) {
-		
-		
+		if(result.equalsIgnoreCase("success")) {	
+
 		 response= menuRightService.showMenuRights(user_id);
 	String user_type=	 menuRightService.getUserType(user_id);
 	UserProfileRegistrationDetailModel registrationObj=profileRegistrationService.getUserDetail(user_id);
@@ -90,6 +89,9 @@ obj.setUser_role(registrationObj.getRole_type());
 obj.setUname(registrationObj.getUname());
 obj.setZone(registrationObj.getZone());
 obj.setUser_id(user_id);
+
+obj.setShed(registrationObj.getShed());
+obj.setDepo(registrationObj.getDepo());
 
 obj.setSenior_id(profileRegistrationService.seniorID(registrationObj.getDesignation(), registrationObj.getDivision()));
 

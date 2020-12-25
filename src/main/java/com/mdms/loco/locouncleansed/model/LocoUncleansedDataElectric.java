@@ -61,7 +61,9 @@ public class LocoUncleansedDataElectric {
 	private String elec_locoHotelLoad;
 
 	 @Column(name="is_gps_enabled")                  
-	 private Boolean isGPSEnabled; 
+
+	 private String isGPSEnabled; 
+
 	 
 	 @Column(name="flag_type")                  
 		private String flagType; 
@@ -261,11 +263,13 @@ public class LocoUncleansedDataElectric {
 		this.elec_locoHotelLoad = elec_locoHotelLoad;
 	}
 
-	public Boolean getIsGPSEnabled() {
+
+	public String getIsGPSEnabled() {
 		return isGPSEnabled;
 	}
 
-	public void setIsGPSEnabled(Boolean isGPSEnabled) {
+	public void setIsGPSEnabled(String isGPSEnabled) {
+
 		this.isGPSEnabled = isGPSEnabled;
 	}
 

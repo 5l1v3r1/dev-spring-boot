@@ -1,6 +1,12 @@
 package com.mdms.mdms_coach.coachuncleansed.service;
 
+
 import java.util.Date;
+
+import java.util.ArrayList;
+
+import java.util.Date;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -19,21 +25,22 @@ import com.mdms.mdms_coach.coachuncleansed.repository.CoachCMMDataRepository;
 import com.mdms.mdms_coach.coachuncleansed.repository.CoachCleansedDataRepository;
 import com.mdms.mdms_coach.coachuncleansed.repository.CoachUncleansedDataRepository;
 
-
-
+import com.mdms.mdms_coach.coachuncleansed.model.MDepo;
+import com.mdms.mdms_coach.coachuncleansed.repository.MDepoRepository;
 @Service
 public class CoachEditForwardService {
-	
+	@Autowired
+	private MDepoRepository mDepoRepo;
 
 	@Autowired
 	private CoachCMMDataRepository coach_cmm_repo;
 	
 	@Autowired
 	private CoachUncleansedDataRepository coach_uncleansed_repo;
-	
+
 	@Autowired
 	private  CoachCleansedDataRepository coach_cleansed_repo;
-	
+
 
 	Logger logger=LoggerFactory.getLogger(CoachEditForwardService.class);
 
@@ -151,6 +158,7 @@ public class CoachEditForwardService {
 		 return coach_uncleansed_repo .fetchUnapprovedCoachRecords(depot);
 	}
 	
+
 	public String approvedCoachRecords(Long coachid) {
 		String returnstmt="";
 		int i=0;
@@ -184,6 +192,18 @@ else
 			return coach_uncleansed_repo.getCoachDraft(userid, coach_id);
 		
 
+	}
+
+
+
+
+	public List<MDepo> findByZoneCode(MDepo depo) {
+		String zone_code=depo.getZone_code();
+		String div_code=depo.getDiv_code();
+		System.out.print(zone_code);
+		List<MDepo> tmp = new ArrayList<>();
+		mDepoRepo.findByZoneCode(zone_code,div_code).forEach(tmp::add);
+	    return tmp;
 	}
 
 

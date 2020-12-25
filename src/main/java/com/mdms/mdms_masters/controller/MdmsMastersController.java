@@ -13,13 +13,17 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mdms.mdms_masters.model.MDivision;
 import com.mdms.mdms_masters.model.MZone;
 import com.mdms.mdms_masters.service.MdmsMasterService;
 import com.mdms.mdms_station.stationuncleansed.model.StationPKey;
+
+import com.mdms.mdms_masters.model.MDesignation;
+
+
+
 
 @CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
 
@@ -62,6 +66,20 @@ public class MdmsMastersController {
 		return mdm_mstr_serv.getAllZone();
 	}
 	
-	
+
+	 @RequestMapping(method=RequestMethod.POST, value="/stnuserdesignation")
+		public boolean findStnDesignation(@RequestBody MDesignation desig){ 										
+			  return  mdm_mstr_serv.verifyStnUserDesig(desig);		 	 	
+		}
+	 @RequestMapping(method=RequestMethod.POST, value="/coachuserdesignation")
+		public boolean findCoachDesignation(@RequestBody MDesignation desig){ 										
+			  return  mdm_mstr_serv.verifyCoachUserDesig(desig);		 	 	
+		}
+	 @RequestMapping(method=RequestMethod.POST, value="/locouserdesignation")
+		public boolean findLocoDesignation(@RequestBody MDesignation desig){ 										
+			  return  mdm_mstr_serv.verifyLocoUserDesig(desig);		 	 	
+		}
+
+
 
 }

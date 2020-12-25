@@ -51,11 +51,13 @@ public class CoachUncleansedData {
 	
 	@Column(name="is_biotoilet_fitted")
 	private String is_biotoilet_fitted;
+
+
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd",timezone = "IST") 
 	@Column(name="built_date")
 	private Date built_date;
 	
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd",timezone = "IST") 
+
 	@Column(name="commissioning_date")
 	private Date commissioning_date;
 	
@@ -86,8 +88,11 @@ public class CoachUncleansedData {
 	@Column(name="owning_depot")
 	private String owning_depot;
 	
+
 	@Column(name="coach_category")
 	private String coach_category;
+
+
 	
 	@Column(name="ac_flag")
 	private String ac_flag;
@@ -99,14 +104,18 @@ public class CoachUncleansedData {
 
 @Column(name="power_generation_type")
 private String power_generation_type;
+
 @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd",timezone = "IST") 
+
 @Column(name="factory_turnout_date")
 private Date factory_turnout_date;
 	
 @Column(name="warranty_date")
 private Date warranty_date;
 
+
 @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd",timezone = "IST") 
+
 @Column(name="coach_received_date")
 private Date coach_received_date;
 
@@ -147,7 +156,9 @@ private String status;
 @Column(name="user_id")
 private String user_id;
 
+
 @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd",timezone = "IST") 
+
 @Column(name="txn_date")
 private Date txn_date;
 

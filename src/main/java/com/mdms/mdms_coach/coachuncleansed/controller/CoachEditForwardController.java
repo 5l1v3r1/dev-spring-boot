@@ -28,12 +28,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mdms.mdms_coach.coachuncleansed.model.CoachDataCMM;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachUncleansedData;
-
-
-
 import com.mdms.mdms_coach.coachuncleansed.service.CoachEditForwardService;
 import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedTest;
+
+import com.mdms.mdms_coach.coachuncleansed.model.MDepo;
 import com.mdms.mdms_coach.coachuncleansed.service.CoachEditForwardService;
+
+import com.mdms.mdms_masters.model.MDivision;
+
+import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedTest;
 
 
 @CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
@@ -44,8 +47,7 @@ import com.mdms.mdms_coach.coachuncleansed.service.CoachEditForwardService;
 public class CoachEditForwardController {
 	@Autowired
 	private CoachEditForwardService coachEditFwdServ;
-	
-	
+
 	Logger logger=LoggerFactory.getLogger(CoachEditForwardController.class);
 
 	//-------------------------------------------return coachIds for a particular depot--------------------------------------------
@@ -75,7 +77,7 @@ public class CoachEditForwardController {
 
 
 	}
-	
+
 	
 	//-------------------------------------------coach Details forwarded/saved as draft after cleaning of record--------------------------------------------
 		@RequestMapping(method=RequestMethod.GET, value="/unclncoachdraft")
@@ -86,6 +88,17 @@ public class CoachEditForwardController {
 
 
 		}
+
+	//-------------------------------------------return coach Depo List as per Zone--------------------------------------------
+
+	
+	@RequestMapping(method=RequestMethod.POST, value="/depoByZoneCode")
+	public List<MDepo> findByZone(@RequestBody MDepo depo) {
+		List<MDepo> temp=coachEditFwdServ.findByZoneCode(depo);
+		 return coachEditFwdServ.findByZoneCode(depo);  
+	
+	}    
+
 	
 	
 	//-------------------------------------------coach Details forwarded after cleaning of record--------------------------------------------
@@ -104,10 +117,12 @@ public class CoachEditForwardController {
 		return coachEditFwdServ.fetchUnapprovedCoachRecords(depot);
 	}
 	
+
 	@RequestMapping(method=RequestMethod.POST, value="/cochunclapp")
 	public String approvedCoachRecords(@RequestBody Long coachid)
 	{
 		return coachEditFwdServ.approvedCoachRecords(coachid);
 	}
+
 	
 }

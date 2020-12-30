@@ -48,6 +48,11 @@ public class CoachMetaMastersController {
 		return coach_meta_serv.getCoachTypes();
 	}
 	
+	@RequestMapping(method=RequestMethod.POST, value="/coachtypecmm")
+	public List<String> getCoachTypesCmm(){
+		return coach_meta_serv.getCoachTypesCmm();
+	}
+	
 
 	@RequestMapping(method=RequestMethod.POST, value="/coachdepot")
 	public List<String> getCoachDepot(){
@@ -76,6 +81,13 @@ public class CoachMetaMastersController {
 		public List<String> getBrakeType(){
 			return coach_meta_serv.getBrakeType();
 	}
+		
+		
+		@RequestMapping(method=RequestMethod.POST, value="/coachtypeprs")
+		public List<String> getCoachTypesPrs(){
+			return coach_meta_serv.getCoachTypesPrs();
+		}
+		
 //	
 //	
 //	@RequestMapping(method=RequestMethod.GET, value="/gis")

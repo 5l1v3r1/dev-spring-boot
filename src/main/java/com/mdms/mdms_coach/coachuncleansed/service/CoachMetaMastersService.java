@@ -12,6 +12,7 @@ import com.mdms.mdms_coach.coachuncleansed.model.MFitnessType;
 import com.mdms.mdms_coach.coachuncleansed.repository.MCoachTypeRepository;
 import com.mdms.mdms_coach.coachuncleansed.repository.MDepotRepository;
 import com.mdms.mdms_coach.coachuncleansed.repository.MFitnessTypeRepository;
+import com.mdms.mdms_coach.coachuncleansed.repository.MCoachTypePrsRepository;
 
 @Service
 public class CoachMetaMastersService {
@@ -23,6 +24,10 @@ public class CoachMetaMastersService {
 	
 	@Autowired
 	MFitnessTypeRepository fitness_type_repo;
+	
+	@Autowired
+	MCoachTypePrsRepository prs_type_repo;
+	
 
 	public MCoachType getCoachTypeDetails(String coachtype) {
 		
@@ -34,7 +39,9 @@ public class CoachMetaMastersService {
 		 return coach_type_repo.getCoachTypes();
 	}
 
-
+	public List<String> getCoachTypesCmm() {
+		 return coach_type_repo.getCoachTypesCmm();
+	}
 
 	public List<String> getCoachDepot() {
 		 return coach_type_repo.getCoachDepots();
@@ -68,6 +75,12 @@ public class CoachMetaMastersService {
 
 	
 		return depo_type_repo.getDepotTypes();
+	}
+
+
+	public List<String> getCoachTypesPrs() {
+		
+		return prs_type_repo.getCoachTypesPrs();
 	}
 	
 	

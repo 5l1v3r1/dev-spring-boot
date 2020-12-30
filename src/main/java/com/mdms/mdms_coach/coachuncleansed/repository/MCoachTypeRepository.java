@@ -12,6 +12,9 @@ public interface MCoachTypeRepository  extends CrudRepository<MCoachType,String>
 @Query(value="select coach_type from mdms_coach.m_coach_type_cmm ",nativeQuery = true)
 List<String> getCoachTypes();
 
+@Query(value="select coach_type from mdms_coach.m_coach_type_cmm except select cmm_coach_type from mdms_coach.coach_type_mapping ",nativeQuery = true)
+List<String> getCoachTypesCmm();
+
 @Query(value="select depo_code from mdms_coach.m_depo ",nativeQuery = true)
 List<String> getCoachDepots();
 

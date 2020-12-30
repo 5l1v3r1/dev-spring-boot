@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mdms.mdms_coach.coachuncleansed.model.CoachTypeMapping;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachDataCMM;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachUncleansedData;
 import com.mdms.mdms_coach.coachuncleansed.service.CoachEditForwardService;
@@ -122,6 +123,16 @@ public class CoachEditForwardController {
 	public String approvedCoachRecords(@RequestBody Long coachid)
 	{
 		return coachEditFwdServ.approvedCoachRecords(coachid);
+	}
+	
+	
+	/* function definition – Map cmm-prs coach types
+	Developer – Anshul ,24/06/2020
+	*/
+	@RequestMapping(method=RequestMethod.POST, value="/coachmap")
+	 public int saveCoachType(@RequestBody List<CoachTypeMapping> coachtypemap){
+		
+		return coachEditFwdServ.saveCoachType(coachtypemap);
 	}
 
 	

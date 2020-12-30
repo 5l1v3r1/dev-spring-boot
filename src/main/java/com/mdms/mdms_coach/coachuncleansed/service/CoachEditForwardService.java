@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import com.mdms.mdms_coach.coachuncleansed.model.CoachCleansedData;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachDataCMM;
+import com.mdms.mdms_coach.coachuncleansed.model.CoachTypeMapping;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachUncleansedData;
 import com.mdms.mdms_coach.coachuncleansed.repository.CoachCMMDataRepository;
 import com.mdms.mdms_coach.coachuncleansed.repository.CoachCleansedDataRepository;
@@ -27,6 +28,7 @@ import com.mdms.mdms_coach.coachuncleansed.repository.CoachUncleansedDataReposit
 
 import com.mdms.mdms_coach.coachuncleansed.model.MDepo;
 import com.mdms.mdms_coach.coachuncleansed.repository.MDepoRepository;
+import com.mdms.mdms_coach.coachuncleansed.repository.CoachTypeMappingRepository;
 @Service
 public class CoachEditForwardService {
 	@Autowired
@@ -40,6 +42,9 @@ public class CoachEditForwardService {
 
 	@Autowired
 	private  CoachCleansedDataRepository coach_cleansed_repo;
+	
+	@Autowired
+	private  CoachTypeMappingRepository coach_map_repo;
 
 
 	Logger logger=LoggerFactory.getLogger(CoachEditForwardService.class);
@@ -204,6 +209,26 @@ else
 		List<MDepo> tmp = new ArrayList<>();
 		mDepoRepo.findByZoneCode(zone_code,div_code).forEach(tmp::add);
 	    return tmp;
+	}
+	
+	
+	
+
+	public int saveCoachType(List<CoachTypeMapping> coachtypemap) {
+//		System.out.println(coachtypemap.size());
+		int result=1;
+	for(int i=0;i<coachtypemap.size();i++)
+	{
+		
+		if(coach_map_repo.save(coachtypemap.get(i))==null)
+			{result=0;
+			break;
+			}
+		
+		}
+
+		
+		return result;
 	}
 
 

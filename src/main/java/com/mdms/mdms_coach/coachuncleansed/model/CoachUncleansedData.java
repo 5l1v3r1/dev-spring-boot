@@ -57,7 +57,7 @@ public class CoachUncleansedData {
 	@Column(name="built_date")
 	private Date built_date;
 	
-
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd",timezone = "IST") 
 	@Column(name="commissioning_date")
 	private Date commissioning_date;
 	

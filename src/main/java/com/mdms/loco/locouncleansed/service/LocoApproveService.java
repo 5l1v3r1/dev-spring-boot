@@ -12,6 +12,9 @@ public class LocoApproveService {
 	public boolean adddata(LocoApprovedData objcleansed) {
 		try{
 			
+			objcleansed.setElec_Remarks("Approved");
+			objcleansed.setElec_Status("A");		
+			
 		if(approved_repo.save(objcleansed) != null)
 					return true;				
 				

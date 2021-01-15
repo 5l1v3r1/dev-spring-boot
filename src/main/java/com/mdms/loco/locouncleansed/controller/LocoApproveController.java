@@ -24,9 +24,7 @@ Logger logger=LoggerFactory.getLogger(LocoApproveController.class);
 	@Autowired
 	 private LocoApproveService obj_cleasedservice;
 	@RequestMapping(method=RequestMethod.POST,value="/savelocogoldenrecord")
-		public boolean adddata(@RequestBody LocoApprovedData objcleansed){
-	
-		//System.out.println(eleccleansed.getLocoType());
+		public boolean adddata(@RequestBody LocoApprovedData objcleansed){		
 		boolean flag= obj_cleasedservice.adddata(objcleansed);
 				return true;}	
 

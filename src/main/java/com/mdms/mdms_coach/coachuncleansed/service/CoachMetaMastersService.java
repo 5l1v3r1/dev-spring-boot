@@ -2,16 +2,16 @@ package com.mdms.mdms_coach.coachuncleansed.service;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.mdms.mdms_coach.coachuncleansed.model.CMMTypeLayout;
 import com.mdms.mdms_coach.coachuncleansed.model.MCoachType;
 
-import com.mdms.mdms_coach.coachuncleansed.model.MFitnessType;
 import com.mdms.mdms_coach.coachuncleansed.repository.MCoachTypeRepository;
 import com.mdms.mdms_coach.coachuncleansed.repository.MDepotRepository;
 import com.mdms.mdms_coach.coachuncleansed.repository.MFitnessTypeRepository;
+import com.mdms.mdms_coach.coachuncleansed.repository.CMMTypeLayoutRepository;
 import com.mdms.mdms_coach.coachuncleansed.repository.MCoachTypePrsRepository;
 
 @Service
@@ -28,6 +28,9 @@ public class CoachMetaMastersService {
 	@Autowired
 	MCoachTypePrsRepository prs_type_repo;
 	
+	@Autowired
+	CMMTypeLayoutRepository cmm_coach_layout_repo;
+	
 
 	public MCoachType getCoachTypeDetails(String coachtype) {
 		
@@ -42,6 +45,11 @@ public class CoachMetaMastersService {
 	public List<String> getCoachTypesCmm() {
 		 return coach_type_repo.getCoachTypesCmm();
 	}
+	
+	public List<String> getCoachTypesCmmLayout() {
+		 return coach_type_repo.getCoachTypesCmmLayout();
+	}
+
 
 	public List<String> getCoachDepot() {
 		 return coach_type_repo.getCoachDepots();
@@ -83,6 +91,23 @@ public class CoachMetaMastersService {
 		return prs_type_repo.getCoachTypesPrs();
 	}
 	
+	public List<CMMTypeLayout> getUnappCMMLayout() {
+		
+		return cmm_coach_layout_repo.getUnappCMMLayout();
+	}
+
+
+	public String approveCmmCoachLayout(String cmmcoachtype) {
+		// TODO Auto-generated method stub
+		String response=null;
+		int i=0;
+		i=cmm_coach_layout_repo.approveCmmCoachLayout(cmmcoachtype);
+		if(i>0)
+			response="RECORD APPROVED SUCCESSFULLY";
+		else
+			response="TRANSACTION ABORTED.RECORD NOT APPROVED";
+		return response;
+	}
 	
 
 }

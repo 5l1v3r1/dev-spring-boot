@@ -1,5 +1,6 @@
 package com.mdms.app.mgmt.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mdms.app.mgmt.model.GetListUserRegistrationJsonModel;
+import com.mdms.app.mgmt.model.MasterUserLoginDetail;
 import com.mdms.app.mgmt.model.UserProfileRegistrationDetailModel;
 import com.mdms.app.mgmt.model.UserRegistrationJsonModel;
 import com.mdms.app.mgmt.service.UserProfileRegistrationService;
+
 
 
 
@@ -80,11 +83,45 @@ public class UserProfileRegistrationController {
 		
 	}
 	
-	//fetaching loco data from locotype master	
+	//fetch userdetail based on user type	
 		@RequestMapping(method=RequestMethod.POST , value ="/getuserdetaildashboard")
 		public List<UserProfileRegistrationDetailModel> getallusertypedetails(@RequestBody UserProfileRegistrationDetailModel objurecord ){
 				return registrationServiceObj.getalluserdetail(objurecord);
 		
 		}
 	
+		//fetch userdetail based on user id	
+		@RequestMapping(method=RequestMethod.POST , value ="/getusercontrl")
+		public List<UserProfileRegistrationDetailModel> getuserctrl(@RequestBody UserProfileRegistrationDetailModel objuctrl ){
+				return registrationServiceObj.getusercontrol(objuctrl);
+		
+		}
+		
+		
+		@RequestMapping(method=RequestMethod.POST, value="/checkmstruserexist")
+		public List<MasterUserLoginDetail> findMstrUserRecord(@RequestParam  String user_id){	
+			List<MasterUserLoginDetail> response= registrationServiceObj.findMstrUserRecord(user_id);	
+						logger.info("Controller : UserRegistrationController || Method : findMstrUserRecord ||user_id  "+user_id + "||Find Master Records Response  "+ response);
+
+			 return response;
+			
+		}
+		
+		@RequestMapping(method=RequestMethod.POST, value="/checkregisteruserexist")
+		public String findregUserRecord(@RequestParam  String user_id){	
+			String response= registrationServiceObj.findUserRecorinRegistration(user_id);	
+						logger.info("Controller : UserRegistrationController || Method : findregUserRecord ||user_id  "+user_id + "||Find registered user Records Response  "+ response);
+
+			 return JSONObject.quote(response);
+			
+		}
+		
+		//update record - master password for current date
+	 	@RequestMapping(method=RequestMethod.POST, value ="/updatemstrpassword")
+	 	public boolean update_edraft(@RequestBody MasterUserLoginDetail obj_mstrpwd)
+	 	{	 	
+	 		
+	 	boolean flag = registrationServiceObj.updatemstrpwd(obj_mstrpwd);
+	 	return flag;
+	 	}
 }

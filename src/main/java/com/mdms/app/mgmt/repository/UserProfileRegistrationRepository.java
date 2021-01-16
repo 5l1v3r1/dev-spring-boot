@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mdms.app.mgmt.model.MasterUserLoginDetail;
 import com.mdms.app.mgmt.model.UserProfileRegistrationDetailModel;
 
 
@@ -45,4 +46,9 @@ public interface UserProfileRegistrationRepository extends CrudRepository<UserPr
 	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where user_type=?1",nativeQuery=true)
 	  List<UserProfileRegistrationDetailModel> getUserRecords(String user_type);
 
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where user_id=?1",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getUserControlRecords(String user_id);
+	
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where user_id=?1",nativeQuery=true)
+	 List<UserProfileRegistrationDetailModel> checkuserexistinregsitration(String user_id);
 }

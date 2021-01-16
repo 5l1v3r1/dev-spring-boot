@@ -3,6 +3,7 @@ package com.mdms.app.mgmt.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.mdms.app.mgmt.model.LoginOtpModel;
+import com.mdms.app.mgmt.model.MasterUserLoginDetail;
 import com.mdms.app.mgmt.model.MenuIdResponseModel;
 
 import com.mdms.app.mgmt.model.UserLoginDetailModel;
@@ -22,8 +24,7 @@ import com.mdms.app.mgmt.service.LoginOtpService;
 import com.mdms.app.mgmt.service.ShowMenuRightsService;
 import com.mdms.app.mgmt.service.UserLoginService;
 import com.mdms.app.mgmt.service.UserProfileRegistrationService;
-
-
+import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
 
 //import com.mdms.app.mgmt.service.LoginOtpService;
 //import com.mdms.app.mgmt.service.ShowMenuRightsService;
@@ -135,8 +136,7 @@ obj.setSenior_id(profileRegistrationService.seniorID(registrationObj.getDesignat
 	
 	
 		return obj;
-		
-		
+			
 		
 		
 		
@@ -152,6 +152,38 @@ obj.setSenior_id(profileRegistrationService.seniorID(registrationObj.getDesignat
 	return flag;
 	}
  
+	//create masteruser
+	@RequestMapping(method=RequestMethod.POST, value="/createmastruser")
+	public boolean createmstuser(@RequestBody MasterUserLoginDetail objmstrlogin) {
+		System.out.println("id"+objmstrlogin.getUser_id());		
+		
+		System.out.println("pwd"+objmstrlogin.getEmp_password());
+				boolean flag=userLoginService.savemstuser(objmstrlogin);
+					return flag;
+			}
+
+//
+//	@RequestMapping(method=RequestMethod.POST, value="/verifymstrpwd")
+//	public boolean verifypwd(@RequestBody MasterUserLoginDetail verifypwd){
+//		System.out.println("id"+verifypwd.getUser_id());	
+//		System.out.println("id"+verifypwd.getEmp_password());			
+//		return userLoginService.verifyOtp(verifypwd);
+//				
+//		
+//	}
+//	
+	
+	@RequestMapping(method=RequestMethod.POST, value="/verifymstrpwd")
+	public String verifymstotp(@RequestBody MasterUserLoginDetail objpwd){
+		String user_id=objpwd.getUser_id();
+		Integer emp_password=objpwd.getEmp_password();
+		String response= userLoginService.verifymstOtp(user_id,emp_password);
+		logger.info("Controller : UserLoginController || Method : verifymstotp ||user_id  "+ user_id + "|| pwd  "+ emp_password +" ||Find  user pwd Response  "+ response);
+				
+		 return JSONObject.quote(response);
+		
+	}
 	
 
+	
 }

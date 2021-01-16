@@ -1,5 +1,6 @@
 package com.mdms.app.mgmt.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -8,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.mdms.PasswordSecurityConfiguration;
+import com.mdms.app.mgmt.model.LoginOtpModel;
+import com.mdms.app.mgmt.model.MasterUserLoginDetail;
 import com.mdms.app.mgmt.model.UserLoginDetailModel;
 import com.mdms.app.mgmt.model.UserProfileRegistrationDetailModel;
+import com.mdms.app.mgmt.repository.MasterUserLoginDetailRepository;
 import com.mdms.app.mgmt.repository.UserLoginDetailRepository;
 import com.mdms.app.mgmt.repository.UserProfileRegistrationRepository;
 @Service
@@ -19,6 +23,10 @@ public class UserLoginService {
 	 UserLoginDetailRepository loginDetailObj;	 
 	 @Autowired
 	 UserProfileRegistrationRepository  profileRegistrationRepoObj;
+	 
+	 @Autowired
+	 MasterUserLoginDetailRepository  mstRepoObj;
+	 
 	 private final PasswordEncoder passwordEncoder = new PasswordSecurityConfiguration().passwordEncoder();
 public String verifyLogin(String user_id,String pwd) {	
 	String response = "failed";
@@ -69,8 +77,7 @@ public String resetPassword(UserLoginDetailModel obj_resetpwd) {
 	String response = "not Reset";
 	 String encodedPassword="";
 	 try {
-		 encodedPassword = passwordEncoder.encode(obj_resetpwd.getEmp_password());
-		 
+		 encodedPassword = passwordEncoder.encode(obj_resetpwd.getEmp_password());		 
 		 logger.info("Service : UserLoginService || Method : resetPassword ||NEW Password ");		 
 		 String uid=obj_resetpwd.getUser_id();	
 			loginDetailObj.updatePassword(encodedPassword, uid);
@@ -84,4 +91,59 @@ public String resetPassword(UserLoginDetailModel obj_resetpwd) {
 	return response;
 	
 }
+
+public boolean savemstuser(MasterUserLoginDetail objmst) {
+	  boolean flag = false;
+//	try{
+		 logger.info("Service : UserLoginService || Method : savemstuser ||Create Master User ");		 
+		 if(mstRepoObj.save(objmst)!= null)
+			{
+						return true;	
+			}
+		 else
+		 {
+			 return false;
+		 }
+}
+
+
+//public boolean verifyOtp(MasterUserLoginDetail verifypwd){	
+//	String uid =verifypwd.getUser_id();
+//	int pwd=verifypwd.getEmp_password();
+//	boolean flag = mstRepoObj.verifyOtp(uid, pwd);
+//	if(flag=true) {
+//		logger.info("Service : UserLoginService || Method : verifyOtp||user_id: "+uid);
+//
+//	 return true;
+//	}
+//	else
+//	{
+//		return false;
+//	}
+//		 
+//}
+
+public String verifymstOtp(String user_id, Integer emp_password) {			 
+	String response = "not Reset";
+	try {
+//	logger.info("Service : UserLoginService || Method : verifymstOtp ||user_id " + user_id +" || emp_password "+emp_password);
+				
+ List<MasterUserLoginDetail>  list= mstRepoObj.verifyOtp(user_id,emp_password); 	
+ if(list.size()>0) {
+	 logger.info("Service : UserLoginService || Method : verifymstOtp ||Response success");
+	 response="success";	
+ }
+		
+ return response;
+	}
+ catch(Exception ex) {
+	 
+		logger.info("Service : UserLoginService || Method : verifymstOtp ||Exception pwd encryption + ex.getMessage()");
+		response="failed";
+	
+		return response;					 }
+	
+}
+
+
 }

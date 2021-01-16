@@ -16,12 +16,14 @@ import org.springframework.stereotype.Service;
 
 import com.mdms.PasswordSecurityConfiguration;
 import com.mdms.app.mgmt.model.GetListUserRegistrationJsonModel;
+import com.mdms.app.mgmt.model.MasterUserLoginDetail;
 import com.mdms.app.mgmt.model.UserLoginDetailModel;
 import com.mdms.app.mgmt.model.UserProfileRegistrationDetailModel;
 import com.mdms.app.mgmt.model.UserRegistrationJsonModel;
-
+import com.mdms.app.mgmt.repository.MasterUserLoginDetailRepository;
 import com.mdms.app.mgmt.repository.UserLoginDetailRepository;
 import com.mdms.app.mgmt.repository.UserProfileRegistrationRepository;
+import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
 
 
 @Service
@@ -34,7 +36,9 @@ public class UserProfileRegistrationService {
 	@Autowired
 	private UserProfileRegistrationRepository profileRegistrationRepo;
 	
-	
+	 @Autowired
+	 MasterUserLoginDetailRepository  mstRepoObj;
+	 
 	 Logger logger=LoggerFactory.getLogger(UserProfileRegistrationService.class);
 	 private final PasswordEncoder passwordEncoder = new PasswordSecurityConfiguration().passwordEncoder();
 		
@@ -330,7 +334,71 @@ if(response!=null && result!=null) {
 			return temp;
 		}
 		
-		
+		//fetch list of userdetail  :Developer :Ritu
+				public List<UserProfileRegistrationDetailModel> getusercontrol(UserProfileRegistrationDetailModel objuctrl ) {	
+					String userid = objuctrl.getUser_id();
+					List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+					profileRegistrationRepo.getUserControlRecords(userid)
+			        .forEach(temp::add);
+					return temp;
+				}
+				
+				
+				 public List<MasterUserLoginDetail> findMstrUserRecord(String user_id) {	 
+						logger.info("Service : UserProfileRegistrationService || Method : findMstrUserRecord ||user_id " + user_id);
+					 List<MasterUserLoginDetail>  list= mstRepoObj.checkmstruserexist(user_id);
+			// System.out.print("list: "+list.size() +"||User_id: "+user_id);
+					 if(list.size()>0) {						 
+							logger.info("Service : UserProfileRegistrationService || Method : findMstrUserRecord ||Response User Already Exist");
+ 						return list ; 
+					 }else {						 
+							logger.info("Service : UserProfileRegistrationService || Method : findMstrUserRecord ||Response User not exist");
+						
+						 return  list ; 
+					 }
+					 
+					
+				 }
+		 
+				 
+				 public String findUserRecorinRegistration(String user_id) {			 
+
+						logger.info("Service : UserProfileRegistrationService || Method : findUserRecorinRegistration ||user_id " + user_id);
+
+					 List<UserProfileRegistrationDetailModel>  list= profileRegistrationRepo.checkuserexistinregsitration(user_id);
+			// System.out.print("list: "+list.size() +"||User_id: "+user_id);
+					 if(list.size()>0) {			 
+							logger.info("Service : UserProfileRegistrationService || Method : findUserRecorinRegistration ||Response User Already Exist");
+
+						return "User Already Exist"; 
+					 }else {
+						 
+							logger.info("Service : UserProfileRegistrationService || Method : findUserRecorinRegistration ||Response User not exist");
+						 return "User Not Exist";					 }
+					 
+					
+				 }
+				 
+				//service to Update master password in master login table
+					public boolean updatemstrpwd(MasterUserLoginDetail obj_pwdupdate) {
+						try{				
+						
+							
+						Date var1=obj_pwdupdate.getValid_from();
+						Date var2=obj_pwdupdate.getValid_to();	
+					     int emp_password=obj_pwdupdate.getEmp_password();
+					     String uid=obj_pwdupdate.getUser_id();
+						System.out.println(uid);
+						mstRepoObj.updatepwd(var1, var2,emp_password,uid);//						
+						return  true ;			
+						}
+						catch(Exception e){
+							
+							System.out.println(e);
+							return false;
+						}					
+					}
+					
 		 
 }
 

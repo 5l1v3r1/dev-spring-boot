@@ -9,9 +9,11 @@ import com.mdms.mdms_masters.model.MDivision;
 import com.mdms.mdms_masters.model.MZone;
 
 import com.mdms.loco.locouncleansed.model.MLocoType;
+import com.mdms.mdms_masters.model.MDepartment;
 import com.mdms.mdms_masters.model.MDesignation;
 import com.mdms.mdms_masters.model.MDivision;
 import com.mdms.mdms_masters.model.MZone;
+import com.mdms.mdms_masters.repository.MDepartmentRepository;
 import com.mdms.mdms_masters.repository.MDesignationRepository;
 
 import com.mdms.mdms_masters.repository.MDivisionRepository;
@@ -27,6 +29,8 @@ public class MdmsMasterService {
 	@Autowired
 	MDesignationRepository desig_repo;
 
+	@Autowired
+	MDepartmentRepository deprt_repo;
 	
 private String div_code;
 	private String zone_code;
@@ -104,6 +108,12 @@ private String div_code;
 		    }
 		   
 		}
+	
+	public List<MDepartment> getAllDepartment() {
+		// TODO Auto-generated method stub
+		return deprt_repo.findDept();
+	}
+
 }
 
 

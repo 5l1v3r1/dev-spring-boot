@@ -19,7 +19,7 @@ import com.mdms.mdms_masters.model.MDivision;
 import com.mdms.mdms_masters.model.MZone;
 import com.mdms.mdms_masters.service.MdmsMasterService;
 import com.mdms.mdms_station.stationuncleansed.model.StationPKey;
-
+import com.mdms.mdms_masters.model.MDepartment;
 import com.mdms.mdms_masters.model.MDesignation;
 
 
@@ -81,5 +81,9 @@ public class MdmsMastersController {
 		}
 
 
+		@RequestMapping(method=RequestMethod.POST, value="/department")
+		public List<MDepartment> getAllDepartment(){
+			return mdm_mstr_serv.getAllDepartment();
+		}
 
 }

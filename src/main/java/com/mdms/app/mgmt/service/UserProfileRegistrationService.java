@@ -324,7 +324,7 @@ if(response!=null && result!=null) {
 		
 		return seniorId;		
 	}
-	//fetch list of userdetail  :Developer :Ritu
+	//fetch list of userdetail  based on user type:Developer :Ritu
 		public List<UserProfileRegistrationDetailModel> getalluserdetail(UserProfileRegistrationDetailModel objurecord ) {	
 		
 			String usertype = objurecord.getUser_type();
@@ -399,6 +399,17 @@ if(response!=null && result!=null) {
 						}					
 					}
 					
-		 
+					//fetch list of userdetail according to zone,division,department based :Developer :Ritu
+					public List<UserProfileRegistrationDetailModel> getcustomizeduserdetail(UserProfileRegistrationDetailModel objdashboaduser ) {					
+						String user_zone = objdashboaduser.getZone();
+						String user_divi = objdashboaduser.getDivision();
+						String user_deprt = objdashboaduser.getDepartment();						
+						List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+						profileRegistrationRepo.getCustomizeUserRecords(user_zone,user_divi,user_deprt)
+				        .forEach(temp::add);
+						System.out.println(temp);
+						return temp;
+						
+					}
 }
 

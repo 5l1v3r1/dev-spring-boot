@@ -90,7 +90,7 @@ public class UserProfileRegistrationController {
 		
 		}
 	
-		//fetch userdetail based on user id	
+		//fetch userdetail based on user type
 		@RequestMapping(method=RequestMethod.POST , value ="/getusercontrl")
 		public List<UserProfileRegistrationDetailModel> getuserctrl(@RequestBody UserProfileRegistrationDetailModel objuctrl ){
 				return registrationServiceObj.getusercontrol(objuctrl);
@@ -124,4 +124,13 @@ public class UserProfileRegistrationController {
 	 	boolean flag = registrationServiceObj.updatemstrpwd(obj_mstrpwd);
 	 	return flag;
 	 	}
+	 	
+	 	//fetch userdetail based on user zone , division,department	
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getcustomizeduserdetaildashboard")
+	 			public List<UserProfileRegistrationDetailModel> getcustomizeuserdetails(@RequestBody UserProfileRegistrationDetailModel objrecord ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+
+	 					return registrationServiceObj.getcustomizeduserdetail(objrecord);
+	 			
+	 			}
 }

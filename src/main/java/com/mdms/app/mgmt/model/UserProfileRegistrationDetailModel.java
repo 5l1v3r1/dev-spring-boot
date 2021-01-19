@@ -74,6 +74,8 @@ public class UserProfileRegistrationDetailModel {
 	@Column(name="service_status")
 	private String hrms_service_status;
 	
+	
+	
 
 	@Column(name="depo")
 	private String depo;

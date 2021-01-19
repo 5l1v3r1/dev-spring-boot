@@ -129,7 +129,6 @@ public class UserProfileRegistrationController {
 	 			@RequestMapping(method=RequestMethod.POST , value ="/getcustomizeduserdetaildashboard")
 	 			public List<UserProfileRegistrationDetailModel> getcustomizeuserdetails(@RequestBody UserProfileRegistrationDetailModel objrecord ){
 //	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
-
 	 					return registrationServiceObj.getcustomizeduserdetail(objrecord);
 	 			
 	 			}

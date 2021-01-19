@@ -52,8 +52,10 @@ public interface UserProfileRegistrationRepository extends CrudRepository<UserPr
 	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where user_id=?1",nativeQuery=true)
 	 List<UserProfileRegistrationDetailModel> checkuserexistinregsitration(String user_id);
 	
-	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE zone=?1 AND division=?2 AND department=?3",nativeQuery=true)
-	  List<UserProfileRegistrationDetailModel> getCustomizeUserRecords(String zone,String division,String department);
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE zone=?1 AND division=?2 AND department=?3 AND from_date between ?4 and ?5",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getCustomizeUserRecords(String zone,String division,String department, Date from_to,Date to_date);
 	
-
+//	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE from_date=?1 AND from_date=?2",nativeQuery=true)
+//	  List<UserProfileRegistrationDetailModel> getCustomizeUserRecordsdatewise(Date from_date,Date to_date);
+	
 }

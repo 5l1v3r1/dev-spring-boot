@@ -400,16 +400,35 @@ if(response!=null && result!=null) {
 					}
 					
 					//fetch list of userdetail according to zone,division,department based :Developer :Ritu
-					public List<UserProfileRegistrationDetailModel> getcustomizeduserdetail(UserProfileRegistrationDetailModel objdashboaduser ) {					
+					public List<UserProfileRegistrationDetailModel> getcustomizeduserdetail(UserProfileRegistrationDetailModel objdashboaduser ) {
+						System.out.println("objrecd."+objdashboaduser);
 						String user_zone = objdashboaduser.getZone();
 						String user_divi = objdashboaduser.getDivision();
-						String user_deprt = objdashboaduser.getDepartment();						
+						String user_deprt = objdashboaduser.getDepartment();	
+						Date date_from =objdashboaduser.getFrom_date();
+						Date date_to =objdashboaduser.getTo_date();	
+						Date date_fromto=date_to;
+						System.out.println(date_from);
+						System.out.println(date_to);						
 						List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
-						profileRegistrationRepo.getCustomizeUserRecords(user_zone,user_divi,user_deprt)
+						profileRegistrationRepo.getCustomizeUserRecords(user_zone,user_divi,user_deprt,date_from,date_fromto)
 				        .forEach(temp::add);
 						System.out.println(temp);
 						return temp;
 						
 					}
+					
+					//fetch list of userdetail according to date wise:Developer :Ritu
+//					public List<UserProfileRegistrationDetailModel> getcustomizeduserdetaildatewise(UserProfileRegistrationDetailModel objdatedashboaduser ) {					
+//						Date from_dt = objdatedashboaduser.getFrom_date();
+//						Date to_date = objdatedashboaduser.getFrom_date();
+//						String user_deprt = objdashboaduser.getDepartment();						
+//						List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+//						profileRegistrationRepo.getCustomizeUserRecords(user_zone,user_divi,user_deprt)
+//				        .forEach(temp::add);
+//						System.out.println(temp);
+//						return temp;
+//						
+//					}
 }
 

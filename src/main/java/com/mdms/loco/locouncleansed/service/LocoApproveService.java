@@ -1,9 +1,13 @@
 package com.mdms.loco.locouncleansed.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mdms.loco.locouncleansed.model.LocoApprovedData;
+import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
 import com.mdms.loco.locouncleansed.repository.LocoApprovedDataRepository;
 @Service
 public class LocoApproveService {	
@@ -27,6 +31,16 @@ public class LocoApproveService {
 		return false;
 	}
 	
-
+	 public List<LocoApprovedData> getApprovedLocos(LocoApprovedData obj_approved) {
+//			// TODO Auto-generated method stub
+			System.out.println("getGoldendlocos");
+			String shedid=obj_approved.getElec_locoOwningShed();
+			approved_repo.getApprovedLoco(shedid);
+			List<LocoApprovedData> approvedLoco= new ArrayList<>();
+			approved_repo.getApprovedLoco(shedid)
+			.forEach(approvedLoco::add);
+			System.out.println(" End GetGoldenLocos");
+			return approved_repo.getApprovedLoco(shedid);
+		}
 
 }

@@ -79,6 +79,18 @@ public class UserProfileRegistrationDetailModel {
 
 	@Column(name="depo")
 	private String depo;
+	
+	@Column(name="old_user_id")
+	private String old_user_id;
+	
+
+	public String getOld_user_id() {
+		return old_user_id;
+	}
+
+	public void setOld_user_id(String old_user_id) {
+		this.old_user_id = old_user_id;
+	}
 
 	public String getDepo() {
 		return depo;

@@ -17,10 +17,12 @@ import org.springframework.stereotype.Service;
 import com.mdms.PasswordSecurityConfiguration;
 import com.mdms.app.mgmt.model.GetListUserRegistrationJsonModel;
 import com.mdms.app.mgmt.model.MasterUserLoginDetail;
+import com.mdms.app.mgmt.model.OldUserDetailModel;
 import com.mdms.app.mgmt.model.UserLoginDetailModel;
 import com.mdms.app.mgmt.model.UserProfileRegistrationDetailModel;
 import com.mdms.app.mgmt.model.UserRegistrationJsonModel;
 import com.mdms.app.mgmt.repository.MasterUserLoginDetailRepository;
+import com.mdms.app.mgmt.repository.OldUserDetailRepository;
 import com.mdms.app.mgmt.repository.UserLoginDetailRepository;
 import com.mdms.app.mgmt.repository.UserProfileRegistrationRepository;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
@@ -38,6 +40,10 @@ public class UserProfileRegistrationService {
 	
 	 @Autowired
 	 MasterUserLoginDetailRepository  mstRepoObj;
+	 
+	 @Autowired
+		private OldUserDetailRepository oldRegistrationRepo;
+		 
 	 
 	 Logger logger=LoggerFactory.getLogger(UserProfileRegistrationService.class);
 	 private final PasswordEncoder passwordEncoder = new PasswordSecurityConfiguration().passwordEncoder();
@@ -97,6 +103,7 @@ public class UserProfileRegistrationService {
 	registrationModelObj.setHrms_service_status(obj.getHrms_service_status());
 
 	registrationModelObj.setDepo(obj.getDepo());
+	registrationModelObj.setOld_user_id(obj.getOld_user_id());
 
 	
 	
@@ -167,6 +174,7 @@ if(response!=null && result!=null) {
 	String sheds="";	
 
 	String depo="";
+	String oldid="";
 
 			
 		try {
@@ -430,5 +438,24 @@ if(response!=null && result!=null) {
 //						return temp;
 //						
 //					}
+					
+					
+					public String findOldUserRecorinRegistration(String olduser_id) {			 
+
+						logger.info("Service : UserProfileRegistrationService || Method : findOldUserRecorinRegistration ||olduser_id " + olduser_id);
+
+					 List<OldUserDetailModel>  list= oldRegistrationRepo.checkuserexistinoldregsitration(olduser_id);
+			
+					 if(list.size()>0) {			 
+							logger.info("Service : UserProfileRegistrationService || Method : findOldUserRecorinRegistration ||Response User Already Exist");
+
+						return "User Already Exist"; 
+					 }else {
+						 
+							logger.info("Service : UserProfileRegistrationService || Method : findOldUserRecorinRegistration ||Response User not exist");
+						 return "User Not Exist";					 }
+					 
+					
+				 }
 }
 

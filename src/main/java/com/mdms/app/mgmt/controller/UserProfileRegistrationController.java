@@ -132,4 +132,13 @@ public class UserProfileRegistrationController {
 	 					return registrationServiceObj.getcustomizeduserdetail(objrecord);
 	 			
 	 			}
+	 			
+	 			@RequestMapping(method=RequestMethod.POST, value="/checkoldregisteruserexist")
+	 			public String findoldregUserRecord(@RequestParam  String olduser_id){	
+	 				String response= registrationServiceObj.findOldUserRecorinRegistration(olduser_id);	
+	 							logger.info("Controller : UserRegistrationController || Method : findoldregUserRecord ||olduser_id  "+olduser_id + "||Find old registered user Records Response  "+ response);
+
+	 				 return JSONObject.quote(response);
+	 				
+	 			}	
 }

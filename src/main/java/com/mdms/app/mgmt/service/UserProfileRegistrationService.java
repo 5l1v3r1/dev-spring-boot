@@ -457,5 +457,26 @@ if(response!=null && result!=null) {
 					 
 					
 				 }
+					
+
+public String updateflagolduser(OldUserDetailModel obj_flag) {
+	String response = "not Reset";
+	
+	 try {
+		 			 
+		 logger.info("Service : UserProfileRegistrationService || Method : updateflagolduser ||NEW Flag ");		 
+		 String uid=obj_flag.getOld_user_id();	
+		 oldRegistrationRepo.updateFlag(uid);
+			response=  "NEW Flag" ;	
+}catch(Exception ex) {
+	
+	logger.info("Service : UserProfileRegistrationService || Method : updateflagolduser ||Exception pwd encryption" + ex.getMessage());
+	response="OLD Flag";
+//	System.out.print(ex.getMessage());
+}
+	return response;
+	
+}
+
 }
 

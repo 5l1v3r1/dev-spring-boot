@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mdms.app.mgmt.model.GetListUserRegistrationJsonModel;
 import com.mdms.app.mgmt.model.MasterUserLoginDetail;
+import com.mdms.app.mgmt.model.OldUserDetailModel;
+import com.mdms.app.mgmt.model.UserLoginDetailModel;
 import com.mdms.app.mgmt.model.UserProfileRegistrationDetailModel;
 import com.mdms.app.mgmt.model.UserRegistrationJsonModel;
 import com.mdms.app.mgmt.service.UserProfileRegistrationService;
@@ -141,4 +143,14 @@ public class UserProfileRegistrationController {
 	 				 return JSONObject.quote(response);
 	 				
 	 			}	
+
+	 			@RequestMapping(method=RequestMethod.POST, value ="/resetolduserflag")
+	 			public String resetolduserflag(@RequestBody OldUserDetailModel obj_resetflag)
+	 			{
+	 				logger.info("Controller : UserRegistrationController || Method : resetolduserflag || old_user_id:" +obj_resetflag.getOld_user_id()  );
+	 				
+	 				System.out.println("id"+ obj_resetflag.getOld_user_id());	
+	 			String flag = registrationServiceObj.updateflagolduser(obj_resetflag);
+	 			return flag;
+	 			}
 }

@@ -18,6 +18,18 @@ public class OldUserDetailModel {
 
 	@Column(name="user_role")
 	private String user_role;
+	
+	@Column(name="user_flag")
+	private String user_flag;
+	
+
+	public String getUser_flag() {
+		return user_flag;
+	}
+
+	public void setUser_flag(String user_flag) {
+		this.user_flag = user_flag;
+	}
 
 	public String getOld_user_id() {
 		return old_user_id;

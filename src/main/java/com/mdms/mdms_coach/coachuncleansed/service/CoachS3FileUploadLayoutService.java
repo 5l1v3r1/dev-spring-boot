@@ -24,6 +24,7 @@ import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.util.IOUtils;
 import com.mdms.mdms_coach.coachuncleansed.repository.CMMTypeLayoutRepository;
+import com.mdms.mdms_coach.coachuncleansed.repository.PRSTypeLayoutRepository;
 
 @Service
 public class CoachS3FileUploadLayoutService {
@@ -38,6 +39,10 @@ public class CoachS3FileUploadLayoutService {
 @Autowired
 	
 	private CMMTypeLayoutRepository cmmtyperepo;
+
+@Autowired
+
+private PRSTypeLayoutRepository prstyperepo;
 	@PostConstruct
 	private void initializeAmazon() {
 		AWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
@@ -46,7 +51,8 @@ public class CoachS3FileUploadLayoutService {
 
 //	S3 File upload method- CMM
 	
-	public String uploadFile(MultipartFile multipartFile,String sender, String coachtype,String capacity,String description,String remarks) throws IOException {
+	public String uploadFileCMM(MultipartFile multipartFile,String sender, String coachtype,
+			String capacity,String description,String remarks) throws IOException {
 		  logger.info("UploadFile Service");
 		String fileUrl = "";
 		try {
@@ -58,7 +64,7 @@ public class CoachS3FileUploadLayoutService {
 			
 				{	fileUrl = endpointUrl + "/" + bucketName + "/" + fileName;
 			
-			System.out.println("filename="+fileUrl);
+		
 			uploadFileTos3bucket(fileName, file);
 			file.delete();}
 				
@@ -87,6 +93,55 @@ public class CoachS3FileUploadLayoutService {
 
 	}
 
+	
+	
+//	S3 File upload method- PRS
+	
+	public String uploadFilePRS(MultipartFile multipartFile,String sender, String coachtype,
+			String capacity,String description,String remarks) throws IOException {
+		  logger.info("UploadFile Service");
+		String fileUrl = "";
+		try {
+			File file = convertMultiPartToFile(multipartFile);
+			String fileName = generateFileName(multipartFile);
+			
+			int result=prstyperepo.saveprstype(coachtype, capacity, description, remarks, sender, fileName, "U");
+				if (result>0)
+			
+				{	fileUrl = endpointUrl + "/" + bucketName + "/" + fileName;
+			
+		
+			uploadFileTos3bucket(fileName, file);
+			file.delete();}
+				
+				
+				
+		} /*catch (Exception e) {
+			e.printStackTrace();
+		}*/
+		catch (AmazonServiceException ase) {
+	          logger.info("Caught an AmazonServiceException from GET requests, rejected reasons:");
+	          logger.info("Error Message:    " + ase.getMessage());
+	          logger.info("HTTP Status Code: " + ase.getStatusCode());
+	          logger.info("AWS Error Code:   " + ase.getErrorCode());
+	          logger.info("Error Type:       " + ase.getErrorType());
+	          logger.info("Request ID:       " + ase.getRequestId());
+	          
+	          
+	            } catch (AmazonClientException ace) {
+	              logger.info("Caught an AmazonClientException: ");
+	                logger.info("Error Message: " + ace.getMessage());
+	            } catch (IOException ioe) {
+	              logger.info("IOE Error Message: " + ioe.getMessage());
+	              
+	            }
+		return fileUrl;
+
+	}
+
+	
+	
+	
 	private File convertMultiPartToFile(MultipartFile file) throws IOException {
 		File convFile = new File(file.getOriginalFilename());
 		FileOutputStream fos = new FileOutputStream(convFile);

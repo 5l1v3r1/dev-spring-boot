@@ -23,6 +23,9 @@ public interface CMMTypeLayoutRepository extends CrudRepository<CMMTypeLayout,St
 @Query(value="select * from  mdms_coach.cmm_type_layout where status='U'", nativeQuery = true)
 	List<CMMTypeLayout>getUnappCMMLayout( );
 
+@Query(value="select * from  mdms_coach.cmm_type_layout where status='A'", nativeQuery = true)
+List<CMMTypeLayout>getAppCMMLayout( );
+
 @Modifying
 @Transactional
 @Query(value="update  mdms_coach.cmm_type_layout set status='A' where cmmcoachtype=?1 ", nativeQuery = true)

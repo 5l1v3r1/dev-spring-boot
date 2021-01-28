@@ -11,5 +11,8 @@ public interface MCoachTypePrsRepository extends CrudRepository<MCoachTypePrs,St
 	@Query(value="select coach_code from mdms_coach.m_coach_type_prs ",nativeQuery = true)
 	List<String> getCoachTypesPrs();
 	
+	@Query(value="select coach_code from mdms_coach.m_coach_type_prs except select coach_code from mdms_coach.prs_type_layout ",nativeQuery = true)
+	List<String> getCoachTypesPrsLayout();
+	
 
 }

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mdms.mdms_coach.coachuncleansed.model.CMMTypeLayout;
 
 import com.mdms.mdms_coach.coachuncleansed.model.MCoachType;
-
+import com.mdms.mdms_coach.coachuncleansed.model.PRSTypeLayout;
 import com.mdms.mdms_coach.coachuncleansed.service.CoachMetaMastersService;
 
 @CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
@@ -55,6 +55,11 @@ public class CoachMetaMastersController {
 		return coach_meta_serv.getCoachTypesCmmLayout();
 	}
 	
+	
+	@RequestMapping(method=RequestMethod.POST, value="/prstypelayout")
+	public List<String> getCoachTypesPrsLayout(){
+		return coach_meta_serv.getCoachTypesPrsLayout();
+	}
 
 	@RequestMapping(method=RequestMethod.POST, value="/coachdepot")
 	public List<String> getCoachDepot(){
@@ -97,11 +102,30 @@ public class CoachMetaMastersController {
 		}
 		
 		
+		@RequestMapping(method=RequestMethod.POST, value="/prslayouttypes")
+		public List<PRSTypeLayout> getUnappPRSLayout(){
+			return coach_meta_serv.getUnappPRSLayout();
+		}
+		
+		
 		@RequestMapping(method=RequestMethod.POST, value="/appcmmlayout")
 		public String approveCmmCoachLayout(@RequestBody String cmmcoachtype){
 			return coach_meta_serv.approveCmmCoachLayout(cmmcoachtype);
 		}
 		
+		@RequestMapping(method=RequestMethod.POST, value="/appprslayout")
+		public String approvePrsCoachLayout(@RequestBody String cmmcoachtype){
+			return coach_meta_serv.approvePrsCoachLayout(cmmcoachtype);
+		}
 
-
+		
+		@RequestMapping(method=RequestMethod.POST, value="/aprvdprslayout")
+		public List<PRSTypeLayout> getAppPRSLayout(){
+			return coach_meta_serv.getAppPRSLayout();
+		}
+		
+		@RequestMapping(method=RequestMethod.POST, value="/aprvdcmmlayout")
+		public List<CMMTypeLayout> getAppCMMLayout(){
+			return coach_meta_serv.getAppCMMLayout();
+		}
 }

@@ -84,7 +84,6 @@ public class UserProfileRegistrationService {
 	UserProfileRegistrationDetailModel registrationModelObj= new UserProfileRegistrationDetailModel();
 	registrationModelObj.setUser_id(obj.getUser_id().toUpperCase());
 	registrationModelObj.setUser_type(obj.getUser_type());
-
 	registrationModelObj.setUname(obj.getUname().toUpperCase());
 	registrationModelObj.setEmail(obj.getEmail());
 	registrationModelObj.setDepartment(obj.getDepartment());
@@ -101,9 +100,9 @@ public class UserProfileRegistrationService {
 	registrationModelObj.setEntity("Entity");
 	registrationModelObj.setUser_register_approval("Y");
 	registrationModelObj.setHrms_service_status(obj.getHrms_service_status());
-
 	registrationModelObj.setDepo(obj.getDepo());
 	registrationModelObj.setOld_user_id(obj.getOld_user_id());
+	System.out.println("old user id "+obj.getOld_user_id());
 
 	
 	
@@ -470,7 +469,7 @@ public String updateflagolduser(OldUserDetailModel obj_flag) {
 			response=  "NEW Flag" ;	
 }catch(Exception ex) {
 	
-	logger.info("Service : UserProfileRegistrationService || Method : updateflagolduser ||Exception pwd encryption" + ex.getMessage());
+	logger.info("Service : UserProfileRegistrationService || Method : updateflagolduser ||Exception Old User Flag" + ex.getMessage());
 	response="OLD Flag";
 //	System.out.print(ex.getMessage());
 }

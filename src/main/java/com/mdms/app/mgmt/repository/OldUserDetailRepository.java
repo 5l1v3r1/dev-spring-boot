@@ -19,7 +19,7 @@ public interface OldUserDetailRepository extends CrudRepository<OldUserDetailMod
 	
 	@Transactional
 	@Modifying
-	@Query(value="UPDATE mdms_app_mgmt.old_user_detail SET user_flag='Y'  where old_user_id=?2",nativeQuery=true)
+	@Query(value="UPDATE mdms_app_mgmt.old_user_detail SET user_flag='Y'  where old_user_id=?1",nativeQuery=true)
 	int updateFlag(String olduserId);
 	
 }

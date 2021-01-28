@@ -48,7 +48,8 @@ public class UserProfileRegistrationController {
 		
 				+"||zone : " +userObj.getZone()+"||division : " + userObj.getDivision());
 		System.out.println(userObj.getDepartment());
-	
+		System.out.println("oldid"+userObj.getOld_user_id());
+		
 		String response= registrationServiceObj.saveUserDetails(userObj);
 		//code to send otp, on hold because of Api for sending otp
 		

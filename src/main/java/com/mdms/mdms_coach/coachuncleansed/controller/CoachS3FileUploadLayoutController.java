@@ -37,12 +37,24 @@ public class CoachS3FileUploadLayoutController {
 	
 	
 	@PostMapping("/uploadCmmFile")
-	public String uploadFile(@RequestPart(value = "file") MultipartFile file,@RequestParam(value="sender")String sender
+	public String uploadFileCMM(@RequestPart(value = "file") MultipartFile file,@RequestParam(value="sender")String sender
 			,@RequestParam(value="coachtype")String coachtype,@RequestParam(value="capacity")String capacity
 			,@RequestParam(value="description")String description,@RequestParam(value="remarks")String remarks	) throws IOException {
-		logger.info("controller : CoachS3FileUploadController || Method : uploadFile||")	;
+		logger.info("controller : CoachS3FileUploadController || Method : uploadFileCMM||")	;
 		
-		return this.amazonClient.uploadFile(file,sender,coachtype,capacity,description,remarks);
+		return this.amazonClient.uploadFileCMM(file,sender,coachtype,capacity,description,remarks);
+
+	}
+	
+	
+	
+	@PostMapping("/uploadPrsFile")
+	public String uploadFilePRS(@RequestPart(value = "file") MultipartFile file,@RequestParam(value="sender")String sender
+			,@RequestParam(value="coachtype")String coachtype,@RequestParam(value="capacity")String capacity
+			,@RequestParam(value="description")String description,@RequestParam(value="remarks")String remarks	) throws IOException {
+		logger.info("controller : CoachS3FileUploadController || Method : uploadFilePRS||")	;
+		
+		return this.amazonClient.uploadFilePRS(file,sender,coachtype,capacity,description,remarks);
 
 	}
 	

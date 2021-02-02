@@ -21,6 +21,7 @@ import com.mdms.app.mgmt.model.UserLoginDetailModel;
 import com.mdms.app.mgmt.model.UserProfileRegistrationDetailModel;
 import com.mdms.app.mgmt.model.UserRegistrationJsonModel;
 import com.mdms.app.mgmt.service.UserProfileRegistrationService;
+import com.mdms.mdms_masters.model.MDepartment;
 
 
 
@@ -136,6 +137,12 @@ public class UserProfileRegistrationController {
 	 			
 	 			}
 	 			
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportdepartandatewise")
+	 			public List<UserProfileRegistrationDetailModel> getreportdeprtdatewise(@RequestBody UserProfileRegistrationDetailModel objreport1 ){
+	 					return registrationServiceObj.getreportdeprtanddatewise(objreport1);
+	 			
+	 			}
+	 			
 	 			@RequestMapping(method=RequestMethod.POST, value="/checkoldregisteruserexist")
 	 			public String findoldregUserRecord(@RequestParam  String olduser_id){	
 	 				String response= registrationServiceObj.findOldUserRecorinRegistration(olduser_id);	
@@ -153,5 +160,45 @@ public class UserProfileRegistrationController {
 	 				System.out.println("id"+ obj_resetflag.getOld_user_id());	
 	 			String flag = registrationServiceObj.updateflagolduser(obj_resetflag);
 	 			return flag;
+	 			}
+	 			
+	 			@RequestMapping(method=RequestMethod.POST, value="/getuserregistreddepartment")
+	 			public List<String> getAllRegisteredDepartment(){
+	 				return registrationServiceObj.getAllRegisteredDepartment();
+	 			}
+
+	 			
+	 			//fetch userdetail based on user zone , division,department	
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportzonewise")
+	 			public List<UserProfileRegistrationDetailModel> getuserreportzonewise(@RequestBody UserProfileRegistrationDetailModel objzonerecord ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+	 					return registrationServiceObj.getuserreportzonewise(objzonerecord);
+	 			
+	 			}
+	 			
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportdivisionwise")
+	 			public List<UserProfileRegistrationDetailModel> getuserreportdivisionwise(@RequestBody UserProfileRegistrationDetailModel objdivirecord ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+	 					return registrationServiceObj.getuserreportdiviwise(objdivirecord);
+	 			
+	 			}
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportdeprtwise")
+	 			public List<UserProfileRegistrationDetailModel> getuserreportdeprtwise(@RequestBody UserProfileRegistrationDetailModel objdeprtrecord ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+	 					return registrationServiceObj.getuserreportdepartmentwise(objdeprtrecord);
+	 			
+	 			}
+	 			
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportsinglezoneanddeprtwise")
+	 			public List<UserProfileRegistrationDetailModel> getuserreportsinglezonedeprtwise(@RequestBody UserProfileRegistrationDetailModel objzonedeprtrecord ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+	 					return registrationServiceObj.getuserreportsinglezoneandeprttwise(objzonedeprtrecord);
+	 			
+	 			}
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportsingledivianddeprtwise")
+	 			public List<UserProfileRegistrationDetailModel> getuserreportsingledivideprtwise(@RequestBody UserProfileRegistrationDetailModel objdivideprtrecord ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+	 					return registrationServiceObj.getuserreportsinglediviandeprttwise(objdivideprtrecord);
+	 			
 	 			}
 }

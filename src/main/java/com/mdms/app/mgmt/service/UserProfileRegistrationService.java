@@ -26,6 +26,7 @@ import com.mdms.app.mgmt.repository.OldUserDetailRepository;
 import com.mdms.app.mgmt.repository.UserLoginDetailRepository;
 import com.mdms.app.mgmt.repository.UserProfileRegistrationRepository;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
+import com.mdms.mdms_masters.model.MDepartment;
 
 
 @Service
@@ -425,6 +426,24 @@ if(response!=null && result!=null) {
 						
 					}
 					
+					//fetch report based on department and date :Developer :Ritu
+					public List<UserProfileRegistrationDetailModel> getreportdeprtanddatewise(UserProfileRegistrationDetailModel objdeprtdate ) {
+						System.out.println("objrecd."+objdeprtdate);
+					
+						String user_deprt = objdeprtdate.getDepartment();	
+						Date date_from =objdeprtdate.getFrom_date();
+						Date date_to =objdeprtdate.getTo_date();	
+						Date date_fromto=date_to;
+						System.out.println(date_from);
+						System.out.println(date_to);						
+						List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+						profileRegistrationRepo.userreportdateanddeprtwise(user_deprt,date_from,date_fromto)
+				        .forEach(temp::add);
+						System.out.println(temp);
+						return temp;
+						
+					}
+					
 					//fetch list of userdetail according to date wise:Developer :Ritu
 //					public List<UserProfileRegistrationDetailModel> getcustomizeduserdetaildatewise(UserProfileRegistrationDetailModel objdatedashboaduser ) {					
 //						Date from_dt = objdatedashboaduser.getFrom_date();
@@ -474,6 +493,68 @@ public String updateflagolduser(OldUserDetailModel obj_flag) {
 //	System.out.print(ex.getMessage());
 }
 	return response;
+	
+}
+public List<String> getAllRegisteredDepartment() {
+	// TODO Auto-generated method stub
+	return profileRegistrationRepo.findRegisteredDept();
+}
+
+//get user report zone based :Developer :Ritu
+public List<UserProfileRegistrationDetailModel> getuserreportzonewise(UserProfileRegistrationDetailModel objzonereport ) {	
+	String user_zone = objzonereport.getZone();				
+	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+	profileRegistrationRepo.getUserReportzonewisewise(user_zone)
+    .forEach(temp::add);
+	System.out.println(temp);
+	return temp;
+	
+}
+
+//get user report division based :Developer :Ritu
+public List<UserProfileRegistrationDetailModel> getuserreportdiviwise(UserProfileRegistrationDetailModel objdivireport ) {	
+	String user_divi = objdivireport.getDivision();				
+	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+	profileRegistrationRepo.getUserReportdivisiontwise(user_divi)
+  .forEach(temp::add);
+	System.out.println(temp);
+	return temp;
+	
+}
+
+//get user report department based :Developer :Ritu
+public List<UserProfileRegistrationDetailModel> getuserreportdepartmentwise(UserProfileRegistrationDetailModel objdeprtreport ) {	
+	String user_deprt = objdeprtreport.getDepartment();				
+	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+	profileRegistrationRepo.getUserReportdeprtwise(user_deprt)
+.forEach(temp::add);
+	System.out.println(temp);
+	return temp;
+	
+}
+
+//get user report single zone and department based :Developer :Ritu
+public List<UserProfileRegistrationDetailModel> getuserreportsinglezoneandeprttwise(UserProfileRegistrationDetailModel objzonedeprtreport ) {	
+	String user_zone = objzonedeprtreport.getZone();	
+	String user_deprt = objzonedeprtreport.getDepartment();				
+	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+	profileRegistrationRepo.getuserreportsinglezoneandsingledeprt(user_zone,user_deprt)
+.forEach(temp::add);
+	System.out.println(temp);
+	return temp;
+	
+}
+
+
+//get user report single divi and department based :Developer :Ritu
+public List<UserProfileRegistrationDetailModel> getuserreportsinglediviandeprttwise(UserProfileRegistrationDetailModel objdivideprtreport ) {	
+	String user_divi = objdivideprtreport.getDivision();	
+	String user_deprt = objdivideprtreport.getDepartment();				
+	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+	profileRegistrationRepo.getuserreportsingledivandsingdeprt(user_divi,user_deprt)
+.forEach(temp::add);
+	System.out.println(temp);
+	return temp;
 	
 }
 

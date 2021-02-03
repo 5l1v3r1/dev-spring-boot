@@ -410,6 +410,7 @@ if(response!=null && result!=null) {
 					//fetch list of userdetail according to zone,division,department based :Developer :Ritu
 					public List<UserProfileRegistrationDetailModel> getcustomizeduserdetail(UserProfileRegistrationDetailModel objdashboaduser ) {
 						System.out.println("objrecd."+objdashboaduser);
+						String user_type=objdashboaduser.getUser_type();
 						String user_zone = objdashboaduser.getZone();
 						String user_divi = objdashboaduser.getDivision();
 						String user_deprt = objdashboaduser.getDepartment();	
@@ -419,7 +420,7 @@ if(response!=null && result!=null) {
 						System.out.println(date_from);
 						System.out.println(date_to);						
 						List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
-						profileRegistrationRepo.getCustomizeUserRecords(user_zone,user_divi,user_deprt,date_from,date_fromto)
+						profileRegistrationRepo.getCustomizeUserRecords(user_type,user_zone,user_divi,user_deprt,date_from,date_fromto)
 				        .forEach(temp::add);
 						System.out.println(temp);
 						return temp;
@@ -429,7 +430,7 @@ if(response!=null && result!=null) {
 					//fetch report based on department and date :Developer :Ritu
 					public List<UserProfileRegistrationDetailModel> getreportdeprtanddatewise(UserProfileRegistrationDetailModel objdeprtdate ) {
 						System.out.println("objrecd."+objdeprtdate);
-					
+					String user_type=objdeprtdate.getUser_type();
 						String user_deprt = objdeprtdate.getDepartment();	
 						Date date_from =objdeprtdate.getFrom_date();
 						Date date_to =objdeprtdate.getTo_date();	
@@ -437,7 +438,7 @@ if(response!=null && result!=null) {
 						System.out.println(date_from);
 						System.out.println(date_to);						
 						List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
-						profileRegistrationRepo.userreportdateanddeprtwise(user_deprt,date_from,date_fromto)
+						profileRegistrationRepo.userreportdateanddeprtwise(user_type,user_deprt,date_from,date_fromto)
 				        .forEach(temp::add);
 						System.out.println(temp);
 						return temp;
@@ -502,9 +503,10 @@ public List<String> getAllRegisteredDepartment() {
 
 //get user report zone based :Developer :Ritu
 public List<UserProfileRegistrationDetailModel> getuserreportzonewise(UserProfileRegistrationDetailModel objzonereport ) {	
+	String user_type = objzonereport.getUser_type();
 	String user_zone = objzonereport.getZone();				
 	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
-	profileRegistrationRepo.getUserReportzonewisewise(user_zone)
+	profileRegistrationRepo.getUserReportzonewise(user_type,user_zone)
     .forEach(temp::add);
 	System.out.println(temp);
 	return temp;
@@ -513,9 +515,10 @@ public List<UserProfileRegistrationDetailModel> getuserreportzonewise(UserProfil
 
 //get user report division based :Developer :Ritu
 public List<UserProfileRegistrationDetailModel> getuserreportdiviwise(UserProfileRegistrationDetailModel objdivireport ) {	
+	String user_type = objdivireport.getUser_type();
 	String user_divi = objdivireport.getDivision();				
 	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
-	profileRegistrationRepo.getUserReportdivisiontwise(user_divi)
+	profileRegistrationRepo.getUserReportdivisiontwise(user_type,user_divi)
   .forEach(temp::add);
 	System.out.println(temp);
 	return temp;
@@ -524,9 +527,10 @@ public List<UserProfileRegistrationDetailModel> getuserreportdiviwise(UserProfil
 
 //get user report department based :Developer :Ritu
 public List<UserProfileRegistrationDetailModel> getuserreportdepartmentwise(UserProfileRegistrationDetailModel objdeprtreport ) {	
+	String user_type = objdeprtreport.getUser_type();
 	String user_deprt = objdeprtreport.getDepartment();				
 	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
-	profileRegistrationRepo.getUserReportdeprtwise(user_deprt)
+	profileRegistrationRepo.getUserReportdeprtwise(user_deprt,user_type)
 .forEach(temp::add);
 	System.out.println(temp);
 	return temp;
@@ -534,11 +538,12 @@ public List<UserProfileRegistrationDetailModel> getuserreportdepartmentwise(User
 }
 
 //get user report single zone and department based :Developer :Ritu
-public List<UserProfileRegistrationDetailModel> getuserreportsinglezoneandeprttwise(UserProfileRegistrationDetailModel objzonedeprtreport ) {	
+public List<UserProfileRegistrationDetailModel> getuserreportsinglezoneandeprttwise(UserProfileRegistrationDetailModel objzonedeprtreport ) {
+	String user_type = objzonedeprtreport.getUser_type();
 	String user_zone = objzonedeprtreport.getZone();	
 	String user_deprt = objzonedeprtreport.getDepartment();				
 	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
-	profileRegistrationRepo.getuserreportsinglezoneandsingledeprt(user_zone,user_deprt)
+	profileRegistrationRepo.getuserreportsinglezoneandsingledeprt(user_zone,user_deprt,user_type)
 .forEach(temp::add);
 	System.out.println(temp);
 	return temp;
@@ -548,11 +553,29 @@ public List<UserProfileRegistrationDetailModel> getuserreportsinglezoneandeprttw
 
 //get user report single divi and department based :Developer :Ritu
 public List<UserProfileRegistrationDetailModel> getuserreportsinglediviandeprttwise(UserProfileRegistrationDetailModel objdivideprtreport ) {	
+	String user_type = objdivideprtreport.getUser_type();
 	String user_divi = objdivideprtreport.getDivision();	
 	String user_deprt = objdivideprtreport.getDepartment();				
 	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
-	profileRegistrationRepo.getuserreportsingledivandsingdeprt(user_divi,user_deprt)
+	profileRegistrationRepo.getuserreportsingledivandsingdeprt(user_divi,user_deprt,user_type)
 .forEach(temp::add);
+	System.out.println(temp);
+	return temp;
+	
+}
+
+//get report  datewise based :Developer :Ritu
+public List<UserProfileRegistrationDetailModel> getreportdatewise(UserProfileRegistrationDetailModel objreportdatewise ) {
+	System.out.println("objrecd."+objreportdatewise);	
+	String user_type = objreportdatewise.getUser_type();
+	Date date_from =objreportdatewise.getFrom_date();
+	Date date_to =objreportdatewise.getTo_date();	
+	Date date_fromto=date_to;
+	System.out.println(date_from);
+	System.out.println(date_to);						
+	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+	profileRegistrationRepo.getReportdatewise(user_type,date_from,date_fromto)
+    .forEach(temp::add);
 	System.out.println(temp);
 	return temp;
 	

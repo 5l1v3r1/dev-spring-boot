@@ -137,6 +137,13 @@ public class UserProfileRegistrationController {
 	 			
 	 			}
 	 			
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getreportdatewise")
+	 			public List<UserProfileRegistrationDetailModel> getreportdatewise(@RequestBody UserProfileRegistrationDetailModel objdatewise ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+	 					return registrationServiceObj.getreportdatewise(objdatewise);
+	 			
+	 			}
+	 			
 	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportdepartandatewise")
 	 			public List<UserProfileRegistrationDetailModel> getreportdeprtdatewise(@RequestBody UserProfileRegistrationDetailModel objreport1 ){
 	 					return registrationServiceObj.getreportdeprtanddatewise(objreport1);

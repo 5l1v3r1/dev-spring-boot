@@ -17,6 +17,7 @@ import com.mdms.loco.locouncleansed.model.LocoUncleansedDataAddNewLoco;
 import com.mdms.loco.locouncleansed.service.LocoAddService;
 
 
+
 @CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
 
 @RestController
@@ -63,5 +64,12 @@ public class LocoAddController {
 		return obj_newlocoservice.updateElectricBoardZonalData(updateElectricLocoBoardZonal);
 			}
 	
+	
+	@RequestMapping(method=RequestMethod.POST, value="/checkloconoexist")
+	public boolean checklocono(@RequestBody LocoUncleansedDataAddNewLoco objlocono) {
+		int locono=objlocono.getLocoNo();
+	boolean flag= obj_newlocoservice.checkloconoexist(locono);
+	return flag;
+	}   
 
 }

@@ -75,7 +75,7 @@ public interface LocoUncleansedDataRepository extends CrudRepository<LocoUnclean
 	
 	
 	@Query(value="select loco_no from loco.loco_uncleansed_data where loco_no=?1", nativeQuery=true)
-	Integer checklocoNoExistDiesel(Long locoNo);
+	Integer checklocoNoExist(int locoNo);
 	
 	
 	@Transactional

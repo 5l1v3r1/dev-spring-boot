@@ -157,5 +157,22 @@ obj_dieselocoaddrepo.updateElectricBoardZonalRecord(locoPermanentDomain, locoTyp
 	}
 	
 }
+public boolean checkloconoexist(int locono) {
+	
+	int tmp= obj_dieselocoaddrepo.checklocoNoExist(locono); 
+	if(tmp==0)
+	{
+		return false;
+	}
+	  
+	else
+	    
+	    {
+	   
+	    	return true;
+	    }
+		
+	    
 
+}
 }

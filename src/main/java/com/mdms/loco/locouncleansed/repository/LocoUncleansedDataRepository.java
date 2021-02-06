@@ -40,5 +40,62 @@ public interface LocoUncleansedDataRepository extends CrudRepository<LocoUnclean
 	
 	@Query(value="SELECT * FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_shed=?1 AND status='U'",nativeQuery=true)
 	List<LocoUncleansedDataElectric> getUnapprovedLoco(String eshedid);
+//	loco_no, loco_type, loco_commissioning_date, loco_owning_zone, loco_owning_shed, loco_owning_division, loco_commissioned_shed_id,
+//	loco_manufacturing_country, loco_manufacturing_date, loco_receiving_date, loco_manufacturer, loco_axle_load, loco_axle_load_unit, 
+//	loco_traction_motor_type, loco_hauling_power, loco_traction_code, loco_brake_type, loco_brake_sub_type, loco_control_type, 
+//	loco_permanent_domain, loco_gauge_type, loco_lease_type, loco_auxilary, loco_boogie_type, loco_cabin_ac, loco_hotel_load, is_gps_enabled,
+//	flag_type, loco_initial_cost, loco_poh_cost, loco_last_poh_done, loco_rebuild_date, loco_entry_date, record_status, status, user_id, txn_date,
+//	remarks, loco_flag
+	
+	
+	@Transactional
+	@Modifying
+	@Query(value="INSERT INTO loco.loco_uncleansed_data(\r\n" + 
+			"loco_no, loco_permanent_domain, loco_type,loco_owning_zone, loco_owning_division, loco_manufacturing_date,loco_owning_shed,loco_manufacturer,"
+			+ "loco_lease_type, loco_initial_cost, loco_poh_cost, loco_traction_code, loco_gauge_type, loco_hauling_power, loco_manufacturing_country,"
+			+ "loco_entry_date, record_status, status, user_id, txn_date,\r\n"
+			+ "	remarks, loco_flag)\r\n" + 
+			"VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14,?15,?16,?17,?18,?19,?20,?21,?22);", nativeQuery=true)
+	int saveDieselBoardZonalLocoData(int locoNo, String locoPermanentDomain, String locoType, String locoOwningZone,
+			String locoOwningDivision, Date locoMfgDt, String locOwningShed, String locoManufacturer, String locoLeasetype,
+			long locoInitialCost, long locoPOHCost, String tractionCode, String gaugeType, Long locoHaulingPower,
+			String locoMfgCountry,Date locoEtryDt,String recordstatus,String status,String uid,Date txndate,String remarks,String locoflag);
+	
 
+	@Transactional
+	@Modifying
+	@Query(value="UPDATE loco.loco_uncleansed_data\r\n" + 
+			"	SET loco_permanent_domain=?2, loco_type=?3,loco_owning_zone=?4, loco_owning_division=?5, loco_manufacturing_date=?6, loco_owning_shed=?7,"
+			+ "loco_manufacturer=?8,loco_lease_type=?9,loco_initial_cost=?10,  loco_poh_cost=?11,loco_traction_code=?12,loco_gauge_type=?13,loco_hauling_power=?14, loco_mfg_country=?15 ,status=?16,user_id=?17,txn_date=?18"
+			+ "  WHERE loco_no=?19", nativeQuery=true)	
+	int updateDieselBoardZonalRecord( String locoPermanentDomain, String locoType, String locoOwningZone,
+			String locoOwningDivision, Date locoMfgDt, String locOwningShed, String locoManufacturer, String locoLeasetype,
+			long locoInitialCost, long locoPOHCost, String tractionCode, String gaugeType, Long locoHaulingPower,
+			String locoMfgCountry,String status,String uid, Date locotxndate, int locoNo);
+	
+	
+	@Query(value="select loco_no from loco.loco_uncleansed_data where loco_no=?1", nativeQuery=true)
+	Integer checklocoNoExistDiesel(Long locoNo);
+	
+	
+	@Transactional
+	@Modifying
+	@Query(value="INSERT INTO loco.loco_uncleansed_data(\r\n" + 
+			" loco_no, loco_permanent_domain, loco_type,loco_owning_zone, loco_owning_division, loco_manufacturing_date,loco_owning_shed,"
+			+ "loco_lease_type, loco_initial_cost, loco_poh_cost,loco_receiving_date,loco_entry_date, record_status, status, user_id, txn_date,remarks, loco_flag)\r\n" + 
+			"VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12,?13,?14,?15,?16,?17,?18);", nativeQuery=true)
+	int saveElectricBoardZonalData( int locoNo, String locoPermanentDomain, String locoType,
+			String locoOwningZone, String locoOwningDivision, Date locoMfgDt, String locOwningShed,
+			String locoLeasetype, long locoInitialCost, long locoPOHCost, Date locoRcvdDate,Date locoEtryDt,String recordstatus,String status,String uid,Date txndate,String remarks,String locoflag);
+	
+	@Transactional
+	@Modifying
+	@Query(value="UPDATE loco.loco_uncleansed_data\r\n" + 
+			"	SET loco_permanent_domain=?2, loco_type=?3,loco_owning_zone=?4, loco_owning_division=?5, loco_manufacturing_date=?6, loco_owning_shed=?7,"
+			+ "loco_receiving_date=?8,loco_lease_type=?9,loco_initial_cost=?10,  loco_poh_cost=?11, status=?12, user_id=?13, txn_date=?14 "
+			+ "  WHERE loco_no=?15", nativeQuery=true)	
+	int updateElectricBoardZonalRecord( String locoPermanentDomain, String locoType, String locoOwningZone,
+			String locoOwningDivision, Date locoMfgDt, String locOwningShed, Date locoRecdDt,String locoLeasetype,
+			long locoInitialCost, long locoPOHCost, 
+			String status, String uid, Date locotxndate, int locoNo);
 }

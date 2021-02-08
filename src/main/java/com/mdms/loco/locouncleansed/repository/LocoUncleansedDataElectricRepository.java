@@ -46,7 +46,7 @@ public interface LocoUncleansedDataElectricRepository extends CrudRepository <Lo
 	@Transactional
 	@Modifying
 	@Query(value="\r\n" + 
-			"	UPDATE loco.loco_uncleansed_data SET  loco_auxilary=?2,loco_boogie_type=?3, loco_brake_sub_type=?4, loco_brake_type=?5,\r\n" + 
+			"	UPDATE mdms_loco.loco_uncleansed_data SET  loco_auxilary=?2,loco_boogie_type=?3, loco_brake_sub_type=?4, loco_brake_type=?5,\r\n" + 
 			"	loco_cabin_ac=?6, loco_commissioned_shed_id=?7,loco_control_type=?8,loco_commissioning_date=?9,loco_entry_date=?10,loco_hotel_load=?11,\r\n" + 
 			"	loco_manufacturer=?12,is_gps_enabled=?13,flag_type=?14,status=?15, user_id=?16, txn_date=?17 WHERE loco_no=?1", nativeQuery=true)
 	int updateWithElectricLocoShedData(String locoAuxiliaryOutput, String locoBoogieType, String locoBrakeSubtype,

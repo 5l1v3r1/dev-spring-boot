@@ -50,7 +50,7 @@ public interface LocoUncleansedDataRepository extends CrudRepository<LocoUnclean
 	
 	@Transactional
 	@Modifying
-	@Query(value="INSERT INTO loco.loco_uncleansed_data(\r\n" + 
+	@Query(value="INSERT INTO mdms_loco.loco_uncleansed_data(\r\n" + 
 			"loco_no, loco_permanent_domain, loco_type,loco_owning_zone, loco_owning_division, loco_manufacturing_date,loco_owning_shed,loco_manufacturer,"
 			+ "loco_lease_type, loco_initial_cost, loco_poh_cost, loco_traction_code, loco_gauge_type, loco_hauling_power, loco_manufacturing_country,"
 			+ "loco_entry_date, record_status, status, user_id, txn_date,\r\n"
@@ -64,7 +64,7 @@ public interface LocoUncleansedDataRepository extends CrudRepository<LocoUnclean
 
 	@Transactional
 	@Modifying
-	@Query(value="UPDATE loco.loco_uncleansed_data\r\n" + 
+	@Query(value="UPDATE mdms_loco.loco_uncleansed_data\r\n" + 
 			"	SET loco_permanent_domain=?2, loco_type=?3,loco_owning_zone=?4, loco_owning_division=?5, loco_manufacturing_date=?6, loco_owning_shed=?7,"
 			+ "loco_manufacturer=?8,loco_lease_type=?9,loco_initial_cost=?10,  loco_poh_cost=?11,loco_traction_code=?12,loco_gauge_type=?13,loco_hauling_power=?14, loco_mfg_country=?15 ,status=?16,user_id=?17,txn_date=?18"
 			+ "  WHERE loco_no=?19", nativeQuery=true)	
@@ -74,13 +74,13 @@ public interface LocoUncleansedDataRepository extends CrudRepository<LocoUnclean
 			String locoMfgCountry,String status,String uid, Date locotxndate, int locoNo);
 	
 	
-	@Query(value="select loco_no from loco.loco_uncleansed_data where loco_no=?1", nativeQuery=true)
+	@Query(value="select loco_no from mdms_loco.loco_uncleansed_data where loco_no=?1", nativeQuery=true)
 	Integer checklocoNoExist(int locoNo);
 	
 	
 	@Transactional
 	@Modifying
-	@Query(value="INSERT INTO loco.loco_uncleansed_data(\r\n" + 
+	@Query(value="INSERT INTO mdms_loco.loco_uncleansed_data(\r\n" + 
 			" loco_no, loco_permanent_domain, loco_type,loco_owning_zone, loco_owning_division, loco_manufacturing_date,loco_owning_shed,"
 			+ "loco_lease_type, loco_initial_cost, loco_poh_cost,loco_receiving_date,loco_entry_date, record_status, status, user_id, txn_date,remarks, loco_flag)\r\n" + 
 			"VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12,?13,?14,?15,?16,?17,?18);", nativeQuery=true)
@@ -90,7 +90,7 @@ public interface LocoUncleansedDataRepository extends CrudRepository<LocoUnclean
 	
 	@Transactional
 	@Modifying
-	@Query(value="UPDATE loco.loco_uncleansed_data\r\n" + 
+	@Query(value="UPDATE mdms_loco.loco_uncleansed_data\r\n" + 
 			"	SET loco_permanent_domain=?2, loco_type=?3,loco_owning_zone=?4, loco_owning_division=?5, loco_manufacturing_date=?6, loco_owning_shed=?7,"
 			+ "loco_receiving_date=?8,loco_lease_type=?9,loco_initial_cost=?10,  loco_poh_cost=?11, status=?12, user_id=?13, txn_date=?14 "
 			+ "  WHERE loco_no=?15", nativeQuery=true)	
@@ -103,7 +103,7 @@ public interface LocoUncleansedDataRepository extends CrudRepository<LocoUnclean
 	@Transactional
 	@Modifying
 	@Query(value="\r\n" + 
-			"	UPDATE loco.loco_uncleansed_data SET  loco_boogie_type=?2,\r\n" + 
+			"	UPDATE mdms_loco.loco_uncleansed_data SET  loco_boogie_type=?2,\r\n" + 
 			"	loco_commissioned_shed_id=?3,loco_control_type=?4,loco_commissioning_date=?5,loco_entry_date=?6,\r\n" + 
 			"	loco_manufacturer=?7,is_gps_enabled=?8,flag_type=?9,loco_traction_motor_type=?10,loco_axle_load=?11,loco_axle_load_unit=?12,loco_receiving_date=?13 ,status=?14, user_id=?15, txn_date=?16 WHERE loco_no=?1", nativeQuery=true)
 	void updateWithDieselLocoShedData( String locoBoogieType, String locoCommissionedShedId,

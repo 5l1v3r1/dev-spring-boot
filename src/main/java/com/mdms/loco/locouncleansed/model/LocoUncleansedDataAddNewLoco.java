@@ -25,14 +25,13 @@ public class LocoUncleansedDataAddNewLoco {
 	@Column(name = "loco_owning_division")
 	private String locoOwningDivision;
 
-	@Column(name = "loco_mfg_dt")
+	@Column(name = "loco_manufacturing_date")
 	private Date locoMfgDt;
 
 	@Column(name = "loco_owning_shed")
 	private String locoOwningShed;
 
-	@Column(name = "loco_recd_dt")
-	private Date locoRcvdDate;
+	
 
 	@Column(name = "loco_initial_cost")
 	private Long locoInitialCost;
@@ -52,10 +51,10 @@ public class LocoUncleansedDataAddNewLoco {
 	@Column(name = "loco_hauling_power")
 	private Long locoHaulingPower;
 
-	@Column(name = "loco_mfg_country")
+	@Column(name = "loco_manufacturing_country")
 	private String locoMfgCountry;
 
-	@Column(name = "loco_doc")
+	@Column(name = "loco_commissioning_date")
 	private Date locoDateOfCommision;
 
 	@Column(name = "loco_commissioning_shed_id")
@@ -167,13 +166,6 @@ public class LocoUncleansedDataAddNewLoco {
 		this.locoOwningShed = locoOwningShed;
 	}
 
-	public Date getLocoRcvdDate() {
-		return locoRcvdDate;
-	}
-
-	public void setLocoRcvdDate(Date locoRcvdDate) {
-		this.locoRcvdDate = locoRcvdDate;
-	}
 
 	public Long getLocoInitialCost() {
 		return locoInitialCost;

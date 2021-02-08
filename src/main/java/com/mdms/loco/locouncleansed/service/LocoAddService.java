@@ -3,13 +3,14 @@ package com.mdms.loco.locouncleansed.service;
 import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.mdms.loco.locouncleansed.model.LocoUncleansedData;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataAddNewLoco;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
 import com.mdms.loco.locouncleansed.repository.LocoUncleansedDataElectricRepository;
 import com.mdms.loco.locouncleansed.repository.LocoUncleansedDataRepository;
-
+@Service
 public class LocoAddService {
 @Autowired
 private LocoUncleansedDataRepository obj_dieselocoaddrepo;
@@ -21,7 +22,7 @@ private LocoUncleansedDataElectricRepository obj_eleclocoaddrepo;
 public String saveDieselBoardZonalData(LocoUncleansedDataAddNewLoco dieselLocoBoardZonal) {	
 	try {
 	String returnValue=null;	
-	String uid = dieselLocoBoardZonal.getUserid();	
+	
 	int locoNo = dieselLocoBoardZonal.getLocoNo();
 	String locoPermanentDomain = dieselLocoBoardZonal.getLocoPermanentDomain();
 	String locoType = dieselLocoBoardZonal.getLocoType();
@@ -38,6 +39,7 @@ String gaugeType=dieselLocoBoardZonal.getLocoGaugeType();
 Long locoHaulingPower=dieselLocoBoardZonal.getLocoHaulingPower();
 String locoMfgCountry=dieselLocoBoardZonal.getLocoMfgCountry();	
 	String status = dieselLocoBoardZonal.getStatus();
+	String uid = dieselLocoBoardZonal.getUserid();	
 	String recordstatus=dieselLocoBoardZonal.getRecordstatus();
 	Date locoEntryDt=dieselLocoBoardZonal.getLocoEntryDate();
 	Date locotxndate=dieselLocoBoardZonal.getTxndate();
@@ -46,7 +48,7 @@ String locoMfgCountry=dieselLocoBoardZonal.getLocoMfgCountry();
 obj_dieselocoaddrepo.saveDieselBoardZonalLocoData(locoNo, locoPermanentDomain,
 			locoType, locoOwningZone, locoOwningDivision, locoMfgDt, locOwningShed,locoManufacturer, locoLeasetype,
 			locoInitialCost, locoPOHCost,tractionCode,gaugeType,locoHaulingPower,locoMfgCountry,locoEntryDt,recordstatus,status,uid,locotxndate,remarks,locoflag);
- returnValue = "Reocrd saved as draft";
+ returnValue = "Record saved as draft";
 	return returnValue;
 	}
 	catch(Exception e){
@@ -152,7 +154,7 @@ public String updateElectricBoardZonalData(LocoUncleansedDataAddNewLoco updateel
 	String locoflag=updateelectricLocoBoardZonal.getLocoflag();	
 obj_dieselocoaddrepo.updateElectricBoardZonalRecord(locoPermanentDomain, locoType, locoOwningZone,
 		locoOwningDivision, locoMfgDt, locOwningShed, locoRecdDt,locoLeasetype, locoInitialCost, locoPOHCost, status,uid,locotxndate,locoNo);
- returnValue = "Reocrd Approved Sucessfully";
+ returnValue = "Record Approved Sucessfully";
 	return returnValue;
 	}
 	catch(Exception e){

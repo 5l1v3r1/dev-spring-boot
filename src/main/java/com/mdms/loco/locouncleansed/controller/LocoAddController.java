@@ -11,21 +11,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataAddNewLoco;
 import com.mdms.loco.locouncleansed.service.LocoAddService;
-
-
-
 @CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
-
 @RestController
 public class LocoAddController {
 	Logger logger=LoggerFactory.getLogger(LocoAddController.class);
 	
 	@Autowired
-	 private LocoAddService obj_newlocoservice;
+	private LocoAddService obj_newlocoservice;
 
 	@RequestMapping(method=RequestMethod.POST, value="/savedieselboardzonalloco")
 	public String savedslnewloco(@RequestBody LocoUncleansedDataAddNewLoco dieselLocoBoardZonal) throws JSONException, JsonMappingException, IOException 

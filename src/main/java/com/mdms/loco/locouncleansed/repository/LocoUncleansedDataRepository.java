@@ -98,4 +98,21 @@ public interface LocoUncleansedDataRepository extends CrudRepository<LocoUnclean
 			String locoOwningDivision, Date locoMfgDt, String locOwningShed, Date locoRecdDt,String locoLeasetype,
 			long locoInitialCost, long locoPOHCost, 
 			String status, String uid, Date locotxndate, int locoNo);
+	
+	
+	@Transactional
+	@Modifying
+	@Query(value="\r\n" + 
+			"	UPDATE loco.loco_uncleansed_data SET  loco_boogie_type=?2,\r\n" + 
+			"	loco_commissioned_shed_id=?3,loco_control_type=?4,loco_commissioning_date=?5,loco_entry_date=?6,\r\n" + 
+			"	loco_manufacturer=?7,is_gps_enabled=?8,flag_type=?9,loco_traction_motor_type=?10,loco_axle_load=?11,loco_axle_load_unit=?12,loco_receiving_date=?13 ,status=?14, user_id=?15, txn_date=?16 WHERE loco_no=?1", nativeQuery=true)
+	void updateWithDieselLocoShedData( String locoBoogieType, String locoCommissionedShedId,
+			String locoControlType, Date locoDateOfCommision, Date locoEntryDate, String locoManfacturer,
+			String isGpsEnabled, String flagtype, String locoTractionMotorType, String locoAxleLoad, String locoAxleLoadUnit, Date dtOfRcvd,String status,String userid,Date txndate,int locono);
+	
+	
+	
+	
+
+	
 }

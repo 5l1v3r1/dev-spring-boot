@@ -62,7 +62,7 @@ public class LocoUncleansedDataAddNewLoco {
 	private String locoCommissionedShedId;
 
 	@Column(name = "loco_axle_load")
-	private Long locoAxleLoad;
+	private String locoAxleLoad;
 
 	@Column(name = "loco_axle_load_unit")
 	private String locoAxleLoadUnit;
@@ -77,7 +77,7 @@ public class LocoUncleansedDataAddNewLoco {
 	private String locoControlType;
 
 	@Column(name = "is_gps_enabled")
-	private Boolean isGPSEnabled;
+	private String isGPSEnabled;
 
 	 @Column(name="flag_type")                  
 		private String flagType;
@@ -247,11 +247,15 @@ public class LocoUncleansedDataAddNewLoco {
 		this.locoCommissionedShedId = locoCommissionedShedId;
 	}
 
-	public Long getLocoAxleLoad() {
+	
+
+	
+
+	public String getLocoAxleLoad() {
 		return locoAxleLoad;
 	}
 
-	public void setLocoAxleLoad(Long locoAxleLoad) {
+	public void setLocoAxleLoad(String locoAxleLoad) {
 		this.locoAxleLoad = locoAxleLoad;
 	}
 
@@ -287,11 +291,13 @@ public class LocoUncleansedDataAddNewLoco {
 		this.locoControlType = locoControlType;
 	}
 
-	public Boolean getIsGPSEnabled() {
+	
+
+	public String getIsGPSEnabled() {
 		return isGPSEnabled;
 	}
 
-	public void setIsGPSEnabled(Boolean isGPSEnabled) {
+	public void setIsGPSEnabled(String isGPSEnabled) {
 		this.isGPSEnabled = isGPSEnabled;
 	}
 

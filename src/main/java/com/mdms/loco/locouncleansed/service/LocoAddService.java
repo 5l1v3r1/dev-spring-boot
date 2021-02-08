@@ -4,14 +4,19 @@ import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-
-
+import com.mdms.loco.locouncleansed.model.LocoUncleansedData;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataAddNewLoco;
+import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
+import com.mdms.loco.locouncleansed.repository.LocoUncleansedDataElectricRepository;
 import com.mdms.loco.locouncleansed.repository.LocoUncleansedDataRepository;
 
 public class LocoAddService {
 @Autowired
 private LocoUncleansedDataRepository obj_dieselocoaddrepo;
+
+@Autowired
+private LocoUncleansedDataElectricRepository obj_eleclocoaddrepo;
+
 	
 public String saveDieselBoardZonalData(LocoUncleansedDataAddNewLoco dieselLocoBoardZonal) {	
 	try {
@@ -175,4 +180,79 @@ public boolean checkloconoexist(int locono) {
 	    
 
 }
+
+
+// service use to update diesel  shed attribute for new add loco- for save as draft as well as forward to unapproved record 
+public String updateDieselShedData(LocoUncleansedDataAddNewLoco dieselLocoNewShedUser) {	
+	try {
+	String returnValue=null;	     	
+	String locoBoogieType = dieselLocoNewShedUser.getLocoBoogieType();
+	String locoCommissionedShedId = dieselLocoNewShedUser.getLocoCommissionedShedId();
+	String locoControlType = dieselLocoNewShedUser.getLocoControlType();
+	Date locoDateOfCommision = dieselLocoNewShedUser.getLocoDateOfCommision();
+	Date locoEntryDate = dieselLocoNewShedUser.getLocoEntryDate();
+	String locoManfacturer = dieselLocoNewShedUser.getLocoManufacturer();
+	String locoGPSEnableflag = dieselLocoNewShedUser.getIsGPSEnabled();
+	String flagtype=dieselLocoNewShedUser.getFlagType();
+	String locoTractionMotorType = dieselLocoNewShedUser.getLocoTractionMotorType();
+	String axleload = dieselLocoNewShedUser.getLocoAxleLoad();	
+	String axleloadunit=dieselLocoNewShedUser.getLocoAxleLoadUnit();
+	Date locorecddt=dieselLocoNewShedUser.getLoco_receiving_date();
+	String status = dieselLocoNewShedUser.getStatus();	
+	String uid=dieselLocoNewShedUser.getUserid();
+	Date locotxndate=dieselLocoNewShedUser.getTxndate();	
+	int locoNo = dieselLocoNewShedUser.getLocoNo();	
+obj_dieselocoaddrepo.updateWithDieselLocoShedData( locoBoogieType,
+locoCommissionedShedId, locoControlType,locoDateOfCommision,locoEntryDate,locoManfacturer,
+locoGPSEnableflag, flagtype,locoTractionMotorType ,axleload,axleloadunit,locorecddt,
+		status,uid,locotxndate,locoNo);
+ returnValue = "Record Saved Sucessfully";
+	return returnValue;
+	}
+	catch(Exception e){
+		
+		System.out.println(e);
+		return "Failed to Saved";
+	}
+	
+}
+
+//service use to update electric  shed attribute for new add loco- for save as draft as well as forward to unapproved record 
+public String updateElectricShedData(LocoUncleansedDataElectric electricLocoNewShedUser) {	
+	try {
+	String returnValue=null;
+	String locoAuxiliaryOutput = electricLocoNewShedUser.getElec_locoAuxiliaryOutput();
+	String locoBoogieType = electricLocoNewShedUser.getElec_locoBoogieType();
+	String locoBrakeSubtype = electricLocoNewShedUser.getElec_locoBrakeSubtype();
+	String locoBrakeType = electricLocoNewShedUser.getElec_locoBrakeType();
+	String locoCabac = electricLocoNewShedUser.getElec_locoCabac();
+	String locoCommissionedShedId = electricLocoNewShedUser.getElec_locoOwningShed();
+	String locoControlType = electricLocoNewShedUser.getElec_locoControlType();
+	Date locoDateOfCommision = electricLocoNewShedUser.getElec_locoDateOfCommision();
+	Date locoEntryDate = electricLocoNewShedUser.getElec_locoEntryDate();
+	String locoHotelLoad = electricLocoNewShedUser.getElec_locoHotelLoad();	
+	String locoManfacturer = electricLocoNewShedUser.getElec_locoManfacturer();
+	String locoGPSEnableflag = electricLocoNewShedUser.getIsGPSEnabled();
+	String locoTractionMotorType = electricLocoNewShedUser.getElec_locoTractionMotorType();	
+
+	String status = electricLocoNewShedUser.getElec_Status();	
+	String uid=electricLocoNewShedUser.getUserid();
+	Date locotxndate=electricLocoNewShedUser.getTxndate();	
+	int locoNo = electricLocoNewShedUser.getElec_locoNo();
+	obj_eleclocoaddrepo.updateWithElectricLocoShedData( locoAuxiliaryOutput, locoBoogieType,
+		locoBrakeSubtype, locoBrakeType, locoCabac, locoCommissionedShedId, locoControlType,
+		locoDateOfCommision, locoEntryDate, locoHotelLoad,
+		locoManfacturer, locoGPSEnableflag, locoTractionMotorType,status,uid,locotxndate,locoNo);
+ returnValue = "Record Save Sucessfully";
+	return returnValue;
+	}
+	catch(Exception e){
+		
+		System.out.println(e);
+		return "Failed to Save";
+	}
+	
+}
+
+
 }

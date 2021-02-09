@@ -134,7 +134,7 @@ public class LocoEditForwardController {
 						return obj_uncleasedservice.getAllMotor();
 					}
 					
-					@RequestMapping(method=RequestMethod.POST, value="/getzoneService")
+					@RequestMapping(method=RequestMethod.GET, value="/getzoneService")
 					public String getElectricZones(@RequestParam("zone") String zone) {
 						return obj_uncleasedservice.getZone(zone);
 				}

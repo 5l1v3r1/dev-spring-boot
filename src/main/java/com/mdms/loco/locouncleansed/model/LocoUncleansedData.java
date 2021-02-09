@@ -70,13 +70,11 @@ public class LocoUncleansedData {
 	 private String dRemarks; 
 	 
 	 @Column(name="is_gps_enabled")                  
-
 	 private String isGPSEnabledDiesel; 
 
 	 
 	 @Column(name="flag_type")                  
 		private String flagTypeDiesel; 
-
 	
 	 @Column(name="status")                  
 	 private String vStatus; 

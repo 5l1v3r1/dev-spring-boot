@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity()
 @Table(name="loco_uncleansed_data", schema="mdms_loco")
 public class LocoUncleansedDataAddNewLoco {
@@ -24,7 +26,8 @@ public class LocoUncleansedDataAddNewLoco {
 
 	@Column(name = "loco_owning_division")
 	private String locoOwningDivision;
-
+	
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd",timezone = "IST") 
 	@Column(name = "loco_manufacturing_date")
 	private Date locoMfgDt;
 
@@ -81,6 +84,8 @@ public class LocoUncleansedDataAddNewLoco {
 	 @Column(name="flag_type")                  
 		private String flagType;
 	
+	 
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd",timezone = "IST")
 	@Column(name = "loco_entry_date")
 	private Date locoEntryDate;
 
@@ -90,6 +95,7 @@ public class LocoUncleansedDataAddNewLoco {
 	 @Column(name="loco_flag")                  
 	 private String locoflag; 
 	 
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd",timezone = "IST")
 	 @Column(name="txn_date")                  
 	 private Date txndate;
 	 
@@ -105,7 +111,8 @@ public class LocoUncleansedDataAddNewLoco {
 	 
 	 @Column(name="user_id")                  
 	 private String userid;
-
+	 
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd",timezone = "IST") 
 	 @Column(name="loco_receiving_date")                  
 		private Date loco_receiving_date;
 

@@ -1,6 +1,7 @@
 package com.mdms.loco.locouncleansed.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.json.JSONException;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataAddNewLoco;
+import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
 import com.mdms.loco.locouncleansed.service.LocoAddService;
 @CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
 @RestController
@@ -67,4 +69,28 @@ public class LocoAddController {
 	return flag;
 	}   
 
+	@RequestMapping(method=RequestMethod.POST, value="/updateelectricshedloco")
+	public String updateelecbyShed(@RequestBody LocoUncleansedDataElectric updateElectricLocoShedUser) throws JSONException, JsonMappingException, IOException 
+	{
+		logger.info("----------/updateElectricShedNewLocoAddtion",updateElectricLocoShedUser);
+		System.out.println(updateElectricLocoShedUser);
+		return obj_newlocoservice.updateElectricShedData(updateElectricLocoShedUser);
+			}
+	
+	@RequestMapping(method=RequestMethod.POST, value="/updatedieselshedloco")
+	public String updateelecbyShed(@RequestBody LocoUncleansedDataAddNewLoco updateDieselLocoShedUser) throws JSONException, JsonMappingException, IOException 
+	{
+		logger.info("----------/updateDieselShedNewLocoAddtion",updateDieselLocoShedUser);
+		System.out.println(updateDieselLocoShedUser);
+		return obj_newlocoservice.updateDieselShedData(updateDieselLocoShedUser);
+			}
+	
+	
+	 @RequestMapping(method=RequestMethod.POST, value = "/zonalUnapprovedLoco")
+ 	public List<LocoUncleansedDataElectric> getZonalUnapprovedLoco(@RequestBody LocoUncleansedDataElectric obj_zonalunapproved){
+ 		System.out.println("zoneid"+ obj_zonalunapproved.getElec_locoOwningShed());
+ 		return obj_newlocoservice.getUnapprovedZonalLocos(obj_zonalunapproved);
+			
+ 	}
+ 	
 }

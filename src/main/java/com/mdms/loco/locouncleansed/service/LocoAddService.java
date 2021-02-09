@@ -1,6 +1,8 @@
 package com.mdms.loco.locouncleansed.service;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,8 @@ public class LocoAddService {
 @Autowired
 private LocoUncleansedDataRepository obj_dieselocoaddrepo;
 
+@Autowired
+private LocoUncleansedDataElectricRepository obj_electriclocorepo;
 @Autowired
 private LocoUncleansedDataElectricRepository obj_eleclocoaddrepo;
 
@@ -256,5 +260,16 @@ public String updateElectricShedData(LocoUncleansedDataElectric electricLocoNewS
 	
 }
 
-
+//fetch zonal user  new loco unapproved record 
+public List<LocoUncleansedDataElectric> getUnapprovedZonalLocos(LocoUncleansedDataElectric obj_zonalunapproved) {
+//		// TODO Auto-generated method stub
+		System.out.println("getzonalunapprovedocos");
+		String zoneid=obj_zonalunapproved.getElec_locoOwningZone();
+		obj_electriclocorepo.getUnapprovedZonalBoardLoco(zoneid);		
+		List<LocoUncleansedDataElectric> uncleaseLoco= new ArrayList<>();
+		obj_electriclocorepo.getUnapprovedZonalBoardLoco(zoneid)
+		.forEach(uncleaseLoco::add);
+		System.out.println(" End getzonalunapprovedocos");
+		return obj_electriclocorepo.getUnapprovedLoco(zoneid);
+	}
 }

@@ -64,7 +64,7 @@ public class LocoAddController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="/checkloconoexist")
 	public boolean checklocono(@RequestBody LocoUncleansedDataAddNewLoco objlocono) {
-		int locono=objlocono.getLocoNo();
+		int locono=objlocono.getLoco_no();
 	boolean flag= obj_newlocoservice.checkloconoexist(locono);
 	return flag;
 	}   

@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import com.mdms.loco.locouncleansed.model.LocoApprovedData;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedData;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataAddNewLoco;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
@@ -19,8 +21,7 @@ private LocoUncleansedDataRepository obj_dieselocoaddrepo;
 
 @Autowired
 private LocoUncleansedDataElectricRepository obj_electriclocorepo;
-@Autowired
-private LocoUncleansedDataElectricRepository obj_eleclocoaddrepo;
+
 
 	
 public String saveDieselBoardZonalData(LocoUncleansedDataAddNewLoco dieselLocoBoardZonal) {	
@@ -242,7 +243,7 @@ public String updateElectricShedData(LocoUncleansedDataElectric electricLocoNewS
 	String uid=electricLocoNewShedUser.getUserid();
 	Date locotxndate=electricLocoNewShedUser.getTxndate();	
 	int locoNo = electricLocoNewShedUser.getElec_locoNo();
-	obj_eleclocoaddrepo.updateWithElectricLocoShedData( locoAuxiliaryOutput, locoBoogieType,
+	obj_electriclocorepo.updateWithElectricLocoShedData( locoAuxiliaryOutput, locoBoogieType,
 		locoBrakeSubtype, locoBrakeType, locoCabac, locoCommissionedShedId, locoControlType,
 		locoDateOfCommision, locoEntryDate, locoHotelLoad,
 		locoManfacturer, locoGPSEnableflag, locoTractionMotorType,status,uid,locotxndate,locoNo);
@@ -263,10 +264,67 @@ public List<LocoUncleansedDataElectric> getUnapprovedZonalLocos(LocoUncleansedDa
 		System.out.println("getzonalunapprovedocos");
 		String zoneid=obj_zonalunapproved.getElec_locoOwningZone();
 		obj_electriclocorepo.getUnapprovedZonalBoardLoco(zoneid);		
-		List<LocoUncleansedDataElectric> uncleaseLoco= new ArrayList<>();
+		List<LocoUncleansedDataElectric> zonalunapprovedLoco= new ArrayList<>();
 		obj_electriclocorepo.getUnapprovedZonalBoardLoco(zoneid)
-		.forEach(uncleaseLoco::add);
+		.forEach(zonalunapprovedLoco::add);
 		System.out.println(" End getzonalunapprovedocos");
-		return obj_electriclocorepo.getUnapprovedLoco(zoneid);
+		return obj_electriclocorepo.getUnapprovedZonalBoardLoco(zoneid);
 	}
+
+public String savegoldenrecord(LocoUncleansedDataAddNewLoco objnewloco) {
+	try {
+	
+
+		int locoNo = objnewloco.getLoco_no();
+		String locoType = objnewloco.getLoco_type();		
+		String locoOwningZone = objnewloco.getLoco_owning_zone();
+		String locoOwningDivision = objnewloco.getLoco_owning_division();
+		System.out.println(objnewloco.getLoco_manufacturing_date());
+		String locOwningShed = objnewloco.getLoco_owning_shed();
+        String locoPermanentDomain=objnewloco.getLoco_permanent_domain();
+		Long locoInitialCost=objnewloco.getLoco_initial_cost();
+		Long locoPOHCost=objnewloco.getLoco_poh_cost();
+		String leaseType=objnewloco.getLoco_lease_type();
+		Date dateOfMfg=objnewloco.getLoco_manufacturing_date();
+		Date dateOfRcng=objnewloco.getLoco_receiving_date();
+String locoAuxiliaryOutput = objnewloco.getLoco_auxilary();
+		String locoBoogieType = objnewloco.getLoco_boogie_type();
+		String locoBrakeSubtype = objnewloco.getLoco_brake_type();
+		String locoBrakeType = objnewloco.getLoco_brake_sub_type();
+		String locoCabac = objnewloco.getLoco_cabin_ac();
+		String locoCommissionedShedId = objnewloco.getLoco_commissioning_shed_id();
+		String locoControlType = objnewloco.getLoco_control_type();
+		Date locoDateOfCommision = objnewloco.getLoco_commissioning_date();
+		Date locoEntryDate = objnewloco.getLoco_entry_date();
+		String locoHotelLoad = objnewloco.getElec_locoHotelLoad();	
+		String locoManfacturer = objnewloco.getLoco_manufacturer();
+		String lsGPSEnable = objnewloco.getIs_gps_enabled();
+		String flagtype=objnewloco.getFlag_type();
+		String locoTractionMotorType = objnewloco.getLoco_traction_motor_type();
+		String status = objnewloco.getStatus();
+		String userid=objnewloco.getUser_id();
+		Date txndate=objnewloco.getTxn_date();
+		String remarks=objnewloco.getRemarks();
+		String locoflag=objnewloco.getLoco_flag();
+		String recordstatus=objnewloco.getRecord_status();
+		String returnValue=null;
+		obj_electriclocorepo.insertNewLocoShedData(locoNo,locoType,locoOwningZone,locoOwningDivision,locOwningShed,locoPermanentDomain,
+				locoInitialCost,locoPOHCost,locoAuxiliaryOutput,leaseType,dateOfMfg,dateOfRcng,locoBoogieType,
+				locoBrakeSubtype, locoBrakeType, locoCabac, locoCommissionedShedId, locoControlType,
+				locoDateOfCommision, locoEntryDate, locoHotelLoad,
+				locoManfacturer,lsGPSEnable,flagtype, locoTractionMotorType,status,userid,txndate,remarks,locoflag,recordstatus);
+	
+
+		
+		returnValue="Record saved as Golden";
+		return returnValue;
+	
+	}
+	catch (Exception E) {
+		System.out.println(E);
+		return "Failed to Save Golden Records";
+	}
+	
+	}
+
 }

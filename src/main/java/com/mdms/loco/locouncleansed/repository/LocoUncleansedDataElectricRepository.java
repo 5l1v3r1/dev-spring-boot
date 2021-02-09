@@ -13,10 +13,10 @@ import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
 
 public interface LocoUncleansedDataElectricRepository extends CrudRepository <LocoUncleansedDataElectric,Long> {
 
-	@Query(value="SELECT * FROM  mdms_loco.loco_uncleansed_data WHERE loco_no=?1 AND status='D' OR Status='R' ",nativeQuery=true)
+	@Query(value="SELECT * FROM  mdms_loco.loco_uncleansed_data WHERE loco_no=?1 AND record_status='O' AND status='D' OR Status='R' ",nativeQuery=true)
 	List<LocoUncleansedDataElectric> getDraftLoco(int elno);
 	
-	@Query(value="SELECT * FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_shed=?1 AND status='U'",nativeQuery=true)
+	@Query(value="SELECT * FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_shed=?1 AND status='U' AND record_status='O'",nativeQuery=true)
 	List<LocoUncleansedDataElectric> getUnapprovedLoco(String eshedid);
 	
 	@Query(value="SELECT * FROM  mdms_loco.loco_uncleansed_data WHERE  status='D' OR status='U'",nativeQuery=true)
@@ -33,7 +33,6 @@ public interface LocoUncleansedDataElectricRepository extends CrudRepository <Lo
 			+ " loco_brake_type=?13, loco_brake_sub_type=?14, loco_cabin_ac=?15, "
 			+ "loco_entry_date=?16, is_gps_enabled=?17, status=?18,"
 			+ "remarks=?19, loco_hotel_load=?20, flag_type=?21 WHERE loco_no=?22",nativeQuery=true)
-
 	int updateEDraftRecord(String var1,String var2,String var3,String var4,Date var5,Date var6,String var7,String var8,String var9,String var10,  String var11,String var12,String var13,String var14,String var15,Date var16,String var17,String var18,String var19,String var20,String var21, int locono);	
  	
 
@@ -53,4 +52,8 @@ public interface LocoUncleansedDataElectricRepository extends CrudRepository <Lo
 			String locoBrakeType, String locoCabac, String locoCommissionedShedId, String locoControlType,
 			Date locoDateOfCommision, Date locoEntryDate, String locoHotelLoad,String locoManfacturer,String isGPSEnabled,String flagtype,
 			String status,String userid,Date txndate,int locono);
+	
+	
+	@Query(value="SELECT * FROM  mdms_loco.loco_uncleansed_data WHERE elec_locoOwningZone=?1 AND status='ZU' AND record_status='N'",nativeQuery=true)
+	List<LocoUncleansedDataElectric> getUnapprovedZonalBoardLoco(String locozone);
 }

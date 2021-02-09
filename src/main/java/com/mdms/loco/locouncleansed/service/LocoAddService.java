@@ -1,6 +1,8 @@
 package com.mdms.loco.locouncleansed.service;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ public class LocoAddService {
 private LocoUncleansedDataRepository obj_dieselocoaddrepo;
 
 @Autowired
+private LocoUncleansedDataElectricRepository obj_electriclocorepo;
+@Autowired
 private LocoUncleansedDataElectricRepository obj_eleclocoaddrepo;
 
 	
@@ -23,32 +27,32 @@ public String saveDieselBoardZonalData(LocoUncleansedDataAddNewLoco dieselLocoBo
 	try {
 	String returnValue=null;	
 	
-	int locoNo = dieselLocoBoardZonal.getLocoNo();
-	String locoPermanentDomain = dieselLocoBoardZonal.getLocoPermanentDomain();
-	String locoType = dieselLocoBoardZonal.getLocoType();
-	String locoOwningZone = dieselLocoBoardZonal.getLocoOwningZone();
-	String locoOwningDivision = dieselLocoBoardZonal.getLocoOwningDivision();
-	Date locoMfgDt=dieselLocoBoardZonal.getLocoMfgDt();
-	String locOwningShed = dieselLocoBoardZonal.getLocoOwningShed();
-	String locoManufacturer=dieselLocoBoardZonal.getLocoManufacturer();
-	String locoLeasetype = dieselLocoBoardZonal.getLocoLeaseType();
-	long locoInitialCost = dieselLocoBoardZonal.getLocoInitialCost();
-	long locoPOHCost = dieselLocoBoardZonal.getLocoPOHCost();
-String tractionCode=dieselLocoBoardZonal.getLocoTractionCode();
-String gaugeType=dieselLocoBoardZonal.getLocoGaugeType();
-Long locoHaulingPower=dieselLocoBoardZonal.getLocoHaulingPower();
-String locoMfgCountry=dieselLocoBoardZonal.getLocoMfgCountry();	
+	int locoNo = dieselLocoBoardZonal.getLoco_no();
+	String locoPermanentDomain = dieselLocoBoardZonal.getLoco_permanent_domain();
+	String locoType = dieselLocoBoardZonal.getLoco_type();
+	String locoOwningZone = dieselLocoBoardZonal.getLoco_owning_zone();
+	String locoOwningDivision = dieselLocoBoardZonal.getLoco_owning_division();
+	Date locoMfgDt=dieselLocoBoardZonal.getLoco_manufacturing_date();
+	String locOwningShed = dieselLocoBoardZonal.getLoco_owning_shed();
+	String locoManufacturer=dieselLocoBoardZonal.getLoco_manufacturer();
+	String locoLeasetype = dieselLocoBoardZonal.getLoco_lease_type();
+	long locoInitialCost = dieselLocoBoardZonal.getLoco_initial_cost();
+	long locoPOHCost = dieselLocoBoardZonal.getLoco_poh_cost();
+String tractionCode=dieselLocoBoardZonal.getLoco_flag();
+String gaugeType=dieselLocoBoardZonal.getGauge_type();
+Long locoHaulingPower=dieselLocoBoardZonal.getLoco_hauling_power();
+String locoMfgCountry=dieselLocoBoardZonal.getLoco_manufacturing_country();
 	String status = dieselLocoBoardZonal.getStatus();
-	String uid = dieselLocoBoardZonal.getUserid();	
-	String recordstatus=dieselLocoBoardZonal.getRecordstatus();
-	Date locoEntryDt=dieselLocoBoardZonal.getLocoEntryDate();
-	Date locotxndate=dieselLocoBoardZonal.getTxndate();
+	String uid = dieselLocoBoardZonal.getUser_id();
+	String recordstatus=dieselLocoBoardZonal.getRecord_status();
+	Date locoEntryDt=dieselLocoBoardZonal.getLoco_entry_date();
+	Date locotxndate=dieselLocoBoardZonal.getTxn_date();
 	String remarks=dieselLocoBoardZonal.getRemarks();
-	String locoflag=dieselLocoBoardZonal.getLocoflag();	
+	String locoflag=dieselLocoBoardZonal.getLoco_flag();
 obj_dieselocoaddrepo.saveDieselBoardZonalLocoData(locoNo, locoPermanentDomain,
 			locoType, locoOwningZone, locoOwningDivision, locoMfgDt, locOwningShed,locoManufacturer, locoLeasetype,
 			locoInitialCost, locoPOHCost,tractionCode,gaugeType,locoHaulingPower,locoMfgCountry,locoEntryDt,recordstatus,status,uid,locotxndate,remarks,locoflag);
- returnValue = "Record saved as draft";
+ returnValue = "Record saved";
 	return returnValue;
 	}
 	catch(Exception e){
@@ -62,24 +66,24 @@ obj_dieselocoaddrepo.saveDieselBoardZonalLocoData(locoNo, locoPermanentDomain,
 public String updateDieselBoardZonalData(LocoUncleansedDataAddNewLoco dieselLocoBoardZonal) {	
 	try {
 	String returnValue=null;
-	String locoPermanentDomain = dieselLocoBoardZonal.getLocoPermanentDomain();
-	String locoType = dieselLocoBoardZonal.getLocoType();
-	String locoOwningZone = dieselLocoBoardZonal.getLocoOwningZone();
-	String locoOwningDivision = dieselLocoBoardZonal.getLocoOwningDivision();
-	Date locoMfgDt=dieselLocoBoardZonal.getLocoMfgDt();
-	String locOwningShed = dieselLocoBoardZonal.getLocoOwningShed();
-	String locoManufacturer=dieselLocoBoardZonal.getLocoManufacturer();
-	String locoLeasetype = dieselLocoBoardZonal.getLocoLeaseType();
-	long locoInitialCost = dieselLocoBoardZonal.getLocoInitialCost();
-	long locoPOHCost = dieselLocoBoardZonal.getLocoPOHCost();
-String tractionCode=dieselLocoBoardZonal.getLocoTractionCode();
-String gaugeType=dieselLocoBoardZonal.getLocoGaugeType();
-Long locoHaulingPower=dieselLocoBoardZonal.getLocoHaulingPower();
-String locoMfgCountry=dieselLocoBoardZonal.getLocoMfgCountry();	
-int locoNo = dieselLocoBoardZonal.getLocoNo();
+	String locoPermanentDomain = dieselLocoBoardZonal.getLoco_permanent_domain();
+	String locoType = dieselLocoBoardZonal.getLoco_type();
+	String locoOwningZone = dieselLocoBoardZonal.getLoco_owning_zone();
+	String locoOwningDivision = dieselLocoBoardZonal.getLoco_owning_division();
+	Date locoMfgDt=dieselLocoBoardZonal.getLoco_manufacturing_date();
+	String locOwningShed = dieselLocoBoardZonal.getLoco_owning_shed();
+	String locoManufacturer=dieselLocoBoardZonal.getLoco_manufacturer();
+	String locoLeasetype = dieselLocoBoardZonal.getLoco_lease_type();
+	long locoInitialCost = dieselLocoBoardZonal.getLoco_initial_cost();
+	long locoPOHCost = dieselLocoBoardZonal.getLoco_poh_cost();
+String tractionCode=dieselLocoBoardZonal.getLoco_traction_code();
+String gaugeType=dieselLocoBoardZonal.getGauge_type();
+Long locoHaulingPower=dieselLocoBoardZonal.getLoco_hauling_power();
+String locoMfgCountry=dieselLocoBoardZonal.getLoco_manufacturing_country();
+int locoNo = dieselLocoBoardZonal.getLoco_no();
 	String status = dieselLocoBoardZonal.getStatus();	
-	String uid=dieselLocoBoardZonal.getUserid();
-	Date locotxndate=dieselLocoBoardZonal.getTxndate();	
+	String uid=dieselLocoBoardZonal.getUser_id();
+	Date locotxndate=dieselLocoBoardZonal.getTxn_date();	
 obj_dieselocoaddrepo.updateDieselBoardZonalRecord( locoPermanentDomain,
 			locoType, locoOwningZone, locoOwningDivision, locoMfgDt, locOwningShed,locoManufacturer, locoLeasetype,
 			locoInitialCost, locoPOHCost,tractionCode,gaugeType,locoHaulingPower,locoMfgCountry,status,uid,locotxndate,locoNo);
@@ -97,26 +101,27 @@ obj_dieselocoaddrepo.updateDieselBoardZonalRecord( locoPermanentDomain,
 public String saveElectricBoardZonalData(LocoUncleansedDataAddNewLoco electricLocoBoardZonal) {	
 	try {
 	String returnValue=null;	
-	String uid = electricLocoBoardZonal.getUserid();	
-	int locoNo = electricLocoBoardZonal.getLocoNo();
-	String locoPermanentDomain = electricLocoBoardZonal.getLocoPermanentDomain();
-	String locoType = electricLocoBoardZonal.getLocoType();
-	String locoOwningZone = electricLocoBoardZonal.getLocoOwningZone();
-	String locoOwningDivision = electricLocoBoardZonal.getLocoOwningDivision();
-	Date locoMfgDt=electricLocoBoardZonal.getLocoMfgDt();
-	String locOwningShed = electricLocoBoardZonal.getLocoOwningShed();
-	String locoManufacturer=electricLocoBoardZonal.getLocoManufacturer();
-	String locoLeasetype = electricLocoBoardZonal.getLocoLeaseType();
-	long locoInitialCost = electricLocoBoardZonal.getLocoInitialCost();
-	long locoPOHCost = electricLocoBoardZonal.getLocoPOHCost();
+	
+	int locoNo = electricLocoBoardZonal.getLoco_no();
+	String locoPermanentDomain = electricLocoBoardZonal.getLoco_permanent_domain();
+	String locoType = electricLocoBoardZonal.getLoco_type();
+	String locoOwningZone = electricLocoBoardZonal.getLoco_owning_zone();
+	String locoOwningDivision = electricLocoBoardZonal.getLoco_owning_division();
+	Date locoMfgDt=electricLocoBoardZonal.getLoco_manufacturing_date();
+	String locOwningShed = electricLocoBoardZonal.getLoco_owning_shed();
+	String locoManufacturer=electricLocoBoardZonal.getLoco_manufacturer();
+	String locoLeasetype = electricLocoBoardZonal.getLoco_lease_type();
+	long locoInitialCost = electricLocoBoardZonal.getLoco_initial_cost();
+	long locoPOHCost = electricLocoBoardZonal.getLoco_poh_cost();
 	Date locoRecdDt=electricLocoBoardZonal.getLoco_receiving_date();
 
 	String status = electricLocoBoardZonal.getStatus();
-	String recordstatus=electricLocoBoardZonal.getRecordstatus();
-	Date locoEntryDt=electricLocoBoardZonal.getLocoEntryDate();
-	Date locotxndate=electricLocoBoardZonal.getTxndate();
+	String uid = electricLocoBoardZonal.getUser_id();	
+	String recordstatus=electricLocoBoardZonal.getRecord_status();
+	Date locoEntryDt=electricLocoBoardZonal.getLoco_entry_date();
+	Date locotxndate=electricLocoBoardZonal.getTxn_date();
 	String remarks=electricLocoBoardZonal.getRemarks();
-	String locoflag=electricLocoBoardZonal.getLocoflag();	
+	String locoflag=electricLocoBoardZonal.getLoco_flag();	
 obj_dieselocoaddrepo.saveElectricBoardZonalData(locoNo, locoPermanentDomain, locoType, locoOwningZone,
 		locoOwningDivision, locoMfgDt, locOwningShed, locoLeasetype, locoInitialCost, locoPOHCost, locoRecdDt,locoEntryDt,recordstatus,status,uid,locotxndate,remarks,locoflag);
  returnValue = "Reocrd Saved Sucessfully";
@@ -132,26 +137,22 @@ obj_dieselocoaddrepo.saveElectricBoardZonalData(locoNo, locoPermanentDomain, loc
 
 public String updateElectricBoardZonalData(LocoUncleansedDataAddNewLoco updateelectricLocoBoardZonal) {	
 	try {
-	String returnValue=null;	
-	String uid = updateelectricLocoBoardZonal.getUserid();	
-	int locoNo = updateelectricLocoBoardZonal.getLocoNo();
-	String locoPermanentDomain = updateelectricLocoBoardZonal.getLocoPermanentDomain();
-	String locoType = updateelectricLocoBoardZonal.getLocoType();
-	String locoOwningZone = updateelectricLocoBoardZonal.getLocoOwningZone();
-	String locoOwningDivision = updateelectricLocoBoardZonal.getLocoOwningDivision();
-	Date locoMfgDt=updateelectricLocoBoardZonal.getLocoMfgDt();
-	String locOwningShed = updateelectricLocoBoardZonal.getLocoOwningShed();
-	String locoManufacturer=updateelectricLocoBoardZonal.getLocoManufacturer();
-	String locoLeasetype = updateelectricLocoBoardZonal.getLocoLeaseType();
-	long locoInitialCost = updateelectricLocoBoardZonal.getLocoInitialCost();
-	long locoPOHCost = updateelectricLocoBoardZonal.getLocoPOHCost();
+	String returnValue=null;
+	String locoPermanentDomain = updateelectricLocoBoardZonal.getLoco_permanent_domain();
+	String locoType = updateelectricLocoBoardZonal.getLoco_type();
+	String locoOwningZone = updateelectricLocoBoardZonal.getLoco_owning_zone();
+	String locoOwningDivision = updateelectricLocoBoardZonal.getLoco_owning_division();
+	Date locoMfgDt=updateelectricLocoBoardZonal.getLoco_manufacturing_date();
+	String locOwningShed = updateelectricLocoBoardZonal.getLoco_owning_shed();
+	String locoManufacturer=updateelectricLocoBoardZonal.getLoco_manufacturer();
+	String locoLeasetype = updateelectricLocoBoardZonal.getLoco_lease_type();
+	long locoInitialCost = updateelectricLocoBoardZonal.getLoco_initial_cost();
+	long locoPOHCost = updateelectricLocoBoardZonal.getLoco_poh_cost();
 	Date locoRecdDt=updateelectricLocoBoardZonal.getLoco_receiving_date();
 	String status = updateelectricLocoBoardZonal.getStatus();
-	String recordstatus=updateelectricLocoBoardZonal.getRecordstatus();
-	Date locoEntryDt=updateelectricLocoBoardZonal.getLocoEntryDate();
-	Date locotxndate=updateelectricLocoBoardZonal.getTxndate();
-	String remarks=updateelectricLocoBoardZonal.getRemarks();
-	String locoflag=updateelectricLocoBoardZonal.getLocoflag();	
+	String uid = updateelectricLocoBoardZonal.getUser_id();		
+	Date locotxndate=updateelectricLocoBoardZonal.getTxn_date();
+	int locoNo = updateelectricLocoBoardZonal.getLoco_no();		
 obj_dieselocoaddrepo.updateElectricBoardZonalRecord(locoPermanentDomain, locoType, locoOwningZone,
 		locoOwningDivision, locoMfgDt, locOwningShed, locoRecdDt,locoLeasetype, locoInitialCost, locoPOHCost, status,uid,locotxndate,locoNo);
  returnValue = "Record Approved Sucessfully";
@@ -188,22 +189,22 @@ public boolean checkloconoexist(int locono) {
 public String updateDieselShedData(LocoUncleansedDataAddNewLoco dieselLocoNewShedUser) {	
 	try {
 	String returnValue=null;	     	
-	String locoBoogieType = dieselLocoNewShedUser.getLocoBoogieType();
-	String locoCommissionedShedId = dieselLocoNewShedUser.getLocoCommissionedShedId();
-	String locoControlType = dieselLocoNewShedUser.getLocoControlType();
-	Date locoDateOfCommision = dieselLocoNewShedUser.getLocoDateOfCommision();
-	Date locoEntryDate = dieselLocoNewShedUser.getLocoEntryDate();
-	String locoManfacturer = dieselLocoNewShedUser.getLocoManufacturer();
-	String locoGPSEnableflag = dieselLocoNewShedUser.getIsGPSEnabled();
-	String flagtype=dieselLocoNewShedUser.getFlagType();
-	String locoTractionMotorType = dieselLocoNewShedUser.getLocoTractionMotorType();
-	String axleload = dieselLocoNewShedUser.getLocoAxleLoad();	
-	String axleloadunit=dieselLocoNewShedUser.getLocoAxleLoadUnit();
+	String locoBoogieType = dieselLocoNewShedUser.getLoco_boogie_type();
+	String locoCommissionedShedId = dieselLocoNewShedUser.getLoco_commissioning_shed_id();
+	String locoControlType = dieselLocoNewShedUser.getLoco_control_type();
+	Date locoDateOfCommision = dieselLocoNewShedUser.getLoco_commissioning_date();
+	Date locoEntryDate = dieselLocoNewShedUser.getLoco_entry_date();
+	String locoManfacturer = dieselLocoNewShedUser.getLoco_manufacturer();
+	String locoGPSEnableflag = dieselLocoNewShedUser.getIs_gps_enabled();
+	String flagtype=dieselLocoNewShedUser.getFlag_type();
+	String locoTractionMotorType = dieselLocoNewShedUser.getLoco_traction_motor_type();
+	String axleload = dieselLocoNewShedUser.getLoco_axle_load();
+	String axleloadunit=dieselLocoNewShedUser.getLoco_axle_load_unit();
 	Date locorecddt=dieselLocoNewShedUser.getLoco_receiving_date();
 	String status = dieselLocoNewShedUser.getStatus();	
-	String uid=dieselLocoNewShedUser.getUserid();
-	Date locotxndate=dieselLocoNewShedUser.getTxndate();	
-	int locoNo = dieselLocoNewShedUser.getLocoNo();	
+	String uid=dieselLocoNewShedUser.getUser_id();
+	Date locotxndate=dieselLocoNewShedUser.getTxn_date();	
+	int locoNo = dieselLocoNewShedUser.getLoco_no();
 obj_dieselocoaddrepo.updateWithDieselLocoShedData( locoBoogieType,
 locoCommissionedShedId, locoControlType,locoDateOfCommision,locoEntryDate,locoManfacturer,
 locoGPSEnableflag, flagtype,locoTractionMotorType ,axleload,axleloadunit,locorecddt,
@@ -256,5 +257,16 @@ public String updateElectricShedData(LocoUncleansedDataElectric electricLocoNewS
 	
 }
 
-
+//fetch zonal user  new loco unapproved record 
+public List<LocoUncleansedDataElectric> getUnapprovedZonalLocos(LocoUncleansedDataElectric obj_zonalunapproved) {
+//		// TODO Auto-generated method stub
+		System.out.println("getzonalunapprovedocos");
+		String zoneid=obj_zonalunapproved.getElec_locoOwningZone();
+		obj_electriclocorepo.getUnapprovedZonalBoardLoco(zoneid);		
+		List<LocoUncleansedDataElectric> uncleaseLoco= new ArrayList<>();
+		obj_electriclocorepo.getUnapprovedZonalBoardLoco(zoneid)
+		.forEach(uncleaseLoco::add);
+		System.out.println(" End getzonalunapprovedocos");
+		return obj_electriclocorepo.getUnapprovedLoco(zoneid);
+	}
 }

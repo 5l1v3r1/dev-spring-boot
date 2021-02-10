@@ -54,12 +54,12 @@ public interface LocoUncleansedDataRepository extends CrudRepository<LocoUnclean
 			"loco_no, loco_permanent_domain, loco_type,loco_owning_zone, loco_owning_division, loco_manufacturing_date,loco_owning_shed,loco_manufacturer,"
 			+ "loco_lease_type, loco_initial_cost, loco_poh_cost, loco_traction_code, loco_gauge_type, loco_hauling_power, loco_manufacturing_country,"
 			+ "loco_entry_date, record_status, status, user_id, txn_date,\r\n"
-			+ "	remarks, loco_flag)\r\n" + 
-			"VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14,?15,?16,?17,?18,?19,?20,?21,?22);", nativeQuery=true)
+			+ "	remarks, loco_flag, loco_receiving_date)\r\n" + 
+			"VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14,?15,?16,?17,?18,?19,?20,?21,?22,?23);", nativeQuery=true)
 	int saveDieselBoardZonalLocoData(int locoNo, String locoPermanentDomain, String locoType, String locoOwningZone,
 			String locoOwningDivision, Date locoMfgDt, String locOwningShed, String locoManufacturer, String locoLeasetype,
 			long locoInitialCost, long locoPOHCost, String tractionCode, String gaugeType, Long locoHaulingPower,
-			String locoMfgCountry,Date locoEtryDt,String recordstatus,String status,String uid,Date txndate,String remarks,String locoflag);
+			String locoMfgCountry,Date locoEtryDt,String recordstatus,String status,String uid,Date txndate,String remarks,String locoflag, Date locoRecdDate);
 	
 
 	@Transactional
@@ -92,12 +92,12 @@ public interface LocoUncleansedDataRepository extends CrudRepository<LocoUnclean
 	@Modifying
 	@Query(value="UPDATE mdms_loco.loco_uncleansed_data\r\n" + 
 			"	SET loco_permanent_domain=?2, loco_type=?3,loco_owning_zone=?4, loco_owning_division=?5, loco_manufacturing_date=?6, loco_owning_shed=?7,"
-			+ "loco_receiving_date=?8,loco_lease_type=?9,loco_initial_cost=?10,  loco_poh_cost=?11, status=?12, user_id=?13, txn_date=?14 "
-			+ "  WHERE loco_no=?15", nativeQuery=true)	
-	int updateElectricBoardZonalRecord( String locoPermanentDomain, String locoType, String locoOwningZone,
+			+ "loco_receiving_date=?8,loco_lease_type=?9,loco_initial_cost=?10,  loco_poh_cost=?11, status=?12, user_id=?13, txn_date=?14, remarks=?15, loco_gauge_type=?16, loco_manufacturing_country=?17, loco_hauling_power=?18 "
+			+ "  WHERE loco_no=?1", nativeQuery=true)	
+	int updateElectricBoardZonalRecord( int locoNo, String locoPermanentDomain, String locoType, String locoOwningZone,
 			String locoOwningDivision, Date locoMfgDt, String locOwningShed, Date locoRecdDt,String locoLeasetype,
 			long locoInitialCost, long locoPOHCost, 
-			String status, String uid, Date locotxndate, int locoNo);
+			String status, String uid, Date locotxndate,  String remarks, String gaugeType, String manCntry, Long haulingPower);
 	
 	
 	@Transactional
@@ -109,7 +109,21 @@ public interface LocoUncleansedDataRepository extends CrudRepository<LocoUnclean
 	void updateWithDieselLocoShedData( String locoBoogieType, String locoCommissionedShedId,
 			String locoControlType, Date locoDateOfCommision, Date locoEntryDate, String locoManfacturer,
 			String isGpsEnabled, String flagtype, String locoTractionMotorType, String locoAxleLoad, String locoAxleLoadUnit, Date dtOfRcvd,String status,String userid,Date txndate,int locono);
-	
+
+	@Transactional
+	@Modifying
+	@Query(value="INSERT INTO mdms_loco.loco_approved_data(\r\n" + 
+			"	loco_no, loco_type, loco_owning_zone, loco_owning_shed, loco_owning_division, loco_manufacturing_country, loco_manufacturing_date, \r\n" + 
+			"loco_receiving_date, loco_hauling_power, loco_traction_code, loco_permanent_domain, loco_gauge_type,\r\n" + 
+			" loco_lease_type, loco_initial_cost, loco_poh_cost, loco_entry_date, status, user_id, txn_date, remarks, loco_flag, record_status)\r\n" + 
+			"	VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18, ?19, ?20, ?21, ?22);", nativeQuery=true)
+	void insertRBZonalToGoldenMaster(int locoNo, String locoType, String locoOwningZone, String locOwningShed,
+			String locoOwningDivision, String manuCntry, Date locoMfgDt, Date locoRecdDt, Long haulingPower,
+			String traction, String locoPermanentDomain, String gaugeType, String locoLeasetype, long locoInitialCost,
+			long locoPOHCost, Date locoEntryDate, String status, String uid, Date txnDate, String remarks,
+			String locoFlag, String recordStatus);
+
+
 	
 	
 	

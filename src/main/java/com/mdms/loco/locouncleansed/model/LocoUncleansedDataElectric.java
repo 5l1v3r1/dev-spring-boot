@@ -108,6 +108,28 @@ public class LocoUncleansedDataElectric {
 		@Column(name="loco_manufacturing_country")                  
 		private String loco_MfgCountry; 
 		
+		@Column(name = "loco_initial_cost")
+		private Long loco_initial_cost;
+
+		@Column(name = "loco_poh_cost")
+		private Long loco_poh_cost;
+
+
+	public Long getLoco_initial_cost() {
+			return loco_initial_cost;
+		}
+
+		public void setLoco_initial_cost(Long loco_initial_cost) {
+			this.loco_initial_cost = loco_initial_cost;
+		}
+
+		public Long getLoco_poh_cost() {
+			return loco_poh_cost;
+		}
+
+		public void setLoco_poh_cost(Long loco_poh_cost) {
+			this.loco_poh_cost = loco_poh_cost;
+		}
 
 	public String getLoco_Hauling_Power() {
 			return loco_Hauling_Power;

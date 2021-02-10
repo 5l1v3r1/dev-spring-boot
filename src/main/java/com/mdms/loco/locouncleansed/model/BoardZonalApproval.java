@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity()
 @Table(name="loco_uncleansed_data", schema="mdms_loco")
-public class LocoUncleansedDataAddNewLoco {
+public class BoardZonalApproval {
 	@Id
 	@Column(name = "loco_no")
 	private int loco_no;
@@ -27,7 +27,7 @@ public class LocoUncleansedDataAddNewLoco {
 	@Column(name = "loco_owning_division")	
 	private String loco_owning_division;
 
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd",timezone = "IST") 
+
 	@Column(name = "loco_manufacturing_date")
 	private Date loco_manufacturing_date;
 
@@ -85,7 +85,7 @@ public class LocoUncleansedDataAddNewLoco {
 		private String flag_type;
 	
 	 
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd",timezone = "IST")
+	
 	@Column(name = "loco_entry_date")
 	private Date loco_entry_date;
 
@@ -95,7 +95,7 @@ public class LocoUncleansedDataAddNewLoco {
 	 @Column(name="loco_flag")                  
 	 private String loco_flag; 
 	 
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd",timezone = "IST")
+
 	 @Column(name="txn_date")                  
 	 private Date txn_date;
 	 
@@ -376,7 +376,5 @@ public class LocoUncleansedDataAddNewLoco {
 
 	
 	
-	 
-	 
 	 
 }

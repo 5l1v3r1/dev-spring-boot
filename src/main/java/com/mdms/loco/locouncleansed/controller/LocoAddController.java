@@ -89,9 +89,17 @@ public class LocoAddController {
 	
 	 @RequestMapping(method=RequestMethod.POST, value = "/zonalUnapprovedLoco")
  	public List<LocoUncleansedDataAddNewLoco> getZonalUnapprovedLoco(@RequestBody LocoUncleansedDataElectric obj_zonalunapproved){
- 		System.out.println("zoneid"+ obj_zonalunapproved.getElec_locoOwningShed());
+ 		System.out.println("zoneid"+ obj_zonalunapproved.getElec_locoOwningZone());
  		return obj_newlocoservice.getUnapprovedZonalLocos(obj_zonalunapproved);
 			
  	}
+	 
+	 @RequestMapping(method=RequestMethod.POST, value = "/savenewlocogoldenrecord")
+ 	public String saveNewGoldenRecord(@RequestBody LocoUncleansedDataAddNewLoco obj_newgoldenloco){
+ 		System.out.println("zoneid"+ obj_newgoldenloco.getLoco_owning_shed());
+ 		return obj_newlocoservice.savegoldenrecord(obj_newgoldenloco);
+			
+ 	}
+	 
  	
 }

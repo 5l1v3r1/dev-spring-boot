@@ -105,6 +105,9 @@ public class LocoApprovedData {
 		
 		@Column(name="loco_manufacturing_country")                  
 		private String loco_MfgCountry;
+		
+		
+		
 
 		public int getElec_locoNo() {
 			return elec_locoNo;

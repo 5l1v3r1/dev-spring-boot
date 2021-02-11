@@ -564,6 +564,7 @@ public List<UserProfileRegistrationDetailModel> getuserreportsinglediviandeprttw
 	
 }
 
+
 //get report  datewise based :Developer :Ritu
 public List<UserProfileRegistrationDetailModel> getreportdatewise(UserProfileRegistrationDetailModel objreportdatewise ) {
 	System.out.println("objrecd."+objreportdatewise);	

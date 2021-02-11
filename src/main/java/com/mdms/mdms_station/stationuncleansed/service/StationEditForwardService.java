@@ -172,7 +172,7 @@ public class StationEditForwardService {
 				
 			}
 			
-		else if(status.equals("N"))
+		else if(status.equals("N")||status.equals("R"))
 			{
 				// 3. this record is already initiated by dti. so update attributes but reply message as draft created
 	     		String cmi_station_code=stationdraftcmi.getStn_Id().getStation_code();
@@ -359,8 +359,8 @@ if(i>0)
 	return "Exception Occurred !!!";}}
 	
 	
-	
-	public String approvedByDom(String stationdatadcm) {
+	 @Transactional(rollbackOn = Exception.class)
+	public String approvedByDom(String stationdatadcm) throws Exception{
 String returnstmt=null;
 try {
 		int i= stn_unclsnd_repo.approvedByDom(stationdatadcm);
@@ -424,7 +424,7 @@ catch(Exception e)
 				
 			}
 			
-		else if(status.equals("N"))
+		else if(status.equals("N")||status.equals("R"))
 			{
 				// 3. this record is already initiated by cmi. so update attributes but reply message as draft created
 	     		String dti_station_code=stationdraftdti.getStn_Id().getStation_code();
@@ -530,7 +530,41 @@ catch(Exception e)
 		
 	}
 
-
+	 @Transactional(rollbackOn = Exception.class)
+		public String rejectByDcm(String stationdatadcm) throws Exception{
+	String returnstmt=null;
+	try {
+			int i= stn_unclsnd_repo.rejectByDcm(stationdatadcm);
+			if(i>0)
+			{
+				returnstmt="RECORD REJECTED SUCCESSFULLY";
+			}
+	}
+	catch(Exception e)
+	{
+		return "Exception Occurred !!!";
+	}
+	return returnstmt;
+	 }
+	 
+	 
+	 
+	 @Transactional(rollbackOn = Exception.class)
+		public String rejectByDom(String stationdatadom) throws Exception{
+	String returnstmt=null;
+	try {
+			int i= stn_unclsnd_repo.rejectByDom(stationdatadom);
+			if(i>0)
+			{
+				returnstmt="RECORD REJECTED SUCCESSFULLY";
+			}
+	}
+	catch(Exception e)
+	{
+		return "Exception Occurred !!!";
+	}
+	return returnstmt;
+	 }
 	public List<StationUncleansedData> fetchUnapprovedDtiRecords(String division_code) {
 		
 		 List<StationUncleansedData> tmp = new ArrayList<>();

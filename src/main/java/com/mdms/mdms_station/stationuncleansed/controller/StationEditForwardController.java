@@ -164,6 +164,34 @@ public class StationEditForwardController {
 	}
 	
 
+	/*
+	  To Reject record DCM
+	  Developed By: Anshul
+	  Date: 09-01-2021
+	  
+	  */
+	@RequestMapping(method=RequestMethod.POST, value="/stnunclrejdcm")
+	public  String rejectByDcm(@RequestBody String stationdatadcm) throws Exception
+	{
+		logger.error("controller : StationEditForwardController || Method : rejectByDcm || input recieved rejectByDcm: "+stationdatadcm);		
+		return stn_edit_fwd_serv.rejectByDcm(stationdatadcm);		
+		
+	}
+	
+	/*
+	  To Reject record DOM
+	  Developed By: Anshul
+	  Date: 09-01-2021
+	  
+	  */
+	@RequestMapping(method=RequestMethod.POST, value="/stnunclrejdom")
+	public  String rejectByDom(@RequestBody String stationdatadom) throws Exception
+	{
+		logger.error("controller : StationEditForwardController || Method : rejectByDom || input recieved rejectByDom: "+stationdatadom);		
+		return stn_edit_fwd_serv.rejectByDom(stationdatadom);		
+		
+	}
+	
 	@RequestMapping(method=RequestMethod.POST, value="/getstndraftdata")
 	public StationUncleansedData checkStnData(@RequestBody String station_code) throws Exception {
 		 logger.error("controller : StationEditForwardController || Method : checkStnData || input recieved checkStnData: "+station_code);		 

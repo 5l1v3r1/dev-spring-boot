@@ -55,6 +55,7 @@ public interface LocoUncleansedDataElectricRepository extends CrudRepository <Lo
 			String status,String userid,Date txndate,int locono);
 	
 	
+
 	@Query(value="SELECT * FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_zone=?1  AND record_status='N'AND status='ZU' ",nativeQuery=true)
 	List<LocoUncleansedDataElectric> getUnapprovedZonalBoardLoco(String locozone);
 	

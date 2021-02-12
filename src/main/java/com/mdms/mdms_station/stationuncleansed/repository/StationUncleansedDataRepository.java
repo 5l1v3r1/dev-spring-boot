@@ -19,12 +19,12 @@ import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedData;
 
 public interface StationUncleansedDataRepository extends CrudRepository <StationUncleansedData,StationPKey>{
 	
-	@Query(value="select * FROM mdms_station.station_uncleansed_data where user_id_cmi=?1 and cmi_status='D' and station_code=?2", nativeQuery = true)
+	@Query(value="select * FROM mdms_station.station_uncleansed_data where user_id_cmi=?1 and ( cmi_status='D'OR  cmi_status='R') and station_code=?2", nativeQuery = true)
 	StationUncleansedData getDraftFromUncleansedCmi(String useridcmi, String station_code);
 
 
 	
-	@Query(value="select * FROM mdms_station.station_uncleansed_data where user_id_dti=?1 and dti_status='D' and station_code=?2", nativeQuery = true)
+	@Query(value="select * FROM mdms_station.station_uncleansed_data where user_id_dti=?1 and ( dti_status='D'OR  dti_status='R') and station_code=?2", nativeQuery = true)
 	StationUncleansedData getDraftFromUncleansedDti(String useriddti, String station_code);
 
 	@Modifying
@@ -56,6 +56,20 @@ public interface StationUncleansedDataRepository extends CrudRepository <Station
 			@Query(value="UPDATE mdms_station.station_uncleansed_data SET dti_status='A' \r\n" + 
 					"	where station_code=?1",nativeQuery = true)
 	int approvedByDom(String station_code);
+			
+			
+			
+			@Modifying
+			@Transactional
+			@Query(value="UPDATE mdms_station.station_uncleansed_data SET cmi_status='R' \r\n" + 
+					"	where station_code=?1",nativeQuery = true)
+	int rejectByDcm(String station_code);
+			
+			@Modifying
+			@Transactional
+			@Query(value="UPDATE mdms_station.station_uncleansed_data SET dti_status='R' \r\n" + 
+					"	where station_code=?1",nativeQuery = true)
+	int rejectByDom(String station_code);
 			
 			@Modifying
 			@Transactional

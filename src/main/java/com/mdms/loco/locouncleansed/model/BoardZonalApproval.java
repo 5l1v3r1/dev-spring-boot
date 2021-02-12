@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity()
 @Table(name="loco_uncleansed_data", schema="mdms_loco")
-public class LocoUncleansedDataAddNewLoco {
+public class BoardZonalApproval {
 	@Id
 	@Column(name = "loco_no")
 	private int loco_no;
@@ -27,7 +27,7 @@ public class LocoUncleansedDataAddNewLoco {
 	@Column(name = "loco_owning_division")	
 	private String loco_owning_division;
 
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd",timezone = "IST") 
+
 	@Column(name = "loco_manufacturing_date")
 	private Date loco_manufacturing_date;
 
@@ -85,7 +85,7 @@ public class LocoUncleansedDataAddNewLoco {
 		private String flag_type;
 	
 	 
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd",timezone = "IST")
+	
 	@Column(name = "loco_entry_date")
 	private Date loco_entry_date;
 
@@ -95,7 +95,7 @@ public class LocoUncleansedDataAddNewLoco {
 	 @Column(name="loco_flag")                  
 	 private String loco_flag; 
 	 
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd",timezone = "IST")
+
 	 @Column(name="txn_date")                  
 	 private Date txn_date;
 	 
@@ -116,66 +116,6 @@ public class LocoUncleansedDataAddNewLoco {
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd",timezone = "IST") 
 	 @Column(name="loco_receiving_date")                  
 		private Date loco_receiving_date;
-	 
-	 @Column(name = "loco_auxilary")
-		private String loco_auxilary;
-	 
-	 
-	 @Column(name = "loco_brake_type")
-		private String loco_brake_type;
-
-		@Column(name = "loco_brake_sub_type")
-		private String loco_brake_sub_type;
-		
-		@Column(name = "loco_cabin_ac")
-		private String loco_cabin_ac;
-
-		@Column(name = "loco_hotel_load")
-		private String elec_locoHotelLoad;
-
-		
-		 
-	public String getElec_locoHotelLoad() {
-			return elec_locoHotelLoad;
-		}
-
-		public void setElec_locoHotelLoad(String elec_locoHotelLoad) {
-			this.elec_locoHotelLoad = elec_locoHotelLoad;
-		}
-
-		
-
-	public String getLoco_cabin_ac() {
-			return loco_cabin_ac;
-		}
-
-		public void setLoco_cabin_ac(String loco_cabin_ac) {
-			this.loco_cabin_ac = loco_cabin_ac;
-		}
-
-	public String getLoco_brake_type() {
-			return loco_brake_type;
-		}
-
-		public void setLoco_brake_type(String loco_brake_type) {
-			this.loco_brake_type = loco_brake_type;
-		}
-
-		public String getLoco_brake_sub_type() {
-			return loco_brake_sub_type;
-		}
-
-		public void setLoco_brake_sub_type(String loco_brake_sub_type) {
-			this.loco_brake_sub_type = loco_brake_sub_type;
-		}
-
-	public String getLoco_auxilary() {
-		return loco_auxilary;
-	}
-
-	public void setLoco_auxilary(String loco_auxilary) {
-		this.loco_auxilary = loco_auxilary;
-	}
 
 	public int getLoco_no() {
 		return loco_no;
@@ -436,7 +376,5 @@ public class LocoUncleansedDataAddNewLoco {
 
 	
 	
-	 
-	 
 	 
 }

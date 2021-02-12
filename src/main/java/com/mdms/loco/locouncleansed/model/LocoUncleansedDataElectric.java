@@ -114,7 +114,6 @@ public class LocoUncleansedDataElectric {
 		@Column(name = "loco_poh_cost")
 		private Long loco_poh_cost;
 
-		
 
 	public Long getLoco_initial_cost() {
 			return loco_initial_cost;

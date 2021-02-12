@@ -1,17 +1,26 @@
 package com.mdms.loco.locouncleansed.service;
 
-import java.sql.Date;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import com.mdms.loco.locouncleansed.model.BoardZonalApproval;
+
+
 import com.mdms.loco.locouncleansed.model.LocoApprovedData;
+
 import com.mdms.loco.locouncleansed.model.LocoUncleansedData;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataAddNewLoco;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
+import com.mdms.loco.locouncleansed.repository.LocoUncleansedDataAddNewRepository;
 import com.mdms.loco.locouncleansed.repository.LocoUncleansedDataElectricRepository;
 import com.mdms.loco.locouncleansed.repository.LocoUncleansedDataRepository;
 @Service
@@ -19,6 +28,8 @@ public class LocoAddService {
 @Autowired
 private LocoUncleansedDataRepository obj_dieselocoaddrepo;
 
+@Autowired
+private LocoUncleansedDataAddNewRepository obj_LocoNewRepo;
 @Autowired
 private LocoUncleansedDataElectricRepository obj_electriclocorepo;
 
@@ -39,21 +50,22 @@ public String saveDieselBoardZonalData(LocoUncleansedDataAddNewLoco dieselLocoBo
 	String locoLeasetype = dieselLocoBoardZonal.getLoco_lease_type();
 	long locoInitialCost = dieselLocoBoardZonal.getLoco_initial_cost();
 	long locoPOHCost = dieselLocoBoardZonal.getLoco_poh_cost();
-String tractionCode=dieselLocoBoardZonal.getLoco_traction_code();
-String gaugeType=dieselLocoBoardZonal.getLoco_gauge_type();
+String tractionCode=dieselLocoBoardZonal.getLoco_flag();
+String gaugeType=dieselLocoBoardZonal.getGauge_type();
 Long locoHaulingPower=dieselLocoBoardZonal.getLoco_hauling_power();
 String locoMfgCountry=dieselLocoBoardZonal.getLoco_manufacturing_country();
 	String status = dieselLocoBoardZonal.getStatus();
 	String uid = dieselLocoBoardZonal.getUser_id();
 	String recordstatus=dieselLocoBoardZonal.getRecord_status();
 	Date locoEntryDt=dieselLocoBoardZonal.getLoco_entry_date();
+	Date locoRecdDate=dieselLocoBoardZonal.getLoco_receiving_date();
 	Date locotxndate=dieselLocoBoardZonal.getTxn_date();
 	String remarks=dieselLocoBoardZonal.getRemarks();
 	String locoflag=dieselLocoBoardZonal.getLoco_flag();
 obj_dieselocoaddrepo.saveDieselBoardZonalLocoData(locoNo, locoPermanentDomain,
 			locoType, locoOwningZone, locoOwningDivision, locoMfgDt, locOwningShed,locoManufacturer, locoLeasetype,
-			locoInitialCost, locoPOHCost,tractionCode,gaugeType,locoHaulingPower,locoMfgCountry,locoEntryDt,recordstatus,status,uid,locotxndate,remarks,locoflag);
- returnValue = "Record saved as draft";
+			locoInitialCost, locoPOHCost,tractionCode,gaugeType,locoHaulingPower,locoMfgCountry,locoEntryDt,recordstatus,status,uid,locotxndate,remarks,locoflag,locoRecdDate);
+ returnValue = "Record saved";
 	return returnValue;
 	}
 	catch(Exception e){
@@ -78,7 +90,7 @@ public String updateDieselBoardZonalData(LocoUncleansedDataAddNewLoco dieselLoco
 	long locoInitialCost = dieselLocoBoardZonal.getLoco_initial_cost();
 	long locoPOHCost = dieselLocoBoardZonal.getLoco_poh_cost();
 String tractionCode=dieselLocoBoardZonal.getLoco_traction_code();
-String gaugeType=dieselLocoBoardZonal.getLoco_gauge_type();
+String gaugeType=dieselLocoBoardZonal.getGauge_type();
 Long locoHaulingPower=dieselLocoBoardZonal.getLoco_hauling_power();
 String locoMfgCountry=dieselLocoBoardZonal.getLoco_manufacturing_country();
 int locoNo = dieselLocoBoardZonal.getLoco_no();
@@ -136,7 +148,10 @@ obj_dieselocoaddrepo.saveElectricBoardZonalData(locoNo, locoPermanentDomain, loc
 	
 }
 
-public String updateElectricBoardZonalData(LocoUncleansedDataAddNewLoco updateelectricLocoBoardZonal) {	
+@Transactional(rollbackOn = Exception.class)
+public String updateElectricBoardZonalData(BoardZonalApproval updateelectricLocoBoardZonal) {	
+
+	Date date = new Date();
 	try {
 	String returnValue=null;
 	String locoPermanentDomain = updateelectricLocoBoardZonal.getLoco_permanent_domain();
@@ -150,12 +165,26 @@ public String updateElectricBoardZonalData(LocoUncleansedDataAddNewLoco updateel
 	long locoInitialCost = updateelectricLocoBoardZonal.getLoco_initial_cost();
 	long locoPOHCost = updateelectricLocoBoardZonal.getLoco_poh_cost();
 	Date locoRecdDt=updateelectricLocoBoardZonal.getLoco_receiving_date();
+	String gaugeType=updateelectricLocoBoardZonal.getGauge_type();
+	String manuCntry=updateelectricLocoBoardZonal.getLoco_manufacturing_country();
+	Long haulingPower=updateelectricLocoBoardZonal.getLoco_hauling_power();
+	String recordStatus=updateelectricLocoBoardZonal.getRecord_status();
 	String status = updateelectricLocoBoardZonal.getStatus();
 	String uid = updateelectricLocoBoardZonal.getUser_id();		
-	Date locotxndate=updateelectricLocoBoardZonal.getTxn_date();
+	String remarks=updateelectricLocoBoardZonal.getRemarks();
+	Date locoEntryDate=updateelectricLocoBoardZonal.getLoco_entry_date();
+	String locoFlag=updateelectricLocoBoardZonal.getLoco_flag();
+	String traction=updateelectricLocoBoardZonal.getLoco_flag();
+	String txnDate1= new SimpleDateFormat("yyyy-MM-dd").format(date);
+	Date txnDate=new SimpleDateFormat("yyyy-MM-dd").parse(txnDate1);
 	int locoNo = updateelectricLocoBoardZonal.getLoco_no();		
-obj_dieselocoaddrepo.updateElectricBoardZonalRecord(locoPermanentDomain, locoType, locoOwningZone,
-		locoOwningDivision, locoMfgDt, locOwningShed, locoRecdDt,locoLeasetype, locoInitialCost, locoPOHCost, status,uid,locotxndate,locoNo);
+obj_dieselocoaddrepo.updateElectricBoardZonalRecord(locoNo,locoPermanentDomain, locoType, locoOwningZone,
+		locoOwningDivision, locoMfgDt, locOwningShed, locoRecdDt,locoLeasetype, locoInitialCost, locoPOHCost, status,uid,txnDate,remarks,gaugeType,manuCntry,haulingPower);
+
+
+obj_dieselocoaddrepo.insertRBZonalToGoldenMaster(locoNo, locoType, locoOwningZone,
+	  locOwningShed, locoOwningDivision,manuCntry, locoMfgDt, locoRecdDt, haulingPower, traction, locoPermanentDomain, gaugeType, locoLeasetype,
+ locoInitialCost, locoPOHCost, locoEntryDate, status, uid, txnDate, remarks, locoFlag, recordStatus);
  returnValue = "Record Approved Sucessfully";
 	return returnValue;
 	}
@@ -259,7 +288,7 @@ public String updateElectricShedData(LocoUncleansedDataElectric electricLocoNewS
 }
 
 //fetch zonal user  new loco unapproved record 
-public List<LocoUncleansedDataElectric> getUnapprovedZonalLocos(LocoUncleansedDataElectric obj_zonalunapproved) {
+public List<LocoUncleansedDataAddNewLoco> getUnapprovedZonalLocos(LocoUncleansedDataElectric obj_zonalunapproved) {
 //		// TODO Auto-generated method stub
 		System.out.println("getzonalunapprovedocos");
 		String zoneid=obj_zonalunapproved.getElec_locoOwningZone();
@@ -268,7 +297,7 @@ public List<LocoUncleansedDataElectric> getUnapprovedZonalLocos(LocoUncleansedDa
 		obj_electriclocorepo.getUnapprovedZonalBoardLoco(zoneid)
 		.forEach(zonalunapprovedLoco::add);
 		System.out.println(" End getzonalunapprovedocos");
-		return obj_electriclocorepo.getUnapprovedZonalBoardLoco(zoneid);
+		return obj_LocoNewRepo.getUnapprovedZonalBoardLoco(zoneid);
 	}
 
 public String savegoldenrecord(LocoUncleansedDataAddNewLoco objnewloco) {

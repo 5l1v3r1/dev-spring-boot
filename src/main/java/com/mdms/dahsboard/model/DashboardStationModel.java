@@ -1,6 +1,7 @@
 package com.mdms.dahsboard.model;
 
 public class DashboardStationModel {
+	public String zone_code;
 	public	String division_code="null";
 	 public	Integer uncleansed_count=0;
 	public Integer cleansed_count=0;
@@ -9,6 +10,16 @@ public class DashboardStationModel {
 	
 	
 	public Integer total_division_count=0;
+
+
+	public String getZone_code() {
+		return zone_code;
+	}
+
+
+	public void setZone_code(String zone_code) {
+		this.zone_code = zone_code;
+	}
 
 
 	public String getDivision_code() {

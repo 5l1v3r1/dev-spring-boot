@@ -77,10 +77,10 @@ public class StationDashboardService {
 		
 		public HashMap<String, Integer> getDivisionWiseStationStats(String  divcode) {
 			logger.info("Service : StationDashboardService || Method: getDivisionWiseStationStats");
-			 						String dc="MAS";
+			 String dc= "MAS";	
 	 HashMap<String, Integer> map = new HashMap<>();			 
 	 try {
-		 
+		
 			 final String noOfStations = "SELECT count(*) FROM mdms_station.station_table_rbs as a\r\n" + 
 			 		"		join mdms_masters.m_division AS b on a.div_ser_no=b.division_sr_no\r\n" + 
 			 		"		where b.division_code=dc";
@@ -122,39 +122,34 @@ public class StationDashboardService {
 		
 		//find  station details
 		
-		public List<DashboardStationModel> getStationCountDivisionWise() {
-			
-			List<DashboardStationModel> list= new ArrayList<DashboardStationModel>();
-			Collection<DashBoardStationCountDivisionWiseModel> totalCountList= stn_tbl_rbs_repo.getTotalStationCountDivisionWise();
+		public List<DashboardStationModel> getStationCountDivisionWise(DashboardStationModel objzone_code) {
+			String zone_code =objzone_code.getZone_code();
+			List<DashboardStationModel> list= new ArrayList<DashboardStationModel>();			
+			Collection<DashBoardStationCountDivisionWiseModel> totalCountList= stn_tbl_rbs_repo.getTotalStationCountDivisionWise(zone_code);
 				logger.info("Service : DashBoardStationService || Method: getStationCountDivisionWise || getTotalStationCountDivisionWise Query list return : "+totalCountList.size());
-
-				
 				if(totalCountList.size()>0) {
-			
-					
-				
 				totalCountList.forEach(DashBoardStationCountDivisionWiseModel -> setTotalDivision(DashBoardStationCountDivisionWiseModel,list));
 
 				}	
 				
-				Collection<DashBoardStationCountDivisionWiseModel> uncleansedCountList= stn_tbl_rbs_repo.getUncleansedStationCountDivisionWise();
+				Collection<DashBoardStationCountDivisionWiseModel> uncleansedCountList= stn_tbl_rbs_repo.getUncleansedStationCountDivisionWise(zone_code);
 				logger.info("Service : DashBoardStationService || Method: getStationCountDivisionWise || getUncleansedStationCountDivisionWise Query list return : "+uncleansedCountList.size());
 
 				uncleansedCountList.forEach(DashBoardStationCountDivisionWiseModel -> callTotal(DashBoardStationCountDivisionWiseModel,list));
 				
 				
-				Collection<DashBoardStationCountDivisionWiseModel> pendingApprovalCountList= stn_unclsnd_repo.getPendingApprovalStationCountDivisionWise();
+				Collection<DashBoardStationCountDivisionWiseModel> pendingApprovalCountList= stn_unclsnd_repo.getPendingApprovalStationCountDivisionWise(zone_code);
 				logger.info("Service : DashBoardStationService || Method: getStationCountDivisionWise || getPendingApprovalStationCountDivisionWise Query list return : "+pendingApprovalCountList.size());
 		
 				pendingApprovalCountList.forEach(DashBoardStationCountDivisionWiseModel -> callPendingApproval(DashBoardStationCountDivisionWiseModel,list));
 
 				
-				Collection<DashBoardStationCountDivisionWiseModel> cleansedCountList= stn_unclsnd_repo.getTotalCleansedStationCountDivisionWise();
+				Collection<DashBoardStationCountDivisionWiseModel> cleansedCountList= stn_unclsnd_repo.getTotalCleansedStationCountDivisionWise(zone_code);
 				logger.info("Service : DashBoardStationService || Method: getStationCountDivisionWise || getTotalCleansedStationCountDivisionWise Query list return : "+cleansedCountList.size());			
 				cleansedCountList.forEach(DashBoardStationCountDivisionWiseModel -> callCleansedCount(DashBoardStationCountDivisionWiseModel,list));			
 			
 				
-				Collection<DashBoardStationCountDivisionWiseModel> draftCountList= stn_unclsnd_repo.getTotalDraftForwardApprovalStationCountDivisionWise();
+				Collection<DashBoardStationCountDivisionWiseModel> draftCountList= stn_unclsnd_repo.getTotalDraftForwardApprovalStationCountDivisionWise(zone_code);
 				logger.info("Service : DashBoardStationService || Method: getStationCountDivisionWise || getTotalDraftForwardApprovalStationCountDivisionWise Query list return : "+draftCountList.size());			
 				draftCountList.forEach(DashBoardStationCountDivisionWiseModel -> callDraftCount(DashBoardStationCountDivisionWiseModel,list));	
 				
@@ -173,6 +168,7 @@ public class StationDashboardService {
 				list.forEach(totalobj -> callTotalSub(uncleansedObj,totalobj));	
 				if(uncleansedFlag==0){
 					DashboardStationModel obj = new DashboardStationModel();
+//					obj.setZone_code(uncleansedObj.getzone_code());
 					obj.setDivision_code(uncleansedObj.getdivision_code());
 					obj.setUncleansed_count(uncleansedObj.getuncleansed_count());
 			//		list.add(obj);	
@@ -204,6 +200,7 @@ public class StationDashboardService {
 				list.forEach(totalobj -> callPendingApprovalSub(pendingApprovObj,totalobj));	
 				if(uncleansedFlag==0) {
 					DashboardStationModel obj = new DashboardStationModel();
+//					obj.setZone_code(pendingApprovObj.getzone_code());					
 					obj.setDivision_code(pendingApprovObj.getdivision_code());
 					obj.setPending_approval(pendingApprovObj.getpending_approval());
 			//		list.add(obj);	
@@ -239,6 +236,7 @@ public class StationDashboardService {
 		
 				if(uncleansedFlag==0) {
 					DashboardStationModel obj = new DashboardStationModel();
+//					obj.setZone_code(cleansedObj.getzone_code());
 					obj.setDivision_code(cleansedObj.getdivision_code());
 					obj.setCleansed_count(cleansedObj.getcleansed_count());
 				//	list.add(obj);		
@@ -271,6 +269,7 @@ public class StationDashboardService {
 		
 				if(uncleansedFlag==0) {
 					DashboardStationModel obj = new DashboardStationModel();
+//					obj.setZone_code(draftObj.getzone_code());
 					obj.setDivision_code(draftObj.getdivision_code());
 					obj.setDraft_forward_approval_count(draftObj.getdraft_forward_approval_count());
 				//	list.add(obj);		
@@ -297,7 +296,8 @@ public class StationDashboardService {
 		
 		private void setTotalDivision(DashBoardStationCountDivisionWiseModel DashBoardStationCountDivisionWiseModel,Collection<DashboardStationModel> list) {
 		DashboardStationModel obj =new DashboardStationModel();	
-		
+//		obj.setZone_code(DashBoardStationCountDivisionWiseModel.getzone_code());
+			
 		obj.setDivision_code(DashBoardStationCountDivisionWiseModel.getdivision_code());
 		obj.setTotal_division_count(DashBoardStationCountDivisionWiseModel.gettotal_division_count());			
 		list.add(obj);

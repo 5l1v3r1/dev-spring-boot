@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import com.mdms.loco.locouncleansed.model.BoardZonalApproval;
+//import com.mdms.loco.locouncleansed.model.BoardZonalApproval;
 
 
 import com.mdms.loco.locouncleansed.model.LocoApprovedData;
@@ -20,7 +20,7 @@ import com.mdms.loco.locouncleansed.model.LocoApprovedData;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedData;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataAddNewLoco;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
-import com.mdms.loco.locouncleansed.repository.LocoUncleansedDataAddNewRepository;
+//import com.mdms.loco.locouncleansed.repository.LocoUncleansedDataAddNewRepository;
 import com.mdms.loco.locouncleansed.repository.LocoUncleansedDataElectricRepository;
 import com.mdms.loco.locouncleansed.repository.LocoUncleansedDataRepository;
 @Service
@@ -28,8 +28,8 @@ public class LocoAddService {
 @Autowired
 private LocoUncleansedDataRepository obj_dieselocoaddrepo;
 
-@Autowired
-private LocoUncleansedDataAddNewRepository obj_LocoNewRepo;
+//@Autowired
+//private LocoUncleansedDataAddNewRepository obj_LocoNewRepo;
 @Autowired
 private LocoUncleansedDataElectricRepository obj_electriclocorepo;
 
@@ -148,71 +148,71 @@ obj_dieselocoaddrepo.saveElectricBoardZonalData(locoNo, locoPermanentDomain, loc
 	
 }
 
-@Transactional(rollbackOn = Exception.class)
-public String updateElectricBoardZonalData(BoardZonalApproval updateelectricLocoBoardZonal) {	
-
-	Date date = new Date();
-	try {
-	String returnValue=null;
-	String locoPermanentDomain = updateelectricLocoBoardZonal.getLoco_permanent_domain();
-	String locoType = updateelectricLocoBoardZonal.getLoco_type();
-	String locoOwningZone = updateelectricLocoBoardZonal.getLoco_owning_zone();
-	String locoOwningDivision = updateelectricLocoBoardZonal.getLoco_owning_division();
-	Date locoMfgDt=updateelectricLocoBoardZonal.getLoco_manufacturing_date();
-	String locOwningShed = updateelectricLocoBoardZonal.getLoco_owning_shed();
-	String locoManufacturer=updateelectricLocoBoardZonal.getLoco_manufacturer();
-	String locoLeasetype = updateelectricLocoBoardZonal.getLoco_lease_type();
-	long locoInitialCost = updateelectricLocoBoardZonal.getLoco_initial_cost();
-	long locoPOHCost = updateelectricLocoBoardZonal.getLoco_poh_cost();
-	Date locoRecdDt=updateelectricLocoBoardZonal.getLoco_receiving_date();
-	String gaugeType=updateelectricLocoBoardZonal.getGauge_type();
-	String manuCntry=updateelectricLocoBoardZonal.getLoco_manufacturing_country();
-	Long haulingPower=updateelectricLocoBoardZonal.getLoco_hauling_power();
-	String recordStatus=updateelectricLocoBoardZonal.getRecord_status();
-	String status = updateelectricLocoBoardZonal.getStatus();
-	String uid = updateelectricLocoBoardZonal.getUser_id();		
-	String remarks=updateelectricLocoBoardZonal.getRemarks();
-	Date locoEntryDate=updateelectricLocoBoardZonal.getLoco_entry_date();
-	String locoFlag=updateelectricLocoBoardZonal.getLoco_flag();
-	String traction=updateelectricLocoBoardZonal.getLoco_flag();
-	String txnDate1= new SimpleDateFormat("yyyy-MM-dd").format(date);
-	Date txnDate=new SimpleDateFormat("yyyy-MM-dd").parse(txnDate1);
-	int locoNo = updateelectricLocoBoardZonal.getLoco_no();		
-obj_dieselocoaddrepo.updateElectricBoardZonalRecord(locoNo,locoPermanentDomain, locoType, locoOwningZone,
-		locoOwningDivision, locoMfgDt, locOwningShed, locoRecdDt,locoLeasetype, locoInitialCost, locoPOHCost, status,uid,txnDate,remarks,gaugeType,manuCntry,haulingPower);
-
-
-obj_dieselocoaddrepo.insertRBZonalToGoldenMaster(locoNo, locoType, locoOwningZone,
-	  locOwningShed, locoOwningDivision,manuCntry, locoMfgDt, locoRecdDt, haulingPower, traction, locoPermanentDomain, gaugeType, locoLeasetype,
- locoInitialCost, locoPOHCost, locoEntryDate, status, uid, txnDate, remarks, locoFlag, recordStatus);
- returnValue = "Record Approved Sucessfully";
-	return returnValue;
-	}
-	catch(Exception e){
-		
-		System.out.println(e);
-		return "Failed To Approve Record";
-	}
-	
-}
-public boolean checkloconoexist(int locono) {
-	
-	int tmp= obj_dieselocoaddrepo.checklocoNoExist(locono); 
-	if(tmp==0)
-	{
-		return false;
-	}
-	  
-	else
-	    
-	    {
-	   
-	    	return true;
-	    }
-		
-	    
-
-}
+//@Transactional(rollbackOn = Exception.class)
+//public String updateElectricBoardZonalData(BoardZonalApproval updateelectricLocoBoardZonal) {	
+//
+//	Date date = new Date();
+//	try {
+//	String returnValue=null;
+//	String locoPermanentDomain = updateelectricLocoBoardZonal.getLoco_permanent_domain();
+//	String locoType = updateelectricLocoBoardZonal.getLoco_type();
+//	String locoOwningZone = updateelectricLocoBoardZonal.getLoco_owning_zone();
+//	String locoOwningDivision = updateelectricLocoBoardZonal.getLoco_owning_division();
+//	Date locoMfgDt=updateelectricLocoBoardZonal.getLoco_manufacturing_date();
+//	String locOwningShed = updateelectricLocoBoardZonal.getLoco_owning_shed();
+//	String locoManufacturer=updateelectricLocoBoardZonal.getLoco_manufacturer();
+//	String locoLeasetype = updateelectricLocoBoardZonal.getLoco_lease_type();
+//	long locoInitialCost = updateelectricLocoBoardZonal.getLoco_initial_cost();
+//	long locoPOHCost = updateelectricLocoBoardZonal.getLoco_poh_cost();
+//	Date locoRecdDt=updateelectricLocoBoardZonal.getLoco_receiving_date();
+//	String gaugeType=updateelectricLocoBoardZonal.getGauge_type();
+//	String manuCntry=updateelectricLocoBoardZonal.getLoco_manufacturing_country();
+//	Long haulingPower=updateelectricLocoBoardZonal.getLoco_hauling_power();
+//	String recordStatus=updateelectricLocoBoardZonal.getRecord_status();
+//	String status = updateelectricLocoBoardZonal.getStatus();
+//	String uid = updateelectricLocoBoardZonal.getUser_id();		
+//	String remarks=updateelectricLocoBoardZonal.getRemarks();
+//	Date locoEntryDate=updateelectricLocoBoardZonal.getLoco_entry_date();
+//	String locoFlag=updateelectricLocoBoardZonal.getLoco_flag();
+//	String traction=updateelectricLocoBoardZonal.getLoco_flag();
+//	String txnDate1= new SimpleDateFormat("yyyy-MM-dd").format(date);
+//	Date txnDate=new SimpleDateFormat("yyyy-MM-dd").parse(txnDate1);
+//	int locoNo = updateelectricLocoBoardZonal.getLoco_no();		
+//obj_dieselocoaddrepo.updateElectricBoardZonalRecord(locoNo,locoPermanentDomain, locoType, locoOwningZone,
+//		locoOwningDivision, locoMfgDt, locOwningShed, locoRecdDt,locoLeasetype, locoInitialCost, locoPOHCost, status,uid,txnDate,remarks,gaugeType,manuCntry,haulingPower);
+//
+//
+//obj_dieselocoaddrepo.insertRBZonalToGoldenMaster(locoNo, locoType, locoOwningZone,
+//	  locOwningShed, locoOwningDivision,manuCntry, locoMfgDt, locoRecdDt, haulingPower, traction, locoPermanentDomain, gaugeType, locoLeasetype,
+// locoInitialCost, locoPOHCost, locoEntryDate, status, uid, txnDate, remarks, locoFlag, recordStatus);
+// returnValue = "Record Approved Sucessfully";
+//	return returnValue;
+//	}
+//	catch(Exception e){
+//		
+//		System.out.println(e);
+//		return "Failed To Approve Record";
+//	}
+//	
+//}
+//public boolean checkloconoexist(int locono) {
+//	
+//	int tmp= obj_dieselocoaddrepo.checklocoNoExist(locono); 
+//	if(tmp==0)
+//	{
+//		return false;
+//	}
+//	  
+//	else
+//	    
+//	    {
+//	   
+//	    	return true;
+//	    }
+//		
+//	    
+//
+//}
 
 
 // service use to update diesel  shed attribute for new add loco- for save as draft as well as forward to unapproved record 
@@ -287,18 +287,18 @@ public String updateElectricShedData(LocoUncleansedDataElectric electricLocoNewS
 	
 }
 
-//fetch zonal user  new loco unapproved record 
-public List<LocoUncleansedDataAddNewLoco> getUnapprovedZonalLocos(LocoUncleansedDataElectric obj_zonalunapproved) {
-//		// TODO Auto-generated method stub
-		System.out.println("getzonalunapprovedocos");
-		String zoneid=obj_zonalunapproved.getElec_locoOwningZone();
-		obj_electriclocorepo.getUnapprovedZonalBoardLoco(zoneid);		
-		List<LocoUncleansedDataElectric> zonalunapprovedLoco= new ArrayList<>();
-		obj_electriclocorepo.getUnapprovedZonalBoardLoco(zoneid)
-		.forEach(zonalunapprovedLoco::add);
-		System.out.println(" End getzonalunapprovedocos");
-		return obj_LocoNewRepo.getUnapprovedZonalBoardLoco(zoneid);
-	}
+////fetch zonal user  new loco unapproved record 
+//public List<LocoUncleansedDataAddNewLoco> getUnapprovedZonalLocos(LocoUncleansedDataElectric obj_zonalunapproved) {
+////		// TODO Auto-generated method stub
+//		System.out.println("getzonalunapprovedocos");
+//		String zoneid=obj_zonalunapproved.getElec_locoOwningZone();
+//		obj_electriclocorepo.getUnapprovedZonalBoardLoco(zoneid);		
+//		List<LocoUncleansedDataElectric> zonalunapprovedLoco= new ArrayList<>();
+//		obj_electriclocorepo.getUnapprovedZonalBoardLoco(zoneid)
+//		.forEach(zonalunapprovedLoco::add);
+//		System.out.println(" End getzonalunapprovedocos");
+//		return obj_electriclocorepo.getUnapprovedZonalBoardLoco(zoneid);
+//	}
 
 public String savegoldenrecord(LocoUncleansedDataAddNewLoco objnewloco) {
 	try {

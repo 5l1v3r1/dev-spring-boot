@@ -100,6 +100,11 @@ public class LocoAddController {
  		return obj_newlocoservice.savegoldenrecord(obj_newgoldenloco);
 			
  	}
-	 
+	 @RequestMapping(method=RequestMethod.POST, value = "/zonalapprovedLoco")
+ 	public List<LocoUncleansedDataAddNewLoco> getZonalUnapprovedLoco(@RequestBody LocoUncleansedDataAddNewLoco obj_zonalunapproved){
+ 		System.out.println("zoneid"+ obj_zonalunapproved.getLoco_owning_zone());
+ 		return obj_newlocoservice.getApprovedZonalLocos(obj_zonalunapproved);
+			
+ 	}
  	
 }

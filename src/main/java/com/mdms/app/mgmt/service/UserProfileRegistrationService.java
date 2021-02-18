@@ -525,6 +525,19 @@ public List<UserProfileRegistrationDetailModel> getuserreportdiviwise(UserProfil
 	
 }
 
+//get user report zone and  division based :Developer :Ritu
+public List<UserProfileRegistrationDetailModel> getuserreportzoneanddiviwise(UserProfileRegistrationDetailModel objdivireport ) {	
+	String user_type = objdivireport.getUser_type();
+	String user_zone = objdivireport.getZone();
+	String user_divi = objdivireport.getDivision();				
+	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+	profileRegistrationRepo.getUserReportzoneanddivisiontwise(user_type,user_zone,user_divi)
+.forEach(temp::add);
+	System.out.println(temp);
+	return temp;
+	
+}
+
 //get user report department based :Developer :Ritu
 public List<UserProfileRegistrationDetailModel> getuserreportdepartmentwise(UserProfileRegistrationDetailModel objdeprtreport ) {	
 	String user_type = objdeprtreport.getUser_type();

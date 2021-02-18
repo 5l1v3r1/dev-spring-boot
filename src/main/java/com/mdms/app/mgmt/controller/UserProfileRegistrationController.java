@@ -189,6 +189,13 @@ public class UserProfileRegistrationController {
 	 					return registrationServiceObj.getuserreportdiviwise(objdivirecord);
 	 			
 	 			}
+	 			
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportzoneanddivisionwise")
+	 			public List<UserProfileRegistrationDetailModel> getuserreportzoneanddivisionwise(@RequestBody UserProfileRegistrationDetailModel objzonedivirecord ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+	 					return registrationServiceObj.getuserreportzoneanddiviwise(objzonedivirecord);
+	 			
+	 			}
 	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportdeprtwise")
 	 			public List<UserProfileRegistrationDetailModel> getuserreportdeprtwise(@RequestBody UserProfileRegistrationDetailModel objdeprtrecord ){
 //	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);

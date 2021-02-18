@@ -20,6 +20,7 @@ import com.mdms.loco.locouncleansed.model.LocoApprovedData;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedData;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataAddNewLoco;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
+import com.mdms.loco.locouncleansed.repository.LocoUncleansedDataAddNewRepository;
 //import com.mdms.loco.locouncleansed.repository.LocoUncleansedDataAddNewRepository;
 import com.mdms.loco.locouncleansed.repository.LocoUncleansedDataElectricRepository;
 import com.mdms.loco.locouncleansed.repository.LocoUncleansedDataRepository;
@@ -28,8 +29,8 @@ public class LocoAddService {
 @Autowired
 private LocoUncleansedDataRepository obj_dieselocoaddrepo;
 
-//@Autowired
-//private LocoUncleansedDataAddNewRepository obj_LocoNewRepo;
+@Autowired
+private LocoUncleansedDataAddNewRepository obj_LocoNewRepo;
 @Autowired
 private LocoUncleansedDataElectricRepository obj_electriclocorepo;
 
@@ -299,6 +300,20 @@ public String updateElectricShedData(LocoUncleansedDataElectric electricLocoNewS
 //		System.out.println(" End getzonalunapprovedocos");
 //		return obj_electriclocorepo.getUnapprovedZonalBoardLoco(zoneid);
 //	}
+
+//fetch zonal apporved new loco list - Developer - Ritu 
+public List<LocoUncleansedDataAddNewLoco> getApprovedZonalLocos(LocoUncleansedDataAddNewLoco obj_zonalapproved) {
+String zoneid=obj_zonalapproved.getLoco_owning_zone();
+System.out.println("zoneidservice : " +zoneid);
+obj_LocoNewRepo.getApprovedZonalBoardLoco(zoneid);	
+
+List<LocoUncleansedDataAddNewLoco> zonalapprovedLoco= new ArrayList<>();
+obj_LocoNewRepo.getApprovedZonalBoardLoco(zoneid)
+.forEach(zonalapprovedLoco::add);
+System.out.println(" End getzonalunapprovedocos" +zonalapprovedLoco);
+//return obj_LocoNewRepo.getApprovedZonalBoardLoco(zoneid);
+return zonalapprovedLoco;
+}
 
 public String savegoldenrecord(LocoUncleansedDataAddNewLoco objnewloco) {
 	try {

@@ -407,20 +407,15 @@ if(response!=null && result!=null) {
 						}					
 					}
 					
-					//fetch list of userdetail according to zone,division,department based :Developer :Ritu
-					public List<UserProfileRegistrationDetailModel> getcustomizeduserdetail(UserProfileRegistrationDetailModel objdashboaduser ) {
+					//fetch list of loco userdetail according to zone,shed based :Developer :Ritu
+					public List<UserProfileRegistrationDetailModel> getLocoUserRecordszoneandshedwise(UserProfileRegistrationDetailModel objdashboaduser ) {
 						System.out.println("objrecd."+objdashboaduser);
 						String user_type=objdashboaduser.getUser_type();
 						String user_zone = objdashboaduser.getZone();
-						String user_divi = objdashboaduser.getDivision();
-						String user_deprt = objdashboaduser.getDepartment();	
-						Date date_from =objdashboaduser.getFrom_date();
-						Date date_to =objdashboaduser.getTo_date();	
-						Date date_fromto=date_to;
-						System.out.println(date_from);
-						System.out.println(date_to);						
+						String user_shed = objdashboaduser.getShed();						
+										
 						List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
-						profileRegistrationRepo.getCustomizeUserRecords(user_type,user_zone,user_divi,user_deprt,date_from,date_fromto)
+						profileRegistrationRepo.getLocoUserRecordszoneandshedwise(user_type,user_zone,user_shed)
 				        .forEach(temp::add);
 						System.out.println(temp);
 						return temp;

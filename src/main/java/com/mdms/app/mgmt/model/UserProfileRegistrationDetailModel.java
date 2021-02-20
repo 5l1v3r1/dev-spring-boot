@@ -18,39 +18,27 @@ public class UserProfileRegistrationDetailModel {
 	@Id
 	@Column(name="user_id")
 	private String user_id;
-	
-	
 	@Column(name="name")	
-	private String uname;
-
-	@Column(name="designation")
-	private String designation;
-	
+	private String uname;	
 	@Column(name="department")
-	private String department;
+	private String department;		
 	@Column(name="zone")
-	private String zone;
-	@Column(name="shed")
-	private String shed;
-	
+	private String zone;	
 	@Column(name="division")
 	private String division;
-	
+	@Column(name="designation")
+	private String designation;	
 	@Column(name="role_type")
-	private String role_type;
-
+	private String role_type;	
+	
+	@Column(name="shed")
+	private String shed;
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	@Column(name="from_date")
 	private Date from_date;
-	
-	
 	@Column(name="loco_type")
 	private String loco_type;
-	
-	
-
-	
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+		@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	@Column(name="to_date")
 	private Date to_date;
 	

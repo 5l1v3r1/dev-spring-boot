@@ -15,6 +15,11 @@ public	Integer getdraft_forward_approval_count();
 	@JsonIgnore 
 	 @Value("#{target.division_code}")
 public	String getdivision_code();
+	
+	
+	@JsonIgnore 
+	 @Value("#{target.zone_code}")
+public	String getzone_code();
 	 
 	@JsonIgnore 
 	 @Value("#{target.uncleansed_count}")

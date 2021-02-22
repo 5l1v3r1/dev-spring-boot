@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.mdms.loco.locouncleansed.model.BoardZonalApproval;
+
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataAddNewLoco;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
 import com.mdms.loco.locouncleansed.service.LocoAddService;
@@ -54,21 +54,21 @@ public class LocoAddController {
 	
 	
 	
-	@RequestMapping(method=RequestMethod.POST, value="/updateelectricboardzonalloco")
-	public String updateelecbyboardzonaldata(@RequestBody BoardZonalApproval updateElectricLocoBoardZonal) throws JSONException, JsonMappingException, IOException 
-	{
-		logger.info("----------/updateElectricBoardZonalNewLocoAddtion",updateElectricLocoBoardZonal);
-		System.out.println(updateElectricLocoBoardZonal);
-		return obj_newlocoservice.updateElectricBoardZonalData(updateElectricLocoBoardZonal);
-			}
+//	@RequestMapping(method=RequestMethod.POST, value="/updateelectricboardzonalloco")
+//	public String updateelecbyboardzonaldata(@RequestBody BoardZonalApproval updateElectricLocoBoardZonal) throws JSONException, JsonMappingException, IOException 
+//	{
+//		logger.info("----------/updateElectricBoardZonalNewLocoAddtion",updateElectricLocoBoardZonal);
+//		System.out.println(updateElectricLocoBoardZonal);
+//		return obj_newlocoservice.updateElectricBoardZonalData(updateElectricLocoBoardZonal);
+//			}
 	
 	
-	@RequestMapping(method=RequestMethod.POST, value="/checkloconoexist")
-	public boolean checklocono(@RequestBody LocoUncleansedDataAddNewLoco objlocono) {
-		int locono=objlocono.getLoco_no();
-	boolean flag= obj_newlocoservice.checkloconoexist(locono);
-	return flag;
-	}   
+//	@RequestMapping(method=RequestMethod.POST, value="/checkloconoexist")
+//	public boolean checklocono(@RequestBody LocoUncleansedDataAddNewLoco objlocono) {
+//		int locono=objlocono.getLoco_no();
+//	boolean flag= obj_newlocoservice.checkloconoexist(locono);
+//	return flag;
+//	}   
 
 	@RequestMapping(method=RequestMethod.POST, value="/updateelectricshedloco")
 	public String updateelecbyShed(@RequestBody LocoUncleansedDataElectric updateElectricLocoShedUser) throws JSONException, JsonMappingException, IOException 
@@ -87,12 +87,12 @@ public class LocoAddController {
 			}
 	
 	
-	 @RequestMapping(method=RequestMethod.POST, value = "/zonalUnapprovedLoco")
- 	public List<LocoUncleansedDataAddNewLoco> getZonalUnapprovedLoco(@RequestBody LocoUncleansedDataElectric obj_zonalunapproved){
- 		System.out.println("zoneid"+ obj_zonalunapproved.getElec_locoOwningZone());
- 		return obj_newlocoservice.getUnapprovedZonalLocos(obj_zonalunapproved);
-			
- 	}
+//	 @RequestMapping(method=RequestMethod.POST, value = "/zonalUnapprovedLoco")
+// 	public List<LocoUncleansedDataAddNewLoco> getZonalUnapprovedLoco(@RequestBody LocoUncleansedDataElectric obj_zonalunapproved){
+// 		System.out.println("zoneid"+ obj_zonalunapproved.getElec_locoOwningZone());
+// 		return obj_newlocoservice.getUnapprovedZonalLocos(obj_zonalunapproved);
+//			
+// 	}
 	 
 	 @RequestMapping(method=RequestMethod.POST, value = "/savenewlocogoldenrecord")
  	public String saveNewGoldenRecord(@RequestBody LocoUncleansedDataAddNewLoco obj_newgoldenloco){
@@ -100,6 +100,11 @@ public class LocoAddController {
  		return obj_newlocoservice.savegoldenrecord(obj_newgoldenloco);
 			
  	}
-	 
+	 @RequestMapping(method=RequestMethod.POST, value = "/zonalapprovedLoco")
+ 	public List<LocoUncleansedDataAddNewLoco> getZonalUnapprovedLoco(@RequestBody LocoUncleansedDataAddNewLoco obj_zonalunapproved){
+ 		System.out.println("zoneid"+ obj_zonalunapproved.getLoco_owning_zone());
+ 		return obj_newlocoservice.getApprovedZonalLocos(obj_zonalunapproved);
+			
+ 	}
  	
 }

@@ -541,9 +541,10 @@ public List<UserProfileRegistrationDetailModel> getuserreportdepartmentwise(User
 	profileRegistrationRepo.getUserReportdeprtwise(user_deprt,user_type)
 .forEach(temp::add);
 	System.out.println(temp);
-	return temp;
-	
+	return temp;	
 }
+
+	 
 
 //get user report single zone and department based :Developer :Ritu
 public List<UserProfileRegistrationDetailModel> getuserreportsinglezoneandeprttwise(UserProfileRegistrationDetailModel objzonedeprtreport ) {

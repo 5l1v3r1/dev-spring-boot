@@ -28,14 +28,15 @@ public class UserProfileRegistrationDetailModel {
 	private String division;
 	@Column(name="designation")
 	private String designation;	
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+	@Column(name="from_date")
+	private Date from_date;
 	@Column(name="role_type")
 	private String role_type;	
 	
 	@Column(name="shed")
 	private String shed;
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
-	@Column(name="from_date")
-	private Date from_date;
+	
 	@Column(name="loco_type")
 	private String loco_type;
 		@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")

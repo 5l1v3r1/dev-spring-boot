@@ -2,6 +2,7 @@ package com.mdms.app.mgmt.repository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -81,6 +82,10 @@ public interface UserProfileRegistrationRepository extends CrudRepository<UserPr
 	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  zone=?1 AND department=?2 AND user_type=?3 ",nativeQuery=true)
 	  List<UserProfileRegistrationDetailModel> getuserreportsinglezoneandsingledeprt(String zone,String department, String utype);
 	
-	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 AND  zone=?2 AND division=?3 ",nativeQuery=true)
-	  List<UserProfileRegistrationDetailModel> getUserReportzoneanddivisiontwise(String utype,String zone,String division);
+	@Query(value="SELECT  a.*,b.description\n"
+			+ "	FROM mdms_app_mgmt.user_profile_registration_detail as a\n"
+			+ "	join mdms_app_mgmt.m_user_role as b on a.role_type=b.role_type where user_type='SU' and zone='NR' and division='DLI'\n"
+			+ ""			
+			+ "	 ",nativeQuery=true)
+	List<UserProfileRegistrationDetailModel> getUserReportzoneanddivisiontwise(String utype,String zone,String division);
 }

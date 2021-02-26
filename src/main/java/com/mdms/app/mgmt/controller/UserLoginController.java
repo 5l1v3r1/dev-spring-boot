@@ -90,7 +90,7 @@ obj.setUser_role(registrationObj.getRole_type());
 obj.setUname(registrationObj.getUname());
 obj.setZone(registrationObj.getZone());
 obj.setUser_id(user_id);
-
+obj.setDepartment(registrationObj.getDepartment());
 obj.setShed(registrationObj.getShed());
 obj.setDepo(registrationObj.getDepo());
 

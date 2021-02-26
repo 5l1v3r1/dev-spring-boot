@@ -12,6 +12,7 @@ public class MenuIdResponseModel {
 	String user_type;
 	String division;
 	String designation;
+	String department;
 	String user_role;
 	String user_id;
 	String senior_id;
@@ -103,12 +104,20 @@ public class MenuIdResponseModel {
 	public void setDepo(String depo) {
 		this.depo = depo;
 	}
+	
 
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
 	@Override
 	public String toString() {
 		return "MenuIdResponseModel [menuid_list=" + menuid_list + ", message=" + message + ", status=" + status
 
 				+ ", user_type=" + user_type + ", division=" + division + ", designation=" + designation
+				+",department="+department
 
 				+ ", user_type=" + user_type + ", division=" + division + ", designation=" + designation +",shed=" + shed +",depo=" + depo
 

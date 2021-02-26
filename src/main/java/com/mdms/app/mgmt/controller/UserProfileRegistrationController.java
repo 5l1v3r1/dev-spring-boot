@@ -144,6 +144,21 @@ public class UserProfileRegistrationController {
 	 			
 	 			}
 	 			
+	 			
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getreportzonaldatewise")
+	 			public List<UserProfileRegistrationDetailModel> getreportzonedatewise(@RequestBody UserProfileRegistrationDetailModel objdatewise ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+	 					return registrationServiceObj.getreportdatewise(objdatewise);
+	 			
+	 			}
+	 			
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getreportdivisiondatewise")
+	 			public List<UserProfileRegistrationDetailModel> getreportdivisdatewise(@RequestBody UserProfileRegistrationDetailModel objdatewise ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+	 					return registrationServiceObj.getreportdatewise(objdatewise);
+	 			
+	 			}
+	 			
 	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportdepartandatewise")
 	 			public List<UserProfileRegistrationDetailModel> getreportdeprtdatewise(@RequestBody UserProfileRegistrationDetailModel objreport1 ){
 	 					return registrationServiceObj.getreportdeprtanddatewise(objreport1);

@@ -9,7 +9,11 @@ public class DashboardStationModel {
 	public Integer draft_forward_approval_count=0;
 	
 	
-	public Integer total_division_count=0;
+
+public Integer total_division_count=0;
+	
+
+
 
 
 	public String getZone_code() {
@@ -72,6 +76,7 @@ public class DashboardStationModel {
 	}
 
 
+
 	public Integer getTotal_division_count() {
 		return total_division_count;
 	}
@@ -80,5 +85,12 @@ public class DashboardStationModel {
 	public void setTotal_division_count(Integer total_division_count) {
 		this.total_division_count = total_division_count;
 	}
+
+
+	
+	
+	
+
+	
 		 
 }

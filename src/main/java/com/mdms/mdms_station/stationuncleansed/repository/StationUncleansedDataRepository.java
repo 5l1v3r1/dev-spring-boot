@@ -137,23 +137,61 @@ public interface StationUncleansedDataRepository extends CrudRepository <Station
 
 			
 			 @Query(value="select division_code,count(*) as pending_approval" + 
-				  		"  from mdms_station.station_uncleansed_data where zone_code=?1 and cmi_status='U' OR dti_status='U' group by division_code"
+
+				  		"  from mdms_station.station_uncleansed_data where zone_code=?1 and (cmi_status='U' OR dti_status='U') group by division_code"				  	
 				  					  		,nativeQuery = true)
 			  Collection<DashBoardStationCountDivisionWiseModel> getPendingApprovalStationCountDivisionWise(String zone_code);
 
 				
+
+			 //Shilpi 04-03-2021
+			 @Query(value="select division_code,count(*) as pending_approval" + 
+				  		"  from mdms_station.station_uncleansed_data where division_code=?1 and (cmi_status='U' OR dti_status='U') group by division_code"
+				  					  		,nativeQuery = true)
+			  Collection<DashBoardStationCountDivisionWiseModel> getPendingApprovalStationCountSingleDivisionWise(String division_code);
+			 
+               //END CHANGE
 			  
 			  @Query(value="select division_code, count(*) as cleansed_count " + 
-				  		"from mdms_station.station_uncleansed_data where zone_code=?1 group by division_code",nativeQuery=true)
+				  		"from mdms_station.station_cleansed_data where zone_code=?1 group by division_code",nativeQuery=true)
 			  Collection<DashBoardStationCountDivisionWiseModel> getTotalCleansedStationCountDivisionWise(String zone_code);
 		  
+			  //Shilpi 04-03-2021
 			  
+			  @Query(value="select division_code, count(*) as cleansed_count " + 
+				  		"from mdms_station.station_cleansed_data where division_code=?1 group by division_code",nativeQuery=true)
+			  Collection<DashBoardStationCountDivisionWiseModel> getTotalCleansedStationCountSingleDivisionWise(String division_code);
+		  
+			  //end changes
 			 
 			  @Query(value=" select division_code,count(*) as draft_forward_approval_count\r\n"
-			  		+ "			  	from mdms_station.station_uncleansed_data where zone_code=?1 and cmi_status='D' OR dti_status='D' group by division_code\r\n"
+			  		+ "			  	from mdms_station.station_uncleansed_data where zone_code=?1 and (cmi_status='D' OR dti_status='D' group by division_code\r\n"
 			  		+ "			",nativeQuery=true)
 			  Collection<DashBoardStationCountDivisionWiseModel> getTotalDraftForwardApprovalStationCountDivisionWise(String zone_code);
 			  
+			  //Shilpi 04-03-2021
+			  
+			  @Query(value=" select division_code,count(*) as draft_forward_approval_count\r\n"
+				  		+ "			  	from mdms_station.station_uncleansed_data where division_code=?1 and (cmi_status='D' OR dti_status='D') group by division_code\r\n"
+				  		+ "			",nativeQuery=true)
+				  Collection<DashBoardStationCountDivisionWiseModel> getTotalDraftForwardApprovalStationCountSingleDivisionWise(String division_code);
+			  
+			  //end changes
+			  
+
+//			  
+//			  @Query(value="select division_code, count(*) as cleansed_count " + 
+//				  		"from mdms_station.station_uncleansed_data where zone_code=?1 group by division_code",nativeQuery=true)
+//			  Collection<DashBoardStationCountDivisionWiseModel> getTotalCleansedStationCountDivisionWise(String zone_code);
+//		  
+//			  
+			 
+//			  @Query(value=" select division_code,count(*) as draft_forward_approval_count\r\n"
+//			  		+ "			  	from mdms_station.station_uncleansed_data where zone_code=?1 and cmi_status='D' OR dti_status='D' group by division_code\r\n"
+//			  		+ "			",nativeQuery=true)
+//			  Collection<DashBoardStationCountDivisionWiseModel> getTotalDraftForwardApprovalStationCountDivisionWise(String zone_code);
+//			  
+
 			  
 //			  @Query(value="select t.division_code, count(*) as draft_forward_approval_count from\r\n" + 
 //				  		"	(SELECT d.userid ,r.division_code  from  station.draft d,\r\n" + 

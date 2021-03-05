@@ -161,6 +161,9 @@ public class StationDashboardService {
 			
 		}
 
+
+	
+
 		private void callTotal(DashBoardStationCountDivisionWiseModel uncleansedObj,Collection< DashboardStationModel>list) {
 			// TODO Auto-generated method stub
 			try {		
@@ -299,10 +302,205 @@ public class StationDashboardService {
 //		obj.setZone_code(DashBoardStationCountDivisionWiseModel.getzone_code());
 			
 		obj.setDivision_code(DashBoardStationCountDivisionWiseModel.getdivision_code());
+
+//		obj.setTotal_division_count(DashBoardStationCountDivisionWiseModel.gettotal_division_count());			
+
+		obj.setTotal_division_count(DashBoardStationCountDivisionWiseModel.gettotal_division_count());			
+
+		list.add(obj);
+		
+		}
+		
+
+
+		
+		
+		
+	//Shilpi 04-03-2021
+		
+		public List<DashboardStationModel> getStationCountSingleDivisionWise(DashboardStationModel objdivision_code) {
+			String division_code =objdivision_code.getDivision_code();
+			List<DashboardStationModel> list= new ArrayList<DashboardStationModel>();		
+			Collection<DashBoardStationCountDivisionWiseModel> totalCountLists= stn_tbl_rbs_repo.getTotalStationCountSingleDivisionWise(division_code);
+				logger.info("Service : DashBoardStationService || Method: getStationCountSingleDivisionWise || getTotalStationCountSingleDivisionWise Query list return : "+totalCountLists);
+				if(totalCountLists.size()>0) {
+				totalCountLists.forEach(DashBoardStationCountDivisionWiseModel -> setTotalDivision(DashBoardStationCountDivisionWiseModel,list));
+
+			}	
+				
+				Collection<DashBoardStationCountDivisionWiseModel> uncleansedCountLists= stn_tbl_rbs_repo.getUncleansedStationCountsingledivision(division_code);
+				logger.info("Service : DashBoardStationService || Method: getStationCountSingleDivisionWise || getUncleansedStationCountsingledivision Query list return : "+uncleansedCountLists.size());
+
+				uncleansedCountLists.forEach(DashBoardStationCountDivisionWiseModel -> callTotal(DashBoardStationCountDivisionWiseModel,list));
+				
+				
+				Collection<DashBoardStationCountDivisionWiseModel> pendingApprovalCountLists= stn_unclsnd_repo.getPendingApprovalStationCountSingleDivisionWise(division_code);
+				logger.info("Service : DashBoardStationService || Method: getStationCountSingleDivisionWise || getPendingApprovalStationCountSingleDivisionWise Query list return : "+pendingApprovalCountLists.size());
+		
+				pendingApprovalCountLists.forEach(DashBoardStationCountDivisionWiseModel -> callPendingApproval(DashBoardStationCountDivisionWiseModel,list));
+
+				
+				Collection<DashBoardStationCountDivisionWiseModel> cleansedCountLists= stn_unclsnd_repo.getTotalCleansedStationCountSingleDivisionWise(division_code);
+				logger.info("Service : DashBoardStationService || Method: getStationCountSingleDivisionWise || getTotalCleansedStationCountSingleDivisionWise Query list return : "+cleansedCountLists.size());			
+				cleansedCountLists.forEach(DashBoardStationCountDivisionWiseModel -> callCleansedCount(DashBoardStationCountDivisionWiseModel,list));			
+			
+				
+				Collection<DashBoardStationCountDivisionWiseModel> draftCountLists= stn_unclsnd_repo.getTotalDraftForwardApprovalStationCountSingleDivisionWise(division_code);
+				logger.info("Service : DashBoardStationService || Method: getStationCountSingleDivisionWise || getTotalDraftForwardApprovalStationCountSingleDivisionWise Query list return : "+draftCountLists.size());			
+				draftCountLists.forEach(DashBoardStationCountDivisionWiseModel -> callDraftCount(DashBoardStationCountDivisionWiseModel,list));	
+				
+				
+				
+				
+				
+				return list;
+			
+		}
+			//end changes
+		
+		private void callTotaldivisionwise(DashBoardStationCountDivisionWiseModel uncleansedObj,Collection< DashboardStationModel>list) {
+			// TODO Auto-generated method stub
+			try {		
+				uncleansedFlag=0;
+				list.forEach(totalobj -> callTotalSub(uncleansedObj,totalobj));	
+				if(uncleansedFlag==0){
+					DashboardStationModel obj = new DashboardStationModel();
+//					obj.setZone_code(uncleansedObj.getzone_code());
+					obj.setDivision_code(uncleansedObj.getdivision_code());
+					obj.setUncleansed_count(uncleansedObj.getuncleansed_count());
+			//		list.add(obj);	
+				}
+					}catch (Exception e) {
+				// TODO: Handle Exception
+				e.getMessage();		}
+		}
+		private void callTotalSubdivisionwise(DashBoardStationCountDivisionWiseModel uncleansedObj,DashboardStationModel totalobj) {
+			
+			try {
+			if(uncleansedObj.getdivision_code().equalsIgnoreCase(totalobj.getDivision_code())) {
+				uncleansedFlag++;
+				totalobj.setUncleansed_count(uncleansedObj.getuncleansed_count());
+			}
+			}catch (Exception e) {
+				// TODO: handle exception
+				e.getMessage();
+			}
+		}
+		
+
+		
+		private void callPendingApprovaldivisionwise(DashBoardStationCountDivisionWiseModel pendingApprovObj,Collection< DashboardStationModel>list) {
+			// TODO Auto-generated method stub
+			try {
+			
+				uncleansedFlag=0;
+				list.forEach(totalobj -> callPendingApprovalSub(pendingApprovObj,totalobj));	
+				if(uncleansedFlag==0) {
+					DashboardStationModel obj = new DashboardStationModel();
+//					obj.setZone_code(pendingApprovObj.getzone_code());					
+					obj.setDivision_code(pendingApprovObj.getdivision_code());
+					obj.setPending_approval(pendingApprovObj.getpending_approval());
+			//		list.add(obj);	
+				}
+			}catch (Exception e) {
+				// TODO: handle exception
+				e.getMessage();
+			}
+			
+		}
+		private void callPendingApprovalSubdivisionwise(DashBoardStationCountDivisionWiseModel pendingApprovObj,DashboardStationModel totalobj) {
+			
+			try {
+			if(pendingApprovObj.getdivision_code().equalsIgnoreCase(totalobj.getDivision_code())) {
+				uncleansedFlag++;
+				totalobj.setPending_approval(pendingApprovObj.getpending_approval());		
+		
+			}
+			}catch (Exception e) {
+				// TODO: handle exception
+				e.getMessage();
+			}
+		}
+		
+		
+		private void callCleansedCountdivisionwise(DashBoardStationCountDivisionWiseModel cleansedObj,Collection< DashboardStationModel>list) {
+			// TODO Auto-generated method stub
+			
+			try {
+				uncleansedFlag=0;
+				list.forEach(totalobj -> callCleansedCountSub(cleansedObj,totalobj));
+
+		
+				if(uncleansedFlag==0) {
+					DashboardStationModel obj = new DashboardStationModel();
+//					obj.setZone_code(cleansedObj.getzone_code());
+					obj.setDivision_code(cleansedObj.getdivision_code());
+					obj.setCleansed_count(cleansedObj.getcleansed_count());
+				//	list.add(obj);		
+				}
+			}catch (Exception e) {
+				// TODO: handle exception
+				e.getMessage();
+			}
+			
+		}
+		private void callCleansedCountSubdivisionwise(DashBoardStationCountDivisionWiseModel cleansedObj,DashboardStationModel totalobj) {
+			try {
+			if(cleansedObj.getdivision_code().equalsIgnoreCase(totalobj.getDivision_code())){
+				uncleansedFlag++;
+				totalobj.setCleansed_count(cleansedObj.getcleansed_count());	
+			}
+			}catch (Exception e) {
+				// TODO: handle exception
+				e.getMessage();
+			}
+		}
+		
+		private void callDraftCountdivisionwise(DashBoardStationCountDivisionWiseModel draftObj,Collection< DashboardStationModel>list) {
+			// TODO Auto-generated method stub
+			
+			try {
+				uncleansedFlag=0;
+				list.forEach(totalobj -> callDraftCountSub(draftObj,totalobj));
+
+		
+				if(uncleansedFlag==0) {
+					DashboardStationModel obj = new DashboardStationModel();
+//					obj.setZone_code(draftObj.getzone_code());
+					obj.setDivision_code(draftObj.getdivision_code());
+					obj.setDraft_forward_approval_count(draftObj.getdraft_forward_approval_count());
+				//	list.add(obj);		
+				}
+			}catch (Exception e) {
+				// TODO: handle exception
+				e.getMessage();
+			}
+			
+		}
+		private void callDraftCountSubdivisionwise(DashBoardStationCountDivisionWiseModel draftObj,DashboardStationModel totalobj) {
+			try {
+			if(draftObj.getdivision_code().equalsIgnoreCase(totalobj.getDivision_code())){
+				uncleansedFlag++;
+				totalobj.setDraft_forward_approval_count(draftObj.getdraft_forward_approval_count());	
+		//		System.out.println("draft add in list divcode"+ totalobj.getDivision_code()+"|| AND Draft count: "+totalobj.getDraft_forward_approval_count());
+			}
+			}catch (Exception e) {
+				// TODO: handle exception
+				e.getMessage();
+			}
+		}
+		
+		
+		private void setTotalDivisiondivisionwise(DashBoardStationCountDivisionWiseModel DashBoardStationCountDivisionWiseModel,Collection<DashboardStationModel> list) {
+		DashboardStationModel obj =new DashboardStationModel();	
+//		obj.setZone_code(DashBoardStationCountDivisionWiseModel.getzone_code());
+			
+		obj.setDivision_code(DashBoardStationCountDivisionWiseModel.getdivision_code());
 		obj.setTotal_division_count(DashBoardStationCountDivisionWiseModel.gettotal_division_count());			
 		list.add(obj);
 		
 		}
+		
 		
 
 

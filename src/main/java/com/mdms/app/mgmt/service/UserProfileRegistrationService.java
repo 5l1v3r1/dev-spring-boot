@@ -440,18 +440,21 @@ if(response!=null && result!=null) {
 						
 					}
 					
-					//fetch list of userdetail according to date wise:Developer :Ritu
-//					public List<UserProfileRegistrationDetailModel> getcustomizeduserdetaildatewise(UserProfileRegistrationDetailModel objdatedashboaduser ) {					
-//						Date from_dt = objdatedashboaduser.getFrom_date();
-//						Date to_date = objdatedashboaduser.getFrom_date();
-//						String user_deprt = objdashboaduser.getDepartment();						
-//						List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
-//						profileRegistrationRepo.getCustomizeUserRecords(user_zone,user_divi,user_deprt)
-//				        .forEach(temp::add);
-//						System.out.println(temp);
-//						return temp;
-//						
-//					}
+					//fetch list of userdetail according to all parameter for divisioNAL USER:Developer :Ritu
+					public List<UserProfileRegistrationDetailModel> getcustomizeduserdetaildivisionuser(UserProfileRegistrationDetailModel objdatedashboaduser ) {		
+						String user_type=objdatedashboaduser.getUser_type();
+						String user_divi = objdatedashboaduser.getDivision();	
+						String user_deprt = objdatedashboaduser.getDepartment();
+						String user_desig = objdatedashboaduser.getDesignation();						
+						Date from_dt = objdatedashboaduser.getFrom_date();
+						Date to_date = objdatedashboaduser.getFrom_date();									
+						List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+						profileRegistrationRepo.getReportdivisionuserallparameter(user_type,user_divi,user_deprt,user_desig,from_dt,to_date)
+				        .forEach(temp::add);
+						System.out.println(temp);
+						return temp;
+						
+					}
 					
 					
 					public String findOldUserRecorinRegistration(String olduser_id) {			 
@@ -496,6 +499,11 @@ public List<String> getAllRegisteredDepartment() {
 	return profileRegistrationRepo.findRegisteredDept();
 }
 
+public List<String> getAllRegisteredDesignation(UserProfileRegistrationDetailModel objdesig) {
+	// TODO Auto-generated method stub
+	String utype=objdesig.getUser_type();
+	return profileRegistrationRepo.findRegisteredDesig(utype);
+}
 //get user report zone based :Developer :Ritu
 public List<UserProfileRegistrationDetailModel> getuserreportzonewise(UserProfileRegistrationDetailModel objzonereport ) {	
 	String user_type = objzonereport.getUser_type();
@@ -564,9 +572,10 @@ public List<UserProfileRegistrationDetailModel> getuserreportsinglezoneandeprttw
 public List<UserProfileRegistrationDetailModel> getuserreportsinglediviandeprttwise(UserProfileRegistrationDetailModel objdivideprtreport ) {	
 	String user_type = objdivideprtreport.getUser_type();
 	String user_divi = objdivideprtreport.getDivision();	
-	String user_deprt = objdivideprtreport.getDepartment();				
+	String user_deprt = objdivideprtreport.getDepartment();	
+	String user_desig = objdivideprtreport.getDesignation();	
 	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
-	profileRegistrationRepo.getuserreportsingledivandsingdeprt(user_divi,user_deprt,user_type)
+	profileRegistrationRepo.getuserreportsingledivandsingdeprt(user_divi,user_type,user_deprt,user_desig)
 .forEach(temp::add);
 	System.out.println(temp);
 	return temp;

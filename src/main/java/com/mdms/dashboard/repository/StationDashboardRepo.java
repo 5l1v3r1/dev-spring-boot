@@ -11,8 +11,12 @@ import com.mdms.dahsboard.model.DashboardStationModel;
 public interface StationDashboardRepo  {
 	  @Query(value="SELECT division_code,count(*) as total_division_count FROM mdms_masters.m_division  group by division_code",nativeQuery=true)
 	  Collection<DashBoardStationCountDivisionWiseModel> getTotalStationCountDivisionWise();
+
 	  
 	 
+
+
+
 	  
 	  @Query(value=" select division_code,uncleansed_count from (\\r\\n\"\r\n"
 	  		+ "	  		+ \"			  select e.zone_code,f.division_code,count(*) as uncleansed_count from (select distinct  division_code, stn_code\\r\\n\"\r\n"
@@ -23,7 +27,7 @@ public interface StationDashboardRepo  {
 	  		+ "	  		+ \"					where e.zone_code=?1\\r\\n\"\r\n"
 	  		+ "	  		+ \"					group by 1,2 ) as aa",nativeQuery=true)
   Collection<DashBoardStationCountDivisionWiseModel> getUncleansedStationCountDivisionWise(String zonecode);
-	  
+
 	  @Query(value="SELECT division_code,COUNT(*) as total_division_count_single from mdms_station.station_table_rbs as a, mdms_masters.m_division as b where current_date between stn_vld_from and stn_vld_upto and a.div_ser_no=b.division_sr_no and b.division_code=?1 GROUP BY division_code",nativeQuery=true)
 	Collection<DashBoardStationCountDivisionWiseModel> getTotalStationCountSingleDivisionWise(String division_code);
 		
@@ -38,6 +42,8 @@ public interface StationDashboardRepo  {
 		  		+ "	  		+ \"					group by 1,2 ) as aa",nativeQuery=true)
 	  Collection<DashBoardStationCountDivisionWiseModel> getUncleansedStationCountSingleDivisionWise(String divcode);
 		  
+
+
 
 
 }

@@ -9,8 +9,11 @@ public class DashboardStationModel {
 	public Integer draft_forward_approval_count=0;
 	
 	
-//	public Integer total_division_count=0;
-	public Integer total_division_count_single=0;
+
+public Integer total_division_count=0;
+	
+
+
 
 
 	public String getZone_code() {
@@ -73,26 +76,21 @@ public class DashboardStationModel {
 	}
 
 
-//	public Integer getTotal_division_count() {
-//		return total_division_count;
-//	}
-//
-//
-//	public void setTotal_division_count(Integer total_division_count) {
-//		this.total_division_count = total_division_count;
-//	}
 
-
-	public Integer getTotal_division_count_single() {
-		return total_division_count_single;
+	public Integer getTotal_division_count() {
+		return total_division_count;
 	}
 
 
-	public void setTotal_division_count_single(Integer total_division_count_single) {
-		this.total_division_count_single = total_division_count_single;
+	public void setTotal_division_count(Integer total_division_count) {
+		this.total_division_count = total_division_count;
 	}
+
+
 	
 	
+	
+
 	
 		 
 }

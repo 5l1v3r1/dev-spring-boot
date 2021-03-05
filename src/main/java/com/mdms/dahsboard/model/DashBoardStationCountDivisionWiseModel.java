@@ -39,11 +39,11 @@ public	String getzone_code();
 	@JsonIgnore 
 	 @Value("#{target.total_division_count}")
 	 public Integer gettotal_division_count();
+
 	
 	
-	@JsonIgnore 
-	 @Value("#{target.total_division_count_single}")
-	 public Integer gettotal_division_count_single();
+	
+
 
 	@JsonIgnore 
 	 @Value("#{args[0]+': '+target.division_code}")	 

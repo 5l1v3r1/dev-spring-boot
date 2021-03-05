@@ -91,6 +91,10 @@ obj.setUname(registrationObj.getUname());
 obj.setZone(registrationObj.getZone());
 obj.setUser_id(user_id);
 
+
+
+obj.setDepartment(registrationObj.getDepartment());
+
 obj.setShed(registrationObj.getShed());
 obj.setDepo(registrationObj.getDepo());
 
@@ -184,6 +188,27 @@ obj.setSenior_id(profileRegistrationService.seniorID(registrationObj.getDesignat
 		
 	}
 	
+
+
+
+	@RequestMapping(method=RequestMethod.POST, value ="/checkuserloggedin")
+	public List<UserLoginDetailModel> checksessionactive(@RequestBody UserLoginDetailModel obj_checksession)
+	{
+		logger.info("Controller : UserLoginController || Method : checksessionactive || userid:" +obj_checksession.getUser_id());
+		
+		System.out.println("id"+ obj_checksession.getUser_id());	
+	List<UserLoginDetailModel> flag = userLoginService.checksessionactive(obj_checksession);
+	return flag;
+	}
+	@RequestMapping(method=RequestMethod.POST, value ="/updateloginsession")
+	public String updatesession(@RequestBody UserLoginDetailModel obj_session)
+	{
+		logger.info("Controller : UserLoginController || Method : updatesession || isactive:" +obj_session.getIs_active()  );
+		
+		System.out.println("id"+ obj_session.getUser_id());	
+	String flag = userLoginService.updatelogginsession(obj_session);
+	return flag;
+	}
 
 	
 }

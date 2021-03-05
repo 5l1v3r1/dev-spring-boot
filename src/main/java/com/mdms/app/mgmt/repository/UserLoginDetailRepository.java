@@ -22,6 +22,15 @@ public interface UserLoginDetailRepository extends CrudRepository<UserLoginDetai
 	@Modifying
 	@Query(value="UPDATE mdms_app_mgmt.user_login_detail SET emp_password=?1  where user_id=?2",nativeQuery=true)
 	int updatePassword(String newPwd, String userId);
+
+
+	@Transactional
+	@Modifying
+	@Query(value="UPDATE mdms_app_mgmt.user_login_detail SET is_active=?1  where user_id=?2",nativeQuery=true)
+	int updateusersession(String isactive, String userId);
+	@Query(value="SELECT * from mdms_app_mgmt.user_login_detail where user_id=?1",nativeQuery=true)
+	 List<UserLoginDetailModel> checkusersessionactive(String userId);
+
 	
 
 

@@ -39,6 +39,7 @@ public interface StationTableRbsRepository  extends CrudRepository<StationTableR
 	  		+ "					where e.zone_code=?1\r\n"
 	  		+ "					group by 1,2 ) as aa",nativeQuery=true)
 			  Collection<DashBoardStationCountDivisionWiseModel> getUncleansedStationCountDivisionWise(String zone_code);
+
 	
 	  //shilpi 04-03-2021
 	  @Query(value="SELECT division_code,COUNT(*) as total_division_count from mdms_station.station_table_rbs as a, mdms_masters.m_division as b"
@@ -60,4 +61,9 @@ public interface StationTableRbsRepository  extends CrudRepository<StationTableR
 		  		+ "					where e.division_code=?1\r\n"
 		  		+ "					group by 1,2 ) as aa",nativeQuery=true)
 				  Collection<DashBoardStationCountDivisionWiseModel> getUncleansedStationCountsingledivision(String division_code);  
+
+			  
+  
+
+
 }

@@ -161,7 +161,9 @@ public class StationDashboardService {
 			
 		}
 
+
 	
+
 		private void callTotal(DashBoardStationCountDivisionWiseModel uncleansedObj,Collection< DashboardStationModel>list) {
 			// TODO Auto-generated method stub
 			try {		
@@ -300,11 +302,16 @@ public class StationDashboardService {
 //		obj.setZone_code(DashBoardStationCountDivisionWiseModel.getzone_code());
 			
 		obj.setDivision_code(DashBoardStationCountDivisionWiseModel.getdivision_code());
+
 //		obj.setTotal_division_count(DashBoardStationCountDivisionWiseModel.gettotal_division_count());			
+
+		obj.setTotal_division_count(DashBoardStationCountDivisionWiseModel.gettotal_division_count());			
+
 		list.add(obj);
 		
 		}
 		
+
 
 		
 		
@@ -489,11 +496,12 @@ public class StationDashboardService {
 //		obj.setZone_code(DashBoardStationCountDivisionWiseModel.getzone_code());
 			
 		obj.setDivision_code(DashBoardStationCountDivisionWiseModel.getdivision_code());
-		obj.setTotal_division_count_single(DashBoardStationCountDivisionWiseModel.gettotal_division_count_single());			
+		obj.setTotal_division_count(DashBoardStationCountDivisionWiseModel.gettotal_division_count());			
 		list.add(obj);
 		
 		}
 		
 		
+
 
 }

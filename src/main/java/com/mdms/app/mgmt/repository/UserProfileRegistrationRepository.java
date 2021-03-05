@@ -3,6 +3,10 @@ package com.mdms.app.mgmt.repository;
 import java.util.Date;
 import java.util.List;
 
+
+import java.util.Optional;
+
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -53,11 +57,24 @@ public interface UserProfileRegistrationRepository extends CrudRepository<UserPr
 	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where user_id=?1",nativeQuery=true)
 	 List<UserProfileRegistrationDetailModel> checkuserexistinregsitration(String user_id);
 	
+
 	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 AND zone=?2 AND division=?3 AND department=?4 AND (from_date between ?5 and ?6)",nativeQuery=true)
 	  List<UserProfileRegistrationDetailModel> getCustomizeUserRecords(String utype ,String zone,String division,String department, Date from_to,Date to_date);
 	
 @Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1 AND (from_date between ?2 and ?3)",nativeQuery=true)
 	  List<UserProfileRegistrationDetailModel> getReportdatewise(String utype, Date from_date,Date to_date);
+
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 AND zone=?2 AND shed=?3",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getLocoUserRecordszoneandshedwise(String utype ,String zone,String shed);
+	
+@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1 AND zone=?2 AND (from_date between ?3 and ?4)",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getReportzonaluserdatewise(String utype, String zone,Date from_date,Date to_date);
+
+@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1 AND zone=?2 AND division=?3 AND (from_date between ?4 and ?5)",nativeQuery=true)
+List<UserProfileRegistrationDetailModel> getReportdivisionuserdatewise(String utype,String zone,String division, Date from_date,Date to_date);
+	
+
+
 	
 	@Query(value="SELECT distinct department FROM  mdms_app_mgmt.user_profile_registration_detail", nativeQuery = true)
 	List<String> findRegisteredDept(); 
@@ -75,9 +92,22 @@ public interface UserProfileRegistrationRepository extends CrudRepository<UserPr
 	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 AND zone=?2",nativeQuery=true)
 	  List<UserProfileRegistrationDetailModel> getUserReportzonewise(String utype,String zone);
 	
-	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  division=?1 AND department=?2 AND user_type=?3",nativeQuery=true)
-	  List<UserProfileRegistrationDetailModel> getuserreportsingledivandsingdeprt(String division,String department,String utype);
-	
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where division=?1 and user_type=?2 and(coalesce(department,'')=?3 OR \r\n" + 
+			"						coalesce(designation,'')=?4)",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getuserreportsingledivandsingdeprt(String division,String utype,String department,String desig);	
+
 	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  zone=?1 AND department=?2 AND user_type=?3 ",nativeQuery=true)
 	  List<UserProfileRegistrationDetailModel> getuserreportsinglezoneandsingledeprt(String zone,String department, String utype);
+
+	
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where user_type=?1 and zone=?2 and division=?3 ",nativeQuery=true)
+	List<UserProfileRegistrationDetailModel> getUserReportzoneanddivisiontwise(String utype,String zone,String division);
+	
+	
+//	@Query(value="SELECT  a.*,b.description\n"
+//			+ "	FROM mdms_app_mgmt.user_profile_registration_detail as a\n"
+//			+ "	join mdms_app_mgmt.m_user_role as b on a.role_type=b.role_type where user_type=?1 and zone=?2 and division=?3\n"
+//			+ ""			
+//			+ "	 ",nativeQuery=true)
+//	List<UserProfileRegistrationDetailModel> getUserReportzoneanddivisiontwise(String utype,String zone,String division);
 }

@@ -18,6 +18,7 @@ public class UserProfileRegistrationDetailModel {
 	@Id
 	@Column(name="user_id")
 	private String user_id;
+
 	
 	
 	@Column(name="name")	
@@ -47,6 +48,10 @@ public class UserProfileRegistrationDetailModel {
 	@Column(name="role_type")
 	private String role_type;
 	
+
+	
+	
+
 	@Column(name="user_type")
 	private String user_type;
 	
@@ -62,11 +67,15 @@ public class UserProfileRegistrationDetailModel {
 	@Column(name="created_by")
 	private String created_by;
 	
+
 	@Column(name="zone")
 	private String zone;
 	
 	@Column(name="division")
 	private String division;
+
+	
+
 	
 	@Column(name="user_register_approval")
 	private String user_register_approval;

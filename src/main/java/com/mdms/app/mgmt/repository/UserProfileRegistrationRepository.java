@@ -74,15 +74,13 @@ public interface UserProfileRegistrationRepository extends CrudRepository<UserPr
 List<UserProfileRegistrationDetailModel> getReportdivisionuserdatewise(String utype,String zone,String division, Date from_date,Date to_date);
 	
 
-<<<<<<< HEAD
+
 @Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1  AND division=?2  AND department=?3  AND designation=?4 AND (from_date between ?5 and ?6)",nativeQuery=true)
 List<UserProfileRegistrationDetailModel> getReportdivisionuserallparameter(String utype,String division,String deprt,String desig, Date from_date,Date to_date);
 	
-@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1  AND (from_date between ?4 and ?5)",nativeQuery=true)
-List<UserProfileRegistrationDetailModel> getReportdatewise(String utype, Date from_date,Date to_date);
-=======
+//@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1  AND (from_date between ?4 and ?5)",nativeQuery=true)
+//List<UserProfileRegistrationDetailModel> getReportdatewise(String utype, Date from_date,Date to_date);
 
->>>>>>> eabafed27ca6ecb1bff431b86a6a2cd94c82e48f
 	
 	@Query(value="SELECT distinct department FROM  mdms_app_mgmt.user_profile_registration_detail", nativeQuery = true)
 	List<String> findRegisteredDept(); 
@@ -102,11 +100,9 @@ List<UserProfileRegistrationDetailModel> getReportdatewise(String utype, Date fr
 	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 AND zone=?2",nativeQuery=true)
 	  List<UserProfileRegistrationDetailModel> getUserReportzonewise(String utype,String zone);
 	
-<<<<<<< HEAD
-		@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where division=?1 and user_type=?2 and(coalesce(department,'')=?3 OR \r\n" + 
-=======
-	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where division=?1 and user_type=?2 and(coalesce(department,'')=?3 OR \r\n" + 
->>>>>>> eabafed27ca6ecb1bff431b86a6a2cd94c82e48f
+
+			@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where division=?1 and user_type=?2 and(coalesce(department,'')=?3 OR \r\n" + 
+
 			"						coalesce(designation,'')=?4)",nativeQuery=true)
 	  List<UserProfileRegistrationDetailModel> getuserreportsingledivandsingdeprt(String division,String utype,String department,String desig);	
 

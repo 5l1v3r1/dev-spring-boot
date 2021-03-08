@@ -199,6 +199,11 @@ public class UserProfileRegistrationController {
 	 				return registrationServiceObj.getAllRegisteredDepartment();
 	 			}
 
+	 			@RequestMapping(method=RequestMethod.POST, value="/getuserregistreddesignation")
+	 			public List<String> getAllRegisteredDesignation(@RequestBody UserProfileRegistrationDetailModel objdesig){
+	 				return registrationServiceObj.getAllRegisteredDesignation(objdesig);
+	 			}
+
 	 			
 	 			//fetch userdetail based on user zone , division,department	
 	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportzonewise")
@@ -243,4 +248,12 @@ public class UserProfileRegistrationController {
 	 					return registrationServiceObj.getuserreportsinglediviandeprttwise(objdivideprtrecord);
 	 			
 	 			}
+
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getcustomizereportfordivisionuser")
+	 			public List<UserProfileRegistrationDetailModel> getcustomizereportfordivisionuser(@RequestBody UserProfileRegistrationDetailModel objdiviuser ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+	 					return registrationServiceObj.getcustomizeduserdetaildivisionuser(objdiviuser);
+	 			
+	 			}
+
 }

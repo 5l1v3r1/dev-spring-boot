@@ -70,8 +70,8 @@ public interface UserProfileRegistrationRepository extends CrudRepository<UserPr
 @Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1 AND zone=?2 AND (from_date between ?3 and ?4)",nativeQuery=true)
 	  List<UserProfileRegistrationDetailModel> getReportzonaluserdatewise(String utype, String zone,Date from_date,Date to_date);
 
-@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1 AND zone=?2 AND division=?3 AND (from_date between ?4 and ?5)",nativeQuery=true)
-List<UserProfileRegistrationDetailModel> getReportdivisionuserdatewise(String utype,String zone,String division, Date from_date,Date to_date);
+@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1 AND division=?2 AND (from_date between ?3 and ?4)",nativeQuery=true)
+List<UserProfileRegistrationDetailModel> getReportdivisionuserdatewise(String utype,String division, Date from_date,Date to_date);
 	
 
 
@@ -121,4 +121,12 @@ List<UserProfileRegistrationDetailModel> getReportdivisionuserallparameter(Strin
 //			+ ""			
 //			+ "	 ",nativeQuery=true)
 //	List<UserProfileRegistrationDetailModel> getUserReportzoneanddivisiontwise(String utype,String zone,String division);
+	
+	
+	//----------------------------------------Divisional Admin User Report-------------------------------------------------------//
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where user_type=?1 and division=?2",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getUserRecordsdivwise(String user_type,String divcode);
+	
+	
+	
 }

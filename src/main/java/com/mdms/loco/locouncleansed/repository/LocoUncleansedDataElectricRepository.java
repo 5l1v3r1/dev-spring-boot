@@ -62,7 +62,7 @@ public interface LocoUncleansedDataElectricRepository extends CrudRepository <Lo
 	
 	@Transactional
 	@Modifying
-	@Query(value="INSERT INTO loco.loco_approved_data(\r\n" + 
+	@Query(value="INSERT INTO mdms_loco.loco_approved_data(\r\n" + 
 			"	loco_no, loco_type, loco_owning_zone, loco_owning_division, loco_owning_shed,loco_permanent_domain,	loco_initial_cost, loco_poh_cost, loco_auxilaryoutput,\r\n" + 
 			"	loco_lease_type,loco_mfg_dt, loco_recd_dt, loco_boogie_type,loco_brake_sub_type,loco_brake_type,loco_cabac, loco_commissioned_shed_id,  loco_control_type,\r\n" + 
 			"	 loco_doc,loco_entry_date, loco_hotel_load,loco_manufacturer,  \r\n" + 

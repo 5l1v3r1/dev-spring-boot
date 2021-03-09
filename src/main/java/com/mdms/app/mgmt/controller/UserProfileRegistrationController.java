@@ -164,7 +164,7 @@ public class UserProfileRegistrationController {
 	 			@RequestMapping(method=RequestMethod.POST , value ="/getreportdivisiondatewise")
 	 			public List<UserProfileRegistrationDetailModel> getreportdivisdatewise(@RequestBody UserProfileRegistrationDetailModel objdatewise ){
 //	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
-	 					return registrationServiceObj.getreportdatewise(objdatewise);
+	 					return registrationServiceObj.getreportdivisiondatewise(objdatewise);
 	 			
 	 			}
 	 			
@@ -253,6 +253,15 @@ public class UserProfileRegistrationController {
 	 			public List<UserProfileRegistrationDetailModel> getcustomizereportfordivisionuser(@RequestBody UserProfileRegistrationDetailModel objdiviuser ){
 //	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
 	 					return registrationServiceObj.getcustomizeduserdetaildivisionuser(objdiviuser);
+	 			
+	 			}
+	 			
+	 			
+	 			//-------------------------Divisional User Report-------------------------//
+	 			//fetch userdetail based on user type	
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getdivuserdetaildashboard")
+	 			public List<UserProfileRegistrationDetailModel> getalldivusertypedetails(@RequestBody UserProfileRegistrationDetailModel objurecord ){
+	 					return registrationServiceObj.getalldivuserdetail(objurecord);
 	 			
 	 			}
 

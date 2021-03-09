@@ -570,8 +570,9 @@ public List<UserProfileRegistrationDetailModel> getuserreportsinglezoneandeprttw
 
 //get user report single divi and department based :Developer :Ritu
 public List<UserProfileRegistrationDetailModel> getuserreportsinglediviandeprttwise(UserProfileRegistrationDetailModel objdivideprtreport ) {	
-	String user_type = objdivideprtreport.getUser_type();
+	
 	String user_divi = objdivideprtreport.getDivision();	
+	String user_type = objdivideprtreport.getUser_type();
 	String user_deprt = objdivideprtreport.getDepartment();	
 	String user_desig = objdivideprtreport.getDesignation();	
 	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
@@ -605,7 +606,7 @@ public List<UserProfileRegistrationDetailModel> getreportzonedatewise(UserProfil
 public List<UserProfileRegistrationDetailModel> getreportdivisiondatewise(UserProfileRegistrationDetailModel objreportdatewise ) {
 	System.out.println("objrecd."+objreportdatewise);	
 	String user_type = objreportdatewise.getUser_type();
-	String zone =objreportdatewise.getZone();
+	
 	String division =objreportdatewise.getDivision();	
 	Date date_from =objreportdatewise.getFrom_date();
 	Date date_to =objreportdatewise.getTo_date();	
@@ -613,7 +614,7 @@ public List<UserProfileRegistrationDetailModel> getreportdivisiondatewise(UserPr
 	System.out.println(date_from);
 	System.out.println(date_to);						
 	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
-	profileRegistrationRepo.getReportdivisionuserdatewise(user_type,zone,division,date_from,date_fromto)
+	profileRegistrationRepo.getReportdivisionuserdatewise(user_type,division,date_from,date_fromto)
   .forEach(temp::add);
 	System.out.println(temp);
 	return temp;
@@ -637,6 +638,19 @@ public List<UserProfileRegistrationDetailModel> getreportdatewise(UserProfileReg
 }
 
 
+//---------------------------------divisional user report-----------------------------------------//
+//fetch list of userdetail  based on user type& Divisioanl:Developer :Ritu
+
+
+		public List<UserProfileRegistrationDetailModel> getalldivuserdetail(UserProfileRegistrationDetailModel objurecord ) {	
+			String usertype = objurecord.getUser_type();
+			String userdiv = objurecord.getDivision();
+			List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();		
+			profileRegistrationRepo.getUserRecordsdivwise(usertype,userdiv)
+	        .forEach(temp::add);
+			return temp;
+		}
+		
 
 }
 

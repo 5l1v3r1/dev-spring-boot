@@ -203,7 +203,18 @@ public class UserProfileRegistrationController {
 	 			public List<String> getAllRegisteredDesignation(@RequestBody UserProfileRegistrationDetailModel objdesig){
 	 				return registrationServiceObj.getAllRegisteredDesignation(objdesig);
 	 			}
-
+	 			@RequestMapping(method=RequestMethod.POST, value="/getuserregistreddepartanddesig")
+	 			public List<UserProfileRegistrationDetailModel> getReportdeprtanddesig(@RequestBody UserProfileRegistrationDetailModel objdesig){
+	 				return registrationServiceObj.getuserreportsinglediviandeprttanddesigwise(objdesig);
+	 			}
+	 			@RequestMapping(method=RequestMethod.POST, value="/getuserregistreddivdepart")
+	 			public List<UserProfileRegistrationDetailModel> getUserReportdivdeprtwise(@RequestBody UserProfileRegistrationDetailModel objdivdepart){
+	 				return registrationServiceObj.getUserReportdivdeprtwise(objdivdepart);
+	 			}
+	 			@RequestMapping(method=RequestMethod.POST, value="/getuserregistreddivdesig")
+	 			public List<UserProfileRegistrationDetailModel> getUserReportdivdesigwise(@RequestBody UserProfileRegistrationDetailModel objdivdesig){
+	 				return registrationServiceObj.getUserReportdivdesigwise(objdivdesig);
+	 			}
 	 			
 	 			//fetch userdetail based on user zone , division,department	
 	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportzonewise")
@@ -264,5 +275,16 @@ public class UserProfileRegistrationController {
 	 					return registrationServiceObj.getalldivuserdetail(objurecord);
 	 			
 	 			}
-
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getdivuserdetaildeprtdatewise")
+	 			public List<UserProfileRegistrationDetailModel> divuserreportdateanddeprtwise(@RequestBody UserProfileRegistrationDetailModel objurecord ){
+	 					return registrationServiceObj.divuserreportdateanddeprtwise(objurecord);
+	 			
+	 			}@RequestMapping(method=RequestMethod.POST , value ="/getdivuserdetaildesigdatewise")
+	 			public List<UserProfileRegistrationDetailModel> divuserreportdateandesigwise(@RequestBody UserProfileRegistrationDetailModel objurecord ){
+ 					return registrationServiceObj.divuserreportdateandesigwise(objurecord);
+ 			
+ 			}
+	 			
+	 			
+	 			
 }

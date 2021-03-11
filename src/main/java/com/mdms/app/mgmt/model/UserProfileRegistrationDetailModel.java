@@ -18,31 +18,40 @@ public class UserProfileRegistrationDetailModel {
 	@Id
 	@Column(name="user_id")
 	private String user_id;
+
+	
+	
 	@Column(name="name")	
-	private String uname;	
-	@Column(name="department")
-	private String department;		
-	@Column(name="zone")
-	private String zone;	
-	@Column(name="division")
-	private String division;
+	private String uname;
+
 	@Column(name="designation")
-	private String designation;	
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
-	@Column(name="from_date")
-	private Date from_date;
-	@Column(name="role_type")
-	private String role_type;	
+	private String designation;
+	
+	@Column(name="department")
+	private String department;
+	
+	@Column(name="loco_type")
+	private String loco_type;
 	
 	@Column(name="shed")
 	private String shed;
 	
-	@Column(name="loco_type")
-	private String loco_type;
-		@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+	@Column(name="from_date")
+	private Date from_date;
+	
+	
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	@Column(name="to_date")
 	private Date to_date;
 	
+	@Column(name="role_type")
+	private String role_type;
+	
+
+	
+	
+
 	@Column(name="user_type")
 	private String user_type;
 	
@@ -58,7 +67,15 @@ public class UserProfileRegistrationDetailModel {
 	@Column(name="created_by")
 	private String created_by;
 	
+
+	@Column(name="zone")
+	private String zone;
 	
+	@Column(name="division")
+	private String division;
+
+	
+
 	
 	@Column(name="user_register_approval")
 	private String user_register_approval;

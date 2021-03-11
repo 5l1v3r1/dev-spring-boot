@@ -40,6 +40,11 @@ public	String getzone_code();
 	 @Value("#{target.total_division_count}")
 	 public Integer gettotal_division_count();
 
+	
+	
+	
+
+
 	@JsonIgnore 
 	 @Value("#{args[0]+': '+target.division_code}")	 
 	 public void setdivision_code(String str);

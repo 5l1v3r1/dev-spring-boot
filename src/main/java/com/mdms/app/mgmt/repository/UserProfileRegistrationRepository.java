@@ -2,7 +2,10 @@ package com.mdms.app.mgmt.repository;
 
 import java.util.Date;
 import java.util.List;
+
+
 import java.util.Optional;
+
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -54,22 +57,36 @@ public interface UserProfileRegistrationRepository extends CrudRepository<UserPr
 	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where user_id=?1",nativeQuery=true)
 	 List<UserProfileRegistrationDetailModel> checkuserexistinregsitration(String user_id);
 	
+
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 AND zone=?2 AND division=?3 AND department=?4 AND (from_date between ?5 and ?6)",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getCustomizeUserRecords(String utype ,String zone,String division,String department, Date from_to,Date to_date);
+	
+@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1 AND (from_date between ?2 and ?3)",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getReportdatewise(String utype, Date from_date,Date to_date);
+
 	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 AND zone=?2 AND shed=?3",nativeQuery=true)
 	  List<UserProfileRegistrationDetailModel> getLocoUserRecordszoneandshedwise(String utype ,String zone,String shed);
 	
 @Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1 AND zone=?2 AND (from_date between ?3 and ?4)",nativeQuery=true)
 	  List<UserProfileRegistrationDetailModel> getReportzonaluserdatewise(String utype, String zone,Date from_date,Date to_date);
 
-@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1 AND zone=?2 AND division=?3 AND (from_date between ?4 and ?5)",nativeQuery=true)
-List<UserProfileRegistrationDetailModel> getReportdivisionuserdatewise(String utype,String zone,String division, Date from_date,Date to_date);
+@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1 AND division=?2 AND (from_date between ?3 and ?4)",nativeQuery=true)
+List<UserProfileRegistrationDetailModel> getReportdivisionuserdatewise(String utype,String division, Date from_date,Date to_date);
 	
 
-@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1  AND (from_date between ?4 and ?5)",nativeQuery=true)
-List<UserProfileRegistrationDetailModel> getReportdatewise(String utype, Date from_date,Date to_date);
+
+@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1  AND division=?2  AND department=?3  AND designation=?4 AND (from_date between ?5 and ?6)",nativeQuery=true)
+List<UserProfileRegistrationDetailModel> getReportdivisionuserallparameter(String utype,String division,String deprt,String desig, Date from_date,Date to_date);
+	
+//@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1  AND (from_date between ?4 and ?5)",nativeQuery=true)
+//List<UserProfileRegistrationDetailModel> getReportdatewise(String utype, Date from_date,Date to_date);
+
 	
 	@Query(value="SELECT distinct department FROM  mdms_app_mgmt.user_profile_registration_detail", nativeQuery = true)
 	List<String> findRegisteredDept(); 
 	
+	@Query(value="SELECT distinct designation FROM  mdms_app_mgmt.user_profile_registration_detail where  user_type=?1", nativeQuery = true)
+	List<String> findRegisteredDesig(String utype); 
 	@Query(value="SELECT * FROM mdms_app_mgmt.user_profile_registration_detail WHERE  department=?1 AND user_type=?2 ",nativeQuery=true)
 	  List<UserProfileRegistrationDetailModel> getUserReportdeprtwise(String department, String utype );
 	
@@ -83,14 +100,19 @@ List<UserProfileRegistrationDetailModel> getReportdatewise(String utype, Date fr
 	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 AND zone=?2",nativeQuery=true)
 	  List<UserProfileRegistrationDetailModel> getUserReportzonewise(String utype,String zone);
 	
-	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  division=?1 AND department=?2 AND user_type=?3",nativeQuery=true)
-	  List<UserProfileRegistrationDetailModel> getuserreportsingledivandsingdeprt(String division,String department,String utype);
-	
+
+			@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where division=?1 and user_type=?2 and(coalesce(department,'')=?3 OR \r\n" + 
+
+			"						coalesce(designation,'')=?4)",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getuserreportsingledivandsingdeprt(String division,String utype,String department,String desig);	
+
 	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  zone=?1 AND department=?2 AND user_type=?3 ",nativeQuery=true)
 	  List<UserProfileRegistrationDetailModel> getuserreportsinglezoneandsingledeprt(String zone,String department, String utype);
+
 	
 	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where user_type=?1 and zone=?2 and division=?3 ",nativeQuery=true)
 	List<UserProfileRegistrationDetailModel> getUserReportzoneanddivisiontwise(String utype,String zone,String division);
+	
 	
 	
 //	@Query(value="SELECT  a.*,b.description\n"
@@ -99,4 +121,25 @@ List<UserProfileRegistrationDetailModel> getReportdatewise(String utype, Date fr
 //			+ ""			
 //			+ "	 ",nativeQuery=true)
 //	List<UserProfileRegistrationDetailModel> getUserReportzoneanddivisiontwise(String utype,String zone,String division);
+	
+	
+	//----------------------------------------Divisional Admin User Report-------------------------------------------------------//
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where user_type=?1 and division=?2",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getUserRecordsdivwise(String user_type,String divcode);
+	
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where user_type=?1 and division=?2 and department=?3 and designation=?4",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getUserRecordsdivsingledeprtanddesignwise(String user_type,String divcode, String deprt, String desig);
+	
+	@Query(value="SELECT * FROM mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 and division=?2 AND department=?3  ",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getUserReportdivdeprtwise(String utype,String div,String department  );
+	
+	@Query(value="SELECT * FROM mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 and division=?2 AND designation=?3  ",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getUserReportdivdesigwise(String utype,String div,String desig  );
+	
+	@Query(value="SELECT * FROM mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 AND division=?2 AND department=?3 AND (from_date between ?4 and ?5)",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel>divuserreportdateanddeprtwise(String utype,String div, String department, Date from_to,Date to_date);
+
+	@Query(value="SELECT * FROM mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 AND division=?2 AND designation=?3 AND (from_date between ?4 and ?5)",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel>divuserreportdateandesigwise(String utype, String div,String desig, Date from_to,Date to_date);
+
 }

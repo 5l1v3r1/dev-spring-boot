@@ -144,6 +144,8 @@ public String verifymstOtp(String user_id, Integer emp_password) {
 		return response;					 }
 	
 }
+
+
 public String updatelogginsession(UserLoginDetailModel obj_updatesession ) {
 	String response = "not Reset";
 	
@@ -167,5 +169,6 @@ String uid =verifysession.getUser_id();
  return loginDetailObj.checkusersessionactive(uid);
 	 
 }
+
 
 }

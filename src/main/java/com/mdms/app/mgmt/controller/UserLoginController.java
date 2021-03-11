@@ -90,7 +90,11 @@ obj.setUser_role(registrationObj.getRole_type());
 obj.setUname(registrationObj.getUname());
 obj.setZone(registrationObj.getZone());
 obj.setUser_id(user_id);
+
+
+
 obj.setDepartment(registrationObj.getDepartment());
+
 obj.setShed(registrationObj.getShed());
 obj.setDepo(registrationObj.getDepo());
 
@@ -184,6 +188,9 @@ obj.setSenior_id(profileRegistrationService.seniorID(registrationObj.getDesignat
 		
 	}
 	
+
+
+
 	@RequestMapping(method=RequestMethod.POST, value ="/checkuserloggedin")
 	public List<UserLoginDetailModel> checksessionactive(@RequestBody UserLoginDetailModel obj_checksession)
 	{
@@ -202,5 +209,6 @@ obj.setSenior_id(profileRegistrationService.seniorID(registrationObj.getDesignat
 	String flag = userLoginService.updatelogginsession(obj_session);
 	return flag;
 	}
+
 	
 }

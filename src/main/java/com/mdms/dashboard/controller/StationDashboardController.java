@@ -54,7 +54,21 @@ Logger logger=LoggerFactory.getLogger(StationDashboardController.class);
 
 			}
 		
-		
+
+	
+		// shilpi 05-03-2021
+		List<DashboardStationModel> list1 =new ArrayList<DashboardStationModel>();
+		@RequestMapping(method=RequestMethod.POST, value="/getstationcountsingledivisionwise")
+		public List<DashboardStationModel> getStationCountSingleDivisionWise(@RequestBody DashboardStationModel  division_code) {	
+			System.out.println(division_code);
+			 list1= stationServ_obj.getStationCountSingleDivisionWise(division_code);
+		//	list.forEach((n) -> System.out.println(n.getDivision_code())); 
+			logger.info("Controller : DashBoardStationController || Method: getStationCountSingleDivisionWise || getStationCountSingleDivisionWise Query list return : "+list1.size());
+
+	return list1;
+
+			}
+
 		
 
 			

@@ -40,6 +40,7 @@ public class UserLoginDetailModel {
 
 	
 	
+
 	@Column(name="is_active")
 	private String is_active;
 	
@@ -57,6 +58,7 @@ public class UserLoginDetailModel {
 	public void setIs_active(String is_active) {
 		this.is_active = is_active;
 	}
+
 
 	
 

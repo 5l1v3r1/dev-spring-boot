@@ -49,7 +49,7 @@ private String div_code;
 
 	public List<MDivision> findByZone(MDivision division) {
 		zone_code=division.getZone_code();
-		System.out.print(zone_code);
+		
 		List<MDivision> tmp = new ArrayList<>();
 		divsn_repo.findByZoneCode(zone_code).forEach(tmp::add);
 	    return tmp;

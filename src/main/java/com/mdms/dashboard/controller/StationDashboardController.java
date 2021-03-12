@@ -69,7 +69,18 @@ Logger logger=LoggerFactory.getLogger(StationDashboardController.class);
 
 			}
 
-		
+		// shilpi 09-03-2021
+				List<DashboardStationModel> list2 =new ArrayList<DashboardStationModel>();
+				@RequestMapping(method=RequestMethod.POST, value="/getlococountsingleShedwise")
+				public List<DashboardStationModel> getLocoCountSingleShedWise(@RequestBody DashboardStationModel  shedid) {	
+					System.out.println(shedid);
+					 list2= stationServ_obj.getLocoCountSingleShedWise(shedid);
+				//	list.forEach((n) -> System.out.println(n.getDivision_code())); 
+					logger.info("Controller : DashBoardStationController || Method: getLocoCountSingleShedWise || getLocoCountSingleShedWise Query list return : "+list2.size());
+
+			return list2;
+
+					}
 
 			
 //			@Autowired

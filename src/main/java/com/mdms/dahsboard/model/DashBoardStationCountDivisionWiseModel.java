@@ -13,6 +13,16 @@ public	Integer getdraft_forward_approval_count();
 	
 	
 	@JsonIgnore 
+	 @Value("#{target.elec_locoOwningShed}")
+public	String getelec_locoOwningShed();
+	
+	//Shilpi 10-03-2021
+	@JsonIgnore 
+	 @Value("#{target.loco_Owningshed}")
+	 public	String getLoco_Owningshed();
+	 
+	
+	@JsonIgnore 
 	 @Value("#{target.division_code}")
 public	String getdivision_code();
 	
@@ -20,6 +30,9 @@ public	String getdivision_code();
 	@JsonIgnore 
 	 @Value("#{target.zone_code}")
 public	String getzone_code();
+	@JsonIgnore 
+	 @Value("#{target.total_loco_count}")
+	 public	Integer getTotal_loco_count();
 	 
 	@JsonIgnore 
 	 @Value("#{target.uncleansed_count}")
@@ -68,6 +81,11 @@ public	String getzone_code();
 	@JsonIgnore 
 	 @Value("#{args[0]+': '+target.total_division_count}")	 
 	 public void settotal_division_count(Integer dgd);
+	
+	
+	@JsonIgnore 
+	 @Value("#{args[0]+': '+target.total_loco_count}")	 
+	 public void setTotal_loco_count(Integer dgd);
 	
 	@JsonIgnore 
 	 @Value("#{args[0]+': '+target.draft_forward_approval_count}")

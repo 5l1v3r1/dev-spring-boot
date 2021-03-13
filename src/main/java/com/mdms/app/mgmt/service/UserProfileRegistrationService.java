@@ -447,9 +447,10 @@ if(response!=null && result!=null) {
 						String user_deprt = objdatedashboaduser.getDepartment();
 						String user_desig = objdatedashboaduser.getDesignation();						
 						Date from_dt = objdatedashboaduser.getFrom_date();
-						Date to_date = objdatedashboaduser.getFrom_date();									
+						Date to_date = objdatedashboaduser.getTo_date();	
+						Date date_to=to_date;
 						List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
-						profileRegistrationRepo.getReportdivisionuserallparameter(user_type,user_divi,user_deprt,user_desig,from_dt,to_date)
+						profileRegistrationRepo.getReportdivisionuserallparameter(user_type,user_divi,user_deprt,user_desig,from_dt,date_to)
 				        .forEach(temp::add);
 						System.out.println(temp);
 						return temp;

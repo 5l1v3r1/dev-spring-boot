@@ -136,13 +136,13 @@ public class UserProfileRegistrationController {
 ////	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
 //	 					return registrationServiceObj.getcustomizeduserdetail(objrecord);
 //	 			}
-	 			@RequestMapping(method=RequestMethod.POST , value ="/getlocouserdetailshedwise")
-	 			public List<UserProfileRegistrationDetailModel> getcustomizeuserdetails1(@RequestBody UserProfileRegistrationDetailModel objrecord ){
-//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
-	 					return registrationServiceObj.getLocoUserRecordszoneandshedwise(objrecord);
-
-	 			
-	 			}
+//	 			@RequestMapping(method=RequestMethod.POST , value ="/getlocouserdetailshedwise")
+//	 			public List<UserProfileRegistrationDetailModel> getcustomizeuserdetails1(@RequestBody UserProfileRegistrationDetailModel objrecord ){
+////	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+//	 					return registrationServiceObj.getLocoUserRecordszoneandshedwise(objrecord);
+//
+//	 			
+//	 			}
 	 			
 	 			@RequestMapping(method=RequestMethod.POST , value ="/getreportdatewise")
 	 			public List<UserProfileRegistrationDetailModel> getreportdatewise(@RequestBody UserProfileRegistrationDetailModel objdatewise ){
@@ -231,7 +231,13 @@ public class UserProfileRegistrationController {
 	 			
 	 			}
 
-
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getlocouserdetailshedwise")
+	 			public List<UserProfileRegistrationDetailModel> getcustomizeuserdetailsshedwise(@RequestBody UserProfileRegistrationDetailModel objrecord ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+	 					return registrationServiceObj.getLocoUserRecordszoneandshedwise(objrecord);
+	 			
+	 			}	
+	 			
 	 			
 	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportzoneanddivisionwise")
 	 			public List<UserProfileRegistrationDetailModel> getuserreportzoneanddivisionwise(@RequestBody UserProfileRegistrationDetailModel objzonedivirecord ){
@@ -268,7 +274,7 @@ public class UserProfileRegistrationController {
 	 			}
 	 			
 	 			
-	 			//-------------------------Divisional User Report-------------------------//
+	 			//-------------------------Divisional User Report -- Station -------------------------//
 	 			//fetch userdetail based on user type	
 	 			@RequestMapping(method=RequestMethod.POST , value ="/getdivuserdetaildashboard")
 	 			public List<UserProfileRegistrationDetailModel> getalldivusertypedetails(@RequestBody UserProfileRegistrationDetailModel objurecord ){
@@ -287,4 +293,51 @@ public class UserProfileRegistrationController {
 	 			
 	 			
 	 			
+	 			
+	 			//-------------------------DashboardShed Admin Report -- Loco -------------------------//
+	 			//fetch userdetail based on user type	
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getsheduserdetaildashboard")
+	 			public List<UserProfileRegistrationDetailModel> getallshedusertypedetails(@RequestBody UserProfileRegistrationDetailModel objurecord ){
+	 					return registrationServiceObj.getallsheduserdetail(objurecord);
+	 			
+	 			}
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getsheduserdetaildeprtdatewise")
+	 			public List<UserProfileRegistrationDetailModel> sheduserreportdateanddeprtwise(@RequestBody UserProfileRegistrationDetailModel objurecord ){
+	 					return registrationServiceObj.sheduserreportdateanddeprtwise(objurecord);
+	 			
+	 			}@RequestMapping(method=RequestMethod.POST , value ="/getsheduserdetaildesigdatewise")
+	 			public List<UserProfileRegistrationDetailModel> sheduserreportdateandesigwise(@RequestBody UserProfileRegistrationDetailModel objurecord ){
+ 					return registrationServiceObj.sheduserreportdateandesigwise(objurecord);
+ 			
+ 			}
+	 			
+	 		
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getlocoallparametershedwise")
+	 			public List<UserProfileRegistrationDetailModel> getallcustomizeuserdetailsshedwise(@RequestBody UserProfileRegistrationDetailModel objrecord ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+	 					return registrationServiceObj.getReportsheduserallparameter(objrecord);
+	 			
+	 			}	
+	 			
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportsingleshedanddeprtwise")
+	 			public List<UserProfileRegistrationDetailModel> getuserreportsinglesheddeprtwise(@RequestBody UserProfileRegistrationDetailModel obj2 ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+	 					return registrationServiceObj.getuserreportsinglediviandeprttwise(obj2);
+	 			
+	 			}
+	 			
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportsingleshedanddesigwise")
+	 			public List<UserProfileRegistrationDetailModel> getuserreportsinglesheddesigwise(@RequestBody UserProfileRegistrationDetailModel obj2 ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+	 					return registrationServiceObj.getuserreportsingleshedandesigwise(obj2);
+	 			
+	 			}
+	 			
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportsingleshedanddatewise")
+	 			public List<UserProfileRegistrationDetailModel> getreportshedanddatewise(@RequestBody UserProfileRegistrationDetailModel obj2 ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+	 					return registrationServiceObj.getreportshedanddatewise(obj2);
+	 			
+	 			}
+	 		
 }

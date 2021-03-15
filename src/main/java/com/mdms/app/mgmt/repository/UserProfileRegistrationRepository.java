@@ -120,7 +120,7 @@ List<UserProfileRegistrationDetailModel> getReportdivisionuserallparameter(Strin
 //	List<UserProfileRegistrationDetailModel> getUserReportzoneanddivisiontwise(String utype,String zone,String division);
 	
 	
-	//----------------------------------------Divisional Admin User Report-------------------------------------------------------//
+	//----------------------------------------Divisional Admin User - Station Report-------------------------------------------------------//
 	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where user_type=?1 and division=?2",nativeQuery=true)
 	  List<UserProfileRegistrationDetailModel> getUserRecordsdivwise(String user_type,String divcode);
 	
@@ -145,10 +145,34 @@ List<UserProfileRegistrationDetailModel> getReportdivisionuserallparameter(Strin
 	
 	
 	
-	//--------------------------------------------------Zonal Admin User Report.................................................................................//
+	//--------------------------------------------------Shed Admin  User- Loco Report.................................................................................//
 	
 	
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where user_type=?1 and shed=?2",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getUserRecordsshedwise(String user_type,String shedcode);
 	
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where user_type=?1 and shed=?2 and department=?3 and designation=?4",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getUserRecordsshedsingledeprtanddesignwise(String user_type,String shed, String deprt, String desig);
 	
+	@Query(value="SELECT * FROM mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 and shed=?2 AND department=?3  ",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getUserReportsheddeprtwise(String utype,String shed,String department  );
+	
+	@Query(value="SELECT * FROM mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 and shed=?2 AND designation=?3  ",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getUserReportsheddesigwise(String utype,String shed,String desig  );
+	
+	@Query(value="SELECT * FROM mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 AND shed=?2 AND department=?3 AND (from_date between ?4 and ?5)",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel>getuserreportsheddateanddeprtwise(String utype,String shed, String department, Date from_to,Date to_date);
 
+	@Query(value="SELECT * FROM mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 AND shed=?2 AND designation=?3 AND (from_date between ?4 and ?5)",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel>getuserreportsheddateandesigwise(String utype, String shed,String desig, Date from_to,Date to_date);
+
+	
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 AND shed=?2 ",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getUserReportshedwise(String utype,String shed);
+	
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1  AND shed=?2  AND department=?3  AND designation=?4 AND (from_date between ?5 and ?6)",nativeQuery=true)
+	List<UserProfileRegistrationDetailModel> getReportsheduserallparameter(String utype,String shed,String deprt,String desig, Date from_date,Date to_date);
+
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1 AND shed=?2 AND (from_date between ?3 and ?4)",nativeQuery=true)
+	List<UserProfileRegistrationDetailModel> getReportsheduserdatewise(String utype,String shed, Date from_date,Date to_date);
 }

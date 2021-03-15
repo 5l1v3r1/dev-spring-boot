@@ -49,7 +49,7 @@ public interface LocoDataFoisRepository extends CrudRepository<LocoDataFois,Long
     @Query(value="SELECT loco_owning_shed_code as loco_Owningshed ,count(*) as total_loco_count FROM  mdms_loco.loco_data_fois WHERE loco_owning_shed_code=?1 GROUP BY loco_owning_shed_code",nativeQuery=true)
     Collection<DashBoardLocoCountShedWiseModel> getLocoSingleShed(String shedid);
        
-    @Query(value="SELECT loco_owning_shed_code as loco_Owningshed ,count(*) as loco_uncleansed_count FROM  mdms_loco.loco_data_fois WHERE loco_owning_shed_code=?1 and status is null GROUP BY loco_owning_shed_code",nativeQuery=true)
+    @Query(value="SELECT loco_owning_shed_code as loco_Owningshed ,count(*) as uncleansed_count FROM  mdms_loco.loco_data_fois WHERE loco_owning_shed_code=?1 and status is null GROUP BY loco_owning_shed_code",nativeQuery=true)
     Collection<DashBoardLocoCountShedWiseModel> getUncleansedLocoSingleShed(String shedid);
   
 }

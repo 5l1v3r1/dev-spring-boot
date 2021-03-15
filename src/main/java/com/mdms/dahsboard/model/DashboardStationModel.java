@@ -3,11 +3,11 @@ package com.mdms.dahsboard.model;
 public class DashboardStationModel {
 	public String zone_code;
 	public	String division_code="null";
-	//public String elec_locoOwningShed;
 	public String loco_Owningshed;
 	 public	Integer uncleansed_count=0;
 	public Integer cleansed_count=0;
 	public Integer pending_approval=0;
+	public Integer draft_forward_approval_count=0;
 	
 	
 	public String getLoco_Owningshed() {
@@ -20,7 +20,7 @@ public class DashboardStationModel {
 	}
 
 
-	public Integer draft_forward_approval_count=0;
+
 	
 	
     public Integer total_division_count=0;
@@ -28,10 +28,6 @@ public class DashboardStationModel {
 // Shilpi 10-03-2021
     
     public Integer  total_loco_count=0;
-    public Integer  loco_uncleansed_count=0;
-    public Integer  draft_forward_approval_loco=0;
-    public Integer  pending_approval_loco=0;
-    public Integer  cleansed_loco_count=0;
 
 
 
@@ -44,55 +40,6 @@ public class DashboardStationModel {
 		this.total_loco_count = total_loco_count;
 	}
 
-
-	public Integer getLoco_uncleansed_count() {
-		return loco_uncleansed_count;
-	}
-
-
-	public void setLoco_uncleansed_count(Integer loco_uncleansed_count) {
-		this.loco_uncleansed_count = loco_uncleansed_count;
-	}
-
-
-	public Integer getDraft_forward_approval_loco() {
-		return draft_forward_approval_loco;
-	}
-
-
-	public void setDraft_forward_approval_loco(Integer draft_forward_approval_loco) {
-		this.draft_forward_approval_loco = draft_forward_approval_loco;
-	}
-
-
-	public Integer getPending_approval_loco() {
-		return pending_approval_loco;
-	}
-
-
-	public void setPending_approval_loco(Integer pending_approval_loco) {
-		this.pending_approval_loco = pending_approval_loco;
-	}
-
-
-	public Integer getCleansed_loco_count() {
-		return cleansed_loco_count;
-	}
-
-
-	public void setCleansed_loco_count(Integer cleansed_loco_count) {
-		this.cleansed_loco_count = cleansed_loco_count;
-	}
-
-
-//	public String getElec_locoOwningShed() {
-//	return elec_locoOwningShed;
-//}
-//
-//
-//public void setElec_locoOwningShed(String elec_locoOwningShed) {
-//	this.elec_locoOwningShed = elec_locoOwningShed;
-//}
 
 
 	public String getZone_code() {

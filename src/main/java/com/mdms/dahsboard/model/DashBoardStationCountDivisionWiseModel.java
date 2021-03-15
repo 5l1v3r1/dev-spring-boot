@@ -12,9 +12,7 @@ public interface DashBoardStationCountDivisionWiseModel {
 public	Integer getdraft_forward_approval_count();
 	
 	
-	@JsonIgnore 
-	 @Value("#{target.elec_locoOwningShed}")
-public	String getelec_locoOwningShed();
+	
 	
 	//Shilpi 10-03-2021
 	@JsonIgnore 

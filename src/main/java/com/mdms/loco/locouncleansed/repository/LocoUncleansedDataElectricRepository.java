@@ -81,13 +81,12 @@ public interface LocoUncleansedDataElectricRepository extends CrudRepository <Lo
 
  // Shilpi 09-03-2021
     
-	@Query(value="SELECT COUNT(*)  as draft_forward_approval_count FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_shed=?1 AND (status='D' OR Status='R') ",nativeQuery=true)
+	@Query(value="SELECT loco_owning_shed as loco_Owningshed , COUNT(*)  as draft_forward_approval_count FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_shed=?1 AND (status='D' OR Status='R')GROUP BY loco_owning_shed ",nativeQuery=true)
 	Collection<DashBoardLocoCountShedWiseModel> getDraftLocoApprovalSingleshed(String eshedid);
-	
-	
-	@Query(value="SELECT COUNT(*)  as pending_approval FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_shed=?1 AND status='U' ",nativeQuery=true)
+
+
+	@Query(value="SELECT loco_owning_shed as loco_Owningshed , COUNT(*)  as pending_approval FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_shed=?1 AND status='U'GROUP BY loco_owning_shed ",nativeQuery=true)
 	Collection<DashBoardLocoCountShedWiseModel> getLocoPendingSingleshed(String eshedid);
-	
-	
+
 	
 }

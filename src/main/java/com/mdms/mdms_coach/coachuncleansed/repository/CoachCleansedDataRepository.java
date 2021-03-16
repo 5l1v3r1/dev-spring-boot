@@ -1,5 +1,6 @@
 package com.mdms.mdms_coach.coachuncleansed.repository;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import com.mdms.dahsboard.model.DashBoardCoachCountDepoWiseModel;
+import com.mdms.dahsboard.model.DashBoardLocoCountShedWiseModel;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachCleansedData;
 
 public interface CoachCleansedDataRepository  extends CrudRepository<CoachCleansedData,Long>{
@@ -40,4 +43,9 @@ public interface CoachCleansedDataRepository  extends CrudRepository<CoachCleans
 			String underframe_no, String shell_no, String pu_order_id, String coach_type_description,
 			String record_status, String status, String user_id, Date txn_date, String remarks,String coach_catgory);
 
+	
+	//Shilpi 15-03-2021
+	
+	@Query(value="SELECT owning_depot,count(*) as cleansed_count FROM mdms_coach.coach_cleansed_data where owning_depot=?1 group by 1",nativeQuery=true)
+	Collection<DashBoardCoachCountDepoWiseModel> getCoachApprovedSingleDepo(String owning_depot);
 }

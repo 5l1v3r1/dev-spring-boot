@@ -1,5 +1,6 @@
 package com.mdms.mdms_coach.coachuncleansed.repository;
 
+import java.util.Collection;
 import java.util.List;
 
 
@@ -10,6 +11,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import com.mdms.dahsboard.model.DashBoardCoachCountDepoWiseModel;
+import com.mdms.dahsboard.model.DashBoardLocoCountShedWiseModel;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachUncleansedData;
 
 public interface CoachUncleansedDataRepository extends CrudRepository<CoachUncleansedData, Long> {
@@ -24,5 +27,14 @@ public interface CoachUncleansedDataRepository extends CrudRepository<CoachUncle
 	
    @Query(value="SELECT * FROM mdms_coach.coach_uncleansed_data WHERE user_id =?1 and coach_id=?2 and status='D'",nativeQuery = true)
 	CoachUncleansedData getCoachDraft(String userid, long coach_id);
+   
+// Shilpi 15-03-2021
+   
+	@Query(value="SELECT owning_depot , COUNT(*)  as draft_forward_approval_count FROM  mdms_coach.coach_uncleansed_data WHERE owning_depot=?1 AND (status='D' OR Status='R') GROUP BY owning_depot",nativeQuery=true)
+	Collection<DashBoardCoachCountDepoWiseModel> getDraftCoachApprovalSingledepo(String owning_depot);
+	
+	
+	@Query(value="SELECT  owning_depot  ,COUNT(*)  as pending_approval FROM mdms_coach.coach_uncleansed_data WHERE owning_depot=?1 AND status='U'GROUP BY owning_depot ",nativeQuery=true)
+		Collection<DashBoardCoachCountDepoWiseModel> getCoachPendingSingledepo(String owning_depot);
 
 }

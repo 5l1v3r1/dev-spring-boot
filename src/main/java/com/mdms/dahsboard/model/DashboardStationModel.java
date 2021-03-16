@@ -9,6 +9,30 @@ public class DashboardStationModel {
 	public Integer cleansed_count=0;
 	public Integer pending_approval=0;
 	
+	// Shilpi 15-03-2021
+	
+	public String owning_depot;
+	public String getOwning_depot() {
+		return owning_depot;
+	}
+
+
+	public void setOwning_depot(String owning_depot) {
+		this.owning_depot = owning_depot;
+	}
+
+
+	public Integer getTotal_depo_count() {
+		return total_depo_count;
+	}
+
+
+	public void setTotal_depo_count(Integer total_depo_count) {
+		this.total_depo_count = total_depo_count;
+	}
+
+
+	public Integer total_depo_count=0;
 	
 	public String getLoco_Owningshed() {
 		return loco_Owningshed;

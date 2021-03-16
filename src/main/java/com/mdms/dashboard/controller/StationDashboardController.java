@@ -81,6 +81,20 @@ Logger logger=LoggerFactory.getLogger(StationDashboardController.class);
 			return list2;
 
 					}
+				
+				
+				// shilpi 15-03-2021
+				List<DashboardStationModel> list3 =new ArrayList<DashboardStationModel>();
+				@RequestMapping(method=RequestMethod.POST, value="/getCoachcountsingleDepowise")
+				public List<DashboardStationModel> getCoachCountSingleDepotWise(@RequestBody DashboardStationModel  owning_depot) {	
+					System.out.println(owning_depot);
+					 list3= stationServ_obj.getCoachCountSingleDepotWise(owning_depot);
+				//	list.forEach((n) -> System.out.println(n.getDivision_code())); 
+					logger.info("Controller : DashBoardStationController || Method: getCoachCountSingleDepotWise || getCoachCountSingleDepotWise Query list return : "+list3.size());
+
+			return list3;
+
+					}
 
 			
 //			@Autowired

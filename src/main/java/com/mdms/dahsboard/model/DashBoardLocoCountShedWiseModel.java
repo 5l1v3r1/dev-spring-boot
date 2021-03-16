@@ -11,13 +11,15 @@ public interface DashBoardLocoCountShedWiseModel {
 @Value("#{target.loco_Owningshed}")
  public	String getLoco_Owningshed();
 
-//@JsonIgnore 
-//@Value("#{target.elec_locoOwningShed}")
-//public	String getelec_locoOwningShed();
+
 
 @JsonIgnore 
 @Value("#{target.uncleansed_count}")
 public	Integer getuncleansed_count();
+
+
+
+
 
 @JsonIgnore 
  @Value("#{target.cleansed_count}")
@@ -32,7 +34,7 @@ public	Integer getTotal_loco_count();
  
 @JsonIgnore 
  @Value("#{target.draft_forward_approval_count}")
-public	Integer getdraft_forward_approval_count();
+public	Integer getDraft_forward_approval_count();
 
  
 	@JsonIgnore 
@@ -51,7 +53,15 @@ public	Integer getdraft_forward_approval_count();
 	 
 	@JsonIgnore 
 	 @Value("#{args[0]+': '+target.draft_forward_approval_count}")
-public	void setdraft_forward_approval();
+public	void setDraft_forward_approval_count();
+	
+
+	 
+	@JsonIgnore 
+	 @Value("#{args[0]+': '+target.uncleansed_count}")	 
+	 public void setUncleansed_count(Integer vgf);
+	 
+	
 }
 
 

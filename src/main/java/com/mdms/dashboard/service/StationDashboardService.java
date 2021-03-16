@@ -691,7 +691,7 @@ public class StationDashboardService {
 //					obj.setZone_code(draftObj.getzone_code());
 					obj.setLoco_Owningshed(draftObj.getLoco_Owningshed());
 //					obj.setElec_locoOwningShed(draftObj.getelec_locoOwningShed());
-					obj.setDraft_forward_approval_count(draftObj.getdraft_forward_approval_count());
+					obj.setDraft_forward_approval_count(draftObj.getDraft_forward_approval_count());
 				//	list.add(obj);		
 				}
 			}catch (Exception e) {
@@ -704,7 +704,7 @@ public class StationDashboardService {
 			try {
 			if(draftObj.getLoco_Owningshed().equalsIgnoreCase(totalobj.getelec_locoOwningShed())){
 				uncleansedFlag++;
-				totalobj.setDraft_forward_approval_count(draftObj.getdraft_forward_approval_count());	
+				totalobj.setDraft_forward_approval_count(draftObj.getDraft_forward_approval_count());	
 		//		System.out.println("draft add in list divcode"+ totalobj.getshedid()+"|| AND Draft count: "+totalobj.getDraft_forward_approval_count());
 			}
 			}catch (Exception e) {

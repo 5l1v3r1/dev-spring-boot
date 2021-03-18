@@ -175,4 +175,36 @@ List<UserProfileRegistrationDetailModel> getReportdivisionuserallparameter(Strin
 
 	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1 AND shed=?2 AND (from_date between ?3 and ?4)",nativeQuery=true)
 	List<UserProfileRegistrationDetailModel> getReportsheduserdatewise(String utype,String shed, Date from_date,Date to_date);
+	
+	//-------------------------------------------Depot Admin - Coach Report Query---------------------//
+	
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where user_type=?1 and depo=?2",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getUserRecordsdepotwise(String user_type,String depot);
+	
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where user_type=?1 and depo=?2 and department=?3 and designation=?4",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getUserRecordsdepotwisesingledeprtanddesignwise(String user_type,String depo, String deprt, String desig);
+	
+	@Query(value="SELECT * FROM mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 and depo=?2 AND department=?3  ",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getUserReportdepotwisedeprtwise(String utype,String depo,String department  );
+	
+	@Query(value="SELECT * FROM mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 and depo=?2 AND designation=?3  ",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getUserReportdepotwisedesigwise(String utype,String depo,String desig  );
+	
+	@Query(value="SELECT * FROM mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 AND depo=?2 AND department=?3 AND (from_date between ?4 and ?5)",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel>getuserreportdepotwisedateanddeprtwise(String utype,String depo, String department, Date from_to,Date to_date);
+
+	@Query(value="SELECT * FROM mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 AND depo=?2 AND designation=?3 AND (from_date between ?4 and ?5)",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel>getuserreportdepotwisedateandesigwise(String utype, String depo,String desig, Date from_to,Date to_date);
+
+	
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 AND depo=?2 ",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getUserReportdepotwise(String utype,String depo);
+	
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1  AND depo=?2  AND department=?3  AND designation=?4 AND (from_date between ?5 and ?6)",nativeQuery=true)
+	List<UserProfileRegistrationDetailModel> getReportdepotwiseuserallparameter(String utype,String depo,String deprt,String desig, Date from_date,Date to_date);
+
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1 AND depo=?2 AND (from_date between ?3 and ?4)",nativeQuery=true)
+	List<UserProfileRegistrationDetailModel> getReportdepotwiseuserdatewise(String utype,String depo, Date from_date,Date to_date);
+	
+	
 }

@@ -340,4 +340,52 @@ public class UserProfileRegistrationController {
 	 			
 	 			}
 	 		
+	 			
+	 			//-------------------------Dashboard Depot Admin Report -- Coach -------------------------//
+	 			//fetch userdetail based on user type	
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getdepotuserdetaildashboard")
+	 			public List<UserProfileRegistrationDetailModel> getalldepotusertypedetails(@RequestBody UserProfileRegistrationDetailModel objurecord ){
+	 					return registrationServiceObj.getUserRecordsdepotwise(objurecord);
+	 			
+	 			}
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getdepotuserdetaildeprtdatewise")
+	 			public List<UserProfileRegistrationDetailModel> depotuserreportdateanddeprtwise(@RequestBody UserProfileRegistrationDetailModel objurecord ){
+	 					return registrationServiceObj.getuserreportdepotwisedateanddeprtwise(objurecord);
+	 			
+	 			}@RequestMapping(method=RequestMethod.POST , value ="/getdepotuserdetaildesigdatewise")
+	 			public List<UserProfileRegistrationDetailModel> depotuserreportdateandesigwise(@RequestBody UserProfileRegistrationDetailModel objurecord ){
+ 					return registrationServiceObj.depotwiseuserreportdateandesigwise(objurecord);
+ 			
+ 			}
+	 			
+	 		
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getdepotallparameter")
+	 			public List<UserProfileRegistrationDetailModel> getallcustomizeuserdetailsdepotwise(@RequestBody UserProfileRegistrationDetailModel objrecord ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+	 					return registrationServiceObj.getReportdepouserallparameter(objrecord);
+	 			
+	 			}	
+	 			
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportsingledepotanddeprtwise")
+	 			public List<UserProfileRegistrationDetailModel> getuserreportsingledepotdeprtwise(@RequestBody UserProfileRegistrationDetailModel obj2 ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+	 					return registrationServiceObj.getuserreportsingledepoandeprttwise(obj2);
+	 			
+	 			}
+	 			
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportsingledepotnddesigwise")
+	 			public List<UserProfileRegistrationDetailModel> getuserreportsingledepotdesigwise(@RequestBody UserProfileRegistrationDetailModel obj2 ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+	 					return registrationServiceObj.getuserreportsingledepoandesigwise(obj2);
+	 			
+	 			}
+	 			
+	 			
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportsingledepoanddatewise")
+	 			public List<UserProfileRegistrationDetailModel> getreportdepoanddatewise(@RequestBody UserProfileRegistrationDetailModel obj2 ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getreportdepoanddatewise ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+	 					return registrationServiceObj.getreportdepotanddatewise(obj2);
+	 			
+	 			}
+	 		
 }

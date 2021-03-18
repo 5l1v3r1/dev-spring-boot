@@ -1,5 +1,6 @@
 package com.mdms.mdms_station.stationuncleansed.repository;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -8,23 +9,41 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.mdms.mdms_station.stationuncleansed.model.StationTableRbs;
 import com.mdms.dahsboard.model.DashBoardStationCountDivisionWiseModel;
+import com.mdms.dahsboard.model.ZonalUsersAssetModel;
 import com.mdms.mdms_station.stationuncleansed.model.RbsPKey;
 public interface StationTableRbsRepository  extends CrudRepository<StationTableRbs,RbsPKey>{
 	
+	//Anshul
 	@Query(value="select distinct stn_code from  mdms_station.station_table_rbs where div_ser_no=?1 except\r\n" + 
 			"	select distinct station_code from mdms_station.station_uncleansed_data where cmi_status IN ('U','A')", nativeQuery = true)
 	List<String>getDivisionalStnCodeCmi(int divsno);
 	
 	
 	
-	
+	//Anshul
 	@Query(value="select distinct stn_code from  mdms_station.station_table_rbs where div_ser_no=?1 except\r\n" + 
 			"	select distinct station_code from mdms_station.station_uncleansed_data where dti_status IN ('U','A')", nativeQuery = true)
 	List<String>getDivisionalStnCodeDti(int divsno);
 	
+	//Anshul
 	@Query(value="select * from  mdms_station.station_table_rbs where stn_code=?1 and stn_vld_upto=("
 			+ "select stn_vld_upto from mdms_station.station_table_rbs where stn_code=?1 order by stn_vld_upto DESC LIMIT 1)", nativeQuery = true)
 	StationTableRbs getStationRecordRBS(String station_code);
+	
+	
+	//Anshul
+	  @Query(value="select zone,count(*) as count from mdms_app_mgmt.user_profile_registration_detail where user_type='SU' group by zone",nativeQuery=true)
+	  List<ZonalUsersAssetModel> getZoneWiseUsers();
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 	  @Query(value="SELECT division_code,count(*) as total_division_count FROM mdms_masters.m_division where zone_code=?1 group by division_code",nativeQuery=true)

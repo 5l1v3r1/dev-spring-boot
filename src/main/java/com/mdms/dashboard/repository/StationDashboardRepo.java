@@ -7,15 +7,11 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.mdms.dahsboard.model.DashBoardStationCountDivisionWiseModel;
 import com.mdms.dahsboard.model.DashboardStationModel;
+import com.mdms.dahsboard.model.ZonalUsersAssetModel;
 
 public interface StationDashboardRepo  {
 	  @Query(value="SELECT division_code,count(*) as total_division_count FROM mdms_masters.m_division  group by division_code",nativeQuery=true)
 	  Collection<DashBoardStationCountDivisionWiseModel> getTotalStationCountDivisionWise();
-
-	  
-	 
-
-
 
 	  
 	  @Query(value=" select division_code,uncleansed_count from (\\r\\n\"\r\n"
@@ -43,7 +39,7 @@ public interface StationDashboardRepo  {
 	  Collection<DashBoardStationCountDivisionWiseModel> getUncleansedStationCountSingleDivisionWise(String divcode);
 		  
 
-
+	;
 
 
 }

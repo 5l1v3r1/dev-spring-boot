@@ -874,4 +874,156 @@ String user_type=obj.getUser_type();
 	return temp;
 	
 }
+
+//---------------------------------Depot Admin report Service -- Coach-----------------------------------------//
+//fetch list of user  based on user type & Depo:Developer :Ritu
+
+
+		public List<UserProfileRegistrationDetailModel> getUserRecordsdepotwise(UserProfileRegistrationDetailModel objurecord ) {	
+			String usertype = objurecord.getUser_type();
+			String userdepo = objurecord.getDepo();
+			List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();		
+			profileRegistrationRepo.getUserRecordsdepotwise(usertype,userdepo)
+	        .forEach(temp::add);
+			return temp;
+		}
+		
+
+
+
+public List<UserProfileRegistrationDetailModel> getuserreportdepotwisedateanddeprtwise(UserProfileRegistrationDetailModel obj1 ) {
+	System.out.println("objrecd."+obj1);	
+	String user_type = obj1.getUser_type(); 
+	String userdepo = obj1.getDepo();
+	String deprt=obj1.getDepartment();
+	Date date_from =obj1.getFrom_date();
+	Date date_to =obj1.getTo_date();	
+	Date date_fromto=date_to;
+	System.out.println(date_from);
+	System.out.println(date_to);						
+	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+	profileRegistrationRepo.getuserreportdepotwisedateanddeprtwise(user_type,userdepo,deprt,date_from,date_fromto)
+.forEach(temp::add);
+	System.out.println(temp);
+	return temp;
+	
+}
+
+//get report desig&  datewise based :Developer :Ritu
+public List<UserProfileRegistrationDetailModel> depotwiseuserreportdateandesigwise(UserProfileRegistrationDetailModel obj2 ) {
+	System.out.println("objrecd."+obj2);	
+	String user_type = obj2.getUser_type(); 
+	String userdepo = obj2.getDepo();
+	String desig=obj2.getDesignation();String deprt=obj2.getDepartment();
+	Date date_from =obj2.getFrom_date();
+	Date date_to =obj2.getTo_date();	
+	Date date_fromto=date_to;
+	System.out.println(date_from);
+	System.out.println(date_to);						
+	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+	profileRegistrationRepo.getuserreportdepotwisedateandesigwise(user_type,userdepo,desig,date_from,date_fromto)
+.forEach(temp::add);
+	System.out.println(temp);
+	return temp;
+	
+}
+
+//fetch list of userdetail according to all parameter for depo USER:Developer :Ritu
+public List<UserProfileRegistrationDetailModel> getcustomizeduserdetaildepotuser(UserProfileRegistrationDetailModel objdatedashboaduser ) {		
+	String user_type=objdatedashboaduser.getUser_type();
+	String userdepo = objdatedashboaduser.getDepo();
+	String user_deprt = objdatedashboaduser.getDepartment();
+	String user_desig = objdatedashboaduser.getDesignation();						
+	Date from_dt = objdatedashboaduser.getFrom_date();
+	Date to_date = objdatedashboaduser.getTo_date();	
+	Date date_to=to_date;
+	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+	profileRegistrationRepo.getReportdepotwiseuserallparameter(user_type,userdepo,user_deprt,user_desig,from_dt,date_to)
+  .forEach(temp::add);
+	System.out.println(temp);
+	return temp;
+	
+}
+
+
+//fetch list of loco userdetail according to zone,shed based :Developer :Ritu
+public List<UserProfileRegistrationDetailModel> getUserRecordszoneanddepotwise(UserProfileRegistrationDetailModel objdashboaduser ) {
+	System.out.println("objrecd."+objdashboaduser);
+	String user_type=objdashboaduser.getUser_type();
+	String user_zone = objdashboaduser.getZone();
+	String userdepo = objdashboaduser.getDepo();			
+					
+	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+	profileRegistrationRepo.getLocoUserRecordszoneandshedwise(user_type,user_zone,userdepo)
+  .forEach(temp::add);
+	System.out.println(temp);
+	return temp;
+	
+}
+
+
+//fetch list of loco userdetail according to zone,shed based :Developer :Ritu
+public List<UserProfileRegistrationDetailModel> getReportdepouserallparameter(UserProfileRegistrationDetailModel objdashboaduser ) {
+	System.out.println("objrecd."+objdashboaduser);
+	String user_type=objdashboaduser.getUser_type();	
+	String userdepo = objdashboaduser.getDepo();	
+	String user_deprt = objdashboaduser.getDepartment();
+	String user_desig = objdashboaduser.getDesignation();						
+	Date from_dt = objdashboaduser.getFrom_date();
+	Date to_date = objdashboaduser.getTo_date();	
+	Date date_to=to_date;
+	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+	profileRegistrationRepo.getReportdepotwiseuserallparameter(user_type,userdepo,user_deprt,user_desig,from_dt,date_to)
+.forEach(temp::add);
+	System.out.println(temp);
+	return temp;
+	
+}
+
+
+//get user report single shed and department based :Developer :Ritu
+public List<UserProfileRegistrationDetailModel> getuserreportsingledepoandeprttwise(UserProfileRegistrationDetailModel obj2 ) {	
+	
+	
+	String user_type = obj2.getUser_type();
+	String userdepo = obj2.getDepo();
+	String user_deprt = obj2.getDepartment();		
+	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+	profileRegistrationRepo.getUserReportsheddeprtwise(user_type,userdepo,user_deprt)
+.forEach(temp::add);
+	System.out.println(temp);
+	return temp;
+	
+}
+
+//get user report single shed and department based :Developer :Ritu
+public List<UserProfileRegistrationDetailModel> getuserreportsingledepoandesigwise(UserProfileRegistrationDetailModel obj2 ) {	
+	String user_type = obj2.getUser_type();
+	String userdepo = obj2.getDepo();
+	String user_desig = obj2.getDesignation();		
+	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+	profileRegistrationRepo.getUserReportdepotwisedesigwise(user_type,userdepo,user_desig)
+.forEach(temp::add);
+	System.out.println(temp);
+	return temp;
+	
+}
+
+//fetch report based on shed and  date :Developer :Ritu
+public List<UserProfileRegistrationDetailModel> getreportdepotanddatewise(UserProfileRegistrationDetailModel obj ) {
+	System.out.println("objrecd."+obj);
+String user_type=obj.getUser_type();
+String userdepo = obj.getDepo();	
+	Date date_from =obj.getFrom_date();
+	Date date_to =obj.getTo_date();	
+	Date date_fromto=date_to;
+	System.out.println(date_from);
+	System.out.println(date_to);						
+	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+	profileRegistrationRepo.getReportdepotwiseuserdatewise(user_type,userdepo,date_from,date_fromto)
+  .forEach(temp::add);
+	System.out.println(temp);
+	return temp;
+	
+}
 }

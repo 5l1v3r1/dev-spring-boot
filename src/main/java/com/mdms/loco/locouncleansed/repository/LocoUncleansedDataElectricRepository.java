@@ -1,5 +1,6 @@
 package com.mdms.loco.locouncleansed.repository;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,9 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import com.mdms.dahsboard.model.DashBoardLocoCountShedWiseModel;
+import com.mdms.dahsboard.model.DashBoardStationCountDivisionWiseModel;
+import com.mdms.loco.locouncleansed.model.LocoDataFois;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataAddNewLoco;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
 
@@ -75,4 +79,18 @@ public interface LocoUncleansedDataElectricRepository extends CrudRepository <Lo
 			String locoCommissionedShedId, String locoControlType, Date locoDateOfCommision, Date locoEntryDate,
 			String locoHotelLoad,String locoManfacturer, String isGPSEnable,String flagtype, String locoTractionMotorType, String status, String userid,Date txndate,String remarks,String locoflag,String recordstatus);
 
+ // Shilpi 09-03-2021
+    
+
+	@Query(value="SELECT loco_owning_shed as loco_Owningshed , COUNT(*)  as draft_forward_approval_count FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_shed=?1 AND (status='D' OR Status='R') GROUP BY loco_owning_shed",nativeQuery=true)
+	Collection<DashBoardLocoCountShedWiseModel> getDraftLocoApprovalSingleshed(String eshedid);
+	
+	
+	
+
+	@Query(value="SELECT loco_owning_shed as loco_Owningshed , COUNT(*)  as pending_approval FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_shed=?1 AND status='U'GROUP BY loco_owning_shed ",nativeQuery=true)
+
+	Collection<DashBoardLocoCountShedWiseModel> getLocoPendingSingleshed(String eshedid);
+
+	
 }

@@ -7,6 +7,9 @@ import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+
+import com.mdms.dahsboard.model.DashBoardLocoCountShedWiseModel;
+import com.mdms.dahsboard.model.DashBoardStationCountDivisionWiseModel;
 import com.mdms.loco.locouncleansed.model.LocoDataFois;
 public interface LocoDataFoisRepository extends CrudRepository<LocoDataFois,Long>{	
 	@Query(value="SELECT loco_no FROM  mdms_loco.loco_data_fois WHERE loco_owning_shed_code =?1  AND status IS Null",nativeQuery=true)
@@ -41,4 +44,12 @@ public interface LocoDataFoisRepository extends CrudRepository<LocoDataFois,Long
     @Query(value="SELECT * FROM loco.loco_existing_uncleansed_master_data WHERE loco_owning_shed_code=?1 AND loco_traction_code='E' AND  status IS NULL ",nativeQuery=true)
    	List<LocoDataFois> getELocoUncleanseddataByShed(String shedid);
 
+    // Shilpi 08-03-2021
+    
+    @Query(value="SELECT loco_owning_shed_code as loco_Owningshed ,count(*) as total_loco_count FROM  mdms_loco.loco_data_fois WHERE loco_owning_shed_code=?1 GROUP BY loco_owning_shed_code",nativeQuery=true)
+    Collection<DashBoardLocoCountShedWiseModel> getLocoSingleShed(String shedid);
+       
+    @Query(value="SELECT loco_owning_shed_code as loco_Owningshed ,count(*) as uncleansed_count FROM  mdms_loco.loco_data_fois WHERE loco_owning_shed_code=?1 and status is null GROUP BY loco_owning_shed_code",nativeQuery=true)
+    Collection<DashBoardLocoCountShedWiseModel> getUncleansedLocoSingleShed(String shedid);
+  
 }

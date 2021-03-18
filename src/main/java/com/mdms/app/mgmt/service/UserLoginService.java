@@ -155,6 +155,7 @@ public String updatelogginsession(UserLoginDetailModel obj_updatesession ) {
 		 String uid=obj_updatesession.getUser_id();	
 			loginDetailObj.updateusersession(isactive, uid);
 			response=  "UPDATE SESSION" ;	
+			System.out.println("response session"+response);
 }catch(Exception ex) {
 	
 	logger.info("Service : UserLoginService || Method : updatelogginsession ||Exception update session encryption" + ex.getMessage());

@@ -32,7 +32,7 @@ public class LocoDataFois {
 	private String loco_Type; 
 	
 	@Column(name="loco_owning_shed_code")                  
-	private String loco_Owningshed; 
+	public String loco_Owningshed; 
 	
 	@Column(name="loco_permanent_domain")                  
 	private String loco_Permanentdomain; 
@@ -63,13 +63,6 @@ public class LocoDataFois {
 	private String uStatus; 
 	
 	
-
-
-
-	
-
-	
-
 	public Boolean getIsGPSEnabled() {
 		return isGPSEnabled;
 	}

@@ -3,16 +3,66 @@ package com.mdms.dahsboard.model;
 public class DashboardStationModel {
 	public String zone_code;
 	public	String division_code="null";
+	public String loco_Owningshed;
 	 public	Integer uncleansed_count=0;
 	public Integer cleansed_count=0;
 	public Integer pending_approval=0;
 	public Integer draft_forward_approval_count=0;
 	
+	// Shilpi 15-03-2021
 	
+	public String owning_depot;
+	public String getOwning_depot() {
+		return owning_depot;
+	}
 
-public Integer total_division_count=0;
+
+	public void setOwning_depot(String owning_depot) {
+		this.owning_depot = owning_depot;
+	}
+
+
+	public Integer getTotal_depo_count() {
+		return total_depo_count;
+	}
+
+
+	public void setTotal_depo_count(Integer total_depo_count) {
+		this.total_depo_count = total_depo_count;
+	}
+
+
+	public Integer total_depo_count=0;
 	
+	public String getLoco_Owningshed() {
+		return loco_Owningshed;
+	}
 
+
+	public void setLoco_Owningshed(String loco_Owningshed) {
+		this.loco_Owningshed = loco_Owningshed;
+	}
+
+
+
+	
+	
+    public Integer total_division_count=0;
+	
+// Shilpi 10-03-2021
+    
+    public Integer  total_loco_count=0;
+
+
+
+	public Integer getTotal_loco_count() {
+		return total_loco_count;
+	}
+
+
+	public void setTotal_loco_count(Integer total_loco_count) {
+		this.total_loco_count = total_loco_count;
+	}
 
 
 
@@ -84,6 +134,12 @@ public Integer total_division_count=0;
 
 	public void setTotal_division_count(Integer total_division_count) {
 		this.total_division_count = total_division_count;
+	}
+
+
+	public String getelec_locoOwningShed() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

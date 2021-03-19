@@ -45,8 +45,7 @@ Logger logger=LoggerFactory.getLogger(StationDashboardController.class);
 		List<DashboardStationModel> list =new ArrayList<DashboardStationModel>();
 		@RequestMapping(method=RequestMethod.POST, value="/getstationcountdivisionwise")
 		public List<DashboardStationModel> getStationCountDivisionWise(@RequestBody DashboardStationModel  zone_code) {	
-			System.out.println(zone_code);
-			 list= stationServ_obj.getStationCountDivisionWise(zone_code);
+			list= stationServ_obj.getStationCountDivisionWise(zone_code);
 		//	list.forEach((n) -> System.out.println(n.getDivision_code())); 
 			logger.info("Controller : DashBoardStationController || Method: getStationCountDivisionWise || getStationCountDivisionWise Query list return : "+list.size());
 
@@ -60,8 +59,7 @@ Logger logger=LoggerFactory.getLogger(StationDashboardController.class);
 		List<DashboardStationModel> list1 =new ArrayList<DashboardStationModel>();
 		@RequestMapping(method=RequestMethod.POST, value="/getstationcountsingledivisionwise")
 		public List<DashboardStationModel> getStationCountSingleDivisionWise(@RequestBody DashboardStationModel  division_code) {	
-			System.out.println(division_code);
-			 list1= stationServ_obj.getStationCountSingleDivisionWise(division_code);
+			list1= stationServ_obj.getStationCountSingleDivisionWise(division_code);
 		//	list.forEach((n) -> System.out.println(n.getDivision_code())); 
 			logger.info("Controller : DashBoardStationController || Method: getStationCountSingleDivisionWise || getStationCountSingleDivisionWise Query list return : "+list1.size());
 

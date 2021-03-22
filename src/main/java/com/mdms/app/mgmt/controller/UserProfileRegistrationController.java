@@ -320,9 +320,9 @@ public class UserProfileRegistrationController {
 	 			}	
 	 			
 	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportsingleshedanddeprtwise")
-	 			public List<UserProfileRegistrationDetailModel> getuserreportsinglesheddeprtwise(@RequestBody UserProfileRegistrationDetailModel obj2 ){
+	 			public List<UserProfileRegistrationDetailModel> getuserreportsingleshedandeprttwise(@RequestBody UserProfileRegistrationDetailModel obj2 ){
 //	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
-	 					return registrationServiceObj.getuserreportsinglediviandeprttwise(obj2);
+	 					return registrationServiceObj.getuserreportsingleshedandeprttwise(obj2);
 	 			
 	 			}
 	 			

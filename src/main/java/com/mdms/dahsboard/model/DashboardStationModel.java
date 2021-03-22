@@ -8,10 +8,24 @@ public class DashboardStationModel {
 	public Integer cleansed_count=0;
 	public Integer pending_approval=0;
 	public Integer draft_forward_approval_count=0;
-	
+	public String loco_owning_zone_code;
 	// Shilpi 15-03-2021
 	
 	public String owning_depot;
+	
+	//Shilpi 19-03-2021
+	
+	public String getLoco_owning_zone_code() {
+		return loco_owning_zone_code;
+	}
+
+
+	public void setLoco_owning_zone_code(String loco_owning_zone_code) {
+		this.loco_owning_zone_code = loco_owning_zone_code;
+	}
+
+
+	
 	public String getOwning_depot() {
 		return owning_depot;
 	}
@@ -141,6 +155,9 @@ public class DashboardStationModel {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	
 
 
 	

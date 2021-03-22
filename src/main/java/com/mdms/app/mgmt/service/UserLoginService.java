@@ -146,23 +146,23 @@ public String verifymstOtp(String user_id, Integer emp_password) {
 }
 
 
-public String updatelogginsession(UserLoginDetailModel obj_updatesession ) {
-	String response = "not Reset";
+public boolean updatelogginsession(UserLoginDetailModel obj_updatesession ) {
+	
 	
 	 try {
-		String isactive= 	obj_updatesession.getIs_active(); 
+		String isactive=obj_updatesession.getIs_active(); 
 		 logger.info("Service : UserLoginService || Method : updatelogginsession ||NEW session ");		 
 		 String uid=obj_updatesession.getUser_id();	
 			loginDetailObj.updateusersession(isactive, uid);
-			response=  "UPDATE SESSION" ;	
-			System.out.println("response session"+response);
+			return true;	
+			
 }catch(Exception ex) {
 	
 	logger.info("Service : UserLoginService || Method : updatelogginsession ||Exception update session encryption" + ex.getMessage());
-	response="FAILED TO UPDATE";
+	
 //	System.out.print(ex.getMessage());
 }
-	return response;
+	return false;
 	
 }
 public List<UserLoginDetailModel> checksessionactive(UserLoginDetailModel verifysession){	

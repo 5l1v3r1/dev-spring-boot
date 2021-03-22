@@ -61,6 +61,11 @@ public	void setDraft_forward_approval_count();
 	 @Value("#{args[0]+': '+target.uncleansed_count}")	 
 	 public void setUncleansed_count(Integer vgf);
 	 
+	// Shilpi 19-03-2021
+	
+	@JsonIgnore 
+	@Value("#{target.loco_owning_zone_code}")
+	 public	String getLoco_owning_zone_code();
 	
 }
 

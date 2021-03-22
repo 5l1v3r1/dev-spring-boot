@@ -709,7 +709,7 @@ public List<UserProfileRegistrationDetailModel> divuserreportdateandesigwise(Use
 	System.out.println(date_from);
 	System.out.println(date_to);						
 	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
-	profileRegistrationRepo.divuserreportdateanddeprtwise(user_type,user_div,desig,date_from,date_fromto)
+	profileRegistrationRepo.divuserreportdateandesigwise(user_type,user_div,desig,date_from,date_fromto)
 .forEach(temp::add);
 	System.out.println(temp);
 	return temp;

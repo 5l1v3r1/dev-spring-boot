@@ -25,16 +25,18 @@ public class ZonalUsersAssetModel {
 //	 @Value("#{args[0]+': '+target.count}")	 
 //	 public void setcount(Integer str);
 	
-	public ZonalUsersAssetModel(String z, int c)
+	public ZonalUsersAssetModel(String z, int c, String zn )
 	{
 		this.zone=z;
 		this.count=c;
+		this.zone_name=zn;
 	}
 	
 	public String zone;
 	
 	public int count;
 
+	public String zone_name;
 	public String getZone() {
 		return zone;
 	}
@@ -49,6 +51,14 @@ public class ZonalUsersAssetModel {
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+
+	public String getZone_name() {
+		return zone_name;
+	}
+
+	public void setZone_name(String zone_name) {
+		this.zone_name = zone_name;
 	}
 	
 	

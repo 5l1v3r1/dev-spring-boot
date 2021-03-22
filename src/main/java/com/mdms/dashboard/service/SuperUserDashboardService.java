@@ -234,10 +234,10 @@ public class SuperUserDashboardService {
 		
 		logger.info("Service : StationDashboardService || Method: getZoneWiseUsers");
 		 
-//		List<ZonalUsersAssetModel> totalCountList =new ArrayList<>();
-	  final String noofusers ="select zone,count(*) as count from mdms_app_mgmt.user_profile_registration_detail where user_type='"+usertype+"' group by zone";
+//	  final String noofusers ="select zone,count(*) as count from mdms_app_mgmt.user_profile_registration_detail where user_type='"+usertype+"' group by zone";
 	  
-
+final String noofusers="select a.zone_name, r1.zone, r1.count  from  mdms_masters.m_zone a join \r\n"
+		+ "	(select zone,count(*) as count from mdms_app_mgmt.user_profile_registration_detail where user_type='"+usertype+"' group by zone) r1 on r1.zone=a.zone_code";
     	    	  
     	  
 //		stn_db_repo.getZoneWiseUsers().forEach(totalCountList::add);
@@ -248,7 +248,8 @@ public class SuperUserDashboardService {
                (rs, rowNum) ->
                        new ZonalUsersAssetModel(
                                rs.getString("zone"),
-                               rs.getInt("count")
+                               rs.getInt("count"),
+                               rs.getString("zone_name")
                               
                        )
        );

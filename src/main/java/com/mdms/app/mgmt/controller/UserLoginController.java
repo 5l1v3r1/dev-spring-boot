@@ -201,12 +201,12 @@ obj.setSenior_id(profileRegistrationService.seniorID(registrationObj.getDesignat
 	return flag;
 	}
 	@RequestMapping(method=RequestMethod.POST, value ="/updateloginsession")
-	public String updatesession(@RequestBody UserLoginDetailModel obj_session)
+	public boolean updatesession(@RequestBody UserLoginDetailModel obj_session)
 	{
 		logger.info("Controller : UserLoginController || Method : updatesession || isactive:" +obj_session.getIs_active()  );
 		
 		System.out.println("id"+ obj_session.getUser_id());	
-	String flag = userLoginService.updatelogginsession(obj_session);
+	boolean flag = userLoginService.updatelogginsession(obj_session);
 	return flag;
 	}
 

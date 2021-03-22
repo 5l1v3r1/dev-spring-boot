@@ -92,5 +92,12 @@ public interface LocoUncleansedDataElectricRepository extends CrudRepository <Lo
 
 	Collection<DashBoardLocoCountShedWiseModel> getLocoPendingSingleshed(String eshedid);
 
+	//Shilpi 18-03-2021 --FOR ZONE WISE
 	
+	@Query(value="SELECT loco_owning_zone as loco_owning_zone_code,loco_owning_shed as loco_Owningshed , COUNT(*)  as draft_forward_approval_count FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_zone=?1 AND (status='D' OR Status='R') GROUP BY loco_owning_zone,loco_owning_shed order by 2",nativeQuery=true)
+	Collection<DashBoardLocoCountShedWiseModel> getDraftLocoApprovalZoneshed(String loco_owning_zone_code);
+	
+	@Query(value="SELECT loco_owning_zone as loco_owning_zone_code,loco_owning_shed as loco_Owningshed , COUNT(*)  as pending_approval FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_zone=?1 AND status='U'GROUP BY loco_owning_zone,loco_owning_shed order by 2",nativeQuery=true)
+
+	Collection<DashBoardLocoCountShedWiseModel> getLocoPendingZoneshed(String loco_owning_zone_code);
 }

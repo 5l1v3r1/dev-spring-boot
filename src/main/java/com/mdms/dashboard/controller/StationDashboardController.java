@@ -107,6 +107,20 @@ Logger logger=LoggerFactory.getLogger(StationDashboardController.class);
 			return list4;
 
 					}
+				
+				
+				//Shilpi 23-03-2021
+				
+				List<DashboardStationModel> list5 =new ArrayList<DashboardStationModel>();
+				@RequestMapping(method=RequestMethod.POST, value="/getstationcountZonewise")
+				public List<DashboardStationModel> getStationCountZoneWise(@RequestBody DashboardStationModel  zone_code) {	
+					list5= stationServ_obj.getStationCountZoneWise(zone_code);
+				//	list.forEach((n) -> System.out.println(n.getDivision_code())); 
+					logger.info("Controller : DashBoardStationController || Method: getStationCountZoneWise || getStationCountZoneWise Query list5 return : "+list5.size());
+
+			return list5;
+
+					}
 
 			
 //			@Autowired

@@ -123,23 +123,6 @@ Logger logger=LoggerFactory.getLogger(StationDashboardController.class);
 					}
 
 			
-//			@Autowired
-//			DashBoardStationService dashBoardStationServiceObj;
-//			List<DashboardStationModel> list =new ArrayList<DashboardStationModel>();
-//			@RequestMapping(method=RequestMethod.POST, value="/getstationcountdivisionwise")
-//			public List<DashboardStationModel> getStationCountDivisionWise() {
-//
-//				
-//				 list= dashBoardStationServiceObj.getStationCountDivisionWise();
-//
-//				
-//			//	list.forEach((n) -> System.out.println(n.getDivision_code())); 
-//
-//				logger.info("Controller : DashBoardStationController || Method: getStationCountDivisionWise || getStationCountDivisionWise Query list return : "+list.size());
-//
-//		return list;
-//
-//				}
-//			
+
 	
 }

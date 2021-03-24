@@ -151,11 +151,7 @@ public class DashboardStationModel {
 	}
 
 
-	public String getelec_locoOwningShed() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 
 	
 

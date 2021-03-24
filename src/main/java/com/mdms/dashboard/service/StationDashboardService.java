@@ -537,7 +537,6 @@ public class StationDashboardService {
 
 		public List<DashboardStationModel> getLocoCountSingleShedWise(DashboardStationModel objshedid) {
 			String shedid =objshedid.getLoco_Owningshed();
-			String eshedid=objshedid.getelec_locoOwningShed();
 			
 			//String shedid =objshedid.getElec_locoOwningShed();
 			List<DashboardStationModel> list= new ArrayList<DashboardStationModel>();		
@@ -556,7 +555,7 @@ public class StationDashboardService {
 				
 					
 				Collection<DashBoardLocoCountShedWiseModel> pendingApprovalCountLists= loco_tbl_repo.getLocoPendingSingleshed(shedid);
-				logger.info("Service : DashBoardStationService || Method: getLocoApprovalSingleshed || getLocoApprovalSingleshed Query list return : "+pendingApprovalCountLists.size());
+				logger.info("Service : DashBoardStationService || Method: getLocoPendingSingleshed || getLocoPendingSingleshed Query list return : "+pendingApprovalCountLists.size());
 		
 				pendingApprovalCountLists.forEach(DashBoardLocoCountShedWiseModel -> callPendingApprovalShedwise(DashBoardLocoCountShedWiseModel,list));
 
@@ -702,7 +701,7 @@ public class StationDashboardService {
 		}
 		private void callDraftCountShedwise(DashBoardLocoCountShedWiseModel draftObj,DashboardStationModel totalobj) {
 			try {
-			if(draftObj.getLoco_Owningshed().equalsIgnoreCase(totalobj.getelec_locoOwningShed())){
+			if(draftObj.getLoco_Owningshed().equalsIgnoreCase(totalobj.getLoco_Owningshed())){
 				uncleansedFlag++;
 				totalobj.setDraft_forward_approval_count(draftObj.getDraft_forward_approval_count());	
 		//		System.out.println("draft add in list divcode"+ totalobj.getshedid()+"|| AND Draft count: "+totalobj.getDraft_forward_approval_count());

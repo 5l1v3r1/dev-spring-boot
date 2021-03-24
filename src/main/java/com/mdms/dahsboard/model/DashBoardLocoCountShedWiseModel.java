@@ -67,6 +67,10 @@ public	void setDraft_forward_approval_count();
 	@Value("#{target.loco_owning_zone_code}")
 	 public	String getLoco_owning_zone_code();
 	
+	@JsonIgnore 
+	 @Value("#{args[0]+': '+target.loco_owning_zone_code}")	 
+	 public void setLoco_owning_zone_code(Integer vgf);
+	
 }
 
 

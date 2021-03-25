@@ -63,9 +63,14 @@ public	void setDraft_forward_approval_count();
 	 
 	// Shilpi 19-03-2021
 	
+	
 	@JsonIgnore 
 	@Value("#{target.loco_owning_zone_code}")
 	 public	String getLoco_owning_zone_code();
+	
+	@JsonIgnore 
+	 @Value("#{args[0]+': '+target.loco_owning_zone_code}")	 
+	 public void setLoco_owning_zone_code(String vgf1);
 	
 }
 

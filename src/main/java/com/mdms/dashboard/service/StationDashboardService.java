@@ -544,7 +544,6 @@ public class StationDashboardService {
 
 		public List<DashboardStationModel> getLocoCountSingleShedWise(DashboardStationModel objshedid) {
 			String shedid =objshedid.getLoco_Owningshed();
-			String eshedid=objshedid.getelec_locoOwningShed();
 			
 			//String shedid =objshedid.getElec_locoOwningShed();
 			List<DashboardStationModel> list= new ArrayList<DashboardStationModel>();		
@@ -563,7 +562,7 @@ public class StationDashboardService {
 				
 					
 				Collection<DashBoardLocoCountShedWiseModel> pendingApprovalCountLists= loco_tbl_repo.getLocoPendingSingleshed(shedid);
-				logger.info("Service : DashBoardStationService || Method: getLocoApprovalSingleshed || getLocoApprovalSingleshed Query list return : "+pendingApprovalCountLists.size());
+				logger.info("Service : DashBoardStationService || Method: getLocoPendingSingleshed || getLocoPendingSingleshed Query list return : "+pendingApprovalCountLists.size());
 		
 				pendingApprovalCountLists.forEach(DashBoardLocoCountShedWiseModel -> callPendingApprovalShedwise(DashBoardLocoCountShedWiseModel,list));
 
@@ -709,7 +708,7 @@ public class StationDashboardService {
 		}
 		private void callDraftCountShedwise(DashBoardLocoCountShedWiseModel draftObj,DashboardStationModel totalobj) {
 			try {
-			if(draftObj.getLoco_Owningshed().equalsIgnoreCase(totalobj.getelec_locoOwningShed())){
+			if(draftObj.getLoco_Owningshed().equalsIgnoreCase(totalobj.getLoco_Owningshed())){
 				uncleansedFlag++;
 				totalobj.setDraft_forward_approval_count(draftObj.getDraft_forward_approval_count());	
 		//		System.out.println("draft add in list divcode"+ totalobj.getshedid()+"|| AND Draft count: "+totalobj.getDraft_forward_approval_count());
@@ -926,10 +925,10 @@ public class StationDashboardService {
 				}
 				
 				
-// Shilpi 19-03-2021
+// Shilpi 19-03-2021 zone wise loco
 				
-				public List<DashboardStationModel> getLocoCountZoneWise(DashboardStationModel objzone_code) {
-					String loco_owning_zone_code =objzone_code.getLoco_owning_zone_code();
+				public List<DashboardStationModel> getLocoCountZoneWise(DashboardStationModel obj1zone_code) {
+					String loco_owning_zone_code =obj1zone_code.getLoco_owning_zone_code();
 					
 					List<DashboardStationModel> list= new ArrayList<DashboardStationModel>();		
 					Collection<DashBoardLocoCountShedWiseModel> totalCountLists= loco_tbl_fois_repo.getLocoZoneShed(loco_owning_zone_code);
@@ -961,10 +960,7 @@ public class StationDashboardService {
 						Collection<DashBoardLocoCountShedWiseModel> draftCountLists= loco_tbl_repo.getDraftLocoApprovalZoneshed(loco_owning_zone_code);
 						logger.info("Service : DashBoardStationService || Method: getDraftLocoApprovalZoneshed || getDraftLocoApprovalZoneshed Query list return : "+draftCountLists.size());			
 						draftCountLists.forEach(DashBoardLocoCountShedWiseModel -> callDraftLocoApprovalZone(DashBoardLocoCountShedWiseModel,list));	
-						
-						
-						
-						
+										
 						
 						return list;
 					
@@ -978,7 +974,7 @@ public class StationDashboardService {
 						list.forEach(totalobj -> callTotalSubShedwise1(uncleansedObj,totalobj));	
 						if(uncleansedFlag==0){
 							DashboardStationModel obj = new DashboardStationModel();
-							obj.setLoco_owning_zone_code(uncleansedObj.getLoco_owning_zone_code());
+							obj.setLoco_owning_zone_code(uncleansedObj.getLoco_owning_zone_code());	
 							obj.setLoco_Owningshed(uncleansedObj.getLoco_Owningshed());
 							obj.setUncleansed_count(uncleansedObj.getuncleansed_count());
 					//		list.add(obj);	
@@ -990,7 +986,7 @@ public class StationDashboardService {
 				private void callTotalSubShedwise1(DashBoardLocoCountShedWiseModel uncleansedObj,DashboardStationModel totalobj) {
 					
 					try {
-					if(uncleansedObj.getLoco_owning_zone_code().equalsIgnoreCase(totalobj.getLoco_owning_zone_code())) {
+					if(uncleansedObj.getLoco_Owningshed().equalsIgnoreCase(totalobj.getLoco_Owningshed())) {
 						uncleansedFlag++;
 						totalobj.setUncleansed_count(uncleansedObj.getuncleansed_count());
 					}
@@ -1024,7 +1020,7 @@ public class StationDashboardService {
 				private void callPendingApprovalSubShedwise1(DashBoardLocoCountShedWiseModel pendingApprovObj,DashboardStationModel totalobj) {
 					
 					try {
-					if(pendingApprovObj.getLoco_owning_zone_code().equalsIgnoreCase(totalobj.getLoco_owning_zone_code())) {
+					if(pendingApprovObj.getLoco_Owningshed().equalsIgnoreCase(totalobj.getLoco_Owningshed())) {
 						uncleansedFlag++;
 						totalobj.setPending_approval(pendingApprovObj.getpending_approval());		
 				
@@ -1046,7 +1042,7 @@ public class StationDashboardService {
 				
 						if(uncleansedFlag==0) {
 							DashboardStationModel obj = new DashboardStationModel();
-							obj.setLoco_owning_zone_code(cleansedObj.getLoco_owning_zone_code());
+						    obj.setLoco_owning_zone_code(cleansedObj.getLoco_owning_zone_code());
 							obj.setLoco_Owningshed(cleansedObj.getLoco_Owningshed());
 							obj.setCleansed_count(cleansedObj.getcleansed_count());
 						//	list.add(obj);		
@@ -1059,7 +1055,7 @@ public class StationDashboardService {
 				}
 				private void callCleansedCountSubShedwise1(DashBoardLocoCountShedWiseModel cleansedObj,DashboardStationModel totalobj) {
 					try {
-					if(cleansedObj.getLoco_owning_zone_code().equalsIgnoreCase(totalobj.getLoco_owning_zone_code())){
+					if(cleansedObj.getLoco_Owningshed().equalsIgnoreCase(totalobj.getLoco_Owningshed())){
 						uncleansedFlag++;
 						totalobj.setCleansed_count(cleansedObj.getcleansed_count());	
 					}
@@ -1079,7 +1075,8 @@ public class StationDashboardService {
 				
 						if(uncleansedFlag==0) {
 							DashboardStationModel obj = new DashboardStationModel();
-							obj.setZone_code(draftObj.getLoco_owning_zone_code());
+          				// obj.setZone_code(draftObj.getzone_code());
+							obj.setLoco_owning_zone_code(draftObj.getLoco_owning_zone_code());
 							obj.setLoco_Owningshed(draftObj.getLoco_Owningshed());
 //							obj.setElec_locoOwningShed(draftObj.getelec_locoOwningShed());
 							obj.setDraft_forward_approval_count(draftObj.getDraft_forward_approval_count());
@@ -1093,7 +1090,7 @@ public class StationDashboardService {
 				}
 				private void callDraftCountShedwise1(DashBoardLocoCountShedWiseModel draftObj,DashboardStationModel totalobj) {
 					try {
-					if(draftObj.getLoco_owning_zone_code().equalsIgnoreCase(totalobj.getLoco_owning_zone_code())){
+					if(draftObj.getLoco_Owningshed().equalsIgnoreCase(totalobj.getLoco_Owningshed())){
 						uncleansedFlag++;
 						totalobj.setDraft_forward_approval_count(draftObj.getDraft_forward_approval_count());	
 				//		System.out.println("draft add in list divcode"+ totalobj.getshedid()+"|| AND Draft count: "+totalobj.getDraft_forward_approval_count());
@@ -1107,52 +1104,56 @@ public class StationDashboardService {
 				
 				private void setTotalZoneShed(DashBoardLocoCountShedWiseModel DashBoardLocoCountShedWiseModel,Collection<DashboardStationModel> list) {
 				DashboardStationModel obj =new DashboardStationModel();	
-				obj.setLoco_owning_zone_code(DashBoardLocoCountShedWiseModel.getLoco_owning_zone_code());				
+         		//obj.setLoco_owning_zone_code(DashBoardStationCountDivisionWiseModel.getLoco_owning_zone_code());	
+				obj.setLoco_owning_zone_code(DashBoardLocoCountShedWiseModel.getLoco_owning_zone_code());
 				obj.setLoco_Owningshed(DashBoardLocoCountShedWiseModel.getLoco_Owningshed());
-				obj.setTotal_loco_count(DashBoardLocoCountShedWiseModel.getTotal_loco_count());			
+				obj.setTotal_loco_count(DashBoardLocoCountShedWiseModel.getTotal_loco_count());		
+				//obj.setCleansed_count(DashBoardLocoCountShedWiseModel.getcleansed_count());
+				//obj.setDraft_forward_approval_count(DashBoardLocoCountShedWiseModel.getDraft_forward_approval_count());
+				//obj.setUncleansed_count(DashBoardLocoCountShedWiseModel.getuncleansed_count());
+				//obj.setPending_approval(DashBoardLocoCountShedWiseModel.getpending_approval());
 				list.add(obj);
 				
 				}
-				
 				
 		//Shilpi 22-03-2021
 				
 				public List<DashboardStationModel> getStationCountZoneWise(DashboardStationModel objzone_code) {
 					String zone_code =objzone_code.getZone_code();
-					List<DashboardStationModel> list5= new ArrayList<DashboardStationModel>();			
+					List<DashboardStationModel> list= new ArrayList<DashboardStationModel>();			
 					Collection<DashBoardStationCountDivisionWiseModel> totalCountList1= stn_tbl_rbs_repo.getTotalStationCountZoneWise(zone_code);
 						logger.info("Service : DashBoardStationService || Method: getTotalStationCountZoneWise || getTotalStationCountZoneWise Query list return : "+totalCountList1.size());
 						if(totalCountList1.size()>0) {
-						totalCountList1.forEach(DashBoardStationCountDivisionWiseModel -> setTotalZone(DashBoardStationCountDivisionWiseModel,list5));
+						totalCountList1.forEach(DashBoardStationCountDivisionWiseModel -> setTotalZone(DashBoardStationCountDivisionWiseModel,list));
 
 						}	
 						
 						Collection<DashBoardStationCountDivisionWiseModel> uncleansedCountList1= stn_tbl_rbs_repo.getUncleansedStationCountZone(zone_code);
 						logger.info("Service : DashBoardStationService || Method: getUncleansedStationCountZone|| getUncleansedStationCountZone Query list return : "+uncleansedCountList1.size());
 
-						uncleansedCountList1.forEach(DashBoardStationCountDivisionWiseModel -> callTotal1(DashBoardStationCountDivisionWiseModel,list5));
+						uncleansedCountList1.forEach(DashBoardStationCountDivisionWiseModel -> callTotal1(DashBoardStationCountDivisionWiseModel,list));
 						
 						
 						Collection<DashBoardStationCountDivisionWiseModel> pendingApprovalCountList1= stn_unclsnd_repo.getPendingApprovalStationCountZoneWise(zone_code);
 						logger.info("Service : DashBoardStationService || Method: getPendingApprovalStationCountZoneWise || getPendingApprovalStationCountZoneWise Query list return : "+pendingApprovalCountList1.size());
 				
-						pendingApprovalCountList1.forEach(DashBoardStationCountDivisionWiseModel -> callPendingApproval1(DashBoardStationCountDivisionWiseModel,list5));
+						pendingApprovalCountList1.forEach(DashBoardStationCountDivisionWiseModel -> callPendingApproval1(DashBoardStationCountDivisionWiseModel,list));
 
 						
 						Collection<DashBoardStationCountDivisionWiseModel> cleansedCountList1= stn_clsnd_repo.getTotalCleansedStationCountZoneWise(zone_code);
 						logger.info("Service : DashBoardStationService || Method: getTotalCleansedStationCountZoneWise || getTotalCleansedStationCountZoneWise Query list return : "+cleansedCountList1.size());			
-						cleansedCountList1.forEach(DashBoardStationCountDivisionWiseModel -> callCleansedCount1(DashBoardStationCountDivisionWiseModel,list5));			
+						cleansedCountList1.forEach(DashBoardStationCountDivisionWiseModel -> callCleansedCount1(DashBoardStationCountDivisionWiseModel,list));			
 					
 						
 						Collection<DashBoardStationCountDivisionWiseModel> draftCountList1= stn_unclsnd_repo.getTotalDraftForwardApprovalStationCountZoneWise(zone_code);
 						logger.info("Service : DashBoardStationService || Method: getTotalDraftForwardApprovalStationCountZoneWise || getTotalDraftForwardApprovalStationCountZoneWise Query list return : "+draftCountList1.size());			
-						draftCountList1.forEach(DashBoardStationCountDivisionWiseModel -> callDraftCount1(DashBoardStationCountDivisionWiseModel,list5));	
+						draftCountList1.forEach(DashBoardStationCountDivisionWiseModel -> callDraftCount1(DashBoardStationCountDivisionWiseModel,list));	
 						
 						
 						
 						
 						
-						return list5;
+						return list;
 					
 				}
 
@@ -1163,7 +1164,7 @@ public class StationDashboardService {
 					// TODO Auto-generated method stub
 					try {		
 						uncleansedFlag=0;
-						list.forEach(totalobj -> callTotalSub1(uncleansedObj,totalobj));	
+						list.forEach(totalobj -> callTotalSubb(uncleansedObj,totalobj));	
 						if(uncleansedFlag==0){
 							DashboardStationModel obj = new DashboardStationModel();
 							obj.setZone_code(uncleansedObj.getzone_code());
@@ -1175,7 +1176,7 @@ public class StationDashboardService {
 						// TODO: Handle Exception
 						e.getMessage();		}
 				}
-				private void callTotalSub1(DashBoardStationCountDivisionWiseModel uncleansedObj,DashboardStationModel totalobj) {
+				private void callTotalSubb(DashBoardStationCountDivisionWiseModel uncleansedObj,DashboardStationModel totalobj) {
 					
 					try {
 					if(uncleansedObj.getdivision_code().equalsIgnoreCase(totalobj.getDivision_code())) {
@@ -1195,7 +1196,7 @@ public class StationDashboardService {
 					try {
 					
 						uncleansedFlag=0;
-						list.forEach(totalobj -> callPendingApprovalSub1(pendingApprovObj,totalobj));	
+						list.forEach(totalobj -> callPendingApprovalSubb(pendingApprovObj,totalobj));	
 						if(uncleansedFlag==0) {
 							DashboardStationModel obj = new DashboardStationModel();
 							obj.setZone_code(pendingApprovObj.getzone_code());					
@@ -1209,7 +1210,7 @@ public class StationDashboardService {
 					}
 					
 				}
-				private void callPendingApprovalSub1(DashBoardStationCountDivisionWiseModel pendingApprovObj,DashboardStationModel totalobj) {
+				private void callPendingApprovalSubb(DashBoardStationCountDivisionWiseModel pendingApprovObj,DashboardStationModel totalobj) {
 					
 					try {
 					if(pendingApprovObj.getdivision_code().equalsIgnoreCase(totalobj.getDivision_code())) {
@@ -1229,11 +1230,12 @@ public class StationDashboardService {
 					
 					try {
 						uncleansedFlag=0;
-						list.forEach(totalobj -> callCleansedCountSub1(cleansedObj,totalobj));
+						list.forEach(totalobj -> callCleansedCountSubb(cleansedObj,totalobj));
 
 				
 						if(uncleansedFlag==0) {
 							DashboardStationModel obj = new DashboardStationModel();
+							//obj.setZone_code(cleansedObj.getzone_code());
 							obj.setZone_code(cleansedObj.getzone_code());
 							obj.setDivision_code(cleansedObj.getdivision_code());
 							obj.setCleansed_count(cleansedObj.getcleansed_count());
@@ -1245,7 +1247,7 @@ public class StationDashboardService {
 					}
 					
 				}
-				private void callCleansedCountSub1(DashBoardStationCountDivisionWiseModel cleansedObj,DashboardStationModel totalobj) {
+				private void callCleansedCountSubb(DashBoardStationCountDivisionWiseModel cleansedObj,DashboardStationModel totalobj) {
 					try {
 					if(cleansedObj.getdivision_code().equalsIgnoreCase(totalobj.getDivision_code())){
 						uncleansedFlag++;
@@ -1262,7 +1264,7 @@ public class StationDashboardService {
 					
 					try {
 						uncleansedFlag=0;
-						list.forEach(totalobj -> callDraftCountSub1(draftObj,totalobj));
+						list.forEach(totalobj -> callDraftCountSubb(draftObj,totalobj));
 
 				
 						if(uncleansedFlag==0) {
@@ -1278,7 +1280,7 @@ public class StationDashboardService {
 					}
 					
 				}
-				private void callDraftCountSub1(DashBoardStationCountDivisionWiseModel draftObj,DashboardStationModel totalobj) {
+				private void callDraftCountSubb(DashBoardStationCountDivisionWiseModel draftObj,DashboardStationModel totalobj) {
 					try {
 					if(draftObj.getdivision_code().equalsIgnoreCase(totalobj.getDivision_code())){
 						uncleansedFlag++;

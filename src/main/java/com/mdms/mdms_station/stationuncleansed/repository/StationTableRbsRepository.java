@@ -74,7 +74,7 @@ public interface StationTableRbsRepository  extends CrudRepository<StationTableR
 	  @Query(value=" select division_code,uncleansed_count from (\r\n"
 		  		+ "			  select e.zone_code,f.division_code,count(*) as uncleansed_count from (select distinct  division_code, stn_code\r\n"
 		  		+ "																	  FROM mdms_station.station_table_rbs as a join mdms_masters.m_division as b\r\n"
-		  		+ "	  				on a.div_ser_no= b.division_sr_no WHERE current_date between a.stn_vld_from and a.stn_vld_upto except select division_code,station_code FROM mdms_station.station_uncleansed_data) AS f\r\n"
+		  		+ "	  				on a.div_ser_no= b.division_sr_no WHERE current_date between a.stn_vld_from and a.stn_vld_upto except select division_code,station_code FROM mdms_station.station_cleansed_data) AS f\r\n"
 		  		+ "					join mdms_masters.m_division as e\r\n"
 		  		+ "					on f.division_code=e.division_code\r\n"
 		  		+ "					where e.division_code=?1\r\n"
@@ -98,7 +98,7 @@ public interface StationTableRbsRepository  extends CrudRepository<StationTableR
 	  		+ "															 join mdms_masters.m_division as b\r\n"
 	  		+ "		on a.div_ser_no= b.division_sr_no AND   current_date between stn_vld_from and stn_vld_upto \r\n"
 	  		+ "															 and b.zone_code=?1  except select zone_code,division_code,station_code \r\n"
-	  		+ "															 FROM mdms_station.station_uncleansed_data)\r\n"
+	  		+ "															 FROM mdms_station.station_cleansed_data)\r\n"
 	  		+ "															 AS uncleansed  group by 1,2 ORDER BY 1",nativeQuery=true)
 				  Collection<DashBoardStationCountDivisionWiseModel> getUncleansedStationCountZone(String zone_code);  
 

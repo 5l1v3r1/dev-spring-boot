@@ -102,7 +102,7 @@ Logger logger=LoggerFactory.getLogger(StationDashboardController.class);
 					System.out.println(loco_owning_zone_code);
 					 list4=stationServ_obj.getLocoCountZoneWise(loco_owning_zone_code);
 				//	list.forEach((n) -> System.out.println(n.getDivision_code())); 
-					logger.info("Controller : DashBoardStationController || Method: getLocoCountZoneWise || getLocoCountZoneWise Query list return : "+list4.size());
+					logger.info("Controller : DashBoardStationController || Method: getLocoCountZoneWise || getLocoCountZoneWise Query list4 return : "+list4.size());
 
 			return list4;
 

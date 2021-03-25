@@ -611,11 +611,11 @@ public List<UserProfileRegistrationDetailModel> getUserReportdivdesigwise(UserPr
 }
 
 //get report zone &  datewise based :Developer :Ritu
-public List<UserProfileRegistrationDetailModel> getreportzonedatewise(UserProfileRegistrationDetailModel objreportdatewise ) {
+public List<UserProfileRegistrationDetailModel> (UserProfileRegistrationDetailModel objreportdatewise ) {
 	System.out.println("objrecd."+objreportdatewise);	
 	String user_type = objreportdatewise.getUser_type();
 	String zone =objreportdatewise.getZone();
-	Date date_from =objreportdatewise.getFrom_date();
+	Date date_from =objreportdatewise.getFrom_date();getreportzonedatewise
 	Date date_to =objreportdatewise.getTo_date();	
 	Date date_fromto=date_to;
 	System.out.println(date_from);

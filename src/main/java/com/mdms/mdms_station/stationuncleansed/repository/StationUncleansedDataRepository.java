@@ -178,27 +178,22 @@ public interface StationUncleansedDataRepository extends CrudRepository <Station
 			  
 			  //end changes
 			  
+//ritu2 4.3.2021
 
-//			  
-//			  @Query(value="select division_code, count(*) as cleansed_count " + 
-//				  		"from mdms_station.station_uncleansed_data where zone_code=?1 group by division_code",nativeQuery=true)
-//			  Collection<DashBoardStationCountDivisionWiseModel> getTotalCleansedStationCountDivisionWise(String zone_code);
-//		  
-//			  
-			 
-//			  @Query(value=" select division_code,count(*) as draft_forward_approval_count\r\n"
-//			  		+ "			  	from mdms_station.station_uncleansed_data where zone_code=?1 and cmi_status='D' OR dti_status='D' group by division_code\r\n"
-//			  		+ "			",nativeQuery=true)
-//			  Collection<DashBoardStationCountDivisionWiseModel> getTotalDraftForwardApprovalStationCountDivisionWise(String zone_code);
-//			  
+				 @Query(value="select division_code,count(*) as pending_approval" + 
+					  		"  from mdms_station.station_uncleansed_data where zone_code=?1 and cmi_status='U' OR dti_status='U' group by division_code"
+					  					  		,nativeQuery = true)
+				  Collection<DashBoardStationCountDivisionWiseModel> getPendingApprovalStationCountZoneDivisionWise(String zone_code);
 
-			  
-//			  @Query(value="select t.division_code, count(*) as draft_forward_approval_count from\r\n" + 
-//				  		"	(SELECT d.userid ,r.division_code  from  station.draft d,\r\n" + 
-//				  		"	station.station_user_registration r\r\n" + 
-//				  		"where d.userid=r.emp_id) t group by t.division_code",nativeQuery=true)
-//				  Collection<DashBoardStationCountDivisionWiseModel> getTotalDraftForwardApprovalStationCountDivisionWise();
-//				  
+					
+				  
+				 @Query(value=" select division_code,count(*) as draft_forward_approval_count\r\n"
+					  		+ "			  	from mdms_station.station_uncleansed_data where zone_code=?1 and cmi_status='D' OR dti_status='D' group by division_code\r\n"
+					  		+ "			",nativeQuery=true)
+					  Collection<DashBoardStationCountDivisionWiseModel> getTotalDraftForwardApprovalStationCountZoneDivisionWise(String zone_code);
+					 
+				 
+				
 
 }
 

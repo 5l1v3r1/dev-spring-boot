@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mdms.dahsboard.model.DashboardLocoModel;
 import com.mdms.dahsboard.model.DashboardStationModel;
 import com.mdms.dashboard.service.StationDashboardService;
 
@@ -73,11 +74,10 @@ Logger logger=LoggerFactory.getLogger(StationDashboardController.class);
 				public List<DashboardStationModel> getLocoCountSingleShedWise(@RequestBody DashboardStationModel  shedid) {	
 					System.out.println(shedid);
 					 list2= stationServ_obj.getLocoCountSingleShedWise(shedid);
+						System.out.println(shedid);
 				//	list.forEach((n) -> System.out.println(n.getDivision_code())); 
 					logger.info("Controller : DashBoardStationController || Method: getLocoCountSingleShedWise || getLocoCountSingleShedWise Query list return : "+list2.size());
-
 			return list2;
-
 					}
 				
 				
@@ -96,9 +96,9 @@ Logger logger=LoggerFactory.getLogger(StationDashboardController.class);
 				
 				
 				// shilpi 19-03-2021
-				List<DashboardStationModel> list4 =new ArrayList<DashboardStationModel>();
+				List<DashboardLocoModel> list4 =new ArrayList<DashboardLocoModel>();
 				@RequestMapping(method=RequestMethod.POST, value="/getLococountZonewise")
-				public List<DashboardStationModel> getLocoCountZoneWise(@RequestBody DashboardStationModel  loco_owning_zone_code) {	
+				public List<DashboardLocoModel> getLocoCountZoneWise(@RequestBody DashboardLocoModel  loco_owning_zone_code) {	
 					System.out.println(loco_owning_zone_code);
 					 list4=stationServ_obj.getLocoCountZoneWise(loco_owning_zone_code);
 				//	list.forEach((n) -> System.out.println(n.getDivision_code())); 
@@ -109,6 +109,7 @@ Logger logger=LoggerFactory.getLogger(StationDashboardController.class);
 					}
 
 			
+				
 
 	
 }

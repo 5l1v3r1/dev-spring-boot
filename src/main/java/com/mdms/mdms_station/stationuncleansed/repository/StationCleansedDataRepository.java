@@ -1,5 +1,6 @@
 package com.mdms.mdms_station.stationuncleansed.repository;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.transaction.Transactional;
@@ -8,6 +9,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import com.mdms.dahsboard.model.DashBoardStationCountDivisionWiseModel;
 import com.mdms.mdms_station.stationuncleansed.model.StationCleansedData;
 import com.mdms.mdms_station.stationuncleansed.model.StationPKey;
 
@@ -24,7 +26,11 @@ public interface StationCleansedDataRepository extends CrudRepository <StationCl
 	
 
 	
-	
+	  @Query(value="select division_code, count(*) as cleansed_count " + 
+		  		"from mdms_station.station_cleansed_data where zone_code=?1 group by division_code",nativeQuery=true)
+	  Collection<DashBoardStationCountDivisionWiseModel> getTotalCleansedStationCountZoneDivisionWise(String zone_code);
+
+	  
 
 
 	

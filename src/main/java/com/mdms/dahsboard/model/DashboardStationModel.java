@@ -9,6 +9,11 @@ public class DashboardStationModel {
 	public Integer pending_approval=0;
 	public Integer draft_forward_approval_count=0;
 	public String loco_owning_zone_code;
+	 public Integer total_division_count=0;
+		
+	// Shilpi 10-03-2021
+	    
+	 public Integer  total_loco_count=0;
 	// Shilpi 15-03-2021
 	
 	public String owning_depot;
@@ -61,11 +66,7 @@ public class DashboardStationModel {
 
 	
 	
-    public Integer total_division_count=0;
-	
-// Shilpi 10-03-2021
-    
-    public Integer  total_loco_count=0;
+   
 
 
 
@@ -151,11 +152,7 @@ public class DashboardStationModel {
 	}
 
 
-	public String getelec_locoOwningShed() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 
 	
 

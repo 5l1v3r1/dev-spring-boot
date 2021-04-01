@@ -156,13 +156,7 @@ public interface StationUncleansedDataRepository extends CrudRepository <Station
 				  		"from mdms_station.station_cleansed_data where zone_code=?1 group by division_code",nativeQuery=true)
 			  Collection<DashBoardStationCountDivisionWiseModel> getTotalCleansedStationCountDivisionWise(String zone_code);
 		  
-			  //Shilpi 04-03-2021
-			  
-			  @Query(value="select division_code, count(*) as cleansed_count " + 
-				  		"from mdms_station.station_cleansed_data where division_code=?1 group by division_code",nativeQuery=true)
-			  Collection<DashBoardStationCountDivisionWiseModel> getTotalCleansedStationCountSingleDivisionWise(String division_code);
-		  
-			  //end changes
+			 
 			 
 			  @Query(value=" select division_code,count(*) as draft_forward_approval_count\r\n"
 			  		+ "			  	from mdms_station.station_uncleansed_data where zone_code=?1 and (cmi_status='D' OR dti_status='D' or cmi_status='R' OR dti_status='R') group by division_code\r\n"
@@ -178,7 +172,18 @@ public interface StationUncleansedDataRepository extends CrudRepository <Station
 			  
 			  //end changes
 			  
+			  // Shilpi 22-03-2021
+			  
+			  @Query(value="select zone_code,division_code,count(*) as pending_approval from mdms_station.station_uncleansed_data where zone_code=?1 and (cmi_status='U' OR dti_status='U') group by 1,2",nativeQuery = true)
+			  Collection<DashBoardStationCountDivisionWiseModel> getPendingApprovalStationCountZoneWise(String zone_code);
+			  
+			  
+			  @Query(value=" select zone_code,division_code,count(*) as draft_forward_approval_count\r\n"
+				  		+ "			  	from mdms_station.station_uncleansed_data where zone_code=?1 and (cmi_status='D' OR dti_status='D' or cmi_status='R' OR dti_status='R') group by 1,2 ORDER BY 2\r\n"
+				  		+ "			",nativeQuery=true)
+				  Collection<DashBoardStationCountDivisionWiseModel> getTotalDraftForwardApprovalStationCountZoneWise(String zone_code);
 
+			 
 //			  
 //			  @Query(value="select division_code, count(*) as cleansed_count " + 
 //				  		"from mdms_station.station_uncleansed_data where zone_code=?1 group by division_code",nativeQuery=true)
@@ -200,6 +205,10 @@ public interface StationUncleansedDataRepository extends CrudRepository <Station
 //				  Collection<DashBoardStationCountDivisionWiseModel> getTotalDraftForwardApprovalStationCountDivisionWise();
 //				  
 
+			  
+			
+			  
+			  
 }
 
 

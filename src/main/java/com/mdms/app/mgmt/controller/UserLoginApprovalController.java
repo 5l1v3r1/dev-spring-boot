@@ -30,11 +30,7 @@ public class UserLoginApprovalController {
 		
 	return 	userLoginApprovalServiceObj.getUserProfiles();
 		
-		
-		
-		
-		
-		
+	
 	}
 	
 

@@ -59,5 +59,14 @@ public class SuperUserDashboardController {
 		return su_dash_servc.getZoneWiseUsers(usertype);
 		
 	}
+	
+	
+	@RequestMapping(method=RequestMethod.POST, value="/zonewiserec")
+	public 	List<ZonalUsersAssetModel> getZoneWiseRecords(@RequestBody String usertype) {
+		
+		logger.info("controller : SuperUserDashboardController || Method : getZoneWiseRecords");
+		return su_dash_servc.getZoneWiseRecords(usertype);
+		
+	}
 
 }

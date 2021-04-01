@@ -7,29 +7,24 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 public class ZonalUsersAssetModel {
+
 	
-//	@JsonIgnore 
-//	 @Value("#{target.zone}")
-//	public	String getzone();
-//	
-//	@JsonIgnore 
-//	 @Value("#{target.count}")
-//	public	Integer getcount();
-//
-//	
-//	@JsonIgnore 
-//	 @Value("#{args[0]+': '+target.zone}")	 
-//	 public void setzone(String str);
-//	
-//	@JsonIgnore 
-//	 @Value("#{args[0]+': '+target.count}")	 
-//	 public void setcount(Integer str);
-	
-	public ZonalUsersAssetModel(String z, int c, String zn )
+	public ZonalUsersAssetModel(String zonecode,int total, String zonename )
 	{
-		this.zone=z;
-		this.count=c;
-		this.zone_name=zn;
+		this.zone=zonecode;
+		this.count=total;
+		this.zone_name=zonename;
+		
+	}
+	
+	public ZonalUsersAssetModel(String zonecode,int total,  String zonename,int cleansed,int draft, int pending )
+	{
+		this.zone=zonecode;
+		this.count=total;
+		this.zone_name=zonename;
+		this.cleansed=cleansed;
+		this.draft=draft;
+		this.pending= pending;
 	}
 	
 	public String zone;
@@ -37,6 +32,10 @@ public class ZonalUsersAssetModel {
 	public int count;
 
 	public String zone_name;
+	public int cleansed ;
+	public int draft ;
+	public int pending ;
+	
 	public String getZone() {
 		return zone;
 	}
@@ -59,6 +58,30 @@ public class ZonalUsersAssetModel {
 
 	public void setZone_name(String zone_name) {
 		this.zone_name = zone_name;
+	}
+
+	public int getCleansed() {
+		return cleansed;
+	}
+
+	public void setCleansed(int cleansed) {
+		this.cleansed = cleansed;
+	}
+
+	public int getDraft() {
+		return draft;
+	}
+
+	public void setDraft(int draft) {
+		this.draft = draft;
+	}
+
+	public int getPending() {
+		return pending;
+	}
+
+	public void setPending(int pending) {
+		this.pending = pending;
 	}
 	
 	

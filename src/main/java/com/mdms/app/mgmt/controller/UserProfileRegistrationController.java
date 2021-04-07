@@ -339,7 +339,14 @@ public class UserProfileRegistrationController {
 	 					return registrationServiceObj.getreportshedanddatewise(obj2);
 	 			
 	 			}
-	 		
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getuserreportsheddateandesigwise")
+	 			public List<UserProfileRegistrationDetailModel> getuserreportsheddateandesigwise(@RequestBody UserProfileRegistrationDetailModel obj2 ){
+//	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
+	 					return registrationServiceObj.getuserreportsheddateandesigwise(obj2);
+	 			
+	 			}
+	 			
+	 			
 	 			
 	 			//-------------------------Dashboard Depot Admin Report -- Coach -------------------------//
 	 			//fetch userdetail based on user type	

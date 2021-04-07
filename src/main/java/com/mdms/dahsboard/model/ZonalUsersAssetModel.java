@@ -32,11 +32,20 @@ public class ZonalUsersAssetModel {
 		this.zone_name=zn;
 	}
 	
+
+	
+	
+	
 	public String zone;
 	
 	public int count;
 
 	public String zone_name;
+	
+	
+	
+	
+	
 	public String getZone() {
 		return zone;
 	}
@@ -62,5 +71,4 @@ public class ZonalUsersAssetModel {
 	}
 	
 	
-
 }

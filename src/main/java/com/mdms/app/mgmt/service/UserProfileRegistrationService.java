@@ -611,11 +611,11 @@ public List<UserProfileRegistrationDetailModel> getUserReportdivdesigwise(UserPr
 }
 
 //get report zone &  datewise based :Developer :Ritu
-public List<UserProfileRegistrationDetailModel> (UserProfileRegistrationDetailModel objreportdatewise ) {
+public List<UserProfileRegistrationDetailModel> getreportzonedatewise(UserProfileRegistrationDetailModel objreportdatewise ) {
 	System.out.println("objrecd."+objreportdatewise);	
 	String user_type = objreportdatewise.getUser_type();
 	String zone =objreportdatewise.getZone();
-	Date date_from =objreportdatewise.getFrom_date();getreportzonedatewise
+	Date date_from =objreportdatewise.getFrom_date();
 	Date date_to =objreportdatewise.getTo_date();	
 	Date date_fromto=date_to;
 	System.out.println(date_from);
@@ -869,6 +869,24 @@ String user_type=obj.getUser_type();
 	System.out.println(date_to);						
 	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
 	profileRegistrationRepo.getReportsheduserdatewise(user_type,user_shed,date_from,date_fromto)
+    .forEach(temp::add);
+	System.out.println(temp);
+	return temp;
+	
+}
+
+public List<UserProfileRegistrationDetailModel> getuserreportsheddateandesigwise(UserProfileRegistrationDetailModel obj ) {
+	System.out.println("objrecd."+obj);
+String user_type=obj.getUser_type();
+	String user_shed = obj.getShed();	
+	String desig=obj.getDesignation();
+	Date date_from =obj.getFrom_date();
+	Date date_to =obj.getTo_date();	
+	Date date_fromto=date_to;
+	System.out.println(date_from);
+	System.out.println(date_to);						
+	List<UserProfileRegistrationDetailModel> temp= new ArrayList<>();
+	profileRegistrationRepo.getuserreportsheddateandesigwise(user_type,user_shed,desig,date_from,date_fromto)
     .forEach(temp::add);
 	System.out.println(temp);
 	return temp;

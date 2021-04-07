@@ -25,12 +25,27 @@ public interface StationCleansedDataRepository extends CrudRepository <StationCl
 	String   checkStnCodeExist(String stncode);
 	
 
+
 	
 	  @Query(value="select division_code, count(*) as cleansed_count " + 
 		  		"from mdms_station.station_cleansed_data where zone_code=?1 group by division_code",nativeQuery=true)
 	  Collection<DashBoardStationCountDivisionWiseModel> getTotalCleansedStationCountZoneDivisionWise(String zone_code);
 
 	  
+// Shilpi 23-03-2021
+	 @Query(value="select zone_code,division_code, count(*) as cleansed_count " + 
+		  		"from mdms_station.station_cleansed_data where zone_code=?1 group by 1,2 ORDER BY 2",nativeQuery=true)
+	  Collection<DashBoardStationCountDivisionWiseModel> getTotalCleansedStationCountZoneWise(String zone_code);
+	 
+	 //Shilpi 04-03-2021
+	  
+	  @Query(value="select division_code, count(*) as cleansed_count " + 
+		  		"from mdms_station.station_cleansed_data where division_code=?1 group by division_code",nativeQuery=true)
+	  Collection<DashBoardStationCountDivisionWiseModel> getTotalCleansedStationCountSingleDivisionWise(String division_code);
+ 
+	  //end changes
+	
+
 
 
 	

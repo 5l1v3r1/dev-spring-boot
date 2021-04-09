@@ -105,8 +105,6 @@ public class SuperUserDashboardService {
 		
 		ArrayList<HashMap<String,String>> userlist= new ArrayList<HashMap<String,String>>();
 
- HashMap<String, String> map2 = new HashMap<>();
- HashMap<String, String> map3 = new HashMap<>();
 		 
  try {
 		 final String stationusers = "SELECT count(*) FROM mdms_app_mgmt.user_profile_registration_detail where user_type='SU' ";
@@ -253,6 +251,55 @@ final String noofusers="select a.zone_name, r1.zone, r1.count  from  mdms_master
                               
                        )
        );
+	}
+	
+	
+	public List<ZonalUsersAssetModel> getZoneWiseRecords(String usertype) {
+		
+		logger.info("Service : StationDashboardService || Method: getZoneWiseRecords");
+		
+		String querystring=null;
+		
+		switch(usertype)
+		{
+		case "SU":        querystring="select a.zone_code , a.total , b.zone_name , b.cleansed , c.draft , d.pending from public.total_data a"
+				+ " 			left outer join public.cleansed_data b on a.zone_code=b.zone_code"
+				+ "			left outer join public.draft c on a.zone_code=c.zone_code"
+				+ "			left outer join public.uncleansed d on a.zone_code=d.zone_code";
+		    	    	  
+			break;
+		
+		
+		case "LU":querystring="select a.zone_code , a.total , b.zone_name , b.cleansed , c.draft , d.pending from public.total_data a"
+				+ " 			left outer join public.cleansed_data b on a.zone_code=b.zone_code"
+				+ "			left outer join public.draft c on a.zone_code=c.zone_code"
+				+ "			left outer join public.uncleansed d on a.zone_code=d.zone_code";
+		    	    	  
+			
+	break;
+		case "CU":querystring="  Select a.zone_code , a.total , b.zone_name , b.cleansed , c.draft , d.pending from public.total_data_coach a"
+				+ " 			left outer join public.cleansed_data_coach b on a.zone_code=b.zone_code"
+				+ "			left outer join public.draft_data_coach c on a.zone_code=c.zone_code"
+				+ "			left outer join public.pending_data_coach d on a.zone_code=d.zone_code";
+		    	    	  
+			 break;
+
+		default:break;
+		}
+		 
+		  return jdbcTemplate.query(
+				   querystring,
+	               (rs, rowNum) ->
+	                       new ZonalUsersAssetModel(
+	                               rs.getString("zone_code"),
+	                               rs.getInt("total"),
+	                               rs.getString("zone_name"),
+	                               rs.getInt("cleansed"),
+	                               rs.getInt("draft"),
+	                               rs.getInt("pending")
+	     
+	                              
+	                       )   );
 	}
 	
 	

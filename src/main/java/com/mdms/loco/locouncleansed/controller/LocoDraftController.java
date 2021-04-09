@@ -50,7 +50,11 @@ Logger logger=LoggerFactory.getLogger(LocoDraftController.class);
     return obj_uncleasedservice.getDraftLocos(objdraft);	
 	}
 
- 	
+	@RequestMapping(method=RequestMethod.POST, value = "/gethyperDraftLocoService")
+	public List<LocoUncleansedDataElectric> getDraftLocoApprovalHypershed(@RequestBody LocoUncleansedDataElectric objdraft ){
+		System.out.println("shedid"+ objdraft.getElec_locoOwningShed());
+    return obj_uncleasedservice.getDraftLocoApprovalHypershed(objdraft);	
+	}
  	//delete draft loco from uncleansed table 
  	@RequestMapping(method=RequestMethod.POST, value="/deletedraftloco")
  	public boolean deletedraftloco(@RequestBody LocoUncleansedDataElectric obj_electricclass) {

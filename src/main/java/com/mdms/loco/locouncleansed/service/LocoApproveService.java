@@ -42,5 +42,18 @@ public class LocoApproveService {
 			System.out.println(" End GetGoldenLocos");
 			return approved_repo.getApprovedLoco(shedid);
 		}
+	 
+		public List<LocoApprovedData> getLocoApprovedHypershed( LocoApprovedData objelecmodel) {
+//			// TODO Auto-generated method stub
+			System.out.println("getDraftUnapprovedLocos");
+			String shedid=objelecmodel.getElec_locoOwningShed();
+			approved_repo.getLocoApprovedHypershed(shedid);
+			List<LocoApprovedData> uncleaseLoco= new ArrayList<>();
+			approved_repo.getLocoApprovedHypershed(shedid)
+			.forEach(uncleaseLoco::add);
+			System.out.println(" End getuncleansedunapprovedocos");
+			return approved_repo.getLocoApprovedHypershed(shedid);
+//			return uncleaseLoco;
+		}
 
 }

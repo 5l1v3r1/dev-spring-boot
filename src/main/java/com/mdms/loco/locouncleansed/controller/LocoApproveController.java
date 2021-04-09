@@ -37,6 +37,10 @@ Logger logger=LoggerFactory.getLogger(LocoApproveController.class);
  		return obj_cleasedservice.getApprovedLocos(obj_approved);
 			
  	}
- 	
+	 @RequestMapping(method=RequestMethod.POST, value = "/gethyperApprovedLocoService")
+		public List<LocoApprovedData> getLocoApprovedHypershed(@RequestBody LocoApprovedData objdraft ){
+			System.out.println("shedid"+ objdraft.getElec_locoOwningShed());
+	    return obj_cleasedservice.getLocoApprovedHypershed(objdraft);	
+		}
 
 }

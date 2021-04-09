@@ -129,6 +129,7 @@ Logger logger=LoggerFactory.getLogger(StationDashboardController.class);
 
 					}
 
+
 				@RequestMapping(method=RequestMethod.POST, value="/singlezonewiseusers")
 				public 	List<ZonalUserReportModel> getSingleZoneWiseUsers(@RequestBody UserProfileRegistrationDetailModel obj1) {
 										logger.info("controller : DashBoardStationController || Method : getSingleZoneWiseUsers");
@@ -150,4 +151,8 @@ Logger logger=LoggerFactory.getLogger(StationDashboardController.class);
 					return stationServ_obj.getSingleCoachZoneWiseUsers(obj1);
 					
 				}
+
+
+	
+
 }

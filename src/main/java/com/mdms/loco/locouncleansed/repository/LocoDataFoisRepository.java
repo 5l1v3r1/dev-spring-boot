@@ -60,4 +60,10 @@ public interface LocoDataFoisRepository extends CrudRepository<LocoDataFois,Long
     @Query(value="SELECT loco_owning_zone_code as loco_owning_zone_code, loco_owning_shed_code as loco_Owningshed ,count(*) as uncleansed_count FROM  mdms_loco.loco_data_fois WHERE loco_owning_zone_code=?1 and status is null GROUP BY  loco_owning_zone_code ,loco_owning_shed_code ORDER BY 2 ",nativeQuery=true)
     Collection<DashBoardLocoCountShedWiseModel> getUncleansedLocoZoneShed(String loco_owning_zone_code);
   
+    //Shilpi 09-04-2021 zonal hyperlink
+    
+    @Query(value="SELECT * FROM  mdms_loco.loco_data_fois WHERE loco_owning_shed_code=?1 and status is null",nativeQuery=true)
+    List<LocoDataFois> getUncleansedLocoHyperShed(String shedid);
+    
+    
 }

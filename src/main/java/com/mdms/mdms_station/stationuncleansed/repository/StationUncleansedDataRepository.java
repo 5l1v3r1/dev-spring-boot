@@ -201,7 +201,18 @@ public interface StationUncleansedDataRepository extends CrudRepository <Station
 				  Collection<DashBoardStationCountDivisionWiseModel> getTotalDraftForwardApprovalStationCountZoneWise(String zone_code);
 
 			 
-//			  
+			  //Shilpi 09-04-2021 zonal hyperlink
+			  
+			  @Query(value=" select * from mdms_station.station_uncleansed_data where division_code=?1 and (cmi_status='D' OR dti_status='D' OR cmi_status='R' OR dti_status='R')",nativeQuery=true)
+			  StationUncleansedData getTotalDraftForwardApprovalStationHyperDivisionWise(String division_code);
+			  
+
+
+              @Query(value="select * from mdms_station.station_uncleansed_data where division_code=?1 and (cmi_status='U' OR dti_status='U') ",nativeQuery = true)
+              StationUncleansedData getPendingApprovalStationHyperDivisionWise(String division_code);
+		
+			  
+			  
 //			  @Query(value="select division_code, count(*) as cleansed_count " + 
 //				  		"from mdms_station.station_uncleansed_data where zone_code=?1 group by division_code",nativeQuery=true)
 //			  Collection<DashBoardStationCountDivisionWiseModel> getTotalCleansedStationCountDivisionWise(String zone_code);

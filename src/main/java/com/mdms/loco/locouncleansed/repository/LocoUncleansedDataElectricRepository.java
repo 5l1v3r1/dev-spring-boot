@@ -102,4 +102,13 @@ public interface LocoUncleansedDataElectricRepository extends CrudRepository <Lo
 	
 	@Query(value="SELECT loco_owning_zone as loco_owning_zone_code,loco_owning_shed as loco_Owningshed , COUNT(*)  as pending_approval FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_zone=?1 AND status='U'  GROUP BY loco_owning_zone,loco_owning_shed order by 2",nativeQuery=true)
 	Collection<DashBoardLocoCountShedWiseModel> getLocoPendingZoneshed(String loco_owning_zone_code);
+	
+	//Shilpi 09-04-2021 zonal hyperlink
+	
+	@Query(value="SELECT * FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_shed=?1 AND (status='D' OR Status='R')",nativeQuery=true)
+	List<LocoUncleansedDataElectric> getDraftLocoApprovalHypershed(String eshedid);
+	
+	
+     @Query(value="SELECT * FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_shed=?1 AND status='U'",nativeQuery=true)
+     List<LocoUncleansedDataElectric> getLocoPendingHypershed(String eshedid);
 }

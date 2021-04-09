@@ -14,6 +14,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.mdms.dahsboard.model.DashBoardStationCountDivisionWiseModel;
 import com.mdms.mdms_station.stationuncleansed.model.StationPKey;
+import com.mdms.mdms_station.stationuncleansed.model.StationTableRbs;
 import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedData;
 
 
@@ -187,12 +188,12 @@ public interface StationUncleansedDataRepository extends CrudRepository <Station
 			  //Shilpi 09-04-2021 zonal hyperlink
 			  
 			  @Query(value=" select * from mdms_station.station_uncleansed_data where division_code=?1 and (cmi_status='D' OR dti_status='D' OR cmi_status='R' OR dti_status='R')",nativeQuery=true)
-			  StationUncleansedData getTotalDraftForwardApprovalStationHyperDivisionWise(String division_code);
+			  List<StationUncleansedDataRepository> getTotalDraftForwardApprovalStationHyperDivisionWise(String division_code);
 			  
 
 
               @Query(value="select * from mdms_station.station_uncleansed_data where division_code=?1 and (cmi_status='U' OR dti_status='U') ",nativeQuery = true)
-              StationUncleansedData getPendingApprovalStationHyperDivisionWise(String division_code);
+              List<StationUncleansedDataRepository> getPendingApprovalStationHyperDivisionWise(String division_code);
 		
 			  
 			  

@@ -61,6 +61,9 @@ public interface UserProfileRegistrationRepository extends CrudRepository<UserPr
 	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 AND zone=?2 AND division=?3 AND department=?4 AND (from_date between ?5 and ?6)",nativeQuery=true)
 	  List<UserProfileRegistrationDetailModel> getCustomizeUserRecords(String utype ,String zone,String division,String department, Date from_to,Date to_date);
 	
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 AND zone=?2 AND designation=?3 AND department=?4 AND (from_date between ?5 and ?6)",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> userzonedeprtdesigdatewisereport(String utype ,String zone,String designation,String department, Date from_to,Date to_date);
+	
 @Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE  user_type=?1 AND (from_date between ?2 and ?3)",nativeQuery=true)
 	  List<UserProfileRegistrationDetailModel> getReportdatewise(String utype, Date from_date,Date to_date);
 
@@ -98,6 +101,9 @@ List<UserProfileRegistrationDetailModel> getReportdivisionuserallparameter(Strin
 	  List<UserProfileRegistrationDetailModel> getUserReportzonewise(String utype,String zone);
 	
 
+	@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail WHERE user_type=?1 AND zone=?2 AND (from_date between ?3 and ?4)",nativeQuery=true)
+	  List<UserProfileRegistrationDetailModel> getUserReportzoneandatewise(String utype,String zone,Date from_to,Date to_date);
+	
 			@Query(value="SELECT * from mdms_app_mgmt.user_profile_registration_detail where division=?1 and user_type=?2 and(coalesce(department,'')=?3 OR \r\n" + 
 
 			"						coalesce(designation,'')=?4)",nativeQuery=true)

@@ -203,6 +203,17 @@ public class UserProfileRegistrationController {
 	 			public List<String> getAllRegisteredDesignation(@RequestBody UserProfileRegistrationDetailModel objdesig){
 	 				return registrationServiceObj.getAllRegisteredDesignation(objdesig);
 	 			}
+	 			
+	 			@RequestMapping(method=RequestMethod.POST, value="/getzonalreportwithalldivsion")
+	 			public List<UserProfileRegistrationDetailModel> userzonedeprtdesigdatewisereport(@RequestBody UserProfileRegistrationDetailModel objdesig){
+	 				return registrationServiceObj.userzonedeprtdesigdatewisereport(objdesig);
+	 			}
+	 			@RequestMapping(method=RequestMethod.POST, value="/getUserReportzoneandatewise")
+	 			public List<UserProfileRegistrationDetailModel> getUserReportzoneandatewise(@RequestBody UserProfileRegistrationDetailModel objdesig){
+	 				return registrationServiceObj.getUserReportzoneandatewise(objdesig);
+	 			}
+	 			
+	 			
 	 			@RequestMapping(method=RequestMethod.POST, value="/getuserregistreddepartanddesig")
 	 			public List<UserProfileRegistrationDetailModel> getReportdeprtanddesig(@RequestBody UserProfileRegistrationDetailModel objdesig){
 	 				return registrationServiceObj.getuserreportsinglediviandeprttanddesigwise(objdesig);
@@ -269,7 +280,7 @@ public class UserProfileRegistrationController {
 	 			@RequestMapping(method=RequestMethod.POST , value ="/getcustomizereportfordivisionuser")
 	 			public List<UserProfileRegistrationDetailModel> getcustomizereportfordivisionuser(@RequestBody UserProfileRegistrationDetailModel objdiviuser ){
 //	 				logger.info("Controller : UserRegistrationController || Method : getcustomizeuserdetails ||user_zone  "+objrecord + "||Find Records Response  "+ objrecord);
-	 					return registrationServiceObj.getcustomizeduserdetaildivisionuser(objdiviuser);
+	 					return registrationServiceObj.getReportdivisionuserallparameter(objdiviuser);
 	 			
 	 			}
 	 			

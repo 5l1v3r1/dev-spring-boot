@@ -38,8 +38,10 @@ public interface StationCleansedDataRepository extends CrudRepository <StationCl
 	  //end changes
 	
 
-
-	
+	//Shilpi 09-04-2021 zonal hyperlink
+	  
+	  @Query(value="select * from mdms_station.station_cleansed_data where division_code=?1 ",nativeQuery=true)
+	  StationCleansedData getTotalCleansedStationHyperDivisionWise(String division_code);
 }
 
 

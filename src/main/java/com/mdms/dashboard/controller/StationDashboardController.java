@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mdms.app.mgmt.model.UserProfileRegistrationDetailModel;
 import com.mdms.dahsboard.model.DashboardStationModel;
 import com.mdms.dashboard.service.StationDashboardService;
 
@@ -122,7 +123,6 @@ Logger logger=LoggerFactory.getLogger(StationDashboardController.class);
 
 					}
 
-			
 
 	
 }

@@ -2,12 +2,14 @@ package com.mdms.mdms_station.stationuncleansed.repository;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import com.mdms.mdms_station.stationuncleansed.model.StationTableRbs;
+import com.mdms.app.mgmt.model.UserProfileRegistrationDetailModel;
 import com.mdms.dahsboard.model.DashBoardStationCountDivisionWiseModel;
 import com.mdms.dahsboard.model.ZonalUsersAssetModel;
 import com.mdms.mdms_station.stationuncleansed.model.RbsPKey;
@@ -102,4 +104,12 @@ public interface StationTableRbsRepository  extends CrudRepository<StationTableR
 	  		+ "															 AS uncleansed  group by 1,2 ORDER BY 1",nativeQuery=true)
 				  Collection<DashBoardStationCountDivisionWiseModel> getUncleansedStationCountZone(String zone_code);  
 
+	  //Shilpi 09-04-2021 zonal hyperlink
+	  
+	  @Query(value="select  * FROM mdms_station.station_table_rbs as a join mdms_masters.m_division as b \r\n"
+	  		+ "	on a.div_ser_no= b.division_sr_no 	WHERE current_date between a.stn_vld_from and a.stn_vld_upto AND division_code=?1\r\n"
+	  		+ "	AND stn_code NOT IN (SELECT  station_code FROM mdms_station.station_cleansed_data WHERE division_code=?1)",nativeQuery=true)
+	  List<StationTableRbs> getUncleanstnHyperDivision(String division_code);
+	  
+	    	
 }

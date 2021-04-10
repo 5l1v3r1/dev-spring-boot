@@ -17,6 +17,8 @@ import com.mdms.dahsboard.model.DashBoardCoachCountDepoWiseModel;
 import com.mdms.dahsboard.model.DashBoardLocoCountShedWiseModel;
 import com.mdms.dahsboard.model.DashBoardStationCountDivisionWiseModel;
 import com.mdms.dahsboard.model.DashboardStationModel;
+import com.mdms.dahsboard.model.ZonalUserReportModel;
+import com.mdms.dahsboard.model.ZonalUsersAssetModel;
 import com.mdms.dashboard.repository.StationDashboardRepo;
 import com.mdms.loco.locouncleansed.repository.LocoApprovedDataRepository;
 import com.mdms.loco.locouncleansed.repository.LocoDataFoisRepository;
@@ -37,6 +39,9 @@ import com.mdms.mdms_station.stationuncleansed.repository.StationUncleansedDataR
 public class StationDashboardService {
 	 Logger logger=LoggerFactory.getLogger(StationDashboardService.class);
 	 
+	 String a [];
+	 int datel [];
+	 String opdslipcount [];
 //	 @Autowired
 //		private StationDashboardRepo stationRepositoryObj;
 //	 
@@ -1151,12 +1156,9 @@ public class StationDashboardService {
 						Collection<DashBoardStationCountDivisionWiseModel> draftCountList1= stn_unclsnd_repo.getTotalDraftForwardApprovalStationCountZoneWise(zone_code);
 						logger.info("Service : DashBoardStationService || Method: getTotalDraftForwardApprovalStationCountZoneWise || getTotalDraftForwardApprovalStationCountZoneWise Query list return : "+draftCountList1.size());			
 						draftCountList1.forEach(DashBoardStationCountDivisionWiseModel -> callDraftCount1(DashBoardStationCountDivisionWiseModel,list));	
-						
-						
-						
-						
-						
+								
 						return list;
+						
 					
 				}
 
@@ -1311,6 +1313,71 @@ public class StationDashboardService {
 				
 				}
 				
+
+public List<ZonalUserReportModel> getSingleZoneWiseUsers(UserProfileRegistrationDetailModel obj1) {
+					
+					logger.info("Service : StationDashboardService || Method: getSingleZoneWiseUsers");
+					String utype=obj1.getUser_type();
+					String zone=obj1.getZone();
+			final String noofusers="select a.division_name, r1.division, r1.count  from  mdms_masters.m_division a join \r\n"
+					+ "			(select division,count(*) as count from mdms_app_mgmt.user_profile_registration_detail where user_type='"+utype+"'"
+							+ " and  zone='"+zone+"' group by division) r1 on r1.division=a.division_code";					
+				   return jdbcTemplate.query(
+						   noofusers,
+			               (rs, rowNum) ->
+			                       new ZonalUserReportModel(
+			                               rs.getString("division"),
+			                               rs.getInt("count"),
+			                               rs.getString("division_name")
+			                              
+			                       )
+			       );
+				}
+	
+
+public List<ZonalUserReportModel> getSingleLocoZoneWiseUsers(UserProfileRegistrationDetailModel obj1) {
+	
+	logger.info("Service : StationDashboardService || Method: getSingleLocoZoneWiseUsers");
+	String utype=obj1.getUser_type();
+	String zone=obj1.getZone();
+final String noofusers="select a.shed_code, r1.shed, r1.count  from  mdms_loco.m_loco_shed a join \r\n"
+		+ "		(select shed,count(*) as count from mdms_app_mgmt.user_profile_registration_detail where user_type='"+utype+"'"
+			+ " and  zone='"+zone+"' group by shed) r1 on r1.shed=a.shed_code";					
+   return jdbcTemplate.query(
+		   noofusers,
+           (rs, rowNum) ->
+                   new ZonalUserReportModel(
+                           rs.getString("shed"),
+                           rs.getInt("count"),
+                           rs.getString("shed_code")
+                          
+                   )
+   );
+}
+	
+
+
+public List<ZonalUserReportModel> getSingleCoachZoneWiseUsers(UserProfileRegistrationDetailModel obj1) {
+	
+	logger.info("Service : StationDashboardService || Method: getSingleLocoZoneWiseUsers");
+	String utype=obj1.getUser_type();
+	String zone=obj1.getZone();
+final String noofusers="select a.depo_name, r1.depo, r1.count  from  mdms_coach.m_depo a join \r\n"
+		+ "		(select depo,count(*) as count from mdms_app_mgmt.user_profile_registration_detail where user_type='"+utype+"'"
+			+ " and  zone='"+zone+"' group by depo) r1 on r1.depo=a.depo_name";					
+   return jdbcTemplate.query(
+		   noofusers,
+           (rs, rowNum) ->
+                   new ZonalUserReportModel(
+                           rs.getString("division"),
+                           rs.getInt("count"),
+                           rs.getString("division_name")
+                          
+                   )
+   );
+}
+
 				
+
 }
 

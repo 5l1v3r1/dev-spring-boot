@@ -194,6 +194,10 @@ public interface StationUncleansedDataRepository extends CrudRepository <Station
 
               @Query(value="select * from mdms_station.station_uncleansed_data where division_code=?1 and (cmi_status='U' OR dti_status='U') ",nativeQuery = true)
               List<StationUncleansedDataRepository> getPendingApprovalStationHyperDivisionWise(String division_code);
+
+
+
+			
 		
 			  
 			  

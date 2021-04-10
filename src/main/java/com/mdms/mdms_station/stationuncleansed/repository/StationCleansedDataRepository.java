@@ -24,6 +24,14 @@ public interface StationCleansedDataRepository extends CrudRepository <StationCl
 	@Query(value="select station_code  from mdms_station.station_cleansed_data where station_code=?1",nativeQuery=true)
 	String   checkStnCodeExist(String stncode);
 	
+
+
+	
+	  @Query(value="select division_code, count(*) as cleansed_count " + 
+		  		"from mdms_station.station_cleansed_data where zone_code=?1 group by division_code",nativeQuery=true)
+	  Collection<DashBoardStationCountDivisionWiseModel> getTotalCleansedStationCountZoneDivisionWise(String zone_code);
+
+	  
 // Shilpi 23-03-2021
 	 @Query(value="select zone_code,division_code, count(*) as cleansed_count " + 
 		  		"from mdms_station.station_cleansed_data where zone_code=?1 group by 1,2 ORDER BY 2",nativeQuery=true)
@@ -38,11 +46,17 @@ public interface StationCleansedDataRepository extends CrudRepository <StationCl
 	  //end changes
 	
 
+
 	//Shilpi 09-04-2021 zonal hyperlink
 	  
 	  @Query(value="select * from mdms_station.station_cleansed_data where division_code=?1 ",nativeQuery=true)
-	  StationCleansedDataRepository getTotalCleansedStationHyperDivisionWise(String division_code);
+	  StationCleansedData getTotalCleansedStationHyperDivisionWise(String division_code);
 
 	}
+
+	
+
+
+
 
 

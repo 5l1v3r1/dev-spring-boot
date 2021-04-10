@@ -70,7 +70,10 @@ public	void setDraft_forward_approval_count();
 	
 	@JsonIgnore 
 	 @Value("#{args[0]+': '+target.loco_owning_zone_code}")	 
-	 public void setLoco_owning_zone_code(String vgf1);
+	 public void setLoco_owning_zone_code(String vgf);
+
+	
+
 	
 }
 

@@ -167,5 +167,17 @@ public class LocoEditForwardController {
 			    				boolean flag=obj_uncleasedservice.updatestatus(unapproved);
 			    					return flag;
 			    			}
+			    	
+			    	@RequestMapping(method=RequestMethod.POST, value = "/gethyperPendingLocoService")
+			    	public List<LocoUncleansedDataElectric> getLocoPendingHypershed(@RequestBody LocoUncleansedDataElectric objdraft ){
+			    		System.out.println("shedid"+ objdraft.getElec_locoOwningShed());
+			        return obj_uncleasedservice.getLocoPendingHypershed(objdraft);	
+			    	}
+			    	
+			    	@RequestMapping(method=RequestMethod.POST, value = "/gethyperUncleansedLocoService")
+			    	public List<LocoDataFois> getUncleansedLocoHyperShed(@RequestBody LocoDataFois objuncleansed ){
+			    		System.out.println("shedid"+ objuncleansed.getLoco_Owningshed());
+			        return obj_uncleasedservice.getUncleansedLocoHyperShed(objuncleansed);	
+			    	}
 			  
 }

@@ -55,6 +55,8 @@ public class StationTableRbs {
 
 	@Column(name="div_ser_no")
 	private int div_ser_no ;
+
+	private String division_code;
 	
 	
 	public RbsPKey getRbs_id() {
@@ -168,6 +170,16 @@ public class StationTableRbs {
 	public void setDiv_ser_no(int div_ser_no) {
 		this.div_ser_no = div_ser_no;
 	}
+
+	public String getDivision_code() {
+		return division_code;
+	}
+
+	public void setDivision_code(String division_code) {
+		this.division_code = division_code;
+	}
+
+	
 	
 	
 }

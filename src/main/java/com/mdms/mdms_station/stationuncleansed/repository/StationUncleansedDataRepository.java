@@ -14,6 +14,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.mdms.dahsboard.model.DashBoardStationCountDivisionWiseModel;
 import com.mdms.mdms_station.stationuncleansed.model.StationPKey;
+import com.mdms.mdms_station.stationuncleansed.model.StationTableRbs;
 import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedData;
 
 
@@ -171,24 +172,7 @@ public interface StationUncleansedDataRepository extends CrudRepository <Station
 				  Collection<DashBoardStationCountDivisionWiseModel> getTotalDraftForwardApprovalStationCountSingleDivisionWise(String division_code);
 			  
 			  //end changes
-
-//ritu2 4.3.2021
-
-				 @Query(value="select division_code,count(*) as pending_approval" + 
-					  		"  from mdms_station.station_uncleansed_data where zone_code=?1 and cmi_status='U' OR dti_status='U' group by division_code"
-					  					  		,nativeQuery = true)
-				  Collection<DashBoardStationCountDivisionWiseModel> getPendingApprovalStationCountZoneDivisionWise(String zone_code);
-
-					
-				  
-				 @Query(value=" select division_code,count(*) as draft_forward_approval_count\r\n"
-					  		+ "			  	from mdms_station.station_uncleansed_data where zone_code=?1 and cmi_status='D' OR dti_status='D' group by division_code\r\n"
-					  		+ "			",nativeQuery=true)
-					  Collection<DashBoardStationCountDivisionWiseModel> getTotalDraftForwardApprovalStationCountZoneDivisionWise(String zone_code);
-					 
-				 
-				
-
+			  
 			  // Shilpi 22-03-2021
 			  
 			  @Query(value="select zone_code,division_code,count(*) as pending_approval from mdms_station.station_uncleansed_data where zone_code=?1 and (cmi_status='U' OR dti_status='U') group by 1,2",nativeQuery = true)
@@ -204,12 +188,16 @@ public interface StationUncleansedDataRepository extends CrudRepository <Station
 			  //Shilpi 09-04-2021 zonal hyperlink
 			  
 			  @Query(value=" select * from mdms_station.station_uncleansed_data where division_code=?1 and (cmi_status='D' OR dti_status='D' OR cmi_status='R' OR dti_status='R')",nativeQuery=true)
-			  StationUncleansedData getTotalDraftForwardApprovalStationHyperDivisionWise(String division_code);
+			  List<StationUncleansedDataRepository> getTotalDraftForwardApprovalStationHyperDivisionWise(String division_code);
 			  
 
 
               @Query(value="select * from mdms_station.station_uncleansed_data where division_code=?1 and (cmi_status='U' OR dti_status='U') ",nativeQuery = true)
-              StationUncleansedData getPendingApprovalStationHyperDivisionWise(String division_code);
+              List<StationUncleansedDataRepository> getPendingApprovalStationHyperDivisionWise(String division_code);
+
+
+
+			
 		
 			  
 			  
@@ -232,7 +220,6 @@ public interface StationUncleansedDataRepository extends CrudRepository <Station
 //				  		"where d.userid=r.emp_id) t group by t.division_code",nativeQuery=true)
 //				  Collection<DashBoardStationCountDivisionWiseModel> getTotalDraftForwardApprovalStationCountDivisionWise();
 //				  
-
 
 			  
 			

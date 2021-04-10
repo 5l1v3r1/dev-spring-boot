@@ -24,6 +24,7 @@ import com.mdms.mdms_station.stationuncleansed.model.StationPKey;
 import com.mdms.mdms_station.stationuncleansed.model.StationTableRbs;
 import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedData;
 import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedTest;
+import com.mdms.mdms_station.stationuncleansed.repository.StationUncleansedDataRepository;
 import com.mdms.mdms_station.stationuncleansed.service.StationEditForwardService;
 
 @CrossOrigin(origins = {"http://localhost:4200","http://mdms-ng-dev.s3-website.ap-south-1.amazonaws.com"}, maxAge = 4800, allowCredentials = "false")
@@ -33,6 +34,7 @@ public class StationEditForwardController {
 	
 	@Autowired
 	private StationEditForwardService stn_edit_fwd_serv;
+	
 	
 	Logger logger=LoggerFactory.getLogger(StationEditForwardController.class);
 	
@@ -199,9 +201,27 @@ public class StationEditForwardController {
 	}   
 	
 	
-
+// Shilpi 09-04-2021 for hyperlink
  
-
+	@RequestMapping(method=RequestMethod.POST, value = "/gethyperUncleanstnService")
+	public List<StationTableRbs> getUncleanstnHyperDivision(@RequestBody StationTableRbs objdraft ){
+		System.out.println("division_code"+ objdraft.getDivision_code());
+    return stn_edit_fwd_serv.getUncleanstnHyperDivision(objdraft);	
+	}
+	
+	
+	@RequestMapping(method=RequestMethod.POST, value = "/gethyperdraftstnService")
+	public List<StationUncleansedDataRepository> getTotalDraftForwardApprovalStationHyperDivisionWise(@RequestBody StationUncleansedData objdraft ){
+		System.out.println("division_code"+ objdraft.getDivision_code());
+    return stn_edit_fwd_serv.getTotalDraftForwardApprovalStationHyperDivisionWise(objdraft);	
+	}
+	
+	
+	@RequestMapping(method=RequestMethod.POST, value = "/gethyperpendingAppService")
+	public List<StationUncleansedDataRepository> getPendingApprovalStationHyperDivisionWise(@RequestBody StationUncleansedData objdraft ){
+		System.out.println("division_code"+ objdraft.getDivision_code());
+    return stn_edit_fwd_serv.getPendingApprovalStationHyperDivisionWise(objdraft);	
+	}
 	
 	
 }

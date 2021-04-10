@@ -55,6 +55,7 @@ public class StationEditForwardService {
 	@Autowired 
 	MDivisionRepository divsn_repo;
 	
+
 @Autowired
 	
 	StationCleansedDataRepository stn_clnsd_repo;
@@ -604,10 +605,47 @@ catch(Exception e)
 //		return uncleaseLoco;
 	}
 	
-
+	// Shilpi 09-04-2021
 	
+	//uncleaned 
+	public List<StationTableRbs> getUncleanstnHyperDivision( StationTableRbs objelecmodel) {
+		System.out.println("getUncleanstnHyperDivision");
+		String division_code=objelecmodel.getDivision_code();
+		stn_tbl_rbs_repo.getUncleanstnHyperDivision(division_code);
+		List<StationTableRbs> uncleasestn= new ArrayList<>();
+		stn_tbl_rbs_repo.getUncleanstnHyperDivision(division_code)
+		.forEach(uncleasestn::add);
+		System.out.println(" End getuncleansedunapprovedocos");
+		return stn_tbl_rbs_repo.getUncleanstnHyperDivision(division_code);
+	}
 	
-}
+	//draft forward
+	
+	public List<StationUncleansedDataRepository> getTotalDraftForwardApprovalStationHyperDivisionWise( StationUncleansedData objelecmodel) {
+		System.out.println("getUncleanstnHyperDivision");
+		String division_code=objelecmodel.getDivision_code();
+		stn_unclsnd_repo.getTotalDraftForwardApprovalStationHyperDivisionWise(division_code);
+		List<StationUncleansedDataRepository> uncleasedraftstn= new ArrayList<>();
+		stn_unclsnd_repo.getTotalDraftForwardApprovalStationHyperDivisionWise(division_code)
+		.forEach(uncleasedraftstn::add);
+		System.out.println(" End getuncleanseddraft");
+		return stn_unclsnd_repo.getTotalDraftForwardApprovalStationHyperDivisionWise(division_code);
+	}
+	
+	//pending approval
+	
+		public List<StationUncleansedDataRepository> getPendingApprovalStationHyperDivisionWise( StationUncleansedData objelecmodel) {
+			System.out.println("getUncleanstnHyperDivision");
+			String division_code=objelecmodel.getDivision_code();
+			stn_unclsnd_repo.getPendingApprovalStationHyperDivisionWise(division_code);
+			List<StationUncleansedDataRepository> uncleasependingstn= new ArrayList<>();
+			stn_unclsnd_repo.getPendingApprovalStationHyperDivisionWise(division_code)
+			.forEach(uncleasependingstn::add);
+			System.out.println(" End getuncleansedpending");
+			return stn_unclsnd_repo.getPendingApprovalStationHyperDivisionWise(division_code);
+		}
+	
+	}
 		
 		
 

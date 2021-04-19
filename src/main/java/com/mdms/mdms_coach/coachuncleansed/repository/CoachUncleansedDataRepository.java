@@ -36,5 +36,14 @@ public interface CoachUncleansedDataRepository extends CrudRepository<CoachUncle
 	
 	@Query(value="SELECT  owning_depot  ,COUNT(*)  as pending_approval FROM mdms_coach.coach_uncleansed_data WHERE owning_depot=?1 AND status='U'GROUP BY owning_depot ",nativeQuery=true)
 		Collection<DashBoardCoachCountDepoWiseModel> getCoachPendingSingledepo(String owning_depot);
-
+	
+	//Shilpi 16-04-2021 hyper link depot wise
+	
+	@Query(value="SELECT * FROM  mdms_coach.coach_uncleansed_data WHERE owning_depot=?1 AND (status='D' OR Status='R')",nativeQuery=true)
+	List<CoachUncleansedData> getDraftCoachApprovalHyperdepo(String owning_depot);
+	
+	
+	@Query(value="SELECT  * FROM mdms_coach.coach_uncleansed_data WHERE owning_depot=?1 AND status='U'",nativeQuery=true)
+		List<CoachUncleansedData> getCoachPendingHyperdepo(String owning_depot);
+	
 }

@@ -23,5 +23,10 @@ public interface CoachCMMDataRepository extends CrudRepository<CoachDataCMM, Str
        
     @Query(value="SELECT base_depot as owning_depot,COUNT(coach_id) as uncleansed_count FROM (select cast(coach_id as integer),base_depot from mdms_coach.coach_data_cmm EXCEPT SELECT coach_id,owning_depot FROM mdms_coach.coach_cleansed_data ) AS AA where BASE_depot=?1 group by 1",nativeQuery=true)
     Collection<DashBoardCoachCountDepoWiseModel> getUncleansedCoachSingleDepo(String owning_depot);
+    
+  // Shilpi 16-04-2021  ------hyper link depo wise
+    
+    @Query(value="SELECT * FROM mdms_coach.coach_data_cmm where cast(coach_id as integer) in (select cast(coach_id as integer) from mdms_coach.coach_data_cmm EXCEPT  SELECT coach_id FROM mdms_coach.coach_cleansed_data )  AND BASE_depot=?1",nativeQuery=true)
+    List<CoachDataCMM> getUncleansedCoachHyperDepo(String owning_depot);
 
 }

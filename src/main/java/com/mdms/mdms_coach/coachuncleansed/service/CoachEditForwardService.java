@@ -47,8 +47,8 @@ public class CoachEditForwardService {
 	@Autowired
 	private  CoachTypeMappingRepository coach_map_repo;
 	
-	@Autowired
-	private CoachCleansedData coach_cln;
+//	@Autowired
+//	private CoachCleansedData coach_cln;
 
 
 	Logger logger=LoggerFactory.getLogger(CoachEditForwardService.class);

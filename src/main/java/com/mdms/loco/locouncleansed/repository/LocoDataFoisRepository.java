@@ -65,5 +65,6 @@ public interface LocoDataFoisRepository extends CrudRepository<LocoDataFois,Long
     @Query(value="SELECT * FROM  mdms_loco.loco_data_fois WHERE loco_owning_shed_code=?1 and status is null",nativeQuery=true)
     List<LocoDataFois> getUncleansedLocoHyperShed(String shedid);
     
+   
     
 }

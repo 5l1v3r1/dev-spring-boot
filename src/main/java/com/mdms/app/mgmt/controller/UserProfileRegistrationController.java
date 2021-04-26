@@ -74,6 +74,16 @@ public class UserProfileRegistrationController {
 		
 	}
 	
+	@RequestMapping(method=RequestMethod.POST, value="/getusertyperolelist")
+	public String getusertyperolelis(@RequestBody UserRegistrationJsonModel userObj){		
+		logger.info("Controller : UserRegistrationController || Method : getusertyperolelist ||user_type: "+userObj);	
+		String response= registrationServiceObj.getusertyperole(userObj);
+		//code to send otp, on hold because of Api for sending otp		
+		logger.info("Controller : UserRegistrationController || Method : getusertyperolelist ||user_type: "+userObj);
+		return response;
+		
+	}
+	
 	@RequestMapping(method=RequestMethod.POST, value="/finduserrecord")
 	public String findUserRecord(@RequestParam  String user_id){
 		
@@ -370,7 +380,9 @@ public class UserProfileRegistrationController {
 	 			public List<UserProfileRegistrationDetailModel> depotuserreportdateanddeprtwise(@RequestBody UserProfileRegistrationDetailModel objurecord ){
 	 					return registrationServiceObj.getuserreportdepotwisedateanddeprtwise(objurecord);
 	 			
-	 			}@RequestMapping(method=RequestMethod.POST , value ="/getdepotuserdetaildesigdatewise")
+	 			}
+	 			
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getdepotuserdetaildesigdatewise")
 	 			public List<UserProfileRegistrationDetailModel> depotuserreportdateandesigwise(@RequestBody UserProfileRegistrationDetailModel objurecord ){
  					return registrationServiceObj.depotwiseuserreportdateandesigwise(objurecord);
  			

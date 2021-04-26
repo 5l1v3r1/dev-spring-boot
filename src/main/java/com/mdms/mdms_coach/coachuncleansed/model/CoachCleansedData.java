@@ -9,9 +9,7 @@ import javax.persistence.Table;
 
 @Entity()
 @Table(name="coach_cleansed_data", schema="mdms_coach")
-public class CoachCleansedData {
-	
-	
+public class CoachCleansedData {	
 	@Column(name="coach_no")
 	private String coach_no;
 	

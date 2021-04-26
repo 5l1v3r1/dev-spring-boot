@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.mdms.PasswordSecurityConfiguration;
 import com.mdms.app.mgmt.model.GetListUserRegistrationJsonModel;
@@ -45,7 +46,8 @@ public class UserProfileRegistrationService {
 	 @Autowired
 		private OldUserDetailRepository oldRegistrationRepo;
 		 
-	 
+	
+	
 	 Logger logger=LoggerFactory.getLogger(UserProfileRegistrationService.class);
 	 private final PasswordEncoder passwordEncoder = new PasswordSecurityConfiguration().passwordEncoder();
 		
@@ -164,8 +166,11 @@ if(response!=null && result!=null) {
 	 public GetListUserRegistrationJsonModel getListUserRegistration() {
 			logger.info("Service : UserProfileRegistrationService || Method : getListUserRegistration ");	 
 	GetListUserRegistrationJsonModel obj = new GetListUserRegistrationJsonModel();
+	 UserProfileRegistrationDetailModel objregi=new UserProfileRegistrationDetailModel();
+	 
 	String userType="";
 	String userRole="";
+	String userTypeRole="";
 	String userDepartment="";
 	String userDesignation= "";
 	String zones="";
@@ -193,6 +198,7 @@ if(response!=null && result!=null) {
 			ex.getMessage();
 		}
 		
+	
 		try {
 	 userDepartment=	 loginDetailRepo.getDepartments();
 		}catch(Exception ex) {
@@ -259,6 +265,7 @@ if(response!=null && result!=null) {
 	obj.setDivision_list(divisions);
 	obj.setZone_list(zones);
 	obj.setLoco_shed_list(sheds);
+obj.setUser_type_role_list(userTypeRole);
 
 	obj.setLoco_type_list(loco_types);	
 
@@ -274,7 +281,14 @@ if(response!=null && result!=null) {
 		 
 	 }
 	 
-
+	 
+	 public String  getusertyperole(@RequestBody UserRegistrationJsonModel userObj) {	
+		 String utype= userObj.getUser_type();
+		 String response=loginDetailRepo.getUserTypeRoles(utype);
+			logger.info("Service : UserProfileRegistrationService || Method : getUserTypeRoles||user_id: "+utype+"||response:"+response);
+		 return response;
+		 } 
+	 
 	
 		 
 
@@ -964,7 +978,8 @@ public List<UserProfileRegistrationDetailModel> depotwiseuserreportdateandesigwi
 	System.out.println("objrecd."+obj2);	
 	String user_type = obj2.getUser_type(); 
 	String userdepo = obj2.getDepo();
-	String desig=obj2.getDesignation();String deprt=obj2.getDepartment();
+	String desig=obj2.getDesignation();
+//	String deprt=obj2.getDepartment();
 	Date date_from =obj2.getFrom_date();
 	Date date_to =obj2.getTo_date();	
 	Date date_fromto=date_to;

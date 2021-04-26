@@ -25,6 +25,7 @@ import com.mdms.loco.locouncleansed.repository.LocoDataFoisRepository;
 import com.mdms.loco.locouncleansed.repository.LocoUncleansedDataElectricRepository;
 import com.mdms.mdms_coach.coachuncleansed.repository.CoachCMMDataRepository;
 import com.mdms.mdms_coach.coachuncleansed.repository.CoachCleansedDataRepository;
+import com.mdms.mdms_coach.coachuncleansed.repository.CoachTypeMappingRepository;
 import com.mdms.mdms_coach.coachuncleansed.repository.CoachUncleansedDataRepository;
 import com.mdms.mdms_masters.model.MDivision;
 import com.mdms.mdms_station.stationuncleansed.model.StationDataRbs;
@@ -73,6 +74,8 @@ public class StationDashboardService {
 		@Autowired
 		CoachCleansedDataRepository coach_clean_repo;
 
+		@Autowired
+		private  CoachTypeMappingRepository coach_map_repo;
 		@Autowired
 		private JdbcTemplate jdbcTemplate;
 		
@@ -1377,7 +1380,20 @@ final String noofusers="select a.depo_name, r1.depo, r1.count  from  mdms_coach.
    );
 }
 
-				
+public List<DashBoardCoachCountDepoWiseModel> geCoachMapCount( DashBoardCoachCountDepoWiseModel obj ) {
+	System.out.println("getUncleanstnHyperDivision");					
+	 coach_map_repo.getCoachmapcount();
+	List<DashBoardCoachCountDepoWiseModel> temp= new ArrayList<>();
+	 coach_map_repo.getCoachmapcount()
+	.forEach(temp::add);
+	System.out.println(" End getuncleansedpending");
+	return temp;
+}
+
+
+
+
+
 
 }
 

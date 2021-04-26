@@ -380,7 +380,9 @@ public class UserProfileRegistrationController {
 	 			public List<UserProfileRegistrationDetailModel> depotuserreportdateanddeprtwise(@RequestBody UserProfileRegistrationDetailModel objurecord ){
 	 					return registrationServiceObj.getuserreportdepotwisedateanddeprtwise(objurecord);
 	 			
-	 			}@RequestMapping(method=RequestMethod.POST , value ="/getdepotuserdetaildesigdatewise")
+	 			}
+	 			
+	 			@RequestMapping(method=RequestMethod.POST , value ="/getdepotuserdetaildesigdatewise")
 	 			public List<UserProfileRegistrationDetailModel> depotuserreportdateandesigwise(@RequestBody UserProfileRegistrationDetailModel objurecord ){
  					return registrationServiceObj.depotwiseuserreportdateandesigwise(objurecord);
  			

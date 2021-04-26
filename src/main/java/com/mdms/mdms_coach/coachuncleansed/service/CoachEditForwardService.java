@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import com.mdms.dahsboard.model.DashBoardCoachCountDepoWiseModel;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachCleansedData;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachDataCMM;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachTypeMapping;
@@ -29,6 +30,8 @@ import com.mdms.mdms_coach.coachuncleansed.repository.CoachUncleansedDataReposit
 import com.mdms.mdms_coach.coachuncleansed.model.MDepo;
 import com.mdms.mdms_coach.coachuncleansed.repository.MDepoRepository;
 import com.mdms.mdms_station.stationuncleansed.model.StationTableRbs;
+import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedData;
+import com.mdms.mdms_station.stationuncleansed.repository.StationUncleansedDataRepository;
 import com.mdms.mdms_coach.coachuncleansed.repository.CoachTypeMappingRepository;
 @Service
 public class CoachEditForwardService {
@@ -47,8 +50,7 @@ public class CoachEditForwardService {
 	@Autowired
 	private  CoachTypeMappingRepository coach_map_repo;
 	
-//	@Autowired
-//	private CoachCleansedData coach_cln;
+	
 
 
 	Logger logger=LoggerFactory.getLogger(CoachEditForwardService.class);
@@ -286,5 +288,5 @@ else
 					return coach_cleansed_repo.getCoachApprovedHyperDepo(owning_depot);
 				}
 	
-	
+				
 }

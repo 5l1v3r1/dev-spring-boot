@@ -68,5 +68,13 @@ public class SuperUserDashboardController {
 		return su_dash_servc.getZoneWiseRecords(usertype);
 		
 	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="/coachtypemappingcount")
+	public 	ArrayList<HashMap<String,String>> getCoachAssetRecords() {
+		
+		logger.info("controller : SuperUserDashboardController || Method : getCoachAssetRecords");
+		return su_dash_servc.getCoachAssetRecords();
+		
+	}
 
 }

@@ -978,7 +978,8 @@ public List<UserProfileRegistrationDetailModel> depotwiseuserreportdateandesigwi
 	System.out.println("objrecd."+obj2);	
 	String user_type = obj2.getUser_type(); 
 	String userdepo = obj2.getDepo();
-	String desig=obj2.getDesignation();String deprt=obj2.getDepartment();
+	String desig=obj2.getDesignation();
+//	String deprt=obj2.getDepartment();
 	Date date_from =obj2.getFrom_date();
 	Date date_to =obj2.getTo_date();	
 	Date date_fromto=date_to;

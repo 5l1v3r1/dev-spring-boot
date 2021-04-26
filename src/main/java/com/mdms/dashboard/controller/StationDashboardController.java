@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mdms.app.mgmt.model.UserProfileRegistrationDetailModel;
+import com.mdms.dahsboard.model.DashBoardCoachCountDepoWiseModel;
 import com.mdms.dahsboard.model.DashboardStationModel;
 import com.mdms.dahsboard.model.ZonalUserReportModel;
 import com.mdms.dahsboard.model.ZonalUsersAssetModel;
@@ -153,6 +154,10 @@ Logger logger=LoggerFactory.getLogger(StationDashboardController.class);
 				}
 
 
-	
+				//coach type mapping	 
+				@RequestMapping(method=RequestMethod.POST, value = "/getcoachmapcount")
+				public List<DashBoardCoachCountDepoWiseModel> getCoachMapCount(@RequestBody DashBoardCoachCountDepoWiseModel objdraft ){				
+			    return stationServ_obj.geCoachMapCount(objdraft);	
+				}
 
 }

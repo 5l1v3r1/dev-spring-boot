@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import com.mdms.dahsboard.model.DashBoardCoachCountDepoWiseModel;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachCleansedData;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachDataCMM;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachTypeMapping;
@@ -25,7 +26,7 @@ import com.mdms.mdms_coach.coachuncleansed.model.CoachUncleansedData;
 import com.mdms.mdms_coach.coachuncleansed.repository.CoachCMMDataRepository;
 import com.mdms.mdms_coach.coachuncleansed.repository.CoachCleansedDataRepository;
 import com.mdms.mdms_coach.coachuncleansed.repository.CoachUncleansedDataRepository;
-
+import com.mdms.mdms_coach.coachuncleansed.repository.MCoachTypeRepository;
 import com.mdms.mdms_coach.coachuncleansed.model.MDepo;
 import com.mdms.mdms_coach.coachuncleansed.repository.MDepoRepository;
 import com.mdms.mdms_station.stationuncleansed.model.StationTableRbs;
@@ -47,8 +48,8 @@ public class CoachEditForwardService {
 	@Autowired
 	private  CoachTypeMappingRepository coach_map_repo;
 	
-	@Autowired
-	private CoachCleansedData coach_cln;
+
+	
 
 
 	Logger logger=LoggerFactory.getLogger(CoachEditForwardService.class);
@@ -284,6 +285,19 @@ else
 					.forEach(uncleasestn::add);
 					System.out.println(" End getCoachApprovedHyperDepo");
 					return coach_cleansed_repo.getCoachApprovedHyperDepo(owning_depot);
+				}
+				
+				//Shilpi 26-04-2021
+				public List<DashBoardCoachCountDepoWiseModel> getCoachmapcount(DashBoardCoachCountDepoWiseModel objelecmodel) {
+					System.out.println("getCoachmapcount");
+					//String owning_depot=objelecmodel.getOwning_depot();
+					coach_map_repo.getCoachmapcount();
+					List<DashBoardCoachCountDepoWiseModel> temp= new ArrayList<>();
+					coach_map_repo.getCoachmapcount()
+					.forEach(temp::add);
+					System.out.println(" End getCoachmapcount");
+					return temp;
+					//return coach_map_repo.getCoachmapcount();
 				}
 	
 	

@@ -53,4 +53,9 @@ public interface CoachCleansedDataRepository  extends CrudRepository<CoachCleans
 	
 		@Query(value="SELECT * FROM mdms_coach.coach_cleansed_data where owning_depot=?1",nativeQuery=true)
 		List<CoachCleansedData> getCoachApprovedHyperDepo(String owning_depot);
+		
+		//Shilpi 19-04-2021
+		
+		@Query(value="SELECT owning_depot,count(*) as cleansed_count FROM mdms_coach.coach_cleansed_data where owning_rly=?1 group by 1",nativeQuery=true)
+		Collection<DashBoardCoachCountDepoWiseModel> getCoachApprovedZonalDepo(String owning_rly);
 }

@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mdms.mdms_coach.coachuncleansed.model.CoachTypeMapping;
+import com.mdms.dahsboard.model.DashBoardCoachCountDepoWiseModel;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachCleansedData;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachDataCMM;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachUncleansedData;
@@ -170,5 +171,18 @@ public class CoachEditForwardController {
 					System.out.println("owning_depot"+ objdraft.getOwning_depot());
 			    return coachEditFwdServ.getCoachApprovedHyperDepo(objdraft);	
 				}
+				
+	//Shilpi coach mapping	 26-04-2021
+				//@RequestMapping(method=RequestMethod.POST, value = "/getCoachmapcount")
+				//public List<CoachTypeMapping> getCoachmapcount(){
+					//System.out.println("owning_depot"+ objdraft.getOwning_depot());
+			    //return coachEditFwdServ.getCoachmapcount();	
+				//}		
+				
+				@RequestMapping(method=RequestMethod.POST, value="/getCoachmapcount")
+				 public List<DashBoardCoachCountDepoWiseModel> getCoachmapcount(@RequestBody DashBoardCoachCountDepoWiseModel coachtypemap){					
+					return coachEditFwdServ.getCoachmapcount(coachtypemap);
+				}
+
 	
 }

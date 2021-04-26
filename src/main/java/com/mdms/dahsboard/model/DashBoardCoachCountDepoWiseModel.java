@@ -11,10 +11,11 @@ public interface DashBoardCoachCountDepoWiseModel {
 	@JsonIgnore 
 	@Value("#{target.owning_depot}")
 	 public String getOwning_depot();
+	
 
-	//@JsonIgnore 
-	//@Value("#{target.elec_locoOwningShed}")
-	//public	String getelec_locoOwningShed();
+	@JsonIgnore 
+	@Value("#{target.owning_rly}")
+	public	String getOwning_rly();
 
 	@JsonIgnore 
 	@Value("#{target.uncleansed_count}")
@@ -36,6 +37,10 @@ public interface DashBoardCoachCountDepoWiseModel {
 	public	Integer getdraft_forward_approval_count();
 
 	 
+		@JsonIgnore 
+		 @Value("#{args[0]+': '+target.owning_rly}")	 
+		 public void setOwning_rly(String str);
+		
 		@JsonIgnore 
 		 @Value("#{args[0]+': '+target.Owning_depot}")	 
 		 public void setOwning_depot(String str);

@@ -152,7 +152,19 @@ Logger logger=LoggerFactory.getLogger(StationDashboardController.class);
 					
 				}
 
+				// shilpi 20-04-2021 zone wise depot
+				List<DashboardStationModel> list6 =new ArrayList<DashboardStationModel>();
+				@RequestMapping(method=RequestMethod.POST, value="/getCoachCountZoneDepotWise")
+				public List<DashboardStationModel> getCoachCountZoneDepotWise(@RequestBody DashboardStationModel  owning_rly) {	
+					System.out.println(owning_rly);
+					 list6= stationServ_obj.getCoachCountZoneDepotWise(owning_rly);
+				//	list.forEach((n) -> System.out.println(n.getDivision_code())); 
+					logger.info("Controller : DashBoardStationController || Method: getCoachCountZoneDepotWise || getCoachCountZoneDepotWise Query list6 return : "+list6.size());
 
+			return list6;
+
+					}
+				
 	
 
 }

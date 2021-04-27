@@ -314,7 +314,7 @@ final String noofusers="select a.zone_name, r1.zone, r1.count  from  mdms_master
 		ArrayList<HashMap<String,String>> coachassetlist= new ArrayList<HashMap<String,String>>();
 		
 		String[] entity = new String[]{ "Coach"}; 
-		String[] total=new String[1];
+		String[] totalmapping=new String[1];
 	
 	
 
@@ -333,7 +333,7 @@ final String noofusers="select a.zone_name, r1.zone, r1.count  from  mdms_master
 //					 final int noDraftcoach = (int)jdbcTemplate.queryForObject(draftcoach, Integer.class);
 //					 final String unapprovedcoach = "select count(*) from mdms_coach.coach_uncleansed_data where record_status='O' and status='U'";
 //					 final int waitingForApprovalC = (int)jdbcTemplate.queryForObject(unapprovedcoach,Integer.class);
-					  total[0]=Integer.toString(totalcoach);
+					 totalmapping[0]=Integer.toString(totalcoach);
 //					  cleansed[2]=Integer.toString(noOfCleansedcoach);
 //					 draft[2]=Integer.toString(noDraftcoach);
 //					  pending[2]=Integer.toString(waitingForApprovalC);
@@ -343,7 +343,7 @@ final String noofusers="select a.zone_name, r1.zone, r1.count  from  mdms_master
 					  {
 						  HashMap<String, String> map1 = new HashMap<>();
 						  map1.put("entity",entity[i]) ;
-							map1.put("total",total[i]);
+							map1.put("totalmapping",totalmapping[i]);
 //							map1.put("cleansed",cleansed[i]);
 //							map1.put("draft",draft[i]);
 //							map1.put("pending",pending[i]);
@@ -368,8 +368,8 @@ final String noofusers="select a.zone_name, r1.zone, r1.count  from  mdms_master
 
 		ArrayList<HashMap<String,String>> coachlayoutlist= new ArrayList<HashMap<String,String>>();
 		
-		String[] entity = new String[]{ "CoachLayout"}; 
-		String[] total=new String[1];
+		String[] entityLayout = new String[]{ "CoachLayout"}; 
+		String[] totallayout=new String[1];
 	
 	try {
 		 
@@ -385,7 +385,7 @@ final String noofusers="select a.zone_name, r1.zone, r1.count  from  mdms_master
 //			 final int noDraftcoach = (int)jdbcTemplate.queryForObject(draftcoach, Integer.class);
 //			 final String unapprovedcoach = "select count(*) from mdms_coach.coach_uncleansed_data where record_status='O' and status='U'";
 //			 final int waitingForApprovalC = (int)jdbcTemplate.queryForObject(unapprovedcoach,Integer.class);
-			  total[0]=Integer.toString(totalcoachlayout);
+			 totallayout[0]=Integer.toString(totalcoachlayout);
 //			  cleansed[2]=Integer.toString(noOfCleansedcoach);
 //			 draft[2]=Integer.toString(noDraftcoach);
 //			  pending[2]=Integer.toString(waitingForApprovalC);
@@ -394,8 +394,8 @@ final String noofusers="select a.zone_name, r1.zone, r1.count  from  mdms_master
 			  for(int i=0;i<1;i++)
 			  {
 				  HashMap<String, String> map2 = new HashMap<>();
-				  map2.put("entity",entity[i]) ;
-					map2.put("total",total[i]);
+				  map2.put("entityLayout",entityLayout[i]) ;
+					map2.put("totallayout",totallayout[i]);
 //					map1.put("cleansed",cleansed[i]);
 //					map1.put("draft",draft[i]);
 //					map1.put("pending",pending[i]);

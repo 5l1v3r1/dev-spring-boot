@@ -27,9 +27,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mdms.mdms_coach.coachuncleansed.model.CoachTypeMapping;
+import com.mdms.dahsboard.model.DashBoardCoachCountDepoWiseModel;
+import com.mdms.mdms_coach.coachuncleansed.model.CoachCleansedData;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachDataCMM;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachUncleansedData;
 import com.mdms.mdms_coach.coachuncleansed.service.CoachEditForwardService;
+import com.mdms.mdms_station.stationuncleansed.model.StationTableRbs;
 import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedTest;
 
 import com.mdms.mdms_coach.coachuncleansed.model.MDepo;
@@ -48,6 +51,9 @@ import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedTest;
 public class CoachEditForwardController {
 	@Autowired
 	private CoachEditForwardService coachEditFwdServ;
+	
+
+
 
 	Logger logger=LoggerFactory.getLogger(CoachEditForwardController.class);
 
@@ -136,4 +142,49 @@ public class CoachEditForwardController {
 	}
 
 	
+	// Shilpi 16-04-2021 for hyperlink
+	
+	//uncleansed	 
+		@RequestMapping(method=RequestMethod.POST, value = "/gethyperUncleanCoachService")
+		public List<CoachDataCMM> getUncleansedCoacHyperDepo(@RequestBody CoachDataCMM objdraft ){
+			System.out.println("owning_depot"+ objdraft.getBase_depot());
+	    return coachEditFwdServ.getUncleansedCoachHyperDepo(objdraft);	
+		}
+		
+		//draft	 
+				@RequestMapping(method=RequestMethod.POST, value = "/gethyperdraftCoachService")
+				public List<CoachUncleansedData> getDraftCoachApprovalHyperdepo(@RequestBody CoachUncleansedData objdraft ){
+					System.out.println("owning_depot"+ objdraft.getOwning_depot());
+			    return coachEditFwdServ.getDraftCoachApprovalHyperdepo(objdraft);	
+				}
+				
+	//pending	 
+				@RequestMapping(method=RequestMethod.POST, value = "/gethyperpendingCoachService")
+				public List<CoachUncleansedData> getCoachPendingHyperdepo(@RequestBody CoachUncleansedData objdraft ){
+					System.out.println("owning_depot"+ objdraft.getOwning_depot());
+			    return coachEditFwdServ.getCoachPendingHyperdepo(objdraft);	
+				}
+				
+	//approved	 
+				@RequestMapping(method=RequestMethod.POST, value = "/gethyperapproveCoachService")
+				public List<CoachCleansedData> getCoachApprovedHyperDepo(@RequestBody CoachCleansedData objdraft ){
+					System.out.println("owning_depot"+ objdraft.getOwning_depot());
+			    return coachEditFwdServ.getCoachApprovedHyperDepo(objdraft);	
+				}
+				
+	//Shilpi coach mapping	 26-04-2021
+				//@RequestMapping(method=RequestMethod.POST, value = "/getCoachmapcount")
+				//public List<CoachTypeMapping> getCoachmapcount(){
+					//System.out.println("owning_depot"+ objdraft.getOwning_depot());
+			    //return coachEditFwdServ.getCoachmapcount();	
+				//}		
+				
+				@RequestMapping(method=RequestMethod.POST, value="/getCoachmapcount")
+				 public List<DashBoardCoachCountDepoWiseModel> getCoachmapcount(@RequestBody DashBoardCoachCountDepoWiseModel coachtypemap){					
+					return coachEditFwdServ.getCoachmapcount(coachtypemap);
+				}
+
+	
+				
+				
 }

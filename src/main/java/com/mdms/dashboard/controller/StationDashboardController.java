@@ -7,6 +7,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mdms.app.mgmt.model.UserProfileRegistrationDetailModel;
+import com.mdms.dahsboard.model.DashBoardCoachCountDepoWiseModel;
 import com.mdms.dahsboard.model.DashboardStationModel;
+import com.mdms.dahsboard.model.ZonalUserReportModel;
+import com.mdms.dahsboard.model.ZonalUsersAssetModel;
 import com.mdms.dashboard.service.StationDashboardService;
 
 
@@ -22,6 +27,9 @@ import com.mdms.dashboard.service.StationDashboardService;
 
 @RestController
 public class StationDashboardController {
+	
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
 	@Autowired
 	private StationDashboardService stationServ_obj;
 	
@@ -122,7 +130,50 @@ Logger logger=LoggerFactory.getLogger(StationDashboardController.class);
 
 					}
 
-			
 
+				@RequestMapping(method=RequestMethod.POST, value="/singlezonewiseusers")
+				public 	List<ZonalUserReportModel> getSingleZoneWiseUsers(@RequestBody UserProfileRegistrationDetailModel obj1) {
+										logger.info("controller : DashBoardStationController || Method : getSingleZoneWiseUsers");
+					return stationServ_obj.getSingleZoneWiseUsers(obj1);
+					
+				}
+				
+				
+				@RequestMapping(method=RequestMethod.POST, value="/singlezonelocowiseusers")
+				public 	List<ZonalUserReportModel> getSingleLocoZoneWiseUsers(@RequestBody UserProfileRegistrationDetailModel obj1) {
+										logger.info("controller : DashBoardStationController || Method : getSingleLocoZoneWiseUsers");
+					return stationServ_obj.getSingleLocoZoneWiseUsers(obj1);
+					
+				}
+				
+				@RequestMapping(method=RequestMethod.POST, value="/singlezonecoachwiseusers")
+				public 	List<ZonalUserReportModel> getSingleCoachZoneWiseUsers(@RequestBody UserProfileRegistrationDetailModel obj1) {
+										logger.info("controller : DashBoardStationController || Method : getSingleCoachZoneWiseUsers");
+					return stationServ_obj.getSingleCoachZoneWiseUsers(obj1);
+					
+				}
+
+				// shilpi 20-04-2021 zone wise depot
+				List<DashboardStationModel> list6 =new ArrayList<DashboardStationModel>();
+				@RequestMapping(method=RequestMethod.POST, value="/getCoachCountZoneDepotWise")
+				public List<DashboardStationModel> getCoachCountZoneDepotWise(@RequestBody DashboardStationModel  owning_rly) {	
+					System.out.println(owning_rly);
+					 list6= stationServ_obj.getCoachCountZoneDepotWise(owning_rly);
+				//	list.forEach((n) -> System.out.println(n.getDivision_code())); 
+					logger.info("Controller : DashBoardStationController || Method: getCoachCountZoneDepotWise || getCoachCountZoneDepotWise Query list6 return : "+list6.size());
+
+			return list6;
+
+
+					}
+				
 	
+
+				//coach type mapping	 
+				@RequestMapping(method=RequestMethod.POST, value = "/getcoachmapcount")
+				public List<DashBoardCoachCountDepoWiseModel> getCoachMapCount(@RequestBody DashBoardCoachCountDepoWiseModel objdraft ){				
+			    return stationServ_obj.geCoachMapCount(objdraft);	
+				}
+
+
 }

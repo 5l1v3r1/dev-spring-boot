@@ -13,8 +13,14 @@ public class GetListUserRegistrationJsonModel {
 
 	String depo_list="";
 
+	String user_type_role_list="";
 	
-	
+	public String getUser_type_role_list() {
+		return user_type_role_list;
+	}
+	public void setUser_type_role_list(String user_type_role_list) {
+		this.user_type_role_list = user_type_role_list;
+	}
 	public String getLoco_type_list() {
 		return loco_type_list;
 	}

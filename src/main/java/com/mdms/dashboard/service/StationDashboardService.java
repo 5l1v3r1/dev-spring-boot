@@ -2,6 +2,7 @@ package com.mdms.dashboard.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,18 +12,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import com.mdms.app.mgmt.model.UserProfileRegistrationDetailModel;
 import com.mdms.dahsboard.model.DashBoardCoachCountDepoWiseModel;
 import com.mdms.dahsboard.model.DashBoardLocoCountShedWiseModel;
 import com.mdms.dahsboard.model.DashBoardStationCountDivisionWiseModel;
 import com.mdms.dahsboard.model.DashboardStationModel;
+import com.mdms.dahsboard.model.ZonalUserReportModel;
+import com.mdms.dahsboard.model.ZonalUsersAssetModel;
 import com.mdms.dashboard.repository.StationDashboardRepo;
 import com.mdms.loco.locouncleansed.repository.LocoApprovedDataRepository;
 import com.mdms.loco.locouncleansed.repository.LocoDataFoisRepository;
 import com.mdms.loco.locouncleansed.repository.LocoUncleansedDataElectricRepository;
 import com.mdms.mdms_coach.coachuncleansed.repository.CoachCMMDataRepository;
 import com.mdms.mdms_coach.coachuncleansed.repository.CoachCleansedDataRepository;
+import com.mdms.mdms_coach.coachuncleansed.repository.CoachTypeMappingRepository;
 import com.mdms.mdms_coach.coachuncleansed.repository.CoachUncleansedDataRepository;
 import com.mdms.mdms_masters.model.MDivision;
+import com.mdms.mdms_station.stationuncleansed.model.StationDataRbs;
 import com.mdms.mdms_station.stationuncleansed.repository.StationCleansedDataRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.StationTableRbsRepository;
 import com.mdms.mdms_station.stationuncleansed.repository.StationUncleansedDataRepository;
@@ -34,6 +40,9 @@ import com.mdms.mdms_station.stationuncleansed.repository.StationUncleansedDataR
 public class StationDashboardService {
 	 Logger logger=LoggerFactory.getLogger(StationDashboardService.class);
 	 
+	 String a [];
+	 int datel [];
+	 String opdslipcount [];
 //	 @Autowired
 //		private StationDashboardRepo stationRepositoryObj;
 //	 
@@ -56,6 +65,7 @@ public class StationDashboardService {
 		@Autowired
 		LocoApprovedDataRepository  loco_tbl_approve;
 		MDivision objmdiv;
+		
 		@Autowired
 		CoachCMMDataRepository coach_cmm_repo;
 		
@@ -65,6 +75,8 @@ public class StationDashboardService {
 		@Autowired
 		CoachCleansedDataRepository coach_clean_repo;
 
+		@Autowired
+		private  CoachTypeMappingRepository coach_map_repo;
 		@Autowired
 		private JdbcTemplate jdbcTemplate;
 		
@@ -1148,12 +1160,9 @@ public class StationDashboardService {
 						Collection<DashBoardStationCountDivisionWiseModel> draftCountList1= stn_unclsnd_repo.getTotalDraftForwardApprovalStationCountZoneWise(zone_code);
 						logger.info("Service : DashBoardStationService || Method: getTotalDraftForwardApprovalStationCountZoneWise || getTotalDraftForwardApprovalStationCountZoneWise Query list return : "+draftCountList1.size());			
 						draftCountList1.forEach(DashBoardStationCountDivisionWiseModel -> callDraftCount1(DashBoardStationCountDivisionWiseModel,list));	
-						
-						
-						
-						
-						
+								
 						return list;
+						
 					
 				}
 
@@ -1308,5 +1317,281 @@ public class StationDashboardService {
 				
 				}
 				
+
+public List<ZonalUserReportModel> getSingleZoneWiseUsers(UserProfileRegistrationDetailModel obj1) {
+					
+					logger.info("Service : StationDashboardService || Method: getSingleZoneWiseUsers");
+					String utype=obj1.getUser_type();
+					String zone=obj1.getZone();
+			final String noofusers="select a.division_name, r1.division, r1.count  from  mdms_masters.m_division a join \r\n"
+					+ "			(select division,count(*) as count from mdms_app_mgmt.user_profile_registration_detail where user_type='"+utype+"'"
+							+ " and  zone='"+zone+"' group by division) r1 on r1.division=a.division_code";					
+				   return jdbcTemplate.query(
+						   noofusers,
+			               (rs, rowNum) ->
+			                       new ZonalUserReportModel(
+			                               rs.getString("division"),
+			                               rs.getInt("count"),
+			                               rs.getString("division_name")
+			                              
+			                       )
+			       );
+				}
+	
+
+public List<ZonalUserReportModel> getSingleLocoZoneWiseUsers(UserProfileRegistrationDetailModel obj1) {
+	
+	logger.info("Service : StationDashboardService || Method: getSingleLocoZoneWiseUsers");
+	String utype=obj1.getUser_type();
+	String zone=obj1.getZone();
+final String noofusers="select a.shed_code, r1.shed, r1.count  from  mdms_loco.m_loco_shed a join \r\n"
+		+ "		(select shed,count(*) as count from mdms_app_mgmt.user_profile_registration_detail where user_type='"+utype+"'"
+			+ " and  zone='"+zone+"' group by shed) r1 on r1.shed=a.shed_code";					
+   return jdbcTemplate.query(
+		   noofusers,
+           (rs, rowNum) ->
+                   new ZonalUserReportModel(
+                           rs.getString("shed"),
+                           rs.getInt("count"),
+                           rs.getString("shed_code")
+                          
+                   )
+   );
+}
+	
+
+
+public List<ZonalUserReportModel> getSingleCoachZoneWiseUsers(UserProfileRegistrationDetailModel obj1) {
+	
+	logger.info("Service : StationDashboardService || Method: getSingleLocoZoneWiseUsers");
+	String utype=obj1.getUser_type();
+	String zone=obj1.getZone();
+final String noofusers="select a.depo_name, r1.depo, r1.count  from  mdms_coach.m_depo a join \r\n"
+		+ "		(select depo,count(*) as count from mdms_app_mgmt.user_profile_registration_detail where user_type='"+utype+"'"
+			+ " and  zone='"+zone+"' group by depo) r1 on r1.depo=a.depo_name";					
+   return jdbcTemplate.query(
+		   noofusers,
+           (rs, rowNum) ->
+                   new ZonalUserReportModel(
+                           rs.getString("division"),
+                           rs.getInt("count"),
+                           rs.getString("division_name")
+                          
+                   )
+   );
+}
+
+
+//Shilpi 19-04-2021  Coach zone
+
+
+
+public List<DashboardStationModel> getCoachCountZoneDepotWise(DashboardStationModel objcoachid) {
+	String owning_rly =objcoachid.getOwning_rly();
+	
+	
+	
+	List<DashboardStationModel> list= new ArrayList<DashboardStationModel>();		
+	Collection<DashBoardCoachCountDepoWiseModel> totalCountLists= coach_cmm_repo.getCoachZoneDepo(owning_rly);
+		logger.info("Service : DashBoardStationService || Method: getCoachZoneDepo || getCoachZoneDepo Query list return : "+totalCountLists);
+		if(totalCountLists.size()>0) {
+		totalCountLists.forEach(DashBoardCoachCountDepoWiseModel -> setTotalZonedepotwise(DashBoardCoachCountDepoWiseModel,list));
+
+	}	
+		
+		Collection<DashBoardCoachCountDepoWiseModel> uncleansedCountLists= coach_cmm_repo.getUncleansedCoachZoneDepo(owning_rly);
+		logger.info("Service : DashBoardStationService || Method: getUncleansedCoachZoneDepo || getUncleansedCoachZoneDepo Query list return : "+uncleansedCountLists.size());
+
+		uncleansedCountLists.forEach(DashBoardCoachCountDepoWiseModel -> callTotalZonedepot(DashBoardCoachCountDepoWiseModel,list));
+		
+		
+			
+		Collection<DashBoardCoachCountDepoWiseModel> pendingApprovalCountLists= coach_unclean_repo.getCoachPendingZonedepo(owning_rly);
+		logger.info("Service : DashBoardStationService || Method: getCoachPendingZonedepo || getCoachPendingZonedepo Query list return : "+pendingApprovalCountLists.size());
+
+		pendingApprovalCountLists.forEach(DashBoardCoachCountDepoWiseModel -> callPendingApprovalZonedepot(DashBoardCoachCountDepoWiseModel,list));
+
+
+		
+		Collection<DashBoardCoachCountDepoWiseModel> cleansedCountLists= coach_clean_repo.getCoachApprovedZonalDepo(owning_rly);
+		logger.info("Service : DashBoardStationService || Method: getCoachApprovedZonalDepo || getCoachApprovedZonalDepo Query list return : "+cleansedCountLists.size());			
+		cleansedCountLists.forEach(DashBoardCoachCountDepoWiseModel -> callCleansedCountZonedepot(DashBoardCoachCountDepoWiseModel,list));			
+	
+		
+		Collection<DashBoardCoachCountDepoWiseModel> draftCountLists= coach_unclean_repo.getDraftCoachApprovalZonedepo(owning_rly);
+		logger.info("Service : DashBoardStationService || Method: getDraftCoachApprovalZonedepo || getDraftCoachApprovalZonedepo Query list return : "+draftCountLists.size());			
+		draftCountLists.forEach(DashBoardCoachCountDepoWiseModel -> callDraftCountZonedepot(DashBoardCoachCountDepoWiseModel,list));	
+		
+		
+		
+		
+		
+		return list;
+	
+}
+	//end changes
+
+private void callTotalZonedepot(DashBoardCoachCountDepoWiseModel uncleansedObj,Collection< DashboardStationModel>list) {
+	// TODO Auto-generated method stub
+	try {		
+		uncleansedFlag=0;
+		list.forEach(totalobj -> callTotalSubZonedepot(uncleansedObj,totalobj));	
+		if(uncleansedFlag==0){
+			DashboardStationModel obj = new DashboardStationModel();
+//			obj.setZone_code(uncleansedObj.getzone_code());
+			obj.setOwning_rly(uncleansedObj.getOwning_rly());
+			obj.setUncleansed_count(uncleansedObj.getuncleansed_count());
+	//		list.add(obj);	
+		}
+			}catch (Exception e) {
+		// TODO: Handle Exception
+		e.getMessage();		}
+}
+private void callTotalSubZonedepot(DashBoardCoachCountDepoWiseModel uncleansedObj,DashboardStationModel totalobj) {
+	
+	try {
+	if(uncleansedObj.getOwning_rly().equalsIgnoreCase(totalobj.getOwning_rly())) {
+		uncleansedFlag++;
+		totalobj.setUncleansed_count(uncleansedObj.getuncleansed_count());
+	}
+	}catch (Exception e) {
+		// TODO: handle exception
+		e.getMessage();
+	}
+}
+
+
+
+private void callPendingApprovalZonedepot(DashBoardCoachCountDepoWiseModel pendingApprovObj,Collection< DashboardStationModel>list) {
+	// TODO Auto-generated method stub
+	try {
+	
+		uncleansedFlag=0;
+		list.forEach(totalobj -> callPendingApprovalSubZonedepot(pendingApprovObj,totalobj));	
+		if(uncleansedFlag==0) {
+			DashboardStationModel obj = new DashboardStationModel();
+//			obj.setZone_code(pendingApprovObj.getzone_code());					
+			obj.setOwning_rly(pendingApprovObj.getOwning_rly());
+			obj.setPending_approval(pendingApprovObj.getpending_approval());
+	//		list.add(obj);	
+		}
+	}catch (Exception e) {
+		// TODO: handle exception
+		e.getMessage();
+	}
+	
+}
+private void callPendingApprovalSubZonedepot(DashBoardCoachCountDepoWiseModel pendingApprovObj,DashboardStationModel totalobj) {
+	
+	try {
+	if(pendingApprovObj.getOwning_rly().equalsIgnoreCase(totalobj.getOwning_rly())) {
+		uncleansedFlag++;
+		totalobj.setPending_approval(pendingApprovObj.getpending_approval());		
+
+	}
+	}catch (Exception e) {
+		// TODO: handle exception
+		e.getMessage();
+	}
+}
+
+
+private void callCleansedCountZonedepot(DashBoardCoachCountDepoWiseModel cleansedObj,Collection< DashboardStationModel>list) {
+	// TODO Auto-generated method stub
+	
+	try {
+		uncleansedFlag=0;
+		list.forEach(totalobj -> callCleansedCountSubZonedepot(cleansedObj,totalobj));
+
+
+		if(uncleansedFlag==0) {
+			DashboardStationModel obj = new DashboardStationModel();
+//			obj.setZone_code(cleansedObj.getzone_code());
+			obj.setOwning_rly(cleansedObj.getOwning_rly());
+			obj.setCleansed_count(cleansedObj.getcleansed_count());
+		//	list.add(obj);		
+		}
+	}catch (Exception e) {
+		// TODO: handle exception
+		e.getMessage();
+	}
+	
+}
+private void callCleansedCountSubZonedepot(DashBoardCoachCountDepoWiseModel cleansedObj,DashboardStationModel totalobj) {
+	try {
+	if(cleansedObj.getOwning_rly().equalsIgnoreCase(totalobj.getOwning_rly())){
+		uncleansedFlag++;
+		totalobj.setCleansed_count(cleansedObj.getcleansed_count());	
+	}
+	}catch (Exception e) {
+		// TODO: handle exception
+		e.getMessage();
+	}
+}
+
+private void callDraftCountZonedepot(DashBoardCoachCountDepoWiseModel draftObj,Collection< DashboardStationModel>list) {
+	// TODO Auto-generated method stub
+	
+	try {
+		uncleansedFlag=0;
+		list.forEach(totalobj -> callDraftCountZonedepot(draftObj,totalobj));
+
+
+		if(uncleansedFlag==0) {
+			DashboardStationModel obj = new DashboardStationModel();
+//			obj.setZone_code(draftObj.getzone_code());
+			obj.setOwning_rly(draftObj.getOwning_rly());
+//			obj.setElec_locoOwningShed(draftObj.getelec_locoOwningShed());
+			obj.setDraft_forward_approval_count(draftObj.getdraft_forward_approval_count());
+		//	list.add(obj);		
+		}
+	}catch (Exception e) {
+		// TODO: handle exception
+		e.getMessage();
+	}
+	
+}
+private void callDraftCountZonedepot(DashBoardCoachCountDepoWiseModel draftObj,DashboardStationModel totalobj) {
+	try {
+	if(draftObj.getOwning_rly().equalsIgnoreCase(totalobj.getOwning_rly())){
+		uncleansedFlag++;
+		totalobj.setDraft_forward_approval_count(draftObj.getdraft_forward_approval_count());	
+//		System.out.println("draft add in list divcode"+ totalobj.getowning_rly()+"|| AND Draft count: "+totalobj.getDraft_forward_approval_count());
+	}
+	}catch (Exception e) {
+		// TODO: handle exception
+		e.getMessage();
+	}
+}
+
+
+private void setTotalZonedepotwise(DashBoardCoachCountDepoWiseModel DashBoardCoachCountDepoWiseModel,Collection<DashboardStationModel> list) {
+DashboardStationModel obj =new DashboardStationModel();	
+//obj.setZone_code(DashBoardStationCountDivisionWiseModel.getzone_code());
+	
+obj.setOwning_rly(DashBoardCoachCountDepoWiseModel.getOwning_rly());
+obj.setTotal_depo_count(DashBoardCoachCountDepoWiseModel.getTotal_depo_count());			
+list.add(obj);
+
+}
+
+			
+
+public List<DashBoardCoachCountDepoWiseModel> geCoachMapCount( DashBoardCoachCountDepoWiseModel obj ) {
+	System.out.println("getUncleanstnHyperDivision");					
+	 coach_map_repo.getCoachmapcount();
+	List<DashBoardCoachCountDepoWiseModel> temp= new ArrayList<>();
+	 coach_map_repo.getCoachmapcount()
+	.forEach(temp::add);
+	System.out.println(" End getuncleansedpending");
+	return temp;
+}
+
+
+
+
+
+
+
 }
 

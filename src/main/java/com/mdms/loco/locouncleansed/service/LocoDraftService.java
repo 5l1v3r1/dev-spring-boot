@@ -161,5 +161,18 @@ public class LocoDraftService {
 				}					
 			}
 
-
+			public List<LocoUncleansedDataElectric> getDraftLocoApprovalHypershed( LocoUncleansedDataElectric objelecmodel) {
+//				// TODO Auto-generated method stub
+				System.out.println("getDraftUnapprovedLocos");
+				String shedid=objelecmodel.getElec_locoOwningShed();
+				obj_elecrepo.getDraftLocoApprovalHypershed(shedid);
+				List<LocoUncleansedDataElectric> uncleaseLoco= new ArrayList<>();
+				obj_elecrepo.getDraftLocoApprovalHypershed(shedid)
+				.forEach(uncleaseLoco::add);
+				System.out.println(" End getuncleansedunapprovedocos");
+				return obj_elecrepo.getDraftLocoApprovalHypershed(shedid);
+//				return uncleaseLoco;
+			}
+			
+			
 }

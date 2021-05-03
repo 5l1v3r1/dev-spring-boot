@@ -75,7 +75,25 @@ public class SuperUserDashboardController {
 	public 	List<DivisonUsersAssetModel> getDivisionWiseRecords(@RequestParam (value="usertype") String usertype ,@RequestParam (value="zone") String zone ) {
 		
 		logger.info("controller : SuperUserDashboardController || Method : getDivisionWiseRecords");
-		return su_dash_servc.getDivisionWiseRecords(usertype,zone);
+		return su_dash_servc.getDivisionWiseRecords(usertype,zone);}
+
+	// 26-04-2021
+	@RequestMapping(method=RequestMethod.POST, value="/coachtypemappingcount")
+	public 	ArrayList<HashMap<String,String>> getCoachAssetRecords() {
+		
+		logger.info("controller : SuperUserDashboardController || Method : getCoachAssetRecords");
+		return su_dash_servc.getCoachAssetRecords();
+		
+	}
+	
+	//Shilpi 26-04-2021
+	
+	@RequestMapping(method=RequestMethod.POST, value="/getCoachLayoutRecords")
+	public 	ArrayList<HashMap<String,String>> getCoachLayoutRecords() {
+		
+		logger.info("controller : SuperUserDashboardController || Method : getCoachLayoutRecords");
+		return su_dash_servc.getCoachLayoutRecords();
+
 		
 	}
 

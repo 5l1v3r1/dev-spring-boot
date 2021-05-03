@@ -10,10 +10,21 @@ public class DashboardStationModel {
 	public Integer draft_forward_approval_count=0;
 	public String loco_owning_zone_code;
 	 public Integer total_division_count=0;
+	 public String owning_rly;
 		
 	// Shilpi 10-03-2021
 	    
-	 public Integer  total_loco_count=0;
+	 public String getOwning_rly() {
+		return owning_rly;
+	}
+
+
+	public void setOwning_rly(String owning_rly) {
+		this.owning_rly = owning_rly;
+	}
+
+
+	public Integer  total_loco_count=0;
 	// Shilpi 15-03-2021
 	
 	public String owning_depot;
@@ -151,6 +162,8 @@ public class DashboardStationModel {
 		this.total_division_count = total_division_count;
 	}
 
+
+	
 
 	
 

@@ -42,6 +42,8 @@ public interface UserLoginDetailRepository extends CrudRepository<UserLoginDetai
 	@Procedure(value="mdms_app_mgmt.f_get_user_role_list")
 	String getUserRoles();
 
+	@Procedure(value="mdms_app_mgmt.f_get_user_type_role")
+	String getUserTypeRoles(@Param("Puser_type") String Puser_type);	
 	
 
 	@Procedure(value="mdms_masters.f_get_departments_list")

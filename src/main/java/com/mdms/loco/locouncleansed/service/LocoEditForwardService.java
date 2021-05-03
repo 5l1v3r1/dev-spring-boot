@@ -274,5 +274,32 @@ private MLocoTypeRepository obj_uncleansedtyperepo;
 		
 	}
 
-	
+			public List<LocoUncleansedDataElectric> getLocoPendingHypershed( LocoUncleansedDataElectric objelecmodel) {
+//				// TODO Auto-generated method stub
+				System.out.println("getpendingUnapprovedLocos");
+				String shedid=objelecmodel.getElec_locoOwningShed();
+				obj_elec.getLocoPendingHypershed(shedid);
+				List<LocoUncleansedDataElectric> uncleaseLoco= new ArrayList<>();
+				obj_elec.getLocoPendingHypershed(shedid)
+				.forEach(uncleaseLoco::add);
+				System.out.println(" End getuncleansedunapprovedocos");
+				return obj_elec.getLocoPendingHypershed(shedid);
+//				return uncleaseLoco;
+			}
+			public List<LocoDataFois> getUncleansedLocoHyperShed( LocoDataFois objelecmodel) {
+//				// TODO Auto-generated method stub
+				System.out.println("getpendingUnapprovedLocos");
+				String shedid=objelecmodel.getLoco_Owningshed();
+				obj_uncleansedrepo.getUncleansedLocoHyperShed(shedid);
+				List<LocoDataFois> uncleaseLoco= new ArrayList<>();
+				obj_uncleansedrepo.getUncleansedLocoHyperShed(shedid)
+				.forEach(uncleaseLoco::add);
+				System.out.println(" End getuncleansedunapprovedocos");
+				return obj_uncleansedrepo.getUncleansedLocoHyperShed(shedid);
+//				return uncleaseLoco;
+			}
+			
+			
+			
+			
 }

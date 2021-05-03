@@ -1,8 +1,11 @@
 package com.mdms.mdms_coach.coachuncleansed.repository;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+
+import com.mdms.dahsboard.model.DashBoardCoachCountDepoWiseModel;
 import com.mdms.mdms_coach.coachuncleansed.model.MCoachType;
 
 public interface MCoachTypeRepository  extends CrudRepository<MCoachType,String>{
@@ -37,5 +40,7 @@ List<String> getPowerGenType();
 
 @Query(value="select brake_type from mdms_coach.m_brake_type ",nativeQuery = true)
 List<String> getBrakeType();
+
+
 }
  

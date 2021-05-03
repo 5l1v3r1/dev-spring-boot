@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import com.mdms.dahsboard.model.DashBoardCoachCountDepoWiseModel;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachCleansedData;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachDataCMM;
 import com.mdms.mdms_coach.coachuncleansed.model.CoachTypeMapping;
@@ -25,9 +26,12 @@ import com.mdms.mdms_coach.coachuncleansed.model.CoachUncleansedData;
 import com.mdms.mdms_coach.coachuncleansed.repository.CoachCMMDataRepository;
 import com.mdms.mdms_coach.coachuncleansed.repository.CoachCleansedDataRepository;
 import com.mdms.mdms_coach.coachuncleansed.repository.CoachUncleansedDataRepository;
-
+import com.mdms.mdms_coach.coachuncleansed.repository.MCoachTypeRepository;
 import com.mdms.mdms_coach.coachuncleansed.model.MDepo;
 import com.mdms.mdms_coach.coachuncleansed.repository.MDepoRepository;
+import com.mdms.mdms_station.stationuncleansed.model.StationTableRbs;
+import com.mdms.mdms_station.stationuncleansed.model.StationUncleansedData;
+import com.mdms.mdms_station.stationuncleansed.repository.StationUncleansedDataRepository;
 import com.mdms.mdms_coach.coachuncleansed.repository.CoachTypeMappingRepository;
 @Service
 public class CoachEditForwardService {
@@ -35,7 +39,7 @@ public class CoachEditForwardService {
 	private MDepoRepository mDepoRepo;
 
 	@Autowired
-	private CoachCMMDataRepository coach_cmm_repo;
+	private CoachCMMDataRepository coach_cmm_repo;      
 	
 	@Autowired
 	private CoachUncleansedDataRepository coach_uncleansed_repo;
@@ -45,6 +49,9 @@ public class CoachEditForwardService {
 	
 	@Autowired
 	private  CoachTypeMappingRepository coach_map_repo;
+	
+
+	
 
 
 	Logger logger=LoggerFactory.getLogger(CoachEditForwardService.class);
@@ -232,4 +239,68 @@ else
 	}
 
 
+	// Shilpi 16-04-2021
+	
+		//uncleaned 
+		public List<CoachDataCMM> getUncleansedCoachHyperDepo( CoachDataCMM objelecmodel) {
+			System.out.println("getUncleansedCoachHyperDepo");
+			String owning_depot=objelecmodel.getBase_depot();
+			coach_cmm_repo.getUncleansedCoachHyperDepo(owning_depot);
+			List<CoachDataCMM> uncleasestn= new ArrayList<>();
+			coach_cmm_repo.getUncleansedCoachHyperDepo(owning_depot)
+			.forEach(uncleasestn::add);
+			System.out.println(" End getUncleansedCoachHyperDepo");
+			return coach_cmm_repo.getUncleansedCoachHyperDepo(owning_depot);
+		}
+		
+		//draft 
+				public List<CoachUncleansedData> getDraftCoachApprovalHyperdepo( CoachUncleansedData objelecmodel) {
+					System.out.println("getDraftCoachApprovalHyperdepo");
+					String owning_depot=objelecmodel.getOwning_depot();
+					coach_uncleansed_repo.getDraftCoachApprovalHyperdepo(owning_depot);
+					List<CoachUncleansedData> uncleasestn= new ArrayList<>();
+					coach_uncleansed_repo.getDraftCoachApprovalHyperdepo(owning_depot)
+					.forEach(uncleasestn::add);
+					System.out.println(" End getuncleansedunapprovedocos");
+					return coach_uncleansed_repo.getDraftCoachApprovalHyperdepo(owning_depot);
+				}
+				
+				//pending 
+				public List<CoachUncleansedData> getCoachPendingHyperdepo( CoachUncleansedData objelecmodel) {
+					System.out.println("getCoachPendingHyperdepo");
+					String owning_depot=objelecmodel.getOwning_depot();
+					coach_uncleansed_repo.getCoachPendingHyperdepo(owning_depot);
+					List<CoachUncleansedData> uncleasestn= new ArrayList<>();
+					coach_uncleansed_repo.getCoachPendingHyperdepo(owning_depot)
+					.forEach(uncleasestn::add);
+					System.out.println(" End getuncleansedunapprovedocos");
+					return coach_uncleansed_repo.getCoachPendingHyperdepo(owning_depot);
+				}
+				
+				//cleansed
+				public List<CoachCleansedData> getCoachApprovedHyperDepo( CoachCleansedData objelecmodel) {
+					System.out.println("getCoachApprovedHyperDepo");
+					String owning_depot=objelecmodel.getOwning_depot();
+					coach_cleansed_repo.getCoachApprovedHyperDepo(owning_depot);
+					List<CoachCleansedData> uncleasestn= new ArrayList<>();
+					coach_cleansed_repo.getCoachApprovedHyperDepo(owning_depot)
+					.forEach(uncleasestn::add);
+					System.out.println(" End getCoachApprovedHyperDepo");
+					return coach_cleansed_repo.getCoachApprovedHyperDepo(owning_depot);
+				}
+				
+				//Shilpi 26-04-2021
+				public List<DashBoardCoachCountDepoWiseModel> getCoachmapcount(DashBoardCoachCountDepoWiseModel objelecmodel) {
+					System.out.println("getCoachmapcount");
+					//String owning_depot=objelecmodel.getOwning_depot();
+					coach_map_repo.getCoachmapcount();
+					List<DashBoardCoachCountDepoWiseModel> temp= new ArrayList<>();
+					coach_map_repo.getCoachmapcount()
+					.forEach(temp::add);
+					System.out.println(" End getCoachmapcount");
+					return temp;
+					//return coach_map_repo.getCoachmapcount();
+				}
+	
+				
 }

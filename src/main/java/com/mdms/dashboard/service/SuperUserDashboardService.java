@@ -143,7 +143,6 @@ public class SuperUserDashboardService {
 	
 	public 	ArrayList<HashMap<String,String>> getAssetRecords() {
 		logger.info("Service : StationDashboardService || Method: getAssetRecords");
-
 		ArrayList<HashMap<String,String>> assetlist= new ArrayList<HashMap<String,String>>();
 		
 		String[] entity = new String[]{ "Station","Loco","Coach"}; 
@@ -237,7 +236,8 @@ public class SuperUserDashboardService {
 //	  final String noofusers ="select zone,count(*) as count from mdms_app_mgmt.user_profile_registration_detail where user_type='"+usertype+"' group by zone";
 	  
 final String noofusers="select a.zone_name, r1.zone, r1.count  from  mdms_masters.m_zone a join \r\n"
-		+ "	(select zone,count(*) as count from mdms_app_mgmt.user_profile_registration_detail where user_type='"+usertype+"' group by zone) r1 on r1.zone=a.zone_code";
+		+ "	(select zone,count(*) as count from mdms_app_mgmt.user_profile_registration_detail where user_type='"+usertype+"'"
+				+ " group by zone) r1 on r1.zone=a.zone_code";
     	    	  
     	  
 //		stn_db_repo.getZoneWiseUsers().forEach(totalCountList::add);
@@ -255,6 +255,9 @@ final String noofusers="select a.zone_name, r1.zone, r1.count  from  mdms_master
        );
 	}
 	
+
+
+
 	
 	public List<ZonalUsersAssetModel> getZoneWiseRecords(String usertype) {
 		
@@ -325,5 +328,113 @@ final String noofusers="select a.zone_name, r1.zone, r1.count  from  mdms_master
 	                       )   );
 
 	}
+
+	public 	ArrayList<HashMap<String,String>> getCoachAssetRecords() {
+		logger.info("Service : StationDashboardService || Method: getCoachAssetRecords");
+
+		ArrayList<HashMap<String,String>> coachassetlist= new ArrayList<HashMap<String,String>>();
+		
+		String[] entity = new String[]{ "Coach"}; 
+		String[] totalmapping=new String[1];
+	
+	
+
+		 
+ try {
+					 
+//				 ........................................Coach.mapping...26-04-2021..............
+				  
+				  
+				  
+				  final String noOfCoach = "SELECT count(*) FROM mdms_coach.coach_type_mapping";
+					 final int totalcoach = (int)jdbcTemplate.queryForObject(noOfCoach,Integer.class);
+//					 final String cleansedcoach = "select count(*) FROM mdms_coach.coach_cleansed_data;";
+//					 final int noOfCleansedcoach = (int)jdbcTemplate.queryForObject(cleansedcoach, Integer.class);
+//					 final String draftcoach = "select count(*) from mdms_coach.coach_uncleansed_data where record_status='O' and status='D'";
+//					 final int noDraftcoach = (int)jdbcTemplate.queryForObject(draftcoach, Integer.class);
+//					 final String unapprovedcoach = "select count(*) from mdms_coach.coach_uncleansed_data where record_status='O' and status='U'";
+//					 final int waitingForApprovalC = (int)jdbcTemplate.queryForObject(unapprovedcoach,Integer.class);
+					 totalmapping[0]=Integer.toString(totalcoach);
+//					  cleansed[2]=Integer.toString(noOfCleansedcoach);
+//					 draft[2]=Integer.toString(noDraftcoach);
+//					  pending[2]=Integer.toString(waitingForApprovalC);
+			  
+			
+					  for(int i=0;i<1;i++)
+					  {
+						  HashMap<String, String> map1 = new HashMap<>();
+						  map1.put("entity",entity[i]) ;
+							map1.put("totalmapping",totalmapping[i]);
+//							map1.put("cleansed",cleansed[i]);
+//							map1.put("draft",draft[i]);
+//							map1.put("pending",pending[i]);
+							coachassetlist.add(map1);
+						  
+					  }
+					  
+	
+		    return coachassetlist;
+	}
+	  catch(Exception e) {
+	    	logger.error("Service : StationDashboardService || Method: getCoachAssetRecords|| Exception : " +e.getMessage());
+			e.getMessage();
+			return null;
+	    }
+	}
+
+// Shilpi 26-04-2021
+	
+	public 	ArrayList<HashMap<String,String>> getCoachLayoutRecords() {
+		logger.info("Service : StationDashboardService || Method: getCoachLayoutRecords");
+
+		ArrayList<HashMap<String,String>> coachlayoutlist= new ArrayList<HashMap<String,String>>();
+		
+		String[] entityLayout = new String[]{ "CoachLayout"}; 
+		String[] totallayout=new String[1];
+	
+	try {
+		 
+//		 ........................................Coach.layout...26-04-2021..............
+		  
+		  
+		  
+		  final String noOfCoachlayout = "SELECT count(*) FROM mdms_coach.coach_layout";
+			 final int totalcoachlayout = (int)jdbcTemplate.queryForObject(noOfCoachlayout,Integer.class);
+//			 final String cleansedcoach = "select count(*) FROM mdms_coach.coach_cleansed_data;";
+//			 final int noOfCleansedcoach = (int)jdbcTemplate.queryForObject(cleansedcoach, Integer.class);
+//			 final String draftcoach = "select count(*) from mdms_coach.coach_uncleansed_data where record_status='O' and status='D'";
+//			 final int noDraftcoach = (int)jdbcTemplate.queryForObject(draftcoach, Integer.class);
+//			 final String unapprovedcoach = "select count(*) from mdms_coach.coach_uncleansed_data where record_status='O' and status='U'";
+//			 final int waitingForApprovalC = (int)jdbcTemplate.queryForObject(unapprovedcoach,Integer.class);
+			 totallayout[0]=Integer.toString(totalcoachlayout);
+//			  cleansed[2]=Integer.toString(noOfCleansedcoach);
+//			 draft[2]=Integer.toString(noDraftcoach);
+//			  pending[2]=Integer.toString(waitingForApprovalC);
+	  
+	
+			  for(int i=0;i<1;i++)
+			  {
+				  HashMap<String, String> map2 = new HashMap<>();
+				  map2.put("entityLayout",entityLayout[i]) ;
+					map2.put("totallayout",totallayout[i]);
+//					map1.put("cleansed",cleansed[i]);
+//					map1.put("draft",draft[i]);
+//					map1.put("pending",pending[i]);
+					coachlayoutlist.add(map2);
+				  
+			  }
+			  
+
+   return coachlayoutlist;
+}
+catch(Exception e) {
+	logger.error("Service : StationDashboardService || Method: getCoachLayoutRecords|| Exception : " +e.getMessage());
+	e.getMessage();
+	return null;
+}
+}
+	
+	
+
 	
 }

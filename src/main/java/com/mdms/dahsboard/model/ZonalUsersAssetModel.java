@@ -21,14 +21,20 @@ public class ZonalUsersAssetModel {
 		this.pending= pending;
 	}
 	
+
+	
+	
+	
 	public String zone;
 	
 	public int count;
 
 	public String zone_name;
+
 	public int cleansed ;
 	public int draft ;
 	public int pending ;
+
 	
 	public String getZone() {
 		return zone;
@@ -79,5 +85,4 @@ public class ZonalUsersAssetModel {
 	}
 	
 	
-
 }

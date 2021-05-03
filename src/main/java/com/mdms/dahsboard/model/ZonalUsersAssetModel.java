@@ -1,11 +1,5 @@
 package com.mdms.dahsboard.model;
 
-import org.springframework.beans.factory.annotation.Value;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-
 public class ZonalUsersAssetModel {
 
 	

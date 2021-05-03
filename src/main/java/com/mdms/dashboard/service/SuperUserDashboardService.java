@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.mdms.dahsboard.model.DivisonUsersAssetModel;
 import com.mdms.dahsboard.model.RbUserCount;
 import com.mdms.dahsboard.model.ZonalUsersAssetModel;
 import com.mdms.dashboard.repository.StationDashboardRepo;
@@ -270,10 +272,10 @@ final String noofusers="select a.zone_name, r1.zone, r1.count  from  mdms_master
 			break;
 		
 		
-		case "LU":querystring="select a.zone_code , a.total , b.zone_name , b.cleansed , c.draft , d.pending from public.total_data a"
-				+ " 			left outer join public.cleansed_data b on a.zone_code=b.zone_code"
-				+ "			left outer join public.draft c on a.zone_code=c.zone_code"
-				+ "			left outer join public.uncleansed d on a.zone_code=d.zone_code";
+		case "LU":querystring="select a.zone_code , a.total , b.zone_name , b.cleansed , c.draft , d.pending from public.total_data_loco a"
+				+ " 			left outer join public.cleansed_data_loco b on a.zone_code=b.zone_code"
+				+ "			left outer join public.draft_data_loco c on a.zone_code=c.zone_code"
+				+ "			left outer join public.pending_data_loco d on a.zone_code=d.zone_code";
 		    	    	  
 			
 	break;
@@ -302,5 +304,26 @@ final String noofusers="select a.zone_name, r1.zone, r1.count  from  mdms_master
 	                       )   );
 	}
 	
+	
+	
+	
+	public List<DivisonUsersAssetModel> getDivisionWiseRecords(String usertype,String zone) {
+		logger.info("Service : StationDashboardService || Method: getDivisionWiseRecords");
+		final String userdetails="select division ,depo,shed, user_id ,name , designation , department from mdms_app_mgmt.user_profile_registration_detail where user_type='"+usertype+"' and zone='"+zone+"'";	 
+		 return jdbcTemplate.query(
+				 userdetails,
+	               (rs, rowNum) ->
+	                       new DivisonUsersAssetModel(
+	                               rs.getString("division"),
+	                               rs.getString("depo"),
+	                               rs.getString("shed"),
+	                               rs.getString("user_id"),
+	                               rs.getString("name"),
+	                               rs.getString("designation"),
+	                               rs.getString("department")
+  
+	                       )   );
+
+	}
 	
 }

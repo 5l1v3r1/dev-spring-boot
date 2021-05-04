@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mdms.dahsboard.model.DivisonUsersAssetModel;
 import com.mdms.dahsboard.model.RbUserCount;
 import com.mdms.dahsboard.model.ZonalUsersAssetModel;
 import com.mdms.dashboard.service.SuperUserDashboardService;
@@ -69,6 +71,12 @@ public class SuperUserDashboardController {
 		
 	}
 	
+	@RequestMapping(method=RequestMethod.POST, value="/divwiserec")
+	public 	List<DivisonUsersAssetModel> getDivisionWiseRecords(@RequestParam (value="usertype") String usertype ,@RequestParam (value="zone") String zone ) {
+		
+		logger.info("controller : SuperUserDashboardController || Method : getDivisionWiseRecords");
+		return su_dash_servc.getDivisionWiseRecords(usertype,zone);}
+
 	// 26-04-2021
 	@RequestMapping(method=RequestMethod.POST, value="/coachtypemappingcount")
 	public 	ArrayList<HashMap<String,String>> getCoachAssetRecords() {
@@ -85,6 +93,7 @@ public class SuperUserDashboardController {
 		
 		logger.info("controller : SuperUserDashboardController || Method : getCoachLayoutRecords");
 		return su_dash_servc.getCoachLayoutRecords();
+
 		
 	}
 

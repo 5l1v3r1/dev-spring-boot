@@ -1571,6 +1571,7 @@ DashboardStationModel obj =new DashboardStationModel();
 
 ;
 obj.setOwning_rly(DashBoardCoachCountDepoWiseModel.getOwning_rly());
+
 obj.setOwning_depot(DashBoardCoachCountDepoWiseModel.getOwning_depot());
 obj.setTotal_depo_count(DashBoardCoachCountDepoWiseModel.getTotal_depo_count());			
 list.add(obj);

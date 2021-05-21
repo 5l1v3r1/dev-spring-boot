@@ -38,6 +38,17 @@ public class SuperUserDashboardController {
 		return su_dash_servc.getTotalAssets();
 	}
 	
+	
+	
+	@RequestMapping(method=RequestMethod.POST, value="/getCleansedAsset")
+	public HashMap<String,Integer>getCleansedAssets(){
+		
+		logger.info("controller : SuperUserDashboardController || Method : getCleansedAssets");
+		return su_dash_servc.getCleansedAssets();
+	}
+	
+	
+	
 	@RequestMapping(method=RequestMethod.POST, value="/regusercount")
 	public  ArrayList<HashMap<String,String>> getRegisteredUserCount(){
 		

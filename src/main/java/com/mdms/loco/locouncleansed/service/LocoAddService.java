@@ -15,7 +15,7 @@ import com.mdms.loco.locouncleansed.model.BoardZonalApproval;
 //import com.mdms.loco.locouncleansed.model.BoardZonalApproval;
 
 import com.mdms.loco.locouncleansed.model.LocoApprovedData;
-
+import com.mdms.loco.locouncleansed.model.LocoDetailBasedOnLocoNo;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedData;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataAddNewLoco;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
@@ -446,6 +446,15 @@ public class LocoAddService {
 		return list;
 		// obj_dieselocoaddrepo.findlocoNumber(locozone);
 
+	}
+	
+	public List<LocoUncleansedDataAddNewLoco> getLocoDetailOnLocoNo(Integer loco_no){
+		
+		List<LocoUncleansedDataAddNewLoco> listt = new ArrayList<LocoUncleansedDataAddNewLoco>();
+		
+		//List<LocoUncleansedDataAddNewLoco> listt = obj_LocoNewRepo.findlocoDetailBasedOnLocoNo(loco_no);
+		listt.addAll(obj_LocoNewRepo.findlocoDetailBasedOnLocoNo(loco_no));
+		return listt;
 	}
 
 }

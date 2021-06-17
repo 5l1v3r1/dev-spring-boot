@@ -27,5 +27,9 @@ public interface LocoUncleansedDataAddNewRepository extends CrudRepository<LocoU
 	List<LocoUncleansedDataAddNewLoco> getApprovedZonalBoardLoco(String locozone);
 	
 	
+	@Query(value="SELECT * FROM  mdms_loco.loco_uncleansed_data WHERE loco_no=?1",nativeQuery=true)
+	List<LocoUncleansedDataAddNewLoco> findlocoDetailBasedOnLocoNo(Integer loco_no);
+	
+	
 
 }

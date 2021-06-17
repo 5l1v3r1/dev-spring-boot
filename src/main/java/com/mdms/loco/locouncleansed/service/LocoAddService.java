@@ -15,7 +15,6 @@ import com.mdms.loco.locouncleansed.model.BoardZonalApproval;
 //import com.mdms.loco.locouncleansed.model.BoardZonalApproval;
 
 import com.mdms.loco.locouncleansed.model.LocoApprovedData;
-import com.mdms.loco.locouncleansed.model.LocoDetailBasedOnLocoNo;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedData;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataAddNewLoco;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;

@@ -3,7 +3,6 @@ package com.mdms.loco.locouncleansed.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,10 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.mdms.loco.locouncleansed.model.BoardZonalApproval;
-import com.mdms.loco.locouncleansed.model.LocoDetailBasedOnLocoNo;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataAddNewLoco;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
 import com.mdms.loco.locouncleansed.service.LocoAddService;
@@ -151,32 +148,12 @@ public class LocoAddController {
 	  return obj_newlocoservice.getLocoNumber(locoOwingShed);
 	  }
 	 
-	 
-	/*
-	 * @RequestMapping(method=RequestMethod.POST, value = "/getloconumber")
-	 * 
-	 * @ResponseBody public List<Integer>
-	 * getLocoNumber(@RequestParam("locoOwingShed") String locoOwingShed){
-	 * 
-	 * // String locoOwingShed //= locoUncleansedData.getLoco_Owningzone(); //
-	 * String locoOwingShed = locono.getLoco_owning_shed();
-	 * System.out.println(locoOwingShed); System.out.println(
-	 * "amit#########################################################################"
-	 * );
-	 * 
-	 * return obj_newlocoservice.getLocoNumber(locoOwingShed); }
-	 */
+	
 	 
 	  @RequestMapping(method=RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE, value = "/getlocodetails")
 	   public List<LocoUncleansedDataAddNewLoco> getLocoDetailBasedOnLocoNo(@RequestBody LocoUncleansedDataAddNewLoco locoUncleansedDataAddNewLoco){
-		  	  
-			/*
-			 * System.out.println(loco_no); List<LocoUncleansedDataAddNewLoco> list = new
-			 * ArrayList<LocoUncleansedDataAddNewLoco>();
-			 */
+		  
 		  System.out.println(locoUncleansedDataAddNewLoco.getLoco_no());
-		 
-		// return obj_newlocoservice.getLocoDetailOnLocoNo(loco_no);
 		 return obj_newlocoservice.getLocoDetailOnLocoNo(locoUncleansedDataAddNewLoco.getLoco_no());
 		 
 	 }

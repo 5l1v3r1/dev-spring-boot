@@ -368,7 +368,8 @@ final String noofusers="select a.zone_name, r1.zone, r1.count  from  mdms_master
 
 		ArrayList<HashMap<String,String>> coachassetlist= new ArrayList<HashMap<String,String>>();
 		
-		String[] entity = new String[]{ "Coach"}; 
+		String[] entity = new String[]{ "MappedCoach"}; 
+		//For test to commit as mappedcoach
 		String[] totalmapping=new String[1];
 	
 	

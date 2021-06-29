@@ -1,23 +1,20 @@
 package com.mdms.loco.locouncleansed.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-
 import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.JsonMappingException;
-
 import com.mdms.loco.locouncleansed.model.BoardZonalApproval;
-
-
-
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataAddNewLoco;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
 import com.mdms.loco.locouncleansed.service.LocoAddService;
@@ -140,5 +137,27 @@ public class LocoAddController {
 			
  	}
 
- 	
+	
+	  @RequestMapping(method=RequestMethod.POST, value = "/getloconumber")
+	  public List<Integer> getLocoNumber(@RequestBody String locoOwingShed){
+		  
+		  System.out.println(locoOwingShed);
+	  
+	  // String locoOwingShed //= locoUncleansedData.getLoco_Owningzone();
+	  
+	  return obj_newlocoservice.getLocoNumber(locoOwingShed);
+	  }
+	 
+	
+	 
+	  @RequestMapping(method=RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE, value = "/getlocodetails")
+	   public List<LocoUncleansedDataAddNewLoco> getLocoDetailBasedOnLocoNo(@RequestBody LocoUncleansedDataAddNewLoco locoUncleansedDataAddNewLoco){
+		  
+		  System.out.println(locoUncleansedDataAddNewLoco.getLoco_no());
+		 return obj_newlocoservice.getLocoDetailOnLocoNo(locoUncleansedDataAddNewLoco.getLoco_no());
+		 
+	 }
+	 
+	 
+	 
 }

@@ -1568,10 +1568,12 @@ private void callDraftCountZonedepot(DashBoardCoachCountDepoWiseModel draftObj,D
 private void setTotalZonedepotwise(DashBoardCoachCountDepoWiseModel DashBoardCoachCountDepoWiseModel,Collection<DashboardStationModel> list) {
 DashboardStationModel obj =new DashboardStationModel();	
 //obj.setZone_code(DashBoardStationCountDivisionWiseModel.getzone_code());
-	
+
+;
 obj.setOwning_rly(DashBoardCoachCountDepoWiseModel.getOwning_rly());
-obj.setTotal_depo_count(DashBoardCoachCountDepoWiseModel.getTotal_depo_count());
+
 obj.setOwning_depot(DashBoardCoachCountDepoWiseModel.getOwning_depot());
+obj.setTotal_depo_count(DashBoardCoachCountDepoWiseModel.getTotal_depo_count());			
 list.add(obj);
 
 }

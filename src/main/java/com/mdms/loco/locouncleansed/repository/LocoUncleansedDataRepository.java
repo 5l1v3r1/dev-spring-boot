@@ -9,8 +9,9 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import com.mdms.loco.locouncleansed.model.BoardZonalApproval;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedData;
-
+import com.mdms.loco.locouncleansed.model.LocoUncleansedDataAddNewLoco;
 import com.mdms.loco.locouncleansed.model.LocoUncleansedDataElectric;
 
 
@@ -24,6 +25,15 @@ public interface LocoUncleansedDataRepository extends CrudRepository<LocoUnclean
 	
 	@Query(value="select  mfd_name from mdms_loco.m_loco_manufacturer", nativeQuery=true)
 	List<String> findlocomake();
+	
+	
+	//@Query(value="select loco_no from mdms_loco.loco_uncleansed_data where loco_owning_shed=?1 AND status='U' AND record_status='O'", nativeQuery=true)
+	//@Query(value="select loco_no from mdms_loco.loco_uncleansed_data where loco_owning_shed='ELGB' AND status='U' AND record_status='O'", nativeQuery=true)
+	//@Query(value="select loco_no from mdms_loco.loco_uncleansed_data where loco_owning_shed=?1 AND status='U' AND record_status='O'", nativeQuery=true)
+	@Query(value="SELECT loco_no FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_shed=?1 AND status='U' AND record_status='O'",nativeQuery=true)
+	List<Integer> findlocoNumber(String loco_owning_shed);
+	
+	
 	
 	@Transactional
 	@Modifying

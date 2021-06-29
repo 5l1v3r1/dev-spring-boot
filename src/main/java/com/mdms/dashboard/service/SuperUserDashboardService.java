@@ -38,7 +38,7 @@ public class SuperUserDashboardService {
 		 final String no_stations = "SELECT count(DISTINCT stn_code) FROM mdms_station.station_table_rbs ";
 		    final int total_stations = (int)jdbcTemplate.queryForObject(no_stations,Integer.class);
 
-		    final String no_loco = "SELECT count(*) FROM mdms_station.station_table_rbs";
+		    final String no_loco = "SELECT count(*) FROM mdms_loco.loco_data_fois";
 		    final int total_loco = (int)jdbcTemplate.queryForObject(no_loco,Integer.class);
 		    final String no_coach = "SELECT count(coach_id) FROM mdms_coach.coach_data_cmm";
 		    final int total_coach = (int)jdbcTemplate.queryForObject(no_coach,Integer.class);
@@ -54,6 +54,40 @@ public class SuperUserDashboardService {
 	}
 	  catch(Exception e) {
 	    	logger.error("Service : SuperUserDashboardService || Method: getTotalAssets|| Exception : " +e.getMessage());
+			e.getMessage();
+			return null;
+	    }
+	}
+	
+	
+	
+	
+	public HashMap<String, Integer> getCleansedAssets() {
+		logger.info("Service : SuperUserDashboardService || Method: getCleansedAssets");
+
+ HashMap<String, Integer> map = new HashMap<>();
+
+		 
+ try {
+		 final String no_stations = "SELECT count(*) FROM mdms_station.station_cleansed_data ";
+		    final int total_stations = (int)jdbcTemplate.queryForObject(no_stations,Integer.class);
+
+		    final String no_loco = "SELECT count(*) FROM mdms_loco.loco_approved_data";
+		    final int total_loco = (int)jdbcTemplate.queryForObject(no_loco,Integer.class);
+		    final String no_coach = "SELECT count(*) FROM mdms_coach.coach_cleansed_data";
+		    final int total_coach = (int)jdbcTemplate.queryForObject(no_coach,Integer.class);
+//		    final String no_wagon = "SELECT count(*) FROM mdms_station.station_table_rbs";
+//		    final int total_wagon = (int)jdbcTemplate.queryForObject(no_wagon,Integer.class);
+
+
+		    map.put("total_stations", total_stations);
+		    map.put("total_loco", total_loco);
+		    map.put("total_coach", total_coach);
+//		    map.put("total_wagon", total_wagon);
+		    return map;
+	}
+	  catch(Exception e) {
+	    	logger.error("Service : SuperUserDashboardService || Method: getCleansedAssets|| Exception : " +e.getMessage());
 			e.getMessage();
 			return null;
 	    }
@@ -334,7 +368,8 @@ final String noofusers="select a.zone_name, r1.zone, r1.count  from  mdms_master
 
 		ArrayList<HashMap<String,String>> coachassetlist= new ArrayList<HashMap<String,String>>();
 		
-		String[] entity = new String[]{ "Coach"}; 
+		String[] entitymapping = new String[]{ "MappedCoach"}; 
+		//For test to commit as mappedcoach
 		String[] totalmapping=new String[1];
 	
 	
@@ -363,7 +398,7 @@ final String noofusers="select a.zone_name, r1.zone, r1.count  from  mdms_master
 					  for(int i=0;i<1;i++)
 					  {
 						  HashMap<String, String> map1 = new HashMap<>();
-						  map1.put("entity",entity[i]) ;
+						  map1.put("entity",entitymapping[i]) ;
 							map1.put("totalmapping",totalmapping[i]);
 //							map1.put("cleansed",cleansed[i]);
 //							map1.put("draft",draft[i]);

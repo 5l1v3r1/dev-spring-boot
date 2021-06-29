@@ -368,7 +368,7 @@ final String noofusers="select a.zone_name, r1.zone, r1.count  from  mdms_master
 
 		ArrayList<HashMap<String,String>> coachassetlist= new ArrayList<HashMap<String,String>>();
 		
-		String[] entity = new String[]{ "MappedCoach"}; 
+		String[] entitymapping = new String[]{ "MappedCoach"}; 
 		//For test to commit as mappedcoach
 		String[] totalmapping=new String[1];
 	
@@ -398,7 +398,7 @@ final String noofusers="select a.zone_name, r1.zone, r1.count  from  mdms_master
 					  for(int i=0;i<1;i++)
 					  {
 						  HashMap<String, String> map1 = new HashMap<>();
-						  map1.put("entity",entity[i]) ;
+						  map1.put("entity",entitymapping[i]) ;
 							map1.put("totalmapping",totalmapping[i]);
 //							map1.put("cleansed",cleansed[i]);
 //							map1.put("draft",draft[i]);

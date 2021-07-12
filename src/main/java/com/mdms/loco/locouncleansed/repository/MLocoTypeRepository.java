@@ -12,6 +12,6 @@ public interface MLocoTypeRepository extends CrudRepository<MLocoType,Long>{
 	@Query(value="SELECT * FROM mdms_loco.m_loco_type WHERE loco_type=?1",nativeQuery=true)
    	List<MLocoType> getallLocotypedata(String locotype);	
 	
-	@Query(value="SELECT * FROM mdms_loco.m_loco_type",nativeQuery=true)
-   	List<MLocoType> getallLocotype();	
+	@Query(value="SELECT loco_type FROM mdms_loco.m_loco_type",nativeQuery=true)
+   	List<String> getallLocotype();	
 }

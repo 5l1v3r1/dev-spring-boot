@@ -38,7 +38,6 @@ public class LocoAddService {
 	public String saveDieselBoardZonalData(LocoUncleansedDataAddNewLoco dieselLocoBoardZonal) {
 		try {
 			String returnValue = null;
-
 			int locoNo = dieselLocoBoardZonal.getLoco_no();
 			String locoPermanentDomain = dieselLocoBoardZonal.getLoco_permanent_domain();
 			String locoType = dieselLocoBoardZonal.getLoco_type();
@@ -439,11 +438,9 @@ public class LocoAddService {
 	}
 
 	public List<Integer> getLocoNumber(String locoOwingShed) {
-
 		List<Integer> list = obj_dieselocoaddrepo.findlocoNumber(locoOwingShed);
-
 		return list;
-		// obj_dieselocoaddrepo.findlocoNumber(locozone);
+		
 
 	}
 	

@@ -204,8 +204,8 @@ public class StationEditForwardController {
 // Shilpi 09-04-2021 for hyperlink
  
 	@RequestMapping(method=RequestMethod.POST, value = "/gethyperUncleanstnService")
-	public List<StationTableRbs> getUncleanstnHyperDivision(@RequestBody StationTableRbs objdraft ){
-		System.out.println("division_code"+ objdraft.getDivision_code());
+	public List<StationTableRbs> getUncleanstnHyperDivision(@RequestBody String objdraft ){
+//		System.out.println("division_code"+ objdraft.getDivision_code());
     return stn_edit_fwd_serv.getUncleanstnHyperDivision(objdraft);	
 	}
 	

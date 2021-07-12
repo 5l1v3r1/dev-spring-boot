@@ -139,13 +139,9 @@ public class LocoAddController {
 
 	
 	  @RequestMapping(method=RequestMethod.POST, value = "/getloconumber")
-	  public List<Integer> getLocoNumber(@RequestBody String locoOwingShed){
-		  
-		  System.out.println(locoOwingShed);
-	  
-	  // String locoOwingShed //= locoUncleansedData.getLoco_Owningzone();
-	  
-	  return obj_newlocoservice.getLocoNumber(locoOwingShed);
+	  public List<Integer> getLocoNumber(@RequestBody LocoUncleansedDataAddNewLoco objnewloco){	  
+		 	 
+	  return obj_newlocoservice.getLocoNumber(objnewloco.getLoco_owning_shed());
 	  }
 	 
 	

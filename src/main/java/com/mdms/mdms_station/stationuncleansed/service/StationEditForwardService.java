@@ -608,9 +608,10 @@ catch(Exception e)
 	// Shilpi 09-04-2021
 	
 	//uncleaned 
-	public List<StationTableRbs> getUncleanstnHyperDivision( StationTableRbs objelecmodel) {
+	public List<StationTableRbs> getUncleanstnHyperDivision( String objelecmodel) {
 		System.out.println("getUncleanstnHyperDivision");
-		String division_code=objelecmodel.getDivision_code();
+//		String division_code=objelecmodel.getDivision_code();
+		String division_code=objelecmodel;
 		stn_tbl_rbs_repo.getUncleanstnHyperDivision(division_code);
 		List<StationTableRbs> uncleasestn= new ArrayList<>();
 		stn_tbl_rbs_repo.getUncleanstnHyperDivision(division_code)

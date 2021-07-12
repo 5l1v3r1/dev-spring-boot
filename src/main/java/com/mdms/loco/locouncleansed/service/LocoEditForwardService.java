@@ -133,9 +133,11 @@ private MLocoTypeRepository obj_uncleansedtyperepo;
 				}
 			}	
 
-		public List<MLocoType> getlocotypelist()
+		public List<String> getlocotypelist()
 		{
-	   	  return obj_uncleansedtyperepo.getallLocotype();
+			List<String> ltype=new ArrayList<>();
+	   	  obj_uncleansedtyperepo.getallLocotype().forEach(ltype::add);
+			 return ltype;
 	}
 		
 		public List<MLocoShed> getallelctricshedid()

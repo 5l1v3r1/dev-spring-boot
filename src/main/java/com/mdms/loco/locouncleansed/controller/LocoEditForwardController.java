@@ -68,10 +68,9 @@ public class LocoEditForwardController {
 		 
 		 
 		 //get uncleanesd loco type list	 
-		 @RequestMapping(method=RequestMethod.GET, value="/getuncleansedlocotype")
-		 public List<MLocoType> getlocotypelist(){
-			 obj_uncleasedservice.getlocotypelist();
-			 return obj_uncleasedservice.getlocotypelist();
+		 @RequestMapping(method=RequestMethod.POST, value="/getuncleansedlocotype")
+		 public List<String> getlocotypelist(){
+						 return obj_uncleasedservice.getlocotypelist();
 			 
 		 }
 		 

@@ -7,12 +7,20 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties
 public interface DashBoardStationCountDivisionWiseModel {
-	@JsonIgnore 
-	 @Value("#{target.draft_forward_approval_count}")
-public	Integer getdraft_forward_approval_count();
+//	@JsonIgnore 
+//	 @Value("#{target.draft_forward_approval_count}")
+//public	Integer getdraft_forward_approval_count();
+//	
 	
-	
-	
+
+@JsonIgnore 
+ @Value("#{target.pending_approval}")
+ public Integer getpending_approval();
+ 
+@JsonIgnore 
+ @Value("#{target.draft_forward_approval_count}")
+public	Integer getDraft_forward_approval_count();
+
 	
 	//Shilpi 10-03-2021
 	@JsonIgnore 
@@ -22,7 +30,7 @@ public	Integer getdraft_forward_approval_count();
 	
 	@JsonIgnore 
 	 @Value("#{target.division_code}")
-public	String getdivision_code();
+public	String getDivision_code();
 	
 	
 	@JsonIgnore 
@@ -42,10 +50,10 @@ public	String getzone_code();
 	 public Integer getcleansed_count();
 	 
 	
-	@JsonIgnore 
-	 @Value("#{target.pending_approval}")
-	 public Integer getpending_approval();
-	 
+//	@JsonIgnore 
+//	 @Value("#{target.pending_approval}")
+//	 public Integer getpending_approval();
+//	 
 	
 	@JsonIgnore 
 	 @Value("#{target.total_division_count}")
@@ -63,17 +71,17 @@ public	String getzone_code();
 	
 	@JsonIgnore 
 	 @Value("#{args[0]+': '+target.uncleansed_count}")	 
-	 public void setuncleansed_count(Integer str);
+	 public void setUncleansed_count(Integer str1);
 	 
 	
 	@JsonIgnore 
 	 @Value("#{args[0]+': '+target.cleansed_count}")	 
-	 public void setcleansed_count(Integer vgf);
+	 public void setCleansed_count(Integer vgf);
 	 
 	
 	@JsonIgnore 
 	 @Value("#{args[0]+': '+target.pending_approval}")	 
-	 public void setpending_approval(Integer cvb);
+	 public void setPending_approval(Integer cvb);
 	 
 	
 	@JsonIgnore 
@@ -87,7 +95,7 @@ public	String getzone_code();
 	
 	@JsonIgnore 
 	 @Value("#{args[0]+': '+target.draft_forward_approval_count}")
-public	void setdraft_forward_approval();
+public	void setDraft_forward_approval_count();
 
 
 }

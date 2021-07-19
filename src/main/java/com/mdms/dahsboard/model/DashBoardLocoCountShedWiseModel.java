@@ -53,7 +53,7 @@ public	Integer getDraft_forward_approval_count();
 	 
 	@JsonIgnore 
 	 @Value("#{args[0]+': '+target.draft_forward_approval_count}")
-public	void setDraft_forward_approval_count();
+public	void setdraft_forward_approval_count();
 	
 
 	 

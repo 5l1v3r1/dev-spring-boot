@@ -72,13 +72,12 @@ public interface LocoUncleansedDataRepository extends CrudRepository<LocoUnclean
 	@Transactional
 	@Modifying
 	@Query(value="UPDATE mdms_loco.loco_uncleansed_data\r\n" + 
-			"	SET loco_permanent_domain=?2, loco_type=?3,loco_owning_zone=?4, loco_owning_division=?5, loco_manufacturing_date=?6, loco_owning_shed=?7,"
-			+ "loco_manufacturer=?8,loco_lease_type=?9,loco_initial_cost=?10,  loco_poh_cost=?11,loco_traction_code=?12,loco_gauge_type=?13,loco_hauling_power=?14, loco_mfg_country=?15 ,status=?16,user_id=?17,txn_date=?18"
-			+ "  WHERE loco_no=?19", nativeQuery=true)	
+			"	SET loco_permanent_domain=?1, loco_type=?2,loco_owning_zone=?3, loco_owning_division=?4, loco_manufacturing_date=?5, loco_owning_shed=?6, loco_receiving_date=?7,loco_lease_type=?8,loco_initial_cost=?9,  loco_poh_cost=?10,loco_flag=?11,loco_gauge_type=?12,loco_hauling_power=?13, loco_manufacturing_country=?14 ,record_status=?15 ,status=?16,user_id=?17,txn_date=?18,loco_entry_date=?19,remarks=?20"
+			+ "  WHERE loco_no=?21", nativeQuery=true)	
 	int updateDieselBoardZonalRecord( String locoPermanentDomain, String locoType, String locoOwningZone,
-			String locoOwningDivision, Date locoMfgDt, String locOwningShed, String locoManufacturer, String locoLeasetype,
-			long locoInitialCost, long locoPOHCost, String tractionCode, String gaugeType, Long locoHaulingPower,
-			String locoMfgCountry,String status,String uid, Date locotxndate, int locoNo);
+			String locoOwningDivision, Date locoMfgDt, String locOwningShed, Date recddt,  String locoLeasetype,
+			 long locoInitialCost, long locoPOHCost, String flagCode, String gaugeType, Long locoHaulingPower,
+			String locoMfgCountry,String recordstatus,String status,String uid, Date locotxndate,Date locoentrydate ,String remarks, int locoNo);
 	
 	
 	@Query(value="select loco_no from mdms_loco.loco_uncleansed_data where loco_no=?1", nativeQuery=true)
@@ -107,16 +106,7 @@ public interface LocoUncleansedDataRepository extends CrudRepository<LocoUnclean
 			String status, String uid, Date locotxndate,  String remarks, String gaugeType, String manCntry, Long haulingPower);
 	
 	
-	@Transactional
-	@Modifying
-	@Query(value="\r\n" + 
-			"	UPDATE mdms_loco.loco_uncleansed_data SET  loco_boogie_type=?2,\r\n" + 
-			"	loco_commissioned_shed_id=?3,loco_control_type=?4,loco_commissioning_date=?5,loco_entry_date=?6,\r\n" + 
-			"	loco_manufacturer=?7,is_gps_enabled=?8,flag_type=?9,loco_traction_motor_type=?10,loco_axle_load=?11,loco_axle_load_unit=?12,loco_receiving_date=?13 ,status=?14, user_id=?15, txn_date=?16 WHERE loco_no=?1", nativeQuery=true)
-	void updateWithDieselLocoShedData( String locoBoogieType, String locoCommissionedShedId,
-			String locoControlType, Date locoDateOfCommision, Date locoEntryDate, String locoManfacturer,
-			String isGpsEnabled, String flagtype, String locoTractionMotorType, String locoAxleLoad, String locoAxleLoadUnit, Date dtOfRcvd,String status,String userid,Date txndate,int locono);
-
+	
 	@Transactional
 	@Modifying
 	@Query(value="INSERT INTO mdms_loco.loco_approved_data(\r\n" + 

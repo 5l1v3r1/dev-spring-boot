@@ -1,7 +1,11 @@
 package com.mdms.loco.locouncleansed.repository;
 
+import java.util.Date;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -30,6 +34,26 @@ public interface LocoUncleansedDataAddNewRepository extends CrudRepository<LocoU
 	@Query(value="SELECT * FROM  mdms_loco.loco_uncleansed_data WHERE loco_no=?1",nativeQuery=true)
 	List<LocoUncleansedDataAddNewLoco> findlocoDetailBasedOnLocoNo(Integer loco_no);
 	
+	@Transactional
+	@Modifying
+	@Query(value="\r\n" + 
+			"	UPDATE mdms_loco.loco_uncleansed_data SET  loco_auxilary=?1,loco_boogie_type=?2, loco_brake_sub_type=?3, loco_brake_type=?4,\r\n" + 
+			"	loco_cabin_ac=?5, flag_type=?6,loco_control_type=?7,loco_traction_motor_type=?8,loco_commissioning_date=?9,loco_entry_date=?10,loco_hotel_load=?11,\r\n" + 
+			"	loco_manufacturer=?12,is_gps_enabled=?13,status=?14, user_id=?15, txn_date=?16 WHERE loco_no=?17", nativeQuery=true)
+	int updateWithElectricNewLocoShedData(String locoAuxiliaryOutput, String locoBoogieType, String locoBrakeSubtype,
+			String locoBrakeType, String locoCabac, String gpsflagtype,  String locoControlType,String tmtype,
+			Date locoDateOfCommision, Date locoEntryDate, String locoHotelLoad,String locoManfacturer,String isGPSEnabled,
+			String status,String userid,Date txndate,int locono);
 	
+	
+	@Transactional
+	@Modifying
+	@Query(value="\r\n" + 
+			"	UPDATE mdms_loco.loco_uncleansed_data SET loco_control_type=?1,loco_brake_sub_type=?2, loco_brake_type=?3, loco_commissioning_date=?4,loco_entry_date=?5,\r\n" + 
+			"	loco_manufacturer=?6,is_gps_enabled=?7,flag_type=?8,loco_traction_motor_type=?9,loco_axle_load=?10, status=?11, user_id=?12, txn_date=?13 WHERE loco_no=?14", nativeQuery=true)
+	void updateWithDieselNewLocoShedData( 
+			String locoControlType, String brakesubtype, String braketype, Date locoDateOfCommision, Date locoEntryDate, String locoManfacturer,
+			String isGpsEnabled, String flagtype, String locoTractionMotorType, String locoAxleLoad,String status,String userid,Date txndate,int locono);
+
 
 }

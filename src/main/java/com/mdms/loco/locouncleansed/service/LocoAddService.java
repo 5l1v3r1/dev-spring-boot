@@ -84,28 +84,32 @@ public class LocoAddService {
 			String locoOwningDivision = dieselLocoBoardZonal.getLoco_owning_division();
 			Date locoMfgDt = dieselLocoBoardZonal.getLoco_manufacturing_date();
 			String locOwningShed = dieselLocoBoardZonal.getLoco_owning_shed();
+			Date locorecddate = dieselLocoBoardZonal.getLoco_receiving_date();
 			String locoManufacturer = dieselLocoBoardZonal.getLoco_manufacturer();
 			String locoLeasetype = dieselLocoBoardZonal.getLoco_lease_type();
 			long locoInitialCost = dieselLocoBoardZonal.getLoco_initial_cost();
 			long locoPOHCost = dieselLocoBoardZonal.getLoco_poh_cost();
-			String tractionCode = dieselLocoBoardZonal.getLoco_traction_code();
+			String tractionCode = dieselLocoBoardZonal.getLoco_flag();
 			String gaugeType = dieselLocoBoardZonal.getGauge_type();
 			Long locoHaulingPower = dieselLocoBoardZonal.getLoco_hauling_power();
 			String locoMfgCountry = dieselLocoBoardZonal.getLoco_manufacturing_country();
-			int locoNo = dieselLocoBoardZonal.getLoco_no();
 			String status = dieselLocoBoardZonal.getStatus();
+			String recordstatus = dieselLocoBoardZonal.getRecord_status();
 			String uid = dieselLocoBoardZonal.getUser_id();
 			Date locotxndate = dieselLocoBoardZonal.getTxn_date();
+			Date locoentrydate = dieselLocoBoardZonal.getLoco_entry_date();
+			String remarks=dieselLocoBoardZonal.getRemarks();
+			int locoNo = dieselLocoBoardZonal.getLoco_no();
 			obj_dieselocoaddrepo.updateDieselBoardZonalRecord(locoPermanentDomain, locoType, locoOwningZone,
-					locoOwningDivision, locoMfgDt, locOwningShed, locoManufacturer, locoLeasetype, locoInitialCost,
-					locoPOHCost, tractionCode, gaugeType, locoHaulingPower, locoMfgCountry, status, uid, locotxndate,
-					locoNo);
-			returnValue = "Record Approved Sucessfully";
+					locoOwningDivision, locoMfgDt, locOwningShed,locorecddate, locoManufacturer, locoInitialCost,
+					locoPOHCost, tractionCode, gaugeType, locoHaulingPower, locoMfgCountry, recordstatus,status, uid, locotxndate,locoentrydate,
+					remarks, locoNo);
+			returnValue = "Record Update";
 			return returnValue;
 		} catch (Exception e) {
 
 			System.out.println(e);
-			return "Failed to Approved";
+			return "Failed to Update";
 		}
 
 	}
@@ -278,28 +282,26 @@ public class LocoAddService {
 //}
 
 // service use to update diesel  shed attribute for new add loco- for save as draft as well as forward to unapproved record 
-	public String updateDieselShedData(LocoUncleansedDataAddNewLoco dieselLocoNewShedUser) {
+	public String updateWithDieselNewLocoShedData(LocoUncleansedDataAddNewLoco dieselLocoNewShedUser) {
 		try {
 			String returnValue = null;
-			String locoBoogieType = dieselLocoNewShedUser.getLoco_boogie_type();
-			String locoCommissionedShedId = dieselLocoNewShedUser.getLoco_commissioning_shed_id();
+			String locoBrakeSubtype = dieselLocoNewShedUser.getLoco_brake_sub_type();
+			String locoBrakeType = dieselLocoNewShedUser.getLoco_brake_type();		
 			String locoControlType = dieselLocoNewShedUser.getLoco_control_type();
-			Date locoDateOfCommision = dieselLocoNewShedUser.getLoco_commissioning_date();
-			Date locoEntryDate = dieselLocoNewShedUser.getLoco_entry_date();
+			Date locoDateOfCommision = dieselLocoNewShedUser.getLoco_commissioning_date();			
 			String locoManfacturer = dieselLocoNewShedUser.getLoco_manufacturer();
 			String locoGPSEnableflag = dieselLocoNewShedUser.getIs_gps_enabled();
 			String flagtype = dieselLocoNewShedUser.getFlag_type();
 			String locoTractionMotorType = dieselLocoNewShedUser.getLoco_traction_motor_type();
-			String axleload = dieselLocoNewShedUser.getLoco_axle_load();
-			String axleloadunit = dieselLocoNewShedUser.getLoco_axle_load_unit();
-			Date locorecddt = dieselLocoNewShedUser.getLoco_receiving_date();
+			String axleload = dieselLocoNewShedUser.getLoco_axle_load();					
 			String status = dieselLocoNewShedUser.getStatus();
 			String uid = dieselLocoNewShedUser.getUser_id();
 			Date locotxndate = dieselLocoNewShedUser.getTxn_date();
+			Date locoEntryDate = dieselLocoNewShedUser.getLoco_entry_date();
 			int locoNo = dieselLocoNewShedUser.getLoco_no();
-			obj_dieselocoaddrepo.updateWithDieselLocoShedData(locoBoogieType, locoCommissionedShedId, locoControlType,
+			obj_LocoNewRepo.updateWithDieselNewLocoShedData( locoControlType, locoBrakeSubtype,  locoBrakeType, 
 					locoDateOfCommision, locoEntryDate, locoManfacturer, locoGPSEnableflag, flagtype,
-					locoTractionMotorType, axleload, axleloadunit, locorecddt, status, uid, locotxndate, locoNo);
+					locoTractionMotorType, axleload,  status, uid, locotxndate, locoNo);
 			returnValue = "Record Saved Sucessfully";
 			return returnValue;
 		} catch (Exception e) {
@@ -311,31 +313,30 @@ public class LocoAddService {
 	}
 
 //service use to update electric  shed attribute for new add loco- for save as draft as well as forward to unapproved record 
-	public String updateElectricShedData(LocoUncleansedDataElectric electricLocoNewShedUser) {
+	public String updateElectricShedData(LocoUncleansedDataAddNewLoco electricLocoNewShedUser) {
 		try {
 			String returnValue = null;
-			String locoAuxiliaryOutput = electricLocoNewShedUser.getElec_locoAuxiliaryOutput();
-			String locoBoogieType = electricLocoNewShedUser.getElec_locoBoogieType();
-			String locoBrakeSubtype = electricLocoNewShedUser.getElec_locoBrakeSubtype();
-			String locoBrakeType = electricLocoNewShedUser.getElec_locoBrakeType();
-			String locoCabac = electricLocoNewShedUser.getElec_locoCabac();
-			String locoCommissionedShedId = electricLocoNewShedUser.getElec_locoOwningShed();
-			String locoControlType = electricLocoNewShedUser.getElec_locoControlType();
-			Date locoDateOfCommision = electricLocoNewShedUser.getElec_locoDateOfCommision();
-			Date locoEntryDate = electricLocoNewShedUser.getElec_locoEntryDate();
+			String locoAuxiliaryOutput = electricLocoNewShedUser.getLoco_auxilary();
+			String locoBoogieType = electricLocoNewShedUser.getLoco_boogie_type();
+			String locoBrakeSubtype = electricLocoNewShedUser.getLoco_brake_sub_type();
+			String locoBrakeType = electricLocoNewShedUser.getLoco_brake_type();
+			String locoCabac = electricLocoNewShedUser.getLoco_cabin_ac();
+			String locoControlType = electricLocoNewShedUser.getLoco_control_type();
+			String gpsflagtype = electricLocoNewShedUser.getFlag_type();
+			
+			Date locoDateOfCommision = electricLocoNewShedUser.getLoco_commissioning_date();			
 			String locoHotelLoad = electricLocoNewShedUser.getElec_locoHotelLoad();
-			String locoManfacturer = electricLocoNewShedUser.getElec_locoManfacturer();
-			String locoGPSEnableflag = electricLocoNewShedUser.getIsGPSEnabled();
-			String locoTractionMotorType = electricLocoNewShedUser.getElec_locoTractionMotorType();
-
-			String status = electricLocoNewShedUser.getElec_Status();
-			String uid = electricLocoNewShedUser.getUserid();
-			Date locotxndate = electricLocoNewShedUser.getTxndate();
-			int locoNo = electricLocoNewShedUser.getElec_locoNo();
-			obj_electriclocorepo.updateWithElectricLocoShedData(locoAuxiliaryOutput, locoBoogieType, locoBrakeSubtype,
-					locoBrakeType, locoCabac, locoCommissionedShedId, locoControlType, locoDateOfCommision,
-					locoEntryDate, locoHotelLoad, locoManfacturer, locoGPSEnableflag, locoTractionMotorType, status,
-					uid, locotxndate, locoNo);
+			String locoManfacturer = electricLocoNewShedUser.getLoco_manufacturer();
+			String locoGPSEnable = electricLocoNewShedUser.getIs_gps_enabled();
+				String locoTractionMotorType = electricLocoNewShedUser.getLoco_traction_motor_type();
+			String status = electricLocoNewShedUser.getStatus();
+			String uid = electricLocoNewShedUser.getUser_id();
+			Date locotxndate = electricLocoNewShedUser.getTxn_date();
+			Date locoEntryDate = electricLocoNewShedUser.getLoco_entry_date();
+			int locoNo = electricLocoNewShedUser.getLoco_no();
+			obj_LocoNewRepo.updateWithElectricNewLocoShedData(locoAuxiliaryOutput, locoBoogieType, locoBrakeSubtype,
+					locoBrakeType, locoCabac, gpsflagtype, locoControlType, locoTractionMotorType,locoDateOfCommision,
+					locoEntryDate, locoHotelLoad, locoManfacturer, locoGPSEnable,  status,uid, locotxndate, locoNo);
 			returnValue = "Record Save Sucessfully";
 			return returnValue;
 		} catch (Exception e) {

@@ -87,22 +87,22 @@ public class LocoAddController {
 //	boolean flag= obj_newlocoservice.checkloconoexist(locono);
 //	return flag;
 //	}   
+	
 
-
-	@RequestMapping(method=RequestMethod.POST, value="/updateelectricshedloco")
-	public String updateelecbyShed(@RequestBody LocoUncleansedDataElectric updateElectricLocoShedUser) throws JSONException, JsonMappingException, IOException 
+	@RequestMapping(method=RequestMethod.POST, value="/updateelectricshednewloco")
+	public String updateElectricNewLocoData(@RequestBody LocoUncleansedDataAddNewLoco updateElectricLocoShedUser) throws JSONException, JsonMappingException, IOException 
 	{
 		logger.info("----------/updateElectricShedNewLocoAddtion",updateElectricLocoShedUser);
 		System.out.println(updateElectricLocoShedUser);
 		return obj_newlocoservice.updateElectricShedData(updateElectricLocoShedUser);
 			}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/updatedieselshedloco")
-	public String updateelecbyShed(@RequestBody LocoUncleansedDataAddNewLoco updateDieselLocoShedUser) throws JSONException, JsonMappingException, IOException 
+	@RequestMapping(method=RequestMethod.POST, value="/updatedieselshednewloco")
+	public String updateDieselNewLocoData(@RequestBody LocoUncleansedDataAddNewLoco updateDieselLocoShedUser) throws JSONException, JsonMappingException, IOException 
 	{
 		logger.info("----------/updateDieselShedNewLocoAddtion",updateDieselLocoShedUser);
 		System.out.println(updateDieselLocoShedUser);
-		return obj_newlocoservice.updateDieselShedData(updateDieselLocoShedUser);
+		return obj_newlocoservice.updateWithDieselNewLocoShedData(updateDieselLocoShedUser);
 			}
 	
 

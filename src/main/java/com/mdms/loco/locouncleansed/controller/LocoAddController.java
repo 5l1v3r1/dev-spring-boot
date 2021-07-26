@@ -146,14 +146,17 @@ public class LocoAddController {
 	 
 	
 	 
-	  @RequestMapping(method=RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE, value = "/getlocodetails")
+	  @RequestMapping(method=RequestMethod.POST, value = "/getlocodetails")
 	   public List<LocoUncleansedDataAddNewLoco> getLocoDetailBasedOnLocoNo(@RequestBody LocoUncleansedDataAddNewLoco locoUncleansedDataAddNewLoco){
-		  
-		  System.out.println(locoUncleansedDataAddNewLoco.getLoco_no());
+		  		  System.out.println(locoUncleansedDataAddNewLoco.getLoco_no());
 		 return obj_newlocoservice.getLocoDetailOnLocoNo(locoUncleansedDataAddNewLoco.getLoco_no());
+	  }
+	 
+	  @RequestMapping(method=RequestMethod.POST, value = "/getlocodetailforzonaldraft")
+	   public List<LocoUncleansedDataAddNewLoco> findlocoDetailforZonalDraft(@RequestBody LocoUncleansedDataAddNewLoco locoZDcleansedDataAddNewLoco){
+		  		  System.out.println(locoZDcleansedDataAddNewLoco.getLoco_no());
+		 return obj_newlocoservice.findlocoDetailforZonalDraft(locoZDcleansedDataAddNewLoco.getLoco_no());
 		 
 	 }
-	 
-	 
 	 
 }

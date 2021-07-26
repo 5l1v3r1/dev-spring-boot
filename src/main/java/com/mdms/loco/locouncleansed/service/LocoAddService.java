@@ -302,12 +302,12 @@ public class LocoAddService {
 			obj_LocoNewRepo.updateWithDieselNewLocoShedData( locoControlType, locoBrakeSubtype,  locoBrakeType, 
 					locoDateOfCommision, locoEntryDate, locoManfacturer, locoGPSEnableflag, flagtype,
 					locoTractionMotorType, axleload,  status, uid, locotxndate, locoNo);
-			returnValue = "Record Saved Sucessfully";
+			returnValue = "true";
 			return returnValue;
 		} catch (Exception e) {
 
 			System.out.println(e);
-			return "Failed to Saved";
+			return "false";
 		}
 
 	}
@@ -337,12 +337,12 @@ public class LocoAddService {
 			obj_LocoNewRepo.updateWithElectricNewLocoShedData(locoAuxiliaryOutput, locoBoogieType, locoBrakeSubtype,
 					locoBrakeType, locoCabac, gpsflagtype, locoControlType, locoTractionMotorType,locoDateOfCommision,
 					locoEntryDate, locoHotelLoad, locoManfacturer, locoGPSEnable,  status,uid, locotxndate, locoNo);
-			returnValue = "Record Save Sucessfully";
+			returnValue = "true";
 			return returnValue;
 		} catch (Exception e) {
 
 			System.out.println(e);
-			return "Failed to Save";
+			return "false";
 		}
 
 	}
@@ -452,6 +452,13 @@ public class LocoAddService {
 		//List<LocoUncleansedDataAddNewLoco> listt = obj_LocoNewRepo.findlocoDetailBasedOnLocoNo(loco_no);
 		listt.addAll(obj_LocoNewRepo.findlocoDetailBasedOnLocoNo(loco_no));
 		return listt;
+	}
+	
+public List<LocoUncleansedDataAddNewLoco> findlocoDetailforZonalDraft(Integer loco_no){		
+		List<LocoUncleansedDataAddNewLoco> list2 = new ArrayList<LocoUncleansedDataAddNewLoco>();		
+		//List<LocoUncleansedDataAddNewLoco> listt = obj_LocoNewRepo.findlocoDetailBasedOnLocoNo(loco_no);
+		list2.addAll(obj_LocoNewRepo.findlocoDetailforZonalDraft(loco_no));
+		return list2;
 	}
 
 }

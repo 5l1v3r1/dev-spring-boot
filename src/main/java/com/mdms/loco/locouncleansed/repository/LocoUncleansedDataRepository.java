@@ -27,7 +27,7 @@ public interface LocoUncleansedDataRepository extends CrudRepository<LocoUnclean
 	List<String> findlocomake();
 	
 	
-	@Query(value="SELECT loco_no FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_shed=?1 AND status='V'  AND record_status='N'",nativeQuery=true)
+	@Query(value="SELECT loco_no FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_shed=?1 AND  (status='V' OR status='D' OR status='R') AND record_status='N'",nativeQuery=true)
 	List<Integer> findlocoNumber(String loco_owning_shed);
 	
 	

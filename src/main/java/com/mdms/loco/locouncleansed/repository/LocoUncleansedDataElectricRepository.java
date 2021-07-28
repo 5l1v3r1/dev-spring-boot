@@ -21,7 +21,7 @@ public interface LocoUncleansedDataElectricRepository extends CrudRepository <Lo
 	@Query(value="SELECT * FROM  mdms_loco.loco_uncleansed_data WHERE loco_no=?1 AND record_status='O' AND status='D' OR Status='R' ",nativeQuery=true)
 	List<LocoUncleansedDataElectric> getDraftLoco(int elno);
 	
-	@Query(value="SELECT * FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_shed=?1 AND status='U' AND record_status='O'",nativeQuery=true)
+	@Query(value="SELECT * FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_shed=?1 AND status='U' AND (record_status='O' OR record_status ='N')",nativeQuery=true)
 	List<LocoUncleansedDataElectric> getUnapprovedLoco(String eshedid);
 	
 	@Query(value="SELECT * FROM  mdms_loco.loco_uncleansed_data WHERE  status='D' OR status='U'",nativeQuery=true)

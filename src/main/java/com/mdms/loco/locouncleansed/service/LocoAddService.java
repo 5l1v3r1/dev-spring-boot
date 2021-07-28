@@ -1,8 +1,6 @@
 package com.mdms.loco.locouncleansed.service;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -85,7 +83,7 @@ public class LocoAddService {
 			Date locoMfgDt = dieselLocoBoardZonal.getLoco_manufacturing_date();
 			String locOwningShed = dieselLocoBoardZonal.getLoco_owning_shed();
 			Date locorecddate = dieselLocoBoardZonal.getLoco_receiving_date();
-			String locoManufacturer = dieselLocoBoardZonal.getLoco_manufacturer();
+//			String locoManufacturer = dieselLocoBoardZonal.getLoco_manufacturer();
 			String locoLeasetype = dieselLocoBoardZonal.getLoco_lease_type();
 			long locoInitialCost = dieselLocoBoardZonal.getLoco_initial_cost();
 			long locoPOHCost = dieselLocoBoardZonal.getLoco_poh_cost();
@@ -101,7 +99,7 @@ public class LocoAddService {
 			String remarks=dieselLocoBoardZonal.getRemarks();
 			int locoNo = dieselLocoBoardZonal.getLoco_no();
 			obj_dieselocoaddrepo.updateDieselBoardZonalRecord(locoPermanentDomain, locoType, locoOwningZone,
-					locoOwningDivision, locoMfgDt, locOwningShed,locorecddate, locoManufacturer, locoInitialCost,
+					locoOwningDivision, locoMfgDt, locOwningShed,locorecddate,  locoLeasetype,locoInitialCost,
 					locoPOHCost, tractionCode, gaugeType, locoHaulingPower, locoMfgCountry, recordstatus,status, uid, locotxndate,locoentrydate,
 					remarks, locoNo);
 			returnValue = "Record Update";
@@ -111,7 +109,7 @@ public class LocoAddService {
 			System.out.println(e);
 			return "Failed to Update";
 		}
-
+		
 	}
 
 	public String saveElectricBoardZonalData(LocoUncleansedDataAddNewLoco electricLocoBoardZonal) {
@@ -377,7 +375,6 @@ public class LocoAddService {
 		String zoneid = obj_zonalapproved.getLoco_owning_zone();
 		System.out.println("zoneidservice : " + zoneid);
 		obj_LocoNewRepo.getApprovedZonalBoardLoco(zoneid);
-
 		List<LocoUncleansedDataAddNewLoco> zonalapprovedLoco = new ArrayList<>();
 		obj_LocoNewRepo.getApprovedZonalBoardLoco(zoneid).forEach(zonalapprovedLoco::add);
 		System.out.println(" End getzonalunapprovedocos" + zonalapprovedLoco);
@@ -441,7 +438,6 @@ public class LocoAddService {
 	public List<Integer> getLocoNumber(String locoOwingShed) {
 		List<Integer> list = obj_dieselocoaddrepo.findlocoNumber(locoOwingShed);
 		return list;
-		
 
 	}
 	

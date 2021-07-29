@@ -346,15 +346,13 @@ public class LocoAddService {
 	}
 
 //fetch zonal user  new loco unapproved record 
-	public List<LocoUncleansedDataAddNewLoco> getUnapprovedZonalLocos(LocoUncleansedDataElectric obj_zonalunapproved) {
+	public List<LocoUncleansedDataAddNewLoco> getUnapprovedZonalLocos() {
 //		// TODO Auto-generated method stub
 		System.out.println("getzonalunapprovedocos");
-		String zoneid = obj_zonalunapproved.getElec_locoOwningZone();
-		obj_electriclocorepo.getUnapprovedZonalBoardLoco(zoneid);
-		List<LocoUncleansedDataElectric> zonalunapprovedLoco = new ArrayList<>();
-		obj_electriclocorepo.getUnapprovedZonalBoardLoco(zoneid).forEach(zonalunapprovedLoco::add);
+		List<LocoUncleansedDataAddNewLoco> zonalunapprovedLoco = new ArrayList<>();
+		obj_LocoNewRepo.getUnapprovedZonalBoardLoco().forEach(zonalunapprovedLoco::add);
 		System.out.println(" End getzonalunapprovedocos");
-		return obj_LocoNewRepo.getUnapprovedZonalBoardLoco(zoneid);
+		return obj_LocoNewRepo.getUnapprovedZonalBoardLoco();
 	}
 
 ////fetch zonal user  new loco unapproved record 
@@ -450,10 +448,9 @@ public class LocoAddService {
 		return listt;
 	}
 	
-public List<LocoUncleansedDataAddNewLoco> findlocoDetailforZonalDraft(Integer loco_no){		
-		List<LocoUncleansedDataAddNewLoco> list2 = new ArrayList<LocoUncleansedDataAddNewLoco>();		
-		//List<LocoUncleansedDataAddNewLoco> listt = obj_LocoNewRepo.findlocoDetailBasedOnLocoNo(loco_no);
-		list2.addAll(obj_LocoNewRepo.findlocoDetailforZonalDraft(loco_no));
+public List<LocoUncleansedDataAddNewLoco> findlocoDetailforZonalDraft(){		
+		List<LocoUncleansedDataAddNewLoco> list2 = new ArrayList<LocoUncleansedDataAddNewLoco>();
+		list2.addAll(obj_LocoNewRepo.findlocoDetailforZonalDraft());
 		return list2;
 	}
 

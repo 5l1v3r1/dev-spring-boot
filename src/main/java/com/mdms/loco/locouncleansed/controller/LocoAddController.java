@@ -107,9 +107,8 @@ public class LocoAddController {
 	
 
 	 @RequestMapping(method=RequestMethod.POST, value = "/zonalUnapprovedLoco")
- 	public List<LocoUncleansedDataAddNewLoco> getZonalUnapprovedLoco(@RequestBody LocoUncleansedDataElectric obj_zonalunapproved){
- 		System.out.println("zoneid"+ obj_zonalunapproved.getElec_locoOwningZone());
- 		return obj_newlocoservice.getUnapprovedZonalLocos(obj_zonalunapproved);
+ 	public List<LocoUncleansedDataAddNewLoco> getZonalUnapprovedLoco(){
+ 	 		return obj_newlocoservice.getUnapprovedZonalLocos();
 			
  	}
 
@@ -152,9 +151,8 @@ public class LocoAddController {
 	  }
 	 
 	  @RequestMapping(method=RequestMethod.POST, value = "/getlocodetailforzonaldraft")
-	   public List<LocoUncleansedDataAddNewLoco> findlocoDetailforZonalDraft(@RequestBody LocoUncleansedDataAddNewLoco locoZDcleansedDataAddNewLoco){
-		  		  System.out.println(locoZDcleansedDataAddNewLoco.getLoco_no());
-		 return obj_newlocoservice.findlocoDetailforZonalDraft(locoZDcleansedDataAddNewLoco.getLoco_no());
+	   public List<LocoUncleansedDataAddNewLoco> findlocoDetailforZonalDraft(){		  		  
+		 return obj_newlocoservice.findlocoDetailforZonalDraft();
 		 
 	 }
 	 

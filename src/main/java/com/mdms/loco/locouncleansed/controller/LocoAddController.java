@@ -49,7 +49,7 @@ public class LocoAddController {
 	public String saveelecnewloco(@RequestBody LocoUncleansedDataAddNewLoco dieselLocoBoardZonal) throws JSONException, JsonMappingException, IOException 
 	{
 		logger.info("----------/saveElectricBoardZonalNewLocoAddtion",dieselLocoBoardZonal);
-		System.out.println(dieselLocoBoardZonal);
+		
 		return obj_newlocoservice.saveDieselBoardZonalData(dieselLocoBoardZonal);
 			}
 	
@@ -107,12 +107,16 @@ public class LocoAddController {
 	
 
 	 @RequestMapping(method=RequestMethod.POST, value = "/zonalUnapprovedLoco")
- 	public List<LocoUncleansedDataAddNewLoco> getZonalUnapprovedLoco(@RequestBody LocoUncleansedDataElectric obj_zonalunapproved){
- 		System.out.println("zoneid"+ obj_zonalunapproved.getElec_locoOwningZone());
- 		return obj_newlocoservice.getUnapprovedZonalLocos(obj_zonalunapproved);
+ 	public List<LocoUncleansedDataAddNewLoco> getZonalUnapprovedLoco(){
+ 	 		return obj_newlocoservice.getUnapprovedZonalLocos();
 			
  	}
 
+	 @RequestMapping(method=RequestMethod.POST, value = "/getRBVerifiedNewLoco")
+	 	public List<LocoUncleansedDataAddNewLoco> getTotalRBVerifiedNewLoco(){
+	 	 		return obj_newlocoservice.getTotalRBVerifiedNewLoco();
+				
+	 	}
 //	 @RequestMapping(method=RequestMethod.POST, value = "/zonalUnapprovedLoco")
 // 	public List<LocoUncleansedDataAddNewLoco> getZonalUnapprovedLoco(@RequestBody LocoUncleansedDataElectric obj_zonalunapproved){
 // 		System.out.println("zoneid"+ obj_zonalunapproved.getElec_locoOwningZone());
@@ -152,9 +156,8 @@ public class LocoAddController {
 	  }
 	 
 	  @RequestMapping(method=RequestMethod.POST, value = "/getlocodetailforzonaldraft")
-	   public List<LocoUncleansedDataAddNewLoco> findlocoDetailforZonalDraft(@RequestBody LocoUncleansedDataAddNewLoco locoZDcleansedDataAddNewLoco){
-		  		  System.out.println(locoZDcleansedDataAddNewLoco.getLoco_no());
-		 return obj_newlocoservice.findlocoDetailforZonalDraft(locoZDcleansedDataAddNewLoco.getLoco_no());
+	   public List<LocoUncleansedDataAddNewLoco> findlocoDetailforZonalDraft(){		  		  
+		 return obj_newlocoservice.findlocoDetailforZonalDraft();
 		 
 	 }
 	 

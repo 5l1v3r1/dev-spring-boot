@@ -18,7 +18,7 @@ public interface LocoUncleansedDataAddNewRepository extends CrudRepository<LocoU
 
 	@Query(value="SELECT loco_flag, loco_no, loco_type, loco_permanent_domain, loco_owning_shed, loco_owning_zone, loco_traction_code, loco_owning_division, loco_manufacturing_date, loco_receiving_date,\r\n" + 
 			"loco_initial_cost, loco_poh_cost, loco_lease_type, loco_gauge_type, loco_hauling_power, loco_manufacturing_country, record_status, status, user_id,  txn_date, remarks, loco_entry_date, flag_type, loco_commissioning_date, loco_commissioned_shed_id, loco_axle_load, loco_axle_load_unit, loco_traction_motor_type, loco_boogie_type, loco_control_type, is_gps_enabled, loco_manufacturer,loco_hotel_load,loco_auxilary,loco_brake_type,loco_brake_sub_type,loco_cabin_ac FROM  mdms_loco.loco_uncleansed_data WHERE  status='ZU' AND record_status='N'",nativeQuery=true)
-	List<LocoUncleansedDataAddNewLoco> getUnapprovedZonalBoardLoco(String locozone);
+	List<LocoUncleansedDataAddNewLoco> getUnapprovedZonalBoardLoco();
 
 
 
@@ -30,12 +30,14 @@ public interface LocoUncleansedDataAddNewRepository extends CrudRepository<LocoU
 	@Query(value="SELECT  * FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_zone=?1 AND status='V' AND record_status='N'",nativeQuery=true)
 	List<LocoUncleansedDataAddNewLoco> getApprovedZonalBoardLoco(String locozone);
 	
+	@Query(value="SELECT  * FROM  mdms_loco.loco_uncleansed_data WHERE  status='V' AND record_status='N'",nativeQuery=true)
+	List<LocoUncleansedDataAddNewLoco> getTotalRBVerifiedNewLoco();
 	
 	@Query(value="SELECT * FROM  mdms_loco.loco_uncleansed_data WHERE loco_no=?1",nativeQuery=true)
 	List<LocoUncleansedDataAddNewLoco> findlocoDetailBasedOnLocoNo(Integer loco_no);
 	
-	@Query(value="SELECT * FROM  mdms_loco.loco_uncleansed_data WHERE loco_no=?1 and (status='ZD' OR status='ZR) and record_status='N",nativeQuery=true)
-	List<LocoUncleansedDataAddNewLoco> findlocoDetailforZonalDraft(Integer loco_no);
+	@Query(value="SELECT * FROM  mdms_loco.loco_uncleansed_data WHERE record_status='N' and (status='ZD' OR status='R')",nativeQuery=true)
+	List<LocoUncleansedDataAddNewLoco> findlocoDetailforZonalDraft();
 	
 	@Transactional
 	@Modifying

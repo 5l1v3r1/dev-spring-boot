@@ -30,6 +30,8 @@ public interface LocoUncleansedDataAddNewRepository extends CrudRepository<LocoU
 	@Query(value="SELECT  * FROM  mdms_loco.loco_uncleansed_data WHERE loco_owning_zone=?1 AND status='V' AND record_status='N'",nativeQuery=true)
 	List<LocoUncleansedDataAddNewLoco> getApprovedZonalBoardLoco(String locozone);
 	
+	@Query(value="SELECT  * FROM  mdms_loco.loco_uncleansed_data WHERE  status='V' AND record_status='N'",nativeQuery=true)
+	List<LocoUncleansedDataAddNewLoco> getTotalRBVerifiedNewLoco();
 	
 	@Query(value="SELECT * FROM  mdms_loco.loco_uncleansed_data WHERE loco_no=?1",nativeQuery=true)
 	List<LocoUncleansedDataAddNewLoco> findlocoDetailBasedOnLocoNo(Integer loco_no);

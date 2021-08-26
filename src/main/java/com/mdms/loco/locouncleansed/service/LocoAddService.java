@@ -354,6 +354,18 @@ public class LocoAddService {
 		System.out.println(" End getzonalunapprovedocos");
 		return obj_LocoNewRepo.getUnapprovedZonalBoardLoco();
 	}
+	
+	
+	
+	//fetch total rb verified new loco
+		public List<LocoUncleansedDataAddNewLoco> getTotalRBVerifiedNewLoco() {
+//			// TODO Auto-generated method stub
+			System.out.println("getTotalRBVerifiedNewLoco");
+			List<LocoUncleansedDataAddNewLoco> zonalLoco = new ArrayList<>();
+			obj_LocoNewRepo.getTotalRBVerifiedNewLoco().forEach(zonalLoco::add);
+			System.out.println(" End getTotalRBVerifiedNewLoco");
+			return obj_LocoNewRepo.getTotalRBVerifiedNewLoco();
+		}
 
 ////fetch zonal user  new loco unapproved record 
 //public List<LocoUncleansedDataAddNewLoco> getUnapprovedZonalLocos(LocoUncleansedDataElectric obj_zonalunapproved) {

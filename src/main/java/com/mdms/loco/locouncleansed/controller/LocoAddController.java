@@ -49,7 +49,7 @@ public class LocoAddController {
 	public String saveelecnewloco(@RequestBody LocoUncleansedDataAddNewLoco dieselLocoBoardZonal) throws JSONException, JsonMappingException, IOException 
 	{
 		logger.info("----------/saveElectricBoardZonalNewLocoAddtion",dieselLocoBoardZonal);
-		System.out.println(dieselLocoBoardZonal);
+		
 		return obj_newlocoservice.saveDieselBoardZonalData(dieselLocoBoardZonal);
 			}
 	
@@ -112,6 +112,11 @@ public class LocoAddController {
 			
  	}
 
+	 @RequestMapping(method=RequestMethod.POST, value = "/getRBVerifiedNewLoco")
+	 	public List<LocoUncleansedDataAddNewLoco> getTotalRBVerifiedNewLoco(){
+	 	 		return obj_newlocoservice.getTotalRBVerifiedNewLoco();
+				
+	 	}
 //	 @RequestMapping(method=RequestMethod.POST, value = "/zonalUnapprovedLoco")
 // 	public List<LocoUncleansedDataAddNewLoco> getZonalUnapprovedLoco(@RequestBody LocoUncleansedDataElectric obj_zonalunapproved){
 // 		System.out.println("zoneid"+ obj_zonalunapproved.getElec_locoOwningZone());

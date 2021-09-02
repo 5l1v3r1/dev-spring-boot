@@ -20,4 +20,10 @@ List<WagonUncleansedData> temp =new ArrayList<>();
 repo_uncleansed.getWagonCleansedRecord(basedepo,status).forEach(temp::add);
 return repo_uncleansed.getWagonCleansedRecord(basedepo,status);
 	}
+
+
+
+
+
+
 }

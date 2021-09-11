@@ -84,6 +84,16 @@ public class UserProfileRegistrationController {
 		
 	}
 	
+	@RequestMapping(method=RequestMethod.POST, value="/getlocozonebyshed")
+	public String getLocoZonebyshed(@RequestBody UserRegistrationJsonModel userObj){		
+		logger.info("Controller : UserRegistrationController || Method : getlocozonebyshed ||user_shed: "+userObj);	
+		String response= registrationServiceObj.getLocoZonebyshed(userObj);
+		//code to send otp, on hold because of Api for sending otp		
+		logger.info("Controller : UserRegistrationController || Method : getlocozonebyshed ||user_shed: "+userObj);
+		return response;
+		
+	}
+	
 	@RequestMapping(method=RequestMethod.POST, value="/finduserrecord")
 	public String findUserRecord(@RequestParam  String user_id){
 		

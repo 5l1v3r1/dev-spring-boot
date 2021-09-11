@@ -10,6 +10,7 @@ public class GetListUserRegistrationJsonModel {
 	String loco_shed_list="";
 	String zone_list="";
 	String division_list="";
+	String loco_zone_list="";
 
 	String depo_list="";
 
@@ -78,12 +79,19 @@ public class GetListUserRegistrationJsonModel {
 		this.depo_list = depo_list;
 	}
 
+	
+	public String getLoco_zone_list() {
+		return loco_zone_list;
+	}
+	public void setLoco_zone_list(String loco_zone_list) {
+		this.loco_zone_list = loco_zone_list;
+	}
 	@Override
 	public String toString() {
 		return "GetListUserRegistrationJsonModel [user_type_list=" + user_type_list + ", user_role_list="
 				+ user_role_list + ", department_list=" + department_list + ", designation_list=" + designation_list
 				+ ", loco_type_list=" + loco_type_list + ", loco_shed_list=" + loco_shed_list + ", zone_list="
-				+ zone_list + ", division_list=" + division_list + ",depo_list=" + depo_list + "]";
+				+ zone_list + ", division_list=" + division_list + ", loco_zone_list = "+ loco_zone_list +" , depo_list=" + depo_list + "]";
 
 	}
 	

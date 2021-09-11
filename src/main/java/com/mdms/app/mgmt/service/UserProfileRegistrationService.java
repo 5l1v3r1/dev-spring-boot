@@ -163,6 +163,8 @@ if(response!=null && result!=null) {
 	 }
 	 
 	 
+	
+	 
 	 public GetListUserRegistrationJsonModel getListUserRegistration() {
 			logger.info("Service : UserProfileRegistrationService || Method : getListUserRegistration ");	 
 	GetListUserRegistrationJsonModel obj = new GetListUserRegistrationJsonModel();
@@ -175,9 +177,8 @@ if(response!=null && result!=null) {
 	String userDesignation= "";
 	String zones="";
 	String divisions="";
-			String loco_types="";
+	String loco_types="";
 	String sheds="";	
-
 	String depo="";
 	String oldid="";
 
@@ -255,7 +256,7 @@ if(response!=null && result!=null) {
 			logger.info("Service : UserProfileRegistrationService || Method : getListUserRegistration ||Exception GET CoachDepos" + ex.getMessage());
 
 		}
-
+	
 	
 	try {
 	obj.setUser_role_list(userRole);
@@ -265,7 +266,8 @@ if(response!=null && result!=null) {
 	obj.setDivision_list(divisions);
 	obj.setZone_list(zones);
 	obj.setLoco_shed_list(sheds);
-obj.setUser_type_role_list(userTypeRole);
+  
+    obj.setUser_type_role_list(userTypeRole);
 
 	obj.setLoco_type_list(loco_types);	
 
@@ -289,8 +291,15 @@ obj.setUser_type_role_list(userTypeRole);
 		 return response;
 		 } 
 	 
+	 
 	
-		 
+	 public String  getLocoZonebyshed(@RequestBody UserRegistrationJsonModel  Obj) {	
+		 String ushed= Obj.getShed();
+		 String response=loginDetailRepo.getLocoZonebyshed(ushed);
+			logger.info("Service : UserProfileRegistrationService || Method : getLocoZonebyshed||user_shed: "+ushed+"||response:"+response);
+		 return response;
+		 } 
+	  
 
 	 public String findUserRecord(String user_id) {	 		 
 

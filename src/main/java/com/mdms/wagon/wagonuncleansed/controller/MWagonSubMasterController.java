@@ -19,7 +19,8 @@ import com.mdms.wagon.wagonuncleansed.service.MWagonSubMasterService;
 public class MWagonSubMasterController {
 
 	@Autowired
-private MWagonSubMasterService obj_wagonsubmaster;
+    private MWagonSubMasterService obj_wagonsubmaster;
+	
 	@RequestMapping(method=RequestMethod.POST, value = "/getWagonOwnRly")
 	public List<String> getWagonOwningRlycode()
 	{
@@ -27,5 +28,11 @@ private MWagonSubMasterService obj_wagonsubmaster;
 	return obj_wagonsubmaster.getWagonOwningRlycode();
 	}
 	
+	@RequestMapping(method=RequestMethod.POST, value = "/getWagonTypeCode")
+	public List<String> getWagonTypecode()
+	{
+	obj_wagonsubmaster.getWagonTypecode();
+	return obj_wagonsubmaster.getWagonTypecode();
+	}
 	
 }

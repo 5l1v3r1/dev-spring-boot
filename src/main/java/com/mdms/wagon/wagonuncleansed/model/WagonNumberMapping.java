@@ -21,11 +21,16 @@ public class WagonNumberMapping {
 	@Column(name="wagon_type")
 	private String  wagon_type ;
 
-	@Column(name="status")
-	private String  status ;
 
+
+
+	
 	@Column(name="user_id")
 	private String  user_id ;
+	
+	@Column(name="status")
+	private String  status ;
+	
 
 	@Column(name="date")
 	private String  date ;
@@ -62,6 +67,7 @@ public class WagonNumberMapping {
 		this.wagon_type = wagon_type;
 	}
 
+
 	public String getStatus() {
 		return status;
 	}
@@ -69,6 +75,7 @@ public class WagonNumberMapping {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 
 	public String getUser_id() {
 		return user_id;
@@ -78,6 +85,7 @@ public class WagonNumberMapping {
 		this.user_id = user_id;
 	}
 
+
 	public String getDate() {
 		return date;
 	}
@@ -85,7 +93,6 @@ public class WagonNumberMapping {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	 
 
 	
 	
